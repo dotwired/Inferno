@@ -1,0 +1,58 @@
+.infernal-society {
+    word-spacing: 0px;
+
+    a {
+        margin: 0 2px;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: none;
+
+        transition: opacity 0.2s;
+        -webkit-transition: opacity 0.2s;
+        -moz-transition: opacity 0.2s;
+        -o-transition: opacity 0.2s;
+        -ms-transition: opacity 0.2s;
+
+        img {
+            display: block;
+        }
+
+        &:hover {
+            text-decoration: none;
+            border-bottom: none;
+        }
+    }
+
+    &.aligncenter {
+        text-align: center;
+    }
+
+    &.alignleft {
+        float: left;
+    }
+
+    &.alignright {
+        float: right;
+        text-align: right;
+    }
+
+    &.hover-fadein {
+        a {
+            opacity: 0.4;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.hover-fadeout {
+        a {
+            opacity: 1;
+
+            &:hover {
+                opacity: 0.4;
+            }
+        }
+    }
+}

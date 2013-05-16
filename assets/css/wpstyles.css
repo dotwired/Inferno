@@ -1,0 +1,109 @@
+/* wordpress default styles */
+/* Content elements
+--------------------------------------------- */
+.size-auto,
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+  max-width: 100%;
+  height: auto; }
+
+/* Posts
+--------------------------------------------- */
+.wp-caption {
+  max-width: 100%;
+  padding: 5px;
+  background: #f6f6f6;
+  margin-bottom: 15px;
+  text-align: center; }
+
+.wp-caption-text {
+  font-family: 'Drod Serif', Georgia, Serif;
+  font-style: italic;
+  margin-bottom: 3px; }
+
+article.sticky .featured-post {
+  position: absolute;
+  left: -45px;
+  width: 35px;
+  height: 35px;
+  font-size: 12px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff; }
+
+.bypostauthor header .fn span {
+  font-size: 80%; }
+
+/* Alignment
+--------------------------------------------- */
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 10px; }
+
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 10px; }
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+img.alignleft,
+img.alignright,
+img.aligncenter,
+img.alignnone {
+  margin-bottom: 10px; }
+
+img.alignnone {
+  display: block; }
+
+h1 img.alignnone,
+h2 img.alignnone,
+h3 img.alignnone,
+h4 img.alignnone,
+h5 img.alignnone,
+h6 img.alignnone {
+  display: inline; }
+
+/* Gallery
+--------------------------------------------- */
+.gallery.gallery-columns-2 .gallery-item {
+  width: 48%; }
+
+.gallery.gallery-columns-3 .gallery-item {
+  width: 30.66%; }
+
+.gallery.gallery-columns-4 .gallery-item {
+  width: 22%; }
+
+.gallery.gallery-columns-5 .gallery-item {
+  width: 16.8%; }
+
+.gallery.gallery-columns-6 .gallery-item {
+  width: 13.33%; }
+
+.gallery br {
+  display: none; }
+.gallery .gallery-item {
+  margin-right: 4% !important;
+  margin-bottom: 20px !important;
+  float: left !important;
+  padding: 5px;
+  background: #f6f6f6; }
+  .gallery .gallery-item img {
+    display: block;
+    width: 100%; }
+  .gallery .gallery-item .gallery-caption {
+    margin: 6px 0;
+    font-size: 90%; }
+.gallery.gallery-columns-2 dl.gallery-item:nth-child(2n+2), .gallery.gallery-columns-3 dl.gallery-item:nth-child(3n+3), .gallery.gallery-columns-4 dl.gallery-item:nth-child(4n+4), .gallery.gallery-columns-5 dl.gallery-item:nth-child(5n+5), .gallery.gallery-columns-6 dl.gallery-item:nth-child(6n+6) {
+  margin-right: 0 !important;
+  clear: right !important; }
+.gallery.gallery-columns-2 dl.gallery-item:nth-child(2n+3), .gallery.gallery-columns-3 dl.gallery-item:nth-child(3n+4), .gallery.gallery-columns-4 dl.gallery-item:nth-child(4n+5), .gallery.gallery-columns-5 dl.gallery-item:nth-child(5n+6), .gallery.gallery-columns-6 dl.gallery-item:nth-child(6n+7) {
+  clear: left !important; }

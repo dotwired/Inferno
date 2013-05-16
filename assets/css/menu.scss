@@ -1,0 +1,65 @@
+@mixin opacity($op) {
+    opacity: #{$op};
+    -webkit-opacity: #{$op};
+    -khtml-opacity: #{$op};
+    -ms-opacity: #{$op};
+    -o-opacity: #{$op};
+}
+
+@mixin transition-duration($td) {
+    transition-duration: #{$td};
+    -webkit-transition-duration: #{$td};
+    -khtml-transition-duration: #{$td};
+    -ms-transition-duration: #{$td};
+    -o-transition-duration: #{$td};
+}
+
+@mixin transition-delay($td) {
+    transition-delay: #{$td};
+    -webkit-transition-delay: #{$td};
+    -khtml-transition-delay: #{$td};
+    -ms-transition-delay: #{$td};
+    -o-transition-delay: #{$td};
+}
+
+#header {
+
+    ul.menu {
+        position: relative;
+        z-index: 9999;
+        margin: 0;
+        padding: 0;
+
+        li {
+            position: relative;
+            display: block;
+            float: left;
+
+            &:hover {
+                ul.sub-menu {
+                    @include opacity(1);
+                    @include transition-delay(0ms);
+
+                    visibility: visible;
+                }
+            }
+        }
+    }
+    
+    ul.sub-menu {
+        @include opacity(0);
+        @include transition-duration(500ms);
+        @include transition-delay(300ms);
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+
+        li {
+            float: none;
+        }
+    }
+}

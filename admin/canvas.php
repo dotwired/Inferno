@@ -17,16 +17,13 @@
                 </ul>
             </nav>
             <section class="content">
-                <?php 
-                $this->message(); 
-                $this->tabs(); 
-                ?>
+                <?php $this->tabs(); ?>
             </section>
             <div class="clearfix"></div>
             <footer class="footer">
                 <button name="inferno_action" class="button-primary" value="save"><?php _e('Save Changes', 'inferno'); ?></button>
                 <button name="inferno_action" class="button button-reset" value="reset" class="ip-reset"><?php _e('Reset to Defaults', 'inferno'); ?></button>
-                <?php $this->nonce_input(); ?>
+                <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce($this->_noncestr); ?>" />
                 <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $('#ip-reset').confirm({
@@ -44,6 +41,10 @@
                 </script>
             </footer>
             <div class="clearfix"></div>
+
+            <div class="inferno-message success ajax">
+                <p><?php _e('Options successfully saved!', 'inferno'); ?></p>
+            </div>
         </div>
     </form>
 

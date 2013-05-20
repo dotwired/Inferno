@@ -1,0 +1,340 @@
+/* ==========================================================================
+   Inferno Canvas
+   ========================================================================== */
+.inferno-canvas, .inferno-canvas * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box; }
+  .inferno-canvas .clearfix, .inferno-canvas * .clearfix {
+    clear: both; }
+
+.inferno-canvas {
+  position: relative;
+  width: 886px;
+  margin: 25px 0;
+  border: 5px #eee solid;
+  background: #eaeaea url(../img/bg.png);
+  /* Header
+     ========================================================================== */
+  /* Navigation
+     ========================================================================== */
+  /* Messages
+     ========================================================================== */
+  /* Content with Tabs and Options
+     ========================================================================== */
+  /* Form Elements
+     ========================================================================== */ }
+  .inferno-canvas .header {
+    width: 100%;
+    height: 131px;
+    background: white url(../img/loading.gif) no-repeat center center; }
+  .inferno-canvas .bar {
+    background: #555555;
+    background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+    background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -o-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
+    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+    color: #ddd;
+    font-size: 12px;
+    line-height: 22px;
+    height: 35px;
+    padding: 0 25px;
+    border-bottom: 5px #eee solid;
+    line-height: 30px; }
+    .inferno-canvas .bar .version, .inferno-canvas .bar .branding {
+      height: 30px;
+      float: left; }
+    .inferno-canvas .bar .branding {
+      float: right; }
+    .inferno-canvas .bar .icon-fire, .inferno-canvas .bar .icon-road {
+      margin-right: 6px; }
+    .inferno-canvas .bar a {
+      color: #fff;
+      text-decoration: none; }
+      .inferno-canvas .bar a:hover {
+        text-decoration: underline; }
+  .inferno-canvas .menu {
+    width: 140px;
+    float: left; }
+    .inferno-canvas .menu li {
+      width: 140px;
+      height: 35px;
+      margin-bottom: 0; }
+      .inferno-canvas .menu li.ui-state-active {
+        background: #555555;
+        background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+        background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
+        background: -o-linear-gradient(top, #555555 0%, #333333 100%);
+        background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
+        background: linear-gradient(to bottom, #555555 0%, #333333 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
+        .inferno-canvas .menu li.ui-state-active a {
+          text-shadow: 1px 1px 1px black;
+          -webkit-text-shadow: 1px 1px 1px black;
+          -khtml-text-shadow: 1px 1px 1px black;
+          -ms-text-shadow: 1px 1px 1px black;
+          -o-text-shadow: 1px 1px 1px black;
+          color: #fff; }
+        .inferno-canvas .menu li.ui-state-active div {
+          color: #f05b23; }
+    .inferno-canvas .menu a {
+      text-shadow: 1px 1px 1px white;
+      -webkit-text-shadow: 1px 1px 1px white;
+      -khtml-text-shadow: 1px 1px 1px white;
+      -ms-text-shadow: 1px 1px 1px white;
+      -o-text-shadow: 1px 1px 1px white;
+      display: block;
+      padding-left: 15px;
+      text-decoration: none;
+      color: #444;
+      line-height: 35px;
+      font-weight: 500;
+      outline: none; }
+      .inferno-canvas .menu a div {
+        display: inline-block;
+        margin-right: 10px; }
+      .inferno-canvas .menu a span {
+        display: inline-block; }
+  .inferno-canvas .inferno-message {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -75px 0 0 -75px;
+    width: 150px;
+    height: 150px;
+    display: none;
+    background: url(../img/dark-trans-bg.png); }
+  .inferno-canvas .content {
+    width: 736px;
+    padding: 25px;
+    float: left;
+    color: #565656;
+    background: #fff; }
+  .inferno-canvas .field {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px #eee solid; }
+  .inferno-canvas .field-details {
+    float: left;
+    width: 356px;
+    margin-right: 30px; }
+    .inferno-canvas .field-details .more {
+      font-size: 11px;
+      color: #777;
+      font-family: georgia, serif;
+      font-style: italic;
+      margin-top: 10px;
+      display: block; }
+    .inferno-canvas .field-details.googlefont-desc {
+      padding-top: 20px; }
+  .inferno-canvas .field-setting {
+    float: left;
+    width: 300px; }
+    .inferno-canvas .field-setting.googlefont-setting {
+      padding-top: 20px; }
+  .inferno-canvas input, .inferno-canvas textarea {
+    outline: none; }
+  .inferno-canvas input[type=text], .inferno-canvas textarea {
+    background: #eeeeee;
+    background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
+    background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
+    background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
+    background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
+    background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+    box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    -webkit-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    -khtml-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    -ms-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    -o-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    padding: 8px 6px 6px;
+    width: 100%;
+    max-width: 100%;
+    text-align: left !important; }
+  .inferno-canvas textarea {
+    height: 130px; }
+  .inferno-canvas select {
+    width: 100%; }
+  .inferno-canvas input[type=file] {
+    margin-top: 7px; }
+  .inferno-canvas .ip-colorpicker input[type=text] {
+    width: 80%;
+    float: left; }
+  .inferno-canvas .radio .ui-button {
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #eeeeee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #eeeeee));
+    background: -webkit-linear-gradient(top, white 0%, #eeeeee 100%);
+    background: -o-linear-gradient(top, white 0%, #eeeeee 100%);
+    background: -ms-linear-gradient(top, white 0%, #eeeeee 100%);
+    background: linear-gradient(to bottom, white 0%, #eeeeee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+    text-shadow: 1px 1px 1px white;
+    -webkit-text-shadow: 1px 1px 1px white;
+    -khtml-text-shadow: 1px 1px 1px white;
+    -ms-text-shadow: 1px 1px 1px white;
+    -o-text-shadow: 1px 1px 1px white;
+    border: 1px #DFDFDF solid;
+    margin-right: -1px;
+    padding: 7px 11px 6px;
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: 900; }
+    .inferno-canvas .radio .ui-button:hover {
+      background: #eeeeee;
+      background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
+      background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
+  .inferno-canvas .radio .ui-corner-left {
+    border-top-left-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -khtml-border-top-left-radius: 4px;
+    -ms-border-top-left-radius: 4px;
+    -o-border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -khtml-border-bottom-left-radius: 4px;
+    -ms-border-bottom-left-radius: 4px;
+    -o-border-bottom-left-radius: 4px; }
+  .inferno-canvas .radio .ui-corner-right {
+    border-top-right-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -khtml-border-top-right-radius: 4px;
+    -ms-border-top-right-radius: 4px;
+    -o-border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -khtml-border-bottom-right-radius: 4px;
+    -ms-border-bottom-right-radius: 4px;
+    -o-border-bottom-right-radius: 4px; }
+  .inferno-canvas .radio .ui-state-active {
+    box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
+    -webkit-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
+    -khtml-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
+    -ms-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
+    -o-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
+    color: #999; }
+    .inferno-canvas .radio .ui-state-active:hover {
+      background: #eeeeee;
+      background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
+      background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
+      background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
+  .inferno-canvas .radio .ui-helper-hidden-accessible {
+    position: absolute;
+    display: none; }
+  .inferno-canvas .media img {
+    margin-top: 10px;
+    max-width: 100%;
+    border: 5px #eee solid; }
+  .inferno-canvas .googlefont-canvas {
+    padding: 10px;
+    border: 4px #eee solid;
+    margin-top: 15px;
+    font-size: 15px;
+    font-family: auto; }
+
+/* ==========================================================================
+   Inferno Metabox
+   ========================================================================== */
+.inferno-metabox .inferno-colorpicker-meta-input {
+  float: left;
+  width: 90%; }
+.inferno-metabox .inferna-file-meta-input {
+  width: 80%;
+  float: left; }
+.inferno-metabox .colorSelector {
+  float: right;
+  margin-top: -5px; }
+.inferno-metabox .ip-button-upload {
+  float: right;
+  margin-top: 0; }
+
+/* ====================================================
+
+	EXTENSIONS
+
+==================================================== */
+/* range */
+.inferno-canvas .ip-range {
+  margin-top: 15px;
+  height: 6px;
+  border: 1px #eee solid;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  position: relative;
+  box-shadow: inset 1px 1px 1px #c6c5c5;
+  -moz-box-shadow: inset 1px 1px 1px #c6c5c5;
+  -webkit-box-shadow: inset 1px 1px 1px #c6c5c5;
+  -khtml-box-shadow: inset 1px 1px 1px #c6c5c5;
+  -ms-box-shadow: inset 1px 1px 1px #c6c5c5; }
+
+.inferno-canvas .ip-range a {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -3px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ececec), color-stop(1, white));
+  background-image: -moz-linear-gradient(center bottom, #ececec 0%, white 100%);
+  box-shadow: 0 1px 3px #9e9e9e;
+  -moz-box-shadow: 0 1px 3px #919191;
+  -webkit-box-shadow: 0 1px 3px #919191;
+  -khtml-box-shadow: 0 1px 3px #919191;
+  -ms-box-shadow: 0 1px 3px #919191;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -ms-border-radius: 6px; }
+
+/* colorpicker */
+.inferno-canvas .colorSelector {
+  float: right; }
+
+#infernal-canvas.infernal-society .form-table th {
+  width: 150px;
+  vertical-align: middle; }
+#infernal-canvas.infernal-society input[type=text], #infernal-canvas.infernal-society select {
+  width: 250px;
+  margin-right: 20px; }
+#infernal-canvas.infernal-society .iconset-columnlabel {
+  position: relative;
+  bottom: -20px;
+  margin: 0 0 0 280px; }
+  #infernal-canvas.infernal-society .iconset-columnlabel span {
+    display: inline-block;
+    width: 22px;
+    transform: rotate(-50deg);
+    -webkit-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+    -o-transform: rotate(-50deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+#infernal-canvas.infernal-society .profile-iconsets-available {
+  display: inline-block;
+  margin-right: 20px; }
+  #infernal-canvas.infernal-society .profile-iconsets-available .icon-ok, #infernal-canvas.infernal-society .profile-iconsets-available .icon-remove {
+    width: 22px;
+    padding: 0 5px; }
+  #infernal-canvas.infernal-society .profile-iconsets-available .icon-ok {
+    color: green; }
+  #infernal-canvas.infernal-society .profile-iconsets-available .icon-remove {
+    color: red; }

@@ -12,152 +12,62 @@ define('INFERNO_URL', trailingslashit(get_template_directory_uri()) . trailingsl
 if(!class_exists('Inferno')) {
     class Inferno {
 
+        /**
+         * the config
+         * 
+         * @var array
+         */
         private $_config = array();
 
         /**
          * register all styles which come with the theme framework
-         * array( $handle => array( $src, $dependencies, $version, $media ), ... )
          * 
          * @var array
          */
         public $register_styles = array(
-            'normalize' => array(
-                'assets/css/normalize.css', false, INFERNO_VERSION, 'all'
-            ),
-            'wpstyles' => array(
-                'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all'
-            ),
-            'inferno-menu' => array(
-                'assets/css/menu.css', false, INFERNO_VERSION, 'all'
-            ),
-            'inferno'               => array(
-                'assets/css/panel.css', false, INFERNO_VERSION, 'all'
-            ),
-            'panel-colorpicker'     => array(
-                'assets/css/colorpicker.css', false, null, 'all'
-            ),
-            'css3d'                 => array(
-                'assets/css/supports3d.css', array('infernal-flame'), INFERNO_VERSION, 'all'
-            ),
-            'flexslider'            => array(
-                'assets/css/flexslider.css', false, '2.1.1', 'all'
-            ),
-            'font-awesome'          => array(
-                'assets/css/font-awesome.css', false, '3.0.2', 'all'
-            ),
-            'admin-infernal-panel'   => array(
-                'assets/css/admin/panel.css', false, INFERNO_VERSION, 'all'
-            ),
-            'admin-infernal-society' => array(
-                'assets/css/admin/society.css', false, INFERNO_VERSION, 'all'
-            )
+            array('css3d', 'assets/css/supports3d.css', array('infernal-flame'), INFERNO_VERSION, 'all'),
+            array('flexslider', 'assets/css/flexslider.css', false, '2.1.1', 'all'),
+            array('font-awesome', 'assets/css/font-awesome.css', false, '3.0.2', 'all'),
+            array('inferno', 'assets/css/inferno.css', false, INFERNO_VERSION, 'all'),
+            array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
+            array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
+            array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
+            array('wpstyles', 'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all')  
         );
 
+        /**
+         * register all scripts which come with the theme framework
+         * 
+         * @var array
+         */
         public $register_scripts = array(
-            'modernizr'             => array(
-                'assets/js/modernizr.min.js', false, '2.6.2', true
-            ),
-            'jquery-colorbox'       => array(
-                'assets/js/jquery/jquery.colorbox.min.js', array('jquery'), '1.4.10', true
-            ),
-            'jquery-colorpicker'    => array(
-                'assets/js/jquery/jquery.colorpicker.min.js', array('jquery'), null, true
-            ),
-            'jquery-cookie'         => array(
-                'assets/js/jquery/jquery.cookie.min.js', array('jquery'), '1.3.1', true
-            ),
-            'jquery-confirm'        => array(
-                'assets/js/jquery/jquery.confirm.min.js', array('jquery'), '1.3', true
-            ),
-            'jquery-css-transform'  => array(
-                'assets/js/jquery/jquery.css.transform.min.js', array('jquery'), null, true
-            ),
-            'jquery-easing'         => array(
-                'assets/js/jquery/jquery.easing.min.js', array('jquery'), '1.3', true
-            ),
-            'jquery-flexslider'     => array(
-                'assets/js/jquery/jquery.flexslider.min.js', array('jquery'), '2.1', true
-            ),
-            'jquery-hoverintent'    => array(
-                'assets/js/jquery/jquery.hoverintent.min.js', array('jquery'), 'r7', true
-            ),
-            'jquery-imagesloaded'   => array(
-                'assets/js/jquery/jquery.imagesloaded.min.js', array('jquery'), '2.1.1', true
-            ),
-            'jquery-infinitescroll' => array(
-                'assets/js/jquery/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true
-            ),
-            'jquery-isotope'        => array(
-                'assets/js/jquery/jquery.isotope.min.js', array('jquery'), '1.5.25', true
-            ),
-            'jquery-placeholder'    => array(
-                'assets/js/jquery/jquery.placeholder.min.js', array('jquery'), '2.0.7', true
-            ),
-            'jquery-rotate'       => array(
-                'assets/js/jquery/jquery.rotate.min.js', array('jquery'), null, true
-            ),
-            'jquery-scrollto'       => array(
-                'assets/js/jquery/jquery.scrollto.min.js', array('jquery'), '1.4.5 BETA', true
-            ),
-            'jquery-superfish'      => array(
-                'assets/js/jquery/jquery.superfish.min.js', array('jquery'), '1.7.2', true
-            ),
-            'jquery-tinynav'        => array(
-                'assets/js/jquery/jquery.tinynav.min.js', array('jquery'), '1.0.14', true
-            ),
-            'jquery-tweet'          => array(
-                'assets/js/jquery/jquery.tweet.min.js', array('jquery'), null, true
-            ),
-            'inferno-panel'        => array(
-                'assets/js/panel.js', array('jquery'), INFERNO_VERSION, true
-            ),
-            'inferno-portfolio'    => array(
-                'assets/js/portfolio.js', array('jquery'), INFERNO_VERSION, true
-            ),
-            'inferno-slider'       => array(
-                'assets/js/slider.js', array('jquery'), INFERNO_VERSION, true
-            ),
-            'flame-data'            => array(
-                'assets/js/flame-data.js.php', array('jquery'), INFERNO_VERSION, true
-            ),
-            'flame'                 => array(
-                'assets/js/flame.js', array('jquery', 'modernizr'), INFERNO_VERSION, true
-            ),
-            'responsive-nav'        => array(
-                'assets/js/responsivenav.min.js', false, '1.0.14', true
-            ),
-        );
-
-
-        public $admin_enqueue_scripts = array(
-            'jquery',
-            'jquery-ui-core',
-            'jquery-ui-widget',
-            'jquery-ui-tabs',
-            'jquery-ui-slider',
-            'jquery-ui-sortable',
-            'jquery-ui-button',
-            'jquery-form',
-            'media-upload',
-            'thickbox',
-            'jquery-confirm',
-            'jquery-colorpicker',
-            'inferno-panel'
-        );
-
-        public $admin_enqueue_styles = array(
-            'thickbox',
-            'admin-inferno-panel',
-            'panel-colorpicker',
-            'font-awesome',
-            'inferno'
+            array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
+            array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.min.js', array('jquery'), '1.4.10', true),
+            array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.min.js', array('jquery'), null, true),
+            array('jquery-cookie', 'assets/js/jquery/jquery.cookie.min.js', array('jquery'), '1.3.1', true),
+            array('jquery-confirm', 'assets/js/jquery/jquery.confirm.min.js', array('jquery'), '1.3', true),
+            array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.min.js', array('jquery'), null, true),
+            array('jquery-easing', 'assets/js/jquery/jquery.easing.min.js', array('jquery'), '1.3', true),
+            array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.min.js', array('jquery'), '2.1', true),
+            array('jquery-hoverintent', 'assets/js/jquery/jquery.hoverintent.min.js', array('jquery'), 'r7', true),
+            array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.min.js', array('jquery'), '2.1.1', true),
+            array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true),
+            array('jquery-isotope', 'assets/js/jquery/jquery.isotope.min.js', array('jquery'), '1.5.25', true),
+            array('jquery-placeholder', 'assets/js/jquery/jquery.placeholder.min.js', array('jquery'), '2.0.7', true),
+            array('jquery-rotate', 'assets/js/jquery/jquery.rotate.min.js', array('jquery'), null, true),
+            array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.min.js', array('jquery'), '1.4.5 BETA', true),
+            array('jquery-superfish', 'assets/js/jquery/jquery.superfish.min.js', array('jquery'), '1.7.2', true),
+            array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.min.js', array('jquery'), '1.0.14', true),
+            array('jquery-tweet', 'assets/js/jquery/jquery.tweet.min.js', array('jquery'), null, true),
+            array('modernizr', 'assets/js/modernizr.min.js', false, '2.6.2', true),
+            array('responsive-nav', 'assets/js/responsivenav.min.js', false, '1.0.14', true)
         );
 
         public function __construct($_config)
         {
             $this->_config = $_config;
             $this->actions();
-            $this->admin_update_page();
+            //$this->admin_update_page();
 
             require_once('inc/inferno-helper.php');
             require_once('admin/engine.php');
@@ -203,30 +113,18 @@ if(!class_exists('Inferno')) {
         public function assets()
         {
             if(is_array($this->register_scripts) && !empty($this->register_scripts)) {
-                foreach($this->register_scripts as $handle => $data) {
-                    wp_deregister_script($handle);
-                    wp_register_script($handle, get_template_directory_uri() . '/framework/' . $data[0], $data[1], $data[2], $data[3]);
+                foreach($this->register_scripts as $script) {
+                    wp_deregister_script($script[0]);
+                    wp_register_script($script[0], get_template_directory_uri() . '/framework/' . $script[1], $script[2], $script[3], $script[4]);
                 }
             }
 
             if(is_array($this->register_styles) && !empty($this->register_styles)) {
-                foreach($this->register_styles as $handle => $data) {
-                    wp_deregister_style($handle);
-                    wp_register_style($handle, get_template_directory_uri() . '/framework/' . $data[0], $data[1], $data[2], $data[3]);
+                foreach($this->register_styles as $style) {
+                    wp_deregister_style($style[0]);
+                    wp_register_style($style[0], get_template_directory_uri() . '/framework/' . $style[1], $style[2], $style[3], $style[4]);
                 }
             }
-
-            add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
-            add_action('wp_enqueue_scripts', array(&$this, 'enqueue'), 1);
-        }
-
-        function admin_enqueue()
-        {
-            foreach($this->admin_enqueue_scripts as $handle)
-                wp_enqueue_script($handle);
-
-            foreach($this->admin_enqueue_styles as $handle)
-                wp_enqueue_style($handle);
         }
 
         public function fixing_hooks()

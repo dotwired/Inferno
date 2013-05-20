@@ -4,17 +4,17 @@
 
 if(!class_exists('Inferno_Panel_Engine')) {
 
-    class Inferno_Panel_Engine extends Inferno {
+    class Inferno_Panel_Engine {
 
-        private $_settings = array();
+        private $_config = array();
+
+        private $theme_settings = array();
 
         private $_option = array();
 
-        private $_noncestr = 'inferno-panel';
+        private $_noncestr = 'inferno';
 
         private $_option_name = 'inferno';
-
-        private $_error = false;
 
         private $_debug = array();
 
@@ -24,38 +24,69 @@ if(!class_exists('Inferno_Panel_Engine')) {
             'colorpicker' => 1
         );
 
-        public $_default_fonts = array(
-            'Arial', 'Arial Black', 'Lucida Grande', 'Helvetica', 'Helvetica Neue', 'Tahoma', 'Georgia', 'Times New Roman'
+        public $_fonts = array(
+            'Arial', 
+            'Arial Black', 
+            'Lucida Grande', 
+            'Helvetica', 
+            'Helvetica Neue', 
+            'Tahoma', 
+            'Georgia', 
+            'Times New Roman'
         );
         
-            
         public function __construct($_config)
         {
             global $inferno_option;
 
             $this->_config = $_config;
+            $this->load_theme_settings();
 
-            $this->load_settings();
-
-            add_action('init', array(&$this, 'assets')); // instead of $this->assets();
-
-            // call data
-            add_action('init', array(&$this, 'init'));
+            //get options
+            $inferno_option = get_option($this->_option_name, array());
+            $this->standarize_options(); // important. Give undefined options their default values
 
             // add the menu item to the wp admin menu
             add_action('admin_menu', array(&$this, 'admin_menu')); 
 
             // save data
             add_action('admin_init', array(&$this, 'save')); 
+
+            add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
         }
 
-
-
-        function nonce_input()
+        public function admin_menu()
         {
-            echo '<input type="hidden" name="_wpnonce" value="'. wp_create_nonce($this->_noncestr) .'" />';
+            add_theme_page(
+                'Theme Options',
+                'Theme Options',
+                'edit_theme_options',
+                'inferno-admin',
+                array(&$this, 'canvas')
+            );
         }
 
+        public function admin_enqueue()
+        {
+            wp_enqueue_script('jquery');
+            wp_enqueue_script('jquery-ui-core');
+            wp_enqueue_script('jquery-ui-widget');
+            wp_enqueue_script('jquery-ui-tabs');
+            wp_enqueue_script('jquery-ui-slider');
+            wp_enqueue_script('jquery-ui-sortable');
+            wp_enqueue_script('jquery-ui-button');
+            wp_enqueue_script('jquery-form');
+            wp_enqueue_script('media-upload');
+            wp_enqueue_script('thickbox');
+            wp_enqueue_script('jquery-confirm');
+            wp_enqueue_script('jquery-colorpicker');
+            wp_enqueue_script('inferno');
+
+            wp_enqueue_style('thickbox');
+            wp_enqueue_style('inferno-colorpicker');
+            wp_enqueue_style('font-awesome');
+            wp_enqueue_style('inferno');
+        }
 
         function check_nonce()
         {
@@ -80,70 +111,35 @@ if(!class_exists('Inferno_Panel_Engine')) {
 
                 // save action
                 if($_POST['inferno_action'] == 'save') {
-                    foreach($this->_settings as $topic ) {
-                        foreach($topic['fields'] as $option) {
-                            if(isset($_POST[$option['name']])) {
+                    foreach($this->theme_settings as $topic ) {
+                        foreach($topic['fields'] as $field) {
+                            if(isset($_POST[$field['name']])) {
+                                $inferno_option[$field['name']] = Inferno_Helper::sanitize_data($_POST[$field['name']], $field['type']);
 
-                                // TODO: find out why the following if statement is important
-                                if(is_array($_POST[$option['name']]) && !Inferno_Helper::array_empty($_POST[$option['name']])) {
-
-                                    // TODO: furthermore, is this REALLY a security hole?
-                                    $inferno_option[$option['name']] = $_POST[$option['name']];
-                                    if(!update_option($this->_option_name, json_encode($inferno_option))) 
-                                        $this->error($option['name'], $inferno_option[$option['name']], 'Could not save option array.');
-
-                                } elseif(!is_array($_POST[$option['name']])) {
-                                    $inferno_option[$option['name']] = Inferno_Helper::sanitize_data(trim(stripslashes($_POST[$option['name']])), $option['type']);
-
-                                    // if this is google font
-                                    if(isset($_POST[$option['name'] . '_googlefont']) && !empty($_POST[$option['name'].'_googlefont'])) {
-                                        $inferno_option[$option['name']] = trim(stripslashes($_POST[$option['name'].'_googlefont']));
-                                    }
-
-                                    if(!update_option($this->_option_name, json_encode($inferno_option))) 
-                                        $this->error($option['name'], $inferno_option[$option['name']], 'Could not save flat option string.');
+                                // if this is google font
+                                if(isset($_POST[$field['name'] . '_googlefont']) && !empty($_POST[$field['name'].'_googlefont'])) {
+                                    $inferno_option[$field['name']] = trim(stripslashes($_POST[$field['name'].'_googlefont']));
                                 }
+
+                                update_option($this->_option_name, $inferno_option);
                             }
                         }
                     }
-                }
-
-                // reset action
-                if($_POST['inferno_action'] == 'reset' && get_option($this->_option_name)) {
+                } elseif($_POST['inferno_action'] == 'reset' && get_option($this->_option_name)) {
                     if(!delete_option($this->_option_name)) $this->error('Reset', null, 'Reset action failed');
                 }
 
-                if($this->_error == false) {
-                    if(stristr($_SERVER['REQUEST_URI'], '&settings-updated=true')) {
-                        $location = $_SERVER['REQUEST_URI'];
-                    } else {
-                        $location = $_SERVER['REQUEST_URI'] . "&settings-updated=true";
-                    }
+                if(stristr($_SERVER['REQUEST_URI'], '&settings-updated=true')) {
+                    $location = $_SERVER['REQUEST_URI'];
                 } else {
-                    $location = $_SERVER['REQUEST_URI'] . "&settings-updated=false";
+                    $location = $_SERVER['REQUEST_URI'] . "&settings-updated=true";
                 }
 
                 // for debug
                 if(!$this->_config['debug']) {
                     header("Location: $location");
                 }
-                echo '<pre>';
-                echo '$_POST: ';
-                print_r($_POST);
-                echo 'Debug: ';
-                print_r($this->_debug);
-                echo '</pre>';
-                die;
             }
-        }
-
-        function error($optionname = '', $optionvalue, $msg = '')
-        {
-            $this->_error = true;
-            $this->_debug[$optionname] = array(
-                'value' => $optionvalue,
-                'msg' => $msg
-            );
         }
 
         function save_file($option)
@@ -167,54 +163,16 @@ if(!class_exists('Inferno_Panel_Engine')) {
             }
         }
 
-        function init()
-        {
-            global $inferno_option;
-
-            //get options
-            $inferno_option = json_decode(get_option($this->_option_name, $this->_option_name), true );
-
-            // important. Give undefined options their default values
-            $this->standarize_options();
-
-            // also important. remove backslashes etc. for work after json_decode
-            $this->walk_trough_options();
-        }
-
-        public function admin_menu()
-        {
-            add_theme_page(
-                'Theme Options',
-                'Theme Options',
-                'edit_theme_options',
-                'inferno-admin',
-                array(&$this, 'canvas')
-            );
-        }
-
-
         /**
          * [settings description]
          * @return [type] [description]
          */
-        private function load_settings() {
+        private function load_theme_settings() {
             if(file_exists(get_template_directory() . '/settings.php')) {
-                $this->_settings = require_once(get_template_directory() . '/settings.php');
+                $this->theme_settings = require_once(get_template_directory() . '/settings.php');
             }
-        }
 
-
-        /**
-         * perform some common actions with keys and values of the settings array
-         * @return void
-         */
-        function walk_trough_options() {
-            global $inferno_option;
-
-            $inferno_option = Inferno_Helper::trim_r($inferno_option);
-            $inferno_option = Inferno_Helper::stripslashes_r($inferno_option);
-            
-            if(is_admin()) $inferno_option = Inferno_Helper::htmlspecialchars_r($inferno_option);
+            $this->theme_settings["Social"] = require_once(dirname(__FILE__) . '/social.php');
         }
 
         /**
@@ -224,15 +182,15 @@ if(!class_exists('Inferno_Panel_Engine')) {
         function standarize_options() {
             global $inferno_option;
             
-            if(!is_array($this->_settings) || empty($this->_settings)) return false;
+            if(!is_array($this->theme_settings) || empty($this->theme_settings)) return false;
 
-            foreach($this->_settings as $topic) {
-                foreach($topic as $option) {
-                    if(isset($option['name']) && !isset($inferno_option[$option['name']])) {
-                        if(isset($option['default'])) {
-                            $inferno_option[$option['name']] = $option['default'];
+            foreach($this->theme_settings as $topic) {
+                foreach($topic['fields'] as $field) {
+                    if(isset($field['name']) && !isset($inferno_option[$field['name']])) {
+                        if(isset($field['std'])) {
+                            $inferno_option[$field['name']] = $field['std'];
                         } else {
-                            $inferno_option[$option['name']] = "";
+                            $inferno_option[$field['name']] = null;
                         }
                     }
                 }
@@ -250,62 +208,26 @@ if(!class_exists('Inferno_Panel_Engine')) {
          */
         function menu() 
         { 
-            if(!isset($this->_settings) || !is_array($this->_settings) || empty($this->_settings)) return false;
+            if(!isset($this->theme_settings) || !is_array($this->theme_settings) || empty($this->theme_settings)) return false;
 
-            // todo: this is just a temporary fix for icon output, too lazy 
-            // to rewrite all the settings array ight now. do it right some time.
-            $settings = simplexml_load_file(get_template_directory() . '/settings.xml'); 
-            $icons = array();
-            foreach($settings as $topic) {
-                $icons[] = (String)$topic{'icon'};
-            }
-                                                                                         
-            $i = 1; foreach($this->_settings as $label => $data) : ?>
-            <li><?php echo '<a href="#tab-'.$i.'" id="tablink-'.$i.'"><div class="icon-' .  $icons[$i - 1] . '"></div><span>' .  $label . '</span></a>'; ?></li>
+            $i = 1; foreach($this->theme_settings as $topic => $data) : ?>
+            <li><?php echo '<a href="#tab-'.$i.'" id="tablink-'.$i.'"><div class="icon-' .  $data['icon'] . '"></div><span>' .  $topic . '</span></a>'; ?></li>
             <?php $i++; endforeach;
         }
 
-
         function tabs()
         {
-            if(isset($this->_settings) && is_array($this->_settings) && !empty($this->_settings)) {
+            if(isset($this->theme_settings) && is_array($this->theme_settings) && !empty($this->theme_settings)) {
                 $count = 1;
-                foreach($this->_settings as $name => $topic) : ?>
-                    <!-- BEGIN .ip-tab -->
-                    <div id="tab-<?php echo $count; ?>" class="ip-tab">
+                foreach($this->theme_settings as $name => $topic) : ?>
+                    <!-- BEGIN .tab-content -->
+                    <div id="tab-<?php echo $count; ?>" class="tab-content">
                         <?php foreach($topic['fields'] as $field) $this->field($field); ?>
-                    <!-- END .ip-tab -->
+                    <!-- END .tab-content -->
                     </div>
                     <?php $count++;
                 endforeach;
             }
-        }
-
-        function message()
-        {
-            // no settings file message
-            if(!is_array($this->_settings) || empty($this->_settings)) : ?>
-                <div class="inferno-updated error">
-                    <p><?php _e('Whooops, looks like the settings could not be loaded. Are You sure the current theme got a settings file?', 'inferno'); ?></p>
-                </div>
-            <?php endif;
-
-            if(isset($_GET['settings-updated'])) {
-                if($_GET['settings-updated'] == 'true') : ?>
-                <div class="inferno-updated success">
-                    <p><?php _e('Options successfully saved!', 'inferno'); ?></p>
-                </div>
-                <?php elseif($_GET['settings-updated'] == 'false') : ?>
-                <div class="inferno-updated fail">
-                    <p><?php _e('Options could not be saved. Please try again or make further steps.', 'inferno'); ?></p>
-                </div>
-                <?php endif;
-            }
-            ?>
-            <div class="inferno-updated success ajax">
-                <p><?php _e('Options successfully saved!', 'inferno'); ?></p>
-            </div>
-            <?php
         }
 
         function field($setting)
@@ -321,8 +243,6 @@ if(!class_exists('Inferno_Panel_Engine')) {
 
             <?php
         }
-
-
 
         /**
          * left column of the panel inner. contains description and optionally some more tag description
@@ -346,7 +266,7 @@ if(!class_exists('Inferno_Panel_Engine')) {
         function field_setting() 
         {
             if($this->_setting['type'] == 'colorpicker' || $this->_setting['type'] == 'color')
-                $class = 'ip-colorpicker';
+                $class = 'colorpicker';
             else
                 $class = $this->_setting['type'];
 
@@ -369,6 +289,9 @@ if(!class_exists('Inferno_Panel_Engine')) {
                 case 'file':
                     $this->file();
                     break;
+                case 'media':
+                    $this->media();
+                    break;
                 case 'select':
                     $this->select();
                     break;
@@ -388,9 +311,7 @@ if(!class_exists('Inferno_Panel_Engine')) {
         function get_setting_value() 
         {
             global $inferno_option;
-
-            echo $inferno_option[$this->_setting['name']];
-            return (isset($inferno_option[$this->_setting['name']])) ? $inferno_option[$this->_setting['name']] : '';
+            return (isset($inferno_option[$this->_setting['name']])) ? $inferno_option[$this->_setting['name']] : null;
         }
 
 
@@ -463,7 +384,7 @@ if(!class_exists('Inferno_Panel_Engine')) {
                         if(isset($this->_setting['max'])) echo 'max: ' . $this->_setting['max'] . ',';
                         if(isset($this->_setting['step'])) echo 'step: ' . $this->_setting['step'] . ',';
 
-                        if($inferno_option[$this->_setting['name']] != '') :
+                        if($inferno_option[$this->_setting['name']] != null) :
                             $range_value = str_replace($this->_setting['unit'], '', $inferno_option[$this->_setting['name']]); ?>
                             value: <?php echo (int)$range_value; ?>,
                         <?php 
@@ -484,14 +405,14 @@ if(!class_exists('Inferno_Panel_Engine')) {
         {   
             global $inferno_option;
 
-            foreach ($this->_setting['options'] as $key => $value) : ?>
+            foreach ($this->_setting['options'] as $value => $label) : ?>
                 <input type="radio" 
                              name="<?php echo $this->_setting['name']; ?>"
                              value="<?php echo $value; ?>" 
                              id="radio-<?php echo $this->_setting['name'] . '-' . $this->_count['radio']; ?>" 
                              <?php if($value == $inferno_option[$this->_setting['name']]) echo "checked"; ?> />
                 <label for="radio-<?php echo $this->_setting['name'] . '-' . $this->_count['radio']; ?>">
-                    <?php echo $value; ?>
+                    <?php echo $label; ?>
                 </label>
                 <?php 
                 $this->_count['radio']++;
@@ -515,13 +436,29 @@ if(!class_exists('Inferno_Panel_Engine')) {
         }
 
 
+        function media()
+        {
+            ?>
+            <input type="hidden" name="<?php echo $this->_setting['name']; ?>" accept="*.jpg,*.jpeg,*.png"
+                value="<?php echo $this->get_setting_value(); ?>" />
+            <span class="button button-upload"><?php _e('Upload Image', 'inferno'); ?></span>
+            <span class="button button-reset"><?php _e('Remove', 'inferno'); ?></span>
+
+            <div class="media-preview">
+                <?php if($this->get_setting_value() != null) : ?>
+                <img src="<?php echo $this->get_setting_value(); ?>" alt="" />
+                <?php endif; ?>
+            </div>
+            <?php
+        }
+
 
         function file()
         {
             ?>
             <input type="text" name="<?php echo $this->_setting['name']; ?>" accept="*.jpg,*.jpeg,*.png"
                 value="<?php echo $this->get_setting_value(); ?>" />
-            <span class="button"><?php _e('Upload Image', 'inferno'); ?></span>
+            <span class="button upload"><?php _e('Upload Image', 'inferno'); ?></span>
             <?php
         }
 
@@ -533,7 +470,7 @@ if(!class_exists('Inferno_Panel_Engine')) {
             ?>
             <select name="<?php echo $this->_setting['name']; ?>" id="<?php echo $this->_setting['name']; ?>">
                 <?php 
-                foreach($this->_default_fonts as $font) : ?>
+                foreach($this->_fonts as $font) : ?>
                     <option value="<?php echo $font; ?>" <?php if($font == $inferno_option[$this->_setting['name']]) echo 'selected="selected"'; ?>>
                         <?php echo $font; ?>
                     </option>
@@ -555,7 +492,7 @@ if(!class_exists('Inferno_Panel_Engine')) {
             </span>
         </div>
         <div class="clear"></div>
-        <div class="field-details ip-googlefont-desc">
+        <div class="field-details googlefont-desc">
             <label for="<?php echo $this->_setting['name'] . '_googlefont'; ?>">
                 <?php _e('Enter the Name of the Google Webfont You want to use, for example "Droid Serif" (without quotes). Leave blank to use a Font from the selector above.', 'inferno'); ?>
             </label>
@@ -563,12 +500,12 @@ if(!class_exists('Inferno_Panel_Engine')) {
                 <?php _e('You can view all Google fonts <a href="http://www.google.com/webfonts">here</a>. Consider, that You have to respect case-sensitivity. If the font has been successfully recognized, the demo text will change to the entered font.', 'inferno'); ?>
             </span>
         </div>
-        <div class="field-setting ip-googlefont-option">
+        <div class="field-setting googlefont-setting">
             <input type="text" name="<?php echo $this->_setting['name']; ?>_googlefont" id="<?php echo $this->_setting['name']; ?>_googlefont"
-                value="<?php if(!in_array($inferno_option[$this->_setting['name']], $this->_default_fonts)) echo $inferno_option[$this->_setting['name']]; ?>" />
-            <div class="ip-googlefont-canvas">
+                value="<?php if(!in_array($inferno_option[$this->_setting['name']], $this->_fonts)) echo $inferno_option[$this->_setting['name']]; ?>" />
+            <div class="googlefont-canvas">
                 <?php _e('Grumpy wizards make toxic brew for the evil Queen and Jack.', 'inferno'); ?>
-                <link class="ip-googlefont-link" href='' rel='stylesheet' type='text/css'>
+                <link class="googlefont-link" href='' rel='stylesheet' type='text/css'>
             </div>
             <?php
         }

@@ -12,3 +12,9 @@ Features
 - Handle all Your generous Scripts and Styles from one point! Inferno registers a bunch of popular Scripts (e.g. `jquery-easing`, `jquery-tweet` and many more). All You have to do is to enqueue them where needed.
 - Superfish is outdated. Much smaller and cleaner solved by a CSS 3 Stylesheet resulting in easy, super fast and beautiful drop down menus!
 - Missing something? Open an issue!
+
+Changelog
+---
+
+*v0.9*
+- Initial commit. Still very buggy, because fast handed ported, puzzled and stripped out from my Code I'm using for premium Themes.

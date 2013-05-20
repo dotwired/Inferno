@@ -1,0 +1,502 @@
+@mixin gradient($color-top, $color-bottom) {
+    background: $color-top;
+    background: -moz-linear-gradient(top, $color-top 0%, $color-bottom 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color-top), color-stop(100%,$color-bottom));
+    background: -webkit-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: -o-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: -ms-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: linear-gradient(to bottom, $color-top 0%,$color-bottom 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+}
+
+@mixin transition-all($time) {
+    transition: all $time;
+    -webkit-transition: all $time;
+    -moz-transition: all $time;
+    -ms-transition: all $time;
+    -o-transition: all $time;
+}
+
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color, $inset) {
+    box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -khtml-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -ms-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -o-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+}
+
+@mixin text-shadow($h-shadow, $v-shadow, $blur, $color) {
+    text-shadow: $h-shadow $v-shadow $blur $color;
+    -webkit-text-shadow: $h-shadow $v-shadow $blur $color;
+    -khtml-text-shadow: $h-shadow $v-shadow $blur $color;
+    -ms-text-shadow: $h-shadow $v-shadow $blur $color;
+    -o-text-shadow: $h-shadow $v-shadow $blur $color;
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
+
+@mixin border-top-left-radius($radius) {
+    border-top-left-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    -khtml-border-top-left-radius: $radius;
+    -ms-border-top-left-radius: $radius;
+    -o-border-top-left-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius) {
+    border-top-right-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -khtml-border-top-right-radius: $radius;
+    -ms-border-top-right-radius: $radius;
+    -o-border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-left-radius($radius) {
+    border-bottom-left-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -khtml-border-bottom-left-radius: $radius;
+    -ms-border-bottom-left-radius: $radius;
+    -o-border-bottom-left-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius) {
+    border-bottom-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -khtml-border-bottom-right-radius: $radius;
+    -ms-border-bottom-right-radius: $radius;
+    -o-border-bottom-right-radius: $radius;
+}
+
+@mixin dark-bg-font {
+    color: #ddd;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+/* ==========================================================================
+   Inferno Canvas
+   ========================================================================== */
+
+.inferno-canvas, .inferno-canvas * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -khtml-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+
+    .clearfix {
+        clear: both;
+    }
+}
+
+.inferno-canvas {
+    position: relative;
+    width: 886px;
+    margin: 25px 0;
+    border: 5px #eee solid;
+    background: #eaeaea url(../img/bg.png);
+
+    /* Header
+       ========================================================================== */
+
+    .header {
+        width: 100%;
+        height: 131px;
+        background: #fff url(../img/loading.gif) no-repeat center center;
+    }
+
+    .bar {
+        @include gradient(#555, #333);
+        @include dark-bg-font;
+
+        height: 35px;
+        padding: 0 25px;
+        border-bottom: 5px #eee solid;
+        line-height: 30px;
+
+        .version, .branding {
+            height: 30px;
+            float: left;
+        }
+
+        .branding {
+            float: right;
+        }
+
+        .icon-fire, .icon-road {
+            margin-right: 6px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    /* Navigation
+       ========================================================================== */
+
+    .menu {
+        width: 140px;
+        float: left;
+
+        li {
+            width: 140px;
+            height: 35px;
+            margin-bottom: 0;
+
+            &.ui-state-active {
+                @include gradient(#555, #333);
+
+                a {
+                    @include text-shadow(1px, 1px, 1px, #000);
+                    color: #fff;
+                }
+
+                div {
+                    color: #f05b23;
+                }
+            }
+        }
+
+        a {
+            @include text-shadow(1px, 1px, 1px, #fff);
+            display: block;
+            padding-left: 15px;
+            text-decoration: none;
+            color: #444;
+            line-height: 35px;
+            font-weight: 500;
+            outline: none;
+
+            div {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            span {
+                display: inline-block;
+            }
+        }
+    }
+
+
+
+
+    /* Messages
+       ========================================================================== */
+
+    .inferno-message {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        margin: -75px 0 0 -75px;
+        width: 150px;
+        height: 150px;
+        display: none;
+
+        background: url(../img/dark-trans-bg.png);
+    }
+
+
+
+    /* Content with Tabs and Options
+       ========================================================================== */
+
+    .content {
+        width: 736px;
+        padding: 25px;
+        float: left;
+        color: #565656;
+        background: #fff;
+    }
+
+    .field {
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+        border-bottom: 1px #eee solid;
+    }
+
+    .field-details {
+        float: left;
+        width: 356px;
+        margin-right: 30px;
+
+        .more {
+            font-size: 11px;
+            color: #777;
+            font-family: georgia, serif;
+            font-style: italic;
+            margin-top: 10px;
+            display: block;
+        }
+
+        &.googlefont-desc {
+            padding-top: 20px;
+        }
+    }
+
+    .field-setting {
+        float: left;
+        width: 300px;
+
+        &.googlefont-setting {
+            padding-top: 20px;
+        }
+    }
+
+    /* Form Elements
+       ========================================================================== */
+
+    input, textarea {
+        outline: none;
+    }
+
+    input[type=text], textarea {
+        @include gradient(#eee, #fff);
+        @include box-shadow(1px, 1px, 2px, 0, #e6e6e6, inset);
+        padding: 8px 6px 6px;
+        width: 100%;
+        max-width: 100%;
+        text-align: left !important;
+    }
+
+    textarea {
+        height: 130px;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    input[type=file] {
+        margin-top: 7px;
+    }
+
+    .ip-colorpicker input[type=text] {
+        width: 80%;
+        float: left;
+    }
+
+    .radio {
+        .ui-button {
+            @include gradient(#fff, #eee);
+            @include text-shadow(1px, 1px, 1px, #fff);
+
+            border: 1px #DFDFDF solid;
+            margin-right: -1px;
+            padding: 7px 11px 6px;
+            display: block;
+            float: left;
+            font-size: 12px;
+            font-weight: 900;
+
+            &:hover {
+                @include gradient(#eee, #fff);
+            }
+        }
+
+        .ui-corner-left {
+            @include border-top-left-radius(4px);
+            @include border-bottom-left-radius(4px);
+        }
+
+        .ui-corner-right {
+            @include border-top-right-radius(4px);
+            @include border-bottom-right-radius(4px);
+        }
+
+        .ui-state-active {
+            @include box-shadow(1px, 1px, 3px, 0, #d9d9d9, inset);
+            color: #999;
+
+            &:hover {
+                @include gradient(#eee, #fff);
+            }
+        }
+
+        .ui-helper-hidden-accessible {
+            position: absolute;
+            display: none;
+        }
+    }
+
+    .media {
+        img {
+            margin-top: 10px;
+            max-width: 100%;
+            border: 5px #eee solid;
+        }
+    }
+
+    .googlefont-canvas {
+        padding: 10px;
+        border: 4px #eee solid;
+        margin-top: 15px;
+        font-size: 15px;
+        font-family: auto;
+    }
+}
+
+
+
+/* ==========================================================================
+   Inferno Metabox
+   ========================================================================== */
+
+.inferno-metabox {
+    .inferno-colorpicker-meta-input {
+        float: left;
+        width: 90%;
+    }
+
+    .inferna-file-meta-input {
+        width: 80%;
+        float: left;
+    }
+
+    .colorSelector {
+        float: right;
+        margin-top: -5px;
+    }
+
+    .ip-button-upload {
+        float: right;
+        margin-top: 0;
+    }
+}
+
+
+
+
+/* ====================================================
+
+	EXTENSIONS
+
+==================================================== */
+
+
+/* range */
+
+.inferno-canvas .ip-range {
+	margin-top: 15px;
+	height: 6px;
+	border: 1px #eee solid;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	position: relative;
+	box-shadow: inset 1px 1px 1px #c6c5c5;
+	-moz-box-shadow: inset 1px 1px 1px #c6c5c5;
+	-webkit-box-shadow: inset 1px 1px 1px #c6c5c5;
+	-khtml-box-shadow: inset 1px 1px 1px #c6c5c5;
+	-ms-box-shadow: inset 1px 1px 1px #c6c5c5;
+}
+
+.inferno-canvas .ip-range a {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: -3px;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(236,236,236)),
+	    color-stop(1, rgb(255,255,255))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(236,236,236) 0%,
+	    rgb(255,255,255) 100%
+	);
+	box-shadow: 0 1px 3px #9e9e9e;
+	-moz-box-shadow: 0 1px 3px #919191;
+	-webkit-box-shadow: 0 1px 3px #919191;
+	-khtml-box-shadow: 0 1px 3px #919191;
+	-ms-box-shadow: 0 1px 3px #919191;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-ms-border-radius: 6px;
+}
+
+
+/* colorpicker */
+
+.inferno-canvas .colorSelector {
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#infernal-canvas.infernal-society {
+    .form-table {
+        th {
+            width: 150px;
+            vertical-align: middle;
+        }
+    }
+
+    input[type=text], select {
+        width: 250px;
+        margin-right: 20px;
+    }
+
+    .iconset-columnlabel {
+        position: relative;
+        bottom: -20px;
+        margin: 0 0 0 280px;
+
+        span {
+            display: inline-block;
+            width: 22px;
+            transform: rotate(-50deg);
+            -webkit-transform: rotate(-50deg);
+            -moz-transform: rotate(-50deg);
+            -ms-transform: rotate(-50deg);
+            -o-transform: rotate(-50deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        }
+    }
+
+    .profile-iconsets-available {
+        display: inline-block;
+        margin-right: 20px;
+
+        .icon-ok, .icon-remove {
+            width: 22px;
+            padding: 0 5px;
+        }
+
+        .icon-ok {
+            color: green;
+        }
+
+        .icon-remove {
+            color: red;
+        }
+    }
+}

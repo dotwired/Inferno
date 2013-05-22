@@ -8,7 +8,6 @@ define('INFERNO_VERSION', '1.0');
 define('INFERNO_URL', trailingslashit(get_template_directory_uri()) . trailingslashit(basename(dirname(__FILE__))));
 
 
-
 if(!class_exists('Inferno')) {
     class Inferno {
 
@@ -66,12 +65,28 @@ if(!class_exists('Inferno')) {
         public function __construct($_config)
         {
             $this->_config = $_config;
+            $this->load();
             $this->actions();
-            //$this->admin_update_page();
+            $this->init_meta_boxes();
 
-            require_once('inc/inferno-helper.php');
-            require_once('admin/engine.php');
-            new Inferno_Panel_Engine($_config);
+            new Inferno_Canvas();
+            new Inferno_Shortcodes();
+        }
+
+        private function load()
+        {
+            //require_once(dirname(__FILE__) . '/inc/class-helper.php');
+            require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
+            require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
+            require_once(dirname(__FILE__) . '/inc/class-shortcodes.php');
+
+            require_once(dirname(__FILE__) . '/inc/functions.php');
+
+            // todo: require_once(dirname(__FILE__) . '/inc/breadcrumb.php');
+            // todo: require_once(dirname(__FILE__) . '/inc/pagination.php');
+
+            require_once(dirname(__FILE__) . '/canvas/class-canvas.php');
+            // todo: require_once(dirname(__FILE__) . '/builder/class-builder.php');
         }
 
         public function menu($menu = null) {
@@ -115,14 +130,14 @@ if(!class_exists('Inferno')) {
             if(is_array($this->register_scripts) && !empty($this->register_scripts)) {
                 foreach($this->register_scripts as $script) {
                     wp_deregister_script($script[0]);
-                    wp_register_script($script[0], get_template_directory_uri() . '/framework/' . $script[1], $script[2], $script[3], $script[4]);
+                    wp_register_script($script[0], get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/' . $script[1], $script[2], $script[3], $script[4]);
                 }
             }
 
             if(is_array($this->register_styles) && !empty($this->register_styles)) {
                 foreach($this->register_styles as $style) {
                     wp_deregister_style($style[0]);
-                    wp_register_style($style[0], get_template_directory_uri() . '/framework/' . $style[1], $style[2], $style[3], $style[4]);
+                    wp_register_style($style[0], get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/' . $style[1], $style[2], $style[3], $style[4]);
                 }
             }
         }
@@ -143,25 +158,19 @@ if(!class_exists('Inferno')) {
             load_theme_textdomain($this->_config['theme_slug'], get_template_directory() . '/languages');
         }
 
-        public function load_plugins()
-        {
-            foreach($this->_config['plugins'] as $plugin_handle) {
-                if($plugin_handle == 'multiple-featured-images') {
-                    require_once(dirname(__FILE__) . '/plugins/multiple-featured-images/multiple-featured-images.php');
-                }
-            }
-        }
-
-        public function admin_update_page()
-        {
-            if($this->_config['update_mode'] == 'themeforest') {
-                require_once(dirname(__FILE__) . '/plugins/envato-wordpress-toolkit/index.php');
-            }
-        }
-
         public function getConfig()
         {
             return $this->_config;
+        }
+
+        private function init_meta_boxes()
+        {
+            $meta_boxes = require_once get_template_directory() . '/config/meta-boxes.php';
+
+            foreach($meta_boxes as $meta_box) {
+                new Inferno_Meta_Box($meta_box);
+            }
+            
         }
     }
 }

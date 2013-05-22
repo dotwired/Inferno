@@ -1,13 +1,13 @@
-#header ul.menu {
+#menu-header ul.menu {
   position: relative;
   z-index: 9999;
   margin: 0;
   padding: 0; }
-  #header ul.menu li {
+  #menu-header ul.menu li {
     position: relative;
     display: block;
     float: left; }
-    #header ul.menu li:hover ul.sub-menu {
+    #menu-header ul.menu li:hover ul.sub-menu {
       opacity: 1;
       -webkit-opacity: 1;
       -khtml-opacity: 1;
@@ -19,7 +19,7 @@
       -ms-transition-delay: 0ms;
       -o-transition-delay: 0ms;
       visibility: visible; }
-#header ul.sub-menu {
+#menu-header ul.sub-menu {
   opacity: 0;
   -webkit-opacity: 0;
   -khtml-opacity: 0;
@@ -41,5 +41,5 @@
   margin: 0;
   padding: 0;
   visibility: hidden; }
-  #header ul.sub-menu li {
+  #menu-header ul.sub-menu li {
     float: none; }

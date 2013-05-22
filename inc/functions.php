@@ -29,6 +29,14 @@ function inferno_get_option($option_name = null, $default_value = null) {
     return $default_value;
 }
 
+
+
+/*
+function i_go() {}
+function i_uo() {}
+function inferno_update_option() {}
+*/
+
 function inferno_preview($args = array()) {
     global $infernal_flame;
     if(isset($infernal_flame) && method_exists($infernal_flame, 'get_preview')) return $infernal_flame->get_preview($args);

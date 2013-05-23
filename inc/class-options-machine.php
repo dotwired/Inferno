@@ -221,9 +221,9 @@ if(!class_exists('Inferno_Options_Machine')) {
             ?>
             <select name="<?php echo $this->setting['id']; ?>" id="<?php echo $this->setting['id']; ?>">
                 <?php 
-                foreach($this->setting['options'] as $index => $option) : ?>
-                    <option value="<?php echo $option['value'] ?>" <?php if($option['value'] == $inferno_option[$this->setting['id']]) echo 'selected="selected"'; ?>>
-                        <?php echo $option['label']; ?>
+                foreach($this->setting['options'] as $value => $label) : ?>
+                    <option value="<?php echo $value; ?>" <?php if($value == $inferno_option[$this->setting['id']]) echo 'selected="selected"'; ?>>
+                        <?php echo $label; ?>
                     </option>
                 <?php 
                 endforeach; ?>

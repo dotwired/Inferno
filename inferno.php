@@ -79,6 +79,7 @@ if(!class_exists('Inferno')) {
             require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
             require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
             require_once(dirname(__FILE__) . '/inc/class-shortcodes.php');
+            require_once(dirname(__FILE__) . '/inc/class-preview.php');
 
             require_once(dirname(__FILE__) . '/inc/functions.php');
 
@@ -170,7 +171,6 @@ if(!class_exists('Inferno')) {
             foreach($meta_boxes as $meta_box) {
                 new Inferno_Meta_Box($meta_box);
             }
-            
         }
     }
 }

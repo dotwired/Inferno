@@ -87,12 +87,12 @@ if(!class_exists('Inferno_Canvas')) {
                 if($_POST['inferno_action'] == 'save') {
                     foreach($this->theme_settings as $topic ) {
                         foreach($topic['fields'] as $field) {
-                            if(isset($_POST[$field['name']])) {
-                                $inferno_option[$field['name']] = Inferno_Helper::sanitize_data($_POST[$field['name']], $field['type']);
+                            if(isset($_POST[$field['id']])) {
+                                $inferno_option[$field['id']] = Inferno_Helper::sanitize_data($_POST[$field['id']], $field['type']);
 
                                 // if this is google font
-                                if(isset($_POST[$field['name'] . '_googlefont']) && !empty($_POST[$field['name'].'_googlefont'])) {
-                                    $inferno_option[$field['name']] = trim(stripslashes($_POST[$field['name'].'_googlefont']));
+                                if(isset($_POST[$field['id'] . '_googlefont']) && !empty($_POST[$field['id'].'_googlefont'])) {
+                                    $inferno_option[$field['id']] = trim(stripslashes($_POST[$field['id'].'_googlefont']));
                                 }
 
                                 update_option($this->option_name, $inferno_option);
@@ -118,16 +118,14 @@ if(!class_exists('Inferno_Canvas')) {
             global $inferno_option;
 
             // if there is a file to upload.
-            if(isset($_FILES[$option['name'].'_file'] ) && !empty($_FILES[$option['name'].'_file']['name'] )) {
-                $tmp_name = $_FILES[$option['name'].'_file']['tmp_name'];
-                $name = $_FILES[$option['name'].'_file']['name'];
+            if(isset($_FILES[$option['id'].'_file'] ) && !empty($_FILES[$option['id'].'_file']['name'] )) {
+                $tmp_name = $_FILES[$option['id'].'_file']['tmp_name'];
+                $name = $_FILES[$option['id'].'_file']['name'];
 
                 $attachment = wp_upload_bits( $name, null, file_get_contents( $tmp_name ), date( "Y-m" ) );
                 if ($attachment['error'] == false ) {
-                    $inferno_option[$option['name']] = $attachment['url'];
-                    if(!update_option($this->option_name, json_encode($inferno_option)))
-                        $this->error($option['name'], $inferno_option[$option['name']]);
-                        
+                    $inferno_option[$option['id']] = $attachment['url'];
+                    update_option($this->option_name, $inferno_option);
                 } else {
                     $msg = $attachment['error'];
                 }
@@ -157,11 +155,11 @@ if(!class_exists('Inferno_Canvas')) {
 
             foreach($this->theme_settings as $topic) {
                 foreach($topic['fields'] as $field) {
-                    if(isset($field['name']) && !isset($inferno_option[$field['name']])) {
+                    if(isset($field['id']) && !isset($inferno_option[$field['id']])) {
                         if(isset($field['std'])) {
-                            $inferno_option[$field['name']] = $field['std'];
+                            $inferno_option[$field['id']] = $field['std'];
                         } else {
-                            $inferno_option[$field['name']] = null;
+                            $inferno_option[$field['id']] = null;
                         }
                     }
                 }

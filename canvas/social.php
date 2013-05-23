@@ -1,5 +1,5 @@
 <?php return array(
-    "icon" => "smile",
+    "icon" => "group",
     "fields" => array(
         array(
             "name"  => "social_500px",

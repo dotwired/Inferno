@@ -4,27 +4,22 @@
 if(!class_exists('Inferno_Preview')) {
     class Inferno_Preview {
 
+        private $output;
+
         /**
          * @var $args array()
          * $args['link'] 'image' | 'post'
          * todo: change img_width to width and img_height to height
          */
-        public function construct($args = array())
+        public function __construct($src = false, $width = false, $height = false, $effect = 'default', $link = false, $crop = true)
         { 
             global $post;
 
-            extract(shortcode_atts(array(
-                'src'      => false,
-                'width'    => false,
-                'height'   => false,
-                'effect'   => 'default',
-                'link'     => false,
-                'lightbox' => false
-            ), $args));
+            if(!$width && !$height) $width = 250;
 
             $output = null;
 
-            if(!$src || !has_post_thumbnail()) return false;
+            if(!$src && !has_post_thumbnail()) return false;
 
             if(!$src) {
                 $thumb_id = get_post_thumbnail_id($post->ID);
@@ -32,20 +27,7 @@ if(!class_exists('Inferno_Preview')) {
                 $src = $thumb[0];
             }
 
-            $thumb_url = aq_resize($src, $img_width, $img_height, true, true, true);
-            $this->view['thumb_url'] = $thumb_url;
-            $iframe = false;
-
-            if(empty($permalink) || $link == 'media') {
-                $attachment_video = inferno_get_post_meta($thumb_id, 'attachment_video');
-                if(!empty($attachment_video)) {
-                    $permalink = Infernal_Helper::get_video_embed_url($attachment_video);
-                    $iframe = true;
-                } else {
-                    $permalink = $src;
-                }
-            }
-
+            $thumb_url = aq_resize($src, $width, $height, true, true, true);
             ob_start();
 
             if($permalink) echo '<a href="' . $permalink . '" class="inferno-preview ' . $effect . '">';
@@ -63,17 +45,21 @@ if(!class_exists('Inferno_Preview')) {
                     echo '</div>';
                     break;
                 default:
-                    $this->template($template_hover);
-                    //$this->preview_default($thumb_url);
+                    //$this->template($template_hover);
+                    $this->preview_default($thumb_url);
                     break;
             }
             if($permalink) echo '</a>';
             else echo '</div>';
 
             $output = ob_get_contents();
+            $this->output = $output;
             ob_end_clean();
+        }
 
-            return $output;
+        public function get_output() 
+        {
+            return $this->output;
         }
 
 

@@ -45,8 +45,8 @@ if(!class_exists('Inferno_Shortcodes')) {
             'recent_works',
             'recent_posts',
 
-            // society
-            'society'
+            // social
+            'social_profiles'
         );
 
         public function __construct()
@@ -512,21 +512,19 @@ if(!class_exists('Inferno_Shortcodes')) {
             global $post;
             $postslist = get_posts($args);
             if(count($postslist) > 0) :
-                echo '<div class="infernal-recent-works">';
+                echo '<div class="inferno-recent-works">';
                 $i = 1;
                 foreach($postslist as $post) : setup_postdata($post); 
                     $lastclass = ($i / (int)$last == 1) ? ' last' : null;
                     $preview_args = array(
-                        'img_url'        => false,
-                        'img_width'      => $img_width,
-                        'img_height'     => $img_height,
-                        'effect'         => $effect,
-                        'template_sub'   => 'preview-work-sub',
-                        'template_hover' => 'preview-work-hover'
+                        'src'    => false,
+                        'width'  => $img_width,
+                        'height' => $img_height,
+                        'effect' => $effect
                     );
                     ?>
                     <div class="preview-box type-work <?php echo $width . $lastclass; ?>">
-                        <?php echo $infernal_flame->get_preview($preview_args); ?>
+                        <?php echo inferno_preview($preview_args); ?>
                         <?php get_template_part('infernal-templates/recent-work-sub'); ?>
                     </div>
                     <?php
@@ -545,15 +543,10 @@ if(!class_exists('Inferno_Shortcodes')) {
 
 
         public function recent_posts($atts, $content = null) {
-            global $infernal_flame;
-
-            if(!is_object($infernal_flame))
-                return;
-
             extract(shortcode_atts(array(
                 'categories'                => null,
                 'width'                     => 'one-third',
-                'img_width'                 => 300,
+                'img_width'                 => 250,
                 'img_height'                => 150,
                 'limit'                     => 3,
                 'last'                      => 3,
@@ -587,25 +580,21 @@ if(!class_exists('Inferno_Shortcodes')) {
 
             $i = 1;
             if(count($postslist) > 0) :
-                echo '<div class="infernal-recent-posts">';
+                echo '<div class="inferno-recent-posts">';
                 foreach($postslist as $post) : setup_postdata($post); 
                     if($last)
                         $lastclass = (($i / (int)$last) == 1) ? ' last' : null;
-
-                        $preview_args = array(
-                            'img_url'        => false,
-                            'img_width'      => $img_width,
-                            'img_height'     => $img_height,
-                            'effect'         => $effect,
-                            'template_sub'   => 'preview-post-sub',
-                            'template_hover' => 'preview-post-hover'
-                        )
+                    
+                        if($output) : echo $output;
+                        else :
                         ?>
+                        <h3><?php the_title(); ?></h3>
                         <div class="preview-box type-post <?php echo $width . $lastclass; ?>">
-                            <?php echo $infernal_flame->get_preview($preview_args); ?>
+                            <?php echo inferno_preview(false, $img_width, $img_height, $effect, true); ?>
                             <?php get_template_part('infernal-templates/preview-post-sub'); ?>
                         </div>
                         <?php
+                        endif;
                     $i++;
                 endforeach;
                 echo '<div class="clear"></div>';
@@ -617,11 +606,7 @@ if(!class_exists('Inferno_Shortcodes')) {
             return $output;
         }
 
-        public function society($atts, $content = null)
-        {
-            global $infernal_society;
-
-            return $infernal_society->shortcode($atts);
-        }
+        public function social_profiles($atts, $content = null)
+        {}
     }
 }

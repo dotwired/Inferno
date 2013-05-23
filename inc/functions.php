@@ -37,10 +37,11 @@ function i_uo() {}
 function inferno_update_option() {}
 */
 
-function inferno_preview($args = array()) {
-    global $infernal_flame;
-    if(isset($infernal_flame) && method_exists($infernal_flame, 'get_preview')) return $infernal_flame->get_preview($args);
-    return false;
+function inferno_preview($src = false, $width = false, $height = false, $effect = 'default', $link = false, $crop = true) {
+    if(!class_exists('Inferno_Preview')) return;
+
+    $preview = new Inferno_Preview($src, $width, $height, $effect, $link, $crop);
+    return $preview->get_output();
 }
 
 function inferno_society($size = '16px') {

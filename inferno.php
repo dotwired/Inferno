@@ -4,9 +4,9 @@
  * Define for the beginning.
  */
 
-define('INFERNO_VERSION', '1.0');
+define('INFERNO', basename(dirname(__FILE__)));
 define('INFERNO_URL', trailingslashit(get_template_directory_uri()) . trailingslashit(basename(dirname(__FILE__))));
-
+define('INFERNO_VERSION', '1.0');
 
 if(!class_exists('Inferno')) {
     class Inferno {
@@ -31,6 +31,8 @@ if(!class_exists('Inferno')) {
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
+            array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
+            array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
             array('wpstyles', 'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all')  
         );
 
@@ -75,13 +77,14 @@ if(!class_exists('Inferno')) {
 
         private function load()
         {
+            require_once(dirname(__FILE__) . '/inc/functions.php');
+            require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
+
             //require_once(dirname(__FILE__) . '/inc/class-helper.php');
             require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
             require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
             require_once(dirname(__FILE__) . '/inc/class-shortcodes.php');
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
-
-            require_once(dirname(__FILE__) . '/inc/functions.php');
 
             // todo: require_once(dirname(__FILE__) . '/inc/breadcrumb.php');
             // todo: require_once(dirname(__FILE__) . '/inc/pagination.php');
@@ -145,13 +148,11 @@ if(!class_exists('Inferno')) {
 
         public function fixing_hooks()
         {
-            add_filter('use_default_gallery_style', '__return_false'); // remove wp default gallery inline style
-        }
+            // remove wp default gallery inline style
+            add_filter('use_default_gallery_style', '__return_false'); 
 
-        public function register_featured_images()
-        {
             add_theme_support('post-thumbnails');
-            set_post_thumbnail_size(100, 100, true);
+            set_post_thumbnail_size(300, 300, true);
         }
 
         public function translate()

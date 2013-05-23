@@ -1,22 +1,7 @@
 <?php
-/**
- * Plugin Name: Infernal Slider
- * Plugin URI:  http://themedale.net
- * Description: Create fantastic sliders for your website. Features also a slider widget and a slider shortcode.
- * Author:      Indiapart
- * Author URI:  http://themedale.net
- * Version:     1.0
- * 
- * Text Domain: inferno
- * Domain Path: /languages/
- */
 
-if(!class_exists('Infernal_Slider')) {
-
-    /**
-     * Loader class for the IP Panel.
-     */
-    class Infernal_Slider extends Inferno {
+if(!class_exists('Inferno_FlexSlider')) {
+    class Inferno_FlexSlider extends Inferno {
 
         // some default settings
         public $settings = array(
@@ -84,7 +69,7 @@ if(!class_exists('Infernal_Slider')) {
               'not_found'          => __('No slides found', INFERNO),
               'not_found_in_trash' => __('No slides found in Trash', INFERNO), 
               'parent_item_colon'  => '',
-              'menu_name'          => __('Slides', INFERNO)
+              'menu_name'          => __('FlexSlider', INFERNO)
 
             );
             $args = array(
@@ -98,7 +83,7 @@ if(!class_exists('Infernal_Slider')) {
               'capability_type'    => 'page',
               'has_archive'        => true, 
               'hierarchical'       => false,
-              'menu_position'      => null,
+              'menu_position'      => 100,
               'supports'           => array('title', 'editor', 'author', 'thumbnail')
             ); 
             register_post_type('slide', $args);

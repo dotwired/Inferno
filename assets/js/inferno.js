@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 
     $('.inferno-canvas .media .button-reset').live('click', function(){
         $container = $(this).parent();
-        $container.find('.media-preview img').fadeOut(200).delay(200);
+        $container.find('.media-preview img').hide(200);
         $container.find('input[type="hidden"]').val('');
     });
 

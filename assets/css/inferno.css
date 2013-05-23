@@ -1,4 +1,10 @@
 /* ==========================================================================
+   Global Inferno styles
+   ========================================================================== */
+.inferno-canvas .button.button-reset {
+  color: #ef4040; }
+
+/* ==========================================================================
    Inferno Canvas
    ========================================================================== */
 .inferno-canvas, .inferno-canvas * {
@@ -19,6 +25,8 @@
   /* Header
      ========================================================================== */
   /* Navigation
+     ========================================================================== */
+  /* Footer
      ========================================================================== */
   /* Messages
      ========================================================================== */
@@ -101,6 +109,25 @@
         margin-right: 10px; }
       .inferno-canvas .menu a span {
         display: inline-block; }
+  .inferno-canvas .footer {
+    background: #555555;
+    background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+    background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -o-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
+    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+    color: #ddd;
+    font-size: 12px;
+    line-height: 22px;
+    height: 44px;
+    padding: 10px 20px;
+    line-height: 24px; }
+    .inferno-canvas .footer a {
+      color: #fff; }
+    .inferno-canvas .footer .button-primary {
+      float: right; }
   .inferno-canvas .inferno-message {
     position: fixed;
     left: 50%;

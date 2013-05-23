@@ -21,12 +21,14 @@
             </section>
             <div class="clearfix"></div>
             <footer class="footer">
+                <button name="inferno_action" class="button button-reset" value="reset" id="inferno-canvas-reset"><?php _e('Reset to Defaults', 'inferno'); ?></button>
                 <button name="inferno_action" class="button-primary" value="save"><?php _e('Save Changes', 'inferno'); ?></button>
-                <button name="inferno_action" class="button button-reset" value="reset" class="ip-reset"><?php _e('Reset to Defaults', 'inferno'); ?></button>
+                <div class="clearfix"></div>
+                
                 <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce($this->_noncestr); ?>" />
                 <script type="text/javascript">
                 jQuery(document).ready(function($) {
-                    $('#ip-reset').confirm({
+                    $('#inferno-canvas-reset').confirm({
                         msg: "<?php _e('Do You really want to reset all settings?', 'inferno') ?>",
                         timeout: 5000,
                         dialogShow: 'fadeIn',

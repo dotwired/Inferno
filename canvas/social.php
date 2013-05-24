@@ -1,4 +1,5 @@
 <?php return array(
+    "title" => "Social",
     "icon" => "group",
     "fields" => array(
         array(

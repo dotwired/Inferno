@@ -141,7 +141,7 @@ if(!class_exists('Inferno_Canvas')) {
                 $this->theme_settings = @include_once(get_template_directory() . '/config/canvas.php');
             }
 
-            $this->theme_settings["Social"] = @include_once(dirname(__FILE__) . '/social.php');
+            $this->theme_settings[] = @include_once(dirname(__FILE__) . '/social.php');
         }
 
         /**
@@ -179,8 +179,8 @@ if(!class_exists('Inferno_Canvas')) {
         { 
             if(!isset($this->theme_settings) || !is_array($this->theme_settings) || empty($this->theme_settings)) return false;
 
-            $i = 1; foreach($this->theme_settings as $topic => $data) : ?>
-            <li><?php echo '<a href="#tab-'.$i.'" id="tablink-'.$i.'"><div class="icon-' .  $data['icon'] . '"></div><span>' .  $topic . '</span></a>'; ?></li>
+            $i = 1; foreach($this->theme_settings as $topic) : ?>
+            <li><?php echo '<a href="#tab-'.$i.'" id="tablink-'.$i.'"><div class="icon-' .  $topic['icon'] . '"></div><span>' .  $topic['title'] . '</span></a>'; ?></li>
             <?php $i++; endforeach;
         }
 
@@ -188,7 +188,7 @@ if(!class_exists('Inferno_Canvas')) {
         {
             if(isset($this->theme_settings) && is_array($this->theme_settings) && !empty($this->theme_settings)) {
                 $count = 1;
-                foreach($this->theme_settings as $name => $topic) : ?>
+                foreach($this->theme_settings as $topic) : ?>
                     <!-- BEGIN .tab-content -->
                     <div id="tab-<?php echo $count; ?>" class="tab-content">
                         <?php 

@@ -1,11 +1,11 @@
 <?php
 
-if(!class_exists('Inferno_Shortcodes')) {
+if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
     class Inferno_Shortcodes
     {
 
-        public $shortcodes = array(
+        private $shortcodes = array(
             // columning and structure
             'stacked',
             'one_half',
@@ -49,10 +49,29 @@ if(!class_exists('Inferno_Shortcodes')) {
             'social_profiles'
         );
 
+        private $shortcode_templates = array(
+            'skillbar' => 'skillbar.php',
+            'staff_member' => 'staff-member.php',
+            'recent_works' => 'recent-works.php',
+            'recent_posts' => 'recent-posts.php'
+        );
+
         public function __construct()
         {
-            foreach($this->shortcodes as $shortcode) {
-                add_shortcode($shortcode, array('Inferno_Shortcodes', $shortcode));
+            foreach( $this->shortcodes as $shortcode ) {
+                add_shortcode( $shortcode, array( &$this, $shortcode ) );
+            }
+
+            $theme_templates = (array) get_theme_support( 'inferno-templates' );
+            $templates = array();
+
+            foreach ( $this->shortcode_templates as $shortcode => $file )
+            {
+                if ( isset ( $theme_templates[ $shortcode ] ) ) {
+                    $this->shortcode_templates[ $shortcode ] = locate_template( $theme_templates[ $shortcode ] );
+                } else {
+                    $this->shortcode_templates[ $shortcode ] = INFERNO_PATH . "templates/$file";
+                }
             }
         }
 
@@ -62,211 +81,211 @@ if(!class_exists('Inferno_Shortcodes')) {
             Page Columning
         ======================================================================== */
 
-        public function stacked($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function stacked( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'border' => 'no'
-            ), $atts));
+            ), $atts ) );
 
             $borderclass = $border == 'no' ? ' noborder': null;
-            return '<div class="stacked' . $borderclass . '">'.do_shortcode($content).'<div class="clear"></div></div>';
+            return '<div class="stacked' . $borderclass . '">'.do_shortcode( $content ).'<div class="clear"></div></div>';
         }
 
-        public function one_half($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_half( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
 
-            return '<div class="one-half' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-half' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function one_half_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_half_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
 
-            return '<div class="one-half last' . $css_class . '' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="one-half last' . $css_class . '' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function one_third($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_third( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
-            $css_class = $css_class ? ' ' . $css_class : null;
-            
-            return '<div class="one-third' . $css_class . '">'.do_shortcode($content).'</div>';
-        }
-
-        public function two_thirds($atts, $content = null) {
-            extract(shortcode_atts(array(
-                'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="two-thirds' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-third' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function one_third_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function two_thirds( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-third last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="two-thirds' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function two_thirds_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_third_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="two-thirds last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="one-third last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function one_fourth($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function two_thirds_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-fourth' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="two-thirds last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function three_fourths($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_fourth( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="three-fourths' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-fourth' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function one_fourth_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function three_fourths( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-fourth last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="three-fourths' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function three_fourths_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_fourth_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="three-fourths last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="one-fourth last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function one_fifth($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function three_fourths_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-fifth' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="three-fourths last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function two_fifths($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_fifth( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="two-fifths' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-fifth' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function three_fifths($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function two_fifths( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="three-fifths' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="two-fifths' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function four_fifths($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function three_fifths( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="four-fifths' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="three-fifths' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function one_fifth_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function four_fifths( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-fifth last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="four-fifths' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function two_fifths_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_fifth_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="two-fifths last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="one-fifth last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function three_fifths_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function two_fifths_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="three-fifths last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="two-fifths last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function four_fifths_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function three_fifths_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="four-fifths last' . $css_class . '">'.do_shortcode($content).'</div><div class="clear"></div>';
+            return '<div class="three-fifths last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function one_sixth($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function four_fifths_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-sixth' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="four-fifths last' . $css_class . '">'.do_shortcode( $content ).'</div><div class="clear"></div>';
         }
 
-        public function five_sixths($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_sixth( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="five-sixths' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-sixth' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function one_sixth_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function five_sixths( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="one-sixth last' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="five-sixths' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
-        public function five_sixths_last($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function one_sixth_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
             
-            return '<div class="five-sixths last' . $css_class . '">'.do_shortcode($content).'</div>';
+            return '<div class="one-sixth last' . $css_class . '">'.do_shortcode( $content ).'</div>';
+        }
+
+        public function five_sixths_last( $atts, $content = null ) {
+            extract( shortcode_atts( array(
+                'css_class' => null
+            ), $atts ) );
+            $css_class = $css_class ? ' ' . $css_class : null;
+            
+            return '<div class="five-sixths last' . $css_class . '">'.do_shortcode( $content ).'</div>';
         }
 
 
@@ -274,98 +293,98 @@ if(!class_exists('Inferno_Shortcodes')) {
             Content elements
         ======================================================================== */
 
-        public function divider($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function divider( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'css_class' => null
-            ), $atts));
+            ), $atts ) );
             $css_class = $css_class ? ' ' . $css_class : null;
 
-            return '<div class="divider' . $css_class . '">' . do_shortcode($content) . '</div>';
+            return '<div class="divider' . $css_class . '">' . do_shortcode( $content ) . '</div>';
         }
 
-        public function circle($atts, $content = null) {
-            $width      = isset($atts['width']) ? ' style="width: ' . $atts['width'] . ';"' : null;
-            $align      = isset($atts['align']) ? ' align' . $atts['align'] : null; 
+        public function circle( $atts, $content = null ) {
+            $width      = isset( $atts[ 'width' ] ) ? ' style="width: ' . $atts[ 'width' ] . ';"' : null;
+            $align      = isset( $atts[ 'align' ] ) ? ' align' . $atts[ 'align' ] : null; 
 
-            return '<div class="infernal-circle' . $align . '"' . $width . '><div class="dummy"></div><div class="radius"><div class="element">'.do_shortcode($content).'</div></div></div>';
+            return '<div class="infernal-circle' . $align . '"' . $width . '><div class="dummy"></div><div class="radius"><div class="element">'.do_shortcode( $content ).'</div></div></div>';
         }
 
-        public function icon($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function icon( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'icon'             => 'fire',
                 'size'             => null,
                 'color'            => null,
                 'background'       => null,
                 'hover_color'      => null,
                 'hover_background' => null
-            ), $atts));
+            ), $atts ) );
 
-            if($size) $size = 'font-size:' . $size . ';';
-            if($color) $size = 'color:' . $color . ';';
-            if($background) $background = 'background:' . $background . ';';
-            if($hover_color) $hover_color = ' data-hoverColor="' . $hover_color . '"';
-            if($hover_background) $hover_background = ' data-hoverBackground="' . $hover_background . '"';
-            if($color || $background || $size) $style = ' style="' . $color . $background . $size . '"';
+            if( $size ) $size = 'font-size:' . $size . ';';
+            if( $color ) $size = 'color:' . $color . ';';
+            if( $background ) $background = 'background:' . $background . ';';
+            if( $hover_color ) $hover_color = ' data-hoverColor="' . $hover_color . '"';
+            if( $hover_background ) $hover_background = ' data-hoverBackground="' . $hover_background . '"';
+            if( $color || $background || $size ) $style = ' style="' . $color . $background . $size . '"';
 
             return '<figure class="infernal-icon"' . $style . $hover_color . $hover_background . '><div class="icon-' . $icon . '"></div></figure>';
         }
 
-        public function button($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function button( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'width' => null,
                 'align' => null,
                 'color' => null,
                 'url'   => '#'
-            ), $atts));
+            ), $atts ) );
 
-            if($width) $width = ' style="width: ' . $width . ';"';
-            if($align) $align = ' align' . $align;
-            if($color) $color = ' ' . $color;
+            if( $width ) $width = ' style="width: ' . $width . ';"';
+            if( $align ) $align = ' align' . $align;
+            if( $color ) $color = ' ' . $color;
 
-            return '<a href="' . $url . '" class="infernal-button' . $color . $align . '"' . $width . '>' . do_shortcode($content) . '</a>';
+            return '<a href="' . $url . '" class="infernal-button' . $color . $align . '"' . $width . '>' . do_shortcode( $content ) . '</a>';
         }
 
-        public function launch($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function launch( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'url' => '#'
-            ), $atts));
+            ), $atts ) );
 
-            return '<a class="launch" href="' . $url . '">' . do_shortcode($content) . '</a>';
+            return '<a class="launch" href="' . $url . '">' . do_shortcode( $content ) . '</a>';
         }
 
-        public function skillbar($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function skillbar( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'background' => null,
                 'skill_background' => null,
                 'skill_color' => null,
                 'bar_background' => null,
                 'percent' => '0%',
-            ), $atts));
+            ), $atts ) );
 
-            if(substr($percent, -1) != '%') $percent .= '%';
+            if(substr( $percent, -1) != '%' ) $percent .= '%';
             $bar_css = ' style="width:' . $percent . ';';
 
-            if($background) $skillbar_css = ' style="background:' . $background . ';"';
-            if($bar_background) $bar_css .= 'background:' . $bar_background . ';';
-            if($skill_background || $skill_color) {
+            if( $background ) $skillbar_css = ' style="background:' . $background . ';"';
+            if( $bar_background ) $bar_css .= 'background:' . $bar_background . ';';
+            if( $skill_background || $skill_color ) {
                 $skill_css  = ' style="';
-                if($skill_background) $skill_css  .= 'background:' . $skill_background . ';';
-                if($skill_color) $skill_css  .= 'color:' . $skill_color . ';';
+                if( $skill_background ) $skill_css  .= 'background:' . $skill_background . ';';
+                if( $skill_color ) $skill_css  .= 'color:' . $skill_color . ';';
                 $skill_css  .= '"';
             }
             $bar_css .= '"';
 
             $skillbar  = '<div class="infernal-skillbar" data-percent="' . $percent . '">';
             $skillbar .= '<div class="bar"' . $bar_css . '></div>';
-            $skillbar .= '<div class="skill"><span' . $skill_css . '>' . do_shortcode($content) . '</span></div>';
+            $skillbar .= '<div class="skill"><span' . $skill_css . '>' . do_shortcode( $content ) . '</span></div>';
             $skillbar .= '<div class="percent">' . $percent . '</div>';
             $skillbar .= '</div>';
 
             return $skillbar;
         }
 
-        public function staff_member($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function staff_member( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'image'    => null,
                 'color'    => null,
                 'style'    => null,
@@ -381,32 +400,32 @@ if(!class_exists('Inferno_Shortcodes')) {
                 'gplus'    => null,
                 'github'   => null,
                 'email'    => null
-            ), $atts));
+            ), $atts ) );
 
             if(!$image || !$name) return;
-            if($color == 'default') $color = null;
+            if( $color == 'default' ) $color = null;
 
             ob_start();
 
-            echo '<div class="infernal-staff-member' . ($style == 'circle' ? ' circle' : null) . '">';
-            if($style == 'circle') {
+            echo '<div class="infernal-staff-member' . ( $style == 'circle' ? ' circle' : null ) . '">';
+            if( $style == 'circle' ) {
                 echo '<div class="profile-img infernal-circle aligncenter"><div class="dummy"></div><div class="radius"><div class="element"><img src="' . $image . '" alt="' . $name . '" /></div></div>';
             } else {
                 echo '<div class="profile-img"><img src="' . $image . '" alt="' . $name . '" />';
             }
-            if($twitter) echo '<a href="' . $twitter . '" class="profile-twitter' . ($color ? ' ' . $color : null) . '"><div class="icon-twitter"></div></a>';
-            if($facebook) echo '<a href="' . $facebook . '" class="profile-facebook' . ($color ? ' ' . $color : null) . '"><div class="icon-facebook"></div></a>';
-            if($linkedin) echo '<a href="' . $linkedin . '" class="profile-linkedin' . ($color ? ' ' . $color : null) . '"><div class="icon-linkedin"></div></a>';
-            if($gplus) echo '<a href="' . $gplus . '" class="profile-gplus' . ($color ? ' ' . $color : null) . '"><div class="icon-google-plus"></div></a>';
-            if($github) echo '<a href="' . $github . '" class="profile-github' . ($color ? ' ' . $color : null) . '"><div class="icon-github"></div></a>';
-            if($email) echo '<a href="mailto:' . $email . '" class="profile-email' . ($color ? ' ' . $color : null) . '"><div class="icon-envelope-alt"></div></a>';
+            if( $twitter ) echo '<a href="' . $twitter . '" class="profile-twitter' . ( $color ? ' ' . $color : null ) . '"><div class="icon-twitter"></div></a>';
+            if( $facebook ) echo '<a href="' . $facebook . '" class="profile-facebook' . ( $color ? ' ' . $color : null ) . '"><div class="icon-facebook"></div></a>';
+            if( $linkedin ) echo '<a href="' . $linkedin . '" class="profile-linkedin' . ( $color ? ' ' . $color : null ) . '"><div class="icon-linkedin"></div></a>';
+            if( $gplus ) echo '<a href="' . $gplus . '" class="profile-gplus' . ( $color ? ' ' . $color : null ) . '"><div class="icon-google-plus"></div></a>';
+            if( $github ) echo '<a href="' . $github . '" class="profile-github' . ( $color ? ' ' . $color : null ) . '"><div class="icon-github"></div></a>';
+            if( $email ) echo '<a href="mailto:' . $email . '" class="profile-email' . ( $color ? ' ' . $color : null ) . '"><div class="icon-envelope-alt"></div></a>';
             echo '</div>';
 
-            if($name || $position || $phone) {
+            if( $name || $position || $phone ) {
                 echo '<div class="about">';
-                if($name) echo '<div class="name">' . $name . '</div>';
-                if($position) echo '<div class="position">' . $position . '</div>';
-                if($phone) {
+                if( $name ) echo '<div class="name">' . $name . '</div>';
+                if( $position ) echo '<div class="position">' . $position . '</div>';
+                if( $phone ) {
                     echo '<div class="phone"><div class="edge"></div><div class="number"><div class="transition"></div>' . $phone . '</div><div class="icon-phone ' . $color . '"></div></div>';  
                 } 
                 echo '</div>';
@@ -425,16 +444,17 @@ if(!class_exists('Inferno_Shortcodes')) {
         ======================================================================== */
 
         /**
+         * todo: bring it back. maybe. maybe not.
          * Displays the portfolio in an even more extended way then [recent_posts]
          * 
          * @param  [type] $atts    [description]
          * @param  [type] $content [description]
          * @return [type]          [description]
-         */
-        public function portfolio($atts, $content = null) {
+         *
+        public function portfolio( $atts, $content = null ) {
             global $infernal_portfolio, $infernal_flame;
 
-            if(!is_object($infernal_portfolio))
+            if(!is_object( $infernal_portfolio ) )
                 return;
 
             $atts = shortcode_atts(array(
@@ -449,21 +469,22 @@ if(!class_exists('Inferno_Shortcodes')) {
                 'link'       => 'post',
                 'ajax'       => false,
                 'lightbox'   => false
-            ), $atts);
+            ), $atts );
 
-            if($atts['filter'] == 'yes') $atts['filter'] = true; else $atts['filter'] = false;
-            if($atts['lightbox'] == 'yes') $atts['lightbox'] = true; else $atts['lightbox'] = false;
-            if($atts['link'] != 'media') $atts['lightbox'] = false;
-            if($atts['infinite'] != 'click' || $atts['infinite'] != 'auto') $atts['infinite'] = false;
+            if( $atts[ 'filter' ] == 'yes' ) $atts[ 'filter' ] = true; else $atts[ 'filter' ] = false;
+            if( $atts[ 'lightbox' ] == 'yes' ) $atts[ 'lightbox' ] = true; else $atts[ 'lightbox' ] = false;
+            if( $atts[ 'link' ] != 'media' ) $atts[ 'lightbox' ] = false;
+            if( $atts[ 'infinite' ] != 'click' || $atts[ 'infinite' ] != 'auto' ) $atts[ 'infinite' ] = false;
 
             ob_start();
             
-            echo $infernal_portfolio->get_output($atts);
+            echo $infernal_portfolio->get_output( $atts );
 
             $output = ob_get_contents();
             ob_end_clean();
             return $output;
         }
+        */
 
 
 
@@ -475,15 +496,15 @@ if(!class_exists('Inferno_Shortcodes')) {
          * @param  [type] $content [description]
          * @return [type]          [description]
          */
-        public function recent_works($atts, $content = null) {
+        public function recent_works( $atts, $content = null ) {
             global $infernal_portfolio, $infernal_flame;
 
-            if(!is_object($infernal_portfolio))
+            if(!is_object( $infernal_portfolio ) )
                 return;
             
             ob_start();
 
-            extract(shortcode_atts(array(
+            extract( shortcode_atts( array(
                 'categories' => null,
                 'width'      => 'one-third',
                 'img_width'  => 300,
@@ -491,9 +512,9 @@ if(!class_exists('Inferno_Shortcodes')) {
                 'limit'      => 3,
                 'last'       => 3,
                 'effect'     => 'default'
-            ), $atts));
+            ), $atts ) );
 
-            $width = str_replace('_', '-', $width);
+            $width = str_replace( '_', '-', $width);
 
             $args = array(
                 'numberposts' => $limit,
@@ -501,8 +522,8 @@ if(!class_exists('Inferno_Shortcodes')) {
                 'meta_key' => '_thumbnail_id'
             );
 
-            if($categories) {
-                $args['tax_query'] = array(
+            if( $categories ) {
+                $args[ 'tax_query' ] = array(
                     'taxonomy' => 'portfolio_category',
                     'field' => 'slug',
                     'terms' => $categories
@@ -510,24 +531,19 @@ if(!class_exists('Inferno_Shortcodes')) {
             }
 
             global $post;
-            $postslist = get_posts($args);
-            if(count($postslist) > 0) :
+            $postslist = get_posts( $args );
+            if(count( $postslist) > 0) :
                 echo '<div class="inferno-recent-works">';
                 $i = 1;
-                foreach($postslist as $post) : setup_postdata($post); 
-                    $lastclass = ($i / (int)$last == 1) ? ' last' : null;
+                foreach( $postslist as $post) : setup_postdata( $post); 
+                    $lastclass = ( $i / (int)$last == 1) ? ' last' : null;
                     $preview_args = array(
                         'src'    => false,
                         'width'  => $img_width,
                         'height' => $img_height,
                         'effect' => $effect
                     );
-                    ?>
-                    <div class="preview-box type-work <?php echo $width . $lastclass; ?>">
-                        <?php echo inferno_preview($preview_args); ?>
-                        <?php get_template_part('infernal-templates/recent-work-sub'); ?>
-                    </div>
-                    <?php
+                    require( $this->shortcode_templates[ 'recent_posts' ] );
                     $i++;
                 endforeach;
                 echo '<div class="clear"></div>';
@@ -542,8 +558,8 @@ if(!class_exists('Inferno_Shortcodes')) {
 
 
 
-        public function recent_posts($atts, $content = null) {
-            extract(shortcode_atts(array(
+        public function recent_posts( $atts, $content = null ) {
+            extract( shortcode_atts( array(
                 'categories'                => null,
                 'width'                     => 'one-third',
                 'img_width'                 => 250,
@@ -552,49 +568,38 @@ if(!class_exists('Inferno_Shortcodes')) {
                 'last'                      => 3,
                 'effect'                    => 'default',
                 'include_without_thumbnail' => false
-            ), $atts));
+            ), $atts ) );
 
-            $width = str_replace('_', '-', $width);
+            $width = str_replace( '_', '-', $width);
 
             $args = array(
-                'numberposts' => $limit,
+                'numberposts'    => $limit,
                 'posts_per_page' => $limit,
-                'post_type' => 'post',
-                //'meta_key' => '_thumbnail_id' show posts without thumbs, too
+                'post_type'      => 'post',
+                //'meta_key'     => '_thumbnail_id' show posts without thumbs, too
             );
+ 
+            if( $include_without_thumbnail !== 'yes' ) $args[ 'meta_key' ] = '_thumbnail_id';
 
-            if($include_without_thumbnail !== 'yes') $args['meta_key'] = '_thumbnail_id';
-
-            if($categories) {
-                $args['tax_query'] = array(
+            if( $categories ) {
+                $args[ 'tax_query' ] = array(
                     'taxonomy' => 'category',
-                    'field' => 'slug',
-                    'terms' => $categories
+                    'field'    => 'slug',
+                    'terms'    => $categories
                 );
             }
 
             global $post;
-            $postslist = get_posts($args);
+            $postslist = get_posts( $args );
 
             ob_start();
 
             $i = 1;
-            if(count($postslist) > 0) :
+            if(count( $postslist ) > 0 ) :
                 echo '<div class="inferno-recent-posts">';
-                foreach($postslist as $post) : setup_postdata($post); 
-                    if($last)
-                        $lastclass = (($i / (int)$last) == 1) ? ' last' : null;
-                    
-                        if($output) : echo $output;
-                        else :
-                        ?>
-                        <h3><?php the_title(); ?></h3>
-                        <div class="preview-box type-post <?php echo $width . $lastclass; ?>">
-                            <?php echo inferno_preview(false, $img_width, $img_height, $effect, true); ?>
-                            <?php get_template_part('infernal-templates/preview-post-sub'); ?>
-                        </div>
-                        <?php
-                        endif;
+                foreach( $postslist as $post ) : setup_postdata( $post ); 
+                    if( $last ) $lastclass = ( ( $i / (int) $last ) == 1 ) ? ' last' : null;
+                        require( $this->shortcode_templates[ 'recent_posts' ] );
                     $i++;
                 endforeach;
                 echo '<div class="clear"></div>';
@@ -606,7 +611,7 @@ if(!class_exists('Inferno_Shortcodes')) {
             return $output;
         }
 
-        public function social_profiles($atts, $content = null)
-        {}
+        // todo
+        public function social_profiles( $atts, $content = null ) {}
     }
 }

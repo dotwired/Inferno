@@ -54,12 +54,12 @@ if(!class_exists('Inferno_Canvas')) {
             wp_enqueue_script('thickbox');
             wp_enqueue_script('jquery-confirm');
             wp_enqueue_script('jquery-colorpicker');
-            wp_enqueue_script('inferno');
+            wp_enqueue_script('inferno-admin');
 
             wp_enqueue_style('thickbox');
             wp_enqueue_style('inferno-colorpicker');
             wp_enqueue_style('font-awesome');
-            wp_enqueue_style('inferno');
+            wp_enqueue_style('inferno-admin');
         }
 
         function check_nonce()

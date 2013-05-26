@@ -186,6 +186,10 @@ if(!class_exists('Inferno')) {
             if( get_theme_support( 'inferno-widget-css-classes' ) ) {
                 require_once( 'plugins/widget-css-classes/widget-css-classes.php' );
             }
+
+            if( get_theme_support( 'inferno-wooslider' ) ) {
+                require_once( 'plugins/wooslider/wooslider.php' );
+            }
         }
 
         private function load_widgets()

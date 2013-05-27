@@ -177,23 +177,25 @@ if(!class_exists('Inferno_Canvas')) {
          */
         function menu() 
         { 
-            if(!isset($this->theme_settings) || !is_array($this->theme_settings) || empty($this->theme_settings)) return false;
+            if( !isset( $this->theme_settings ) || !is_array( $this->theme_settings ) || empty( $this->theme_settings ) ) return false;
 
-            $i = 1; foreach($this->theme_settings as $topic) : ?>
-            <li><?php echo '<a href="#tab-'.$i.'" id="tablink-'.$i.'"><div class="icon-' .  $topic['icon'] . '"></div><span>' .  $topic['title'] . '</span></a>'; ?></li>
+            $i = 1; foreach( $this->theme_settings as $topic ) : ?>
+            <li><?php echo '<a href="#tab-' . $i . '" id="tablink-' . $i . '"><div class="icon-' . $topic[ 'icon' ] . '"></div><span>' . $topic[ 'title' ] . '</span></a>'; ?></li>
             <?php $i++; endforeach;
         }
 
         function tabs()
         {
-            if(isset($this->theme_settings) && is_array($this->theme_settings) && !empty($this->theme_settings)) {
+            global $inferno_option;
+
+            if( isset( $this->theme_settings ) && is_array( $this->theme_settings ) && !empty( $this->theme_settings ) ) {
                 $count = 1;
-                foreach($this->theme_settings as $topic) : ?>
+                foreach( $this->theme_settings as $topic ) : ?>
                     <!-- BEGIN .tab-content -->
                     <div id="tab-<?php echo $count; ?>" class="tab-content">
                         <?php 
-                        foreach($topic['fields'] as $field) {
-                            $option = new Inferno_Options_Machine($field);
+                        foreach( $topic[ 'fields' ] as $field ) {
+                            $option = new Inferno_Options_Machine( $field, $inferno_option[ $field[ 'id' ] ] );
                         }
                         ?>
                     <!-- END .tab-content -->

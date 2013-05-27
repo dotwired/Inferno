@@ -187,8 +187,8 @@ if(!class_exists('Inferno')) {
                 require_once( 'plugins/widget-css-classes/widget-css-classes.php' );
             }
 
-            if( get_theme_support( 'inferno-wooslider' ) ) {
-                require_once( 'plugins/wooslider/wooslider.php' );
+            if( get_theme_support( 'inferno-meta-slider' ) ) {
+                require_once( 'plugins/ml-slider/ml-slider.php' );
             }
         }
 

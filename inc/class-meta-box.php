@@ -5,11 +5,9 @@ if(!class_exists('Inferno_Meta_Box')) {
 
     class Inferno_Meta_Box extends Inferno {
 
-        private $_noncestr = 'infernal-metabox';
-
         private $meta_box = array();
 
-        private $_postmeta = array();
+        private $postmeta = array();
 
         private $_meta = array();
 
@@ -29,8 +27,8 @@ if(!class_exists('Inferno_Meta_Box')) {
         }
 
         public function add()
-        {   
-            $this->meta_box['context'] = empty( $this->meta_box['context'] ) ? 'normal' : $this->meta_box['context'];
+        {
+            $this->meta_box['context'] = empty( $this->meta_box['context'] ) ? 'advanced' : $this->meta_box['context'];
             $this->meta_box['priority'] = empty( $this->meta_box['priority'] ) ? 'high' : $this->meta_box['priority'];
 
             if ( is_array( $this->meta_box['post_types'] ) ) {
@@ -85,7 +83,7 @@ if(!class_exists('Inferno_Meta_Box')) {
             if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
                 return;
 
-            if (!isset($_POST['infernal_nonce']) || !wp_verify_nonce($_POST['infernal_nonce'], plugin_basename(__FILE__)))
+            if (!isset($_POST['_inferno_nonce']) || !wp_verify_nonce($_POST['_inferno_nonce'], plugin_basename(__FILE__)))
                 return;
 
             
@@ -103,32 +101,22 @@ if(!class_exists('Inferno_Meta_Box')) {
             // probably using add_post_meta(), update_post_meta(), or 
             // a custom table (see Further Reading section below)
             $update = array();
-            foreach($this->metabox as $meta) {
-                if(isset($_POST['infernal-postmeta'][$meta['name']]) && $_POST['infernal-postmeta'][$meta['name']]) {
-                    $update[$meta['name']] = Infernal_Helper::sanitize_data(trim($_POST['infernal-postmeta'][$meta['name']]), $meta['type']);
+            foreach($this->meta_box['fields'] as $field) {
+                if(isset($_POST[$field['id']]) && $_POST[$field['id']]) {
+                    update_post_meta($post_id, $field['id'], $_POST[$field['id']]);
                 }
-                update_post_meta($post_id, '_infernal-postmeta', $update);
+                
             }
         }
 
-        function nonce_input()
+        public function show( $post )
         {
-            wp_nonce_field(plugin_basename(__FILE__), 'inferno');
-        }
-
-        function get_meta_value() 
-        {
-            return (isset($this->_postmeta[$this->_meta['name']])) ? $this->_postmeta[$this->_meta['name']] : (isset($this->_meta['default']) ? $this->_meta['default'] : null);
-        }
-
-        public function show($post)
-        {
-            $this->_postmeta = get_post_meta($post->ID, '_infernal-postmeta', true);
-            $this->nonce_input();
+            wp_nonce_field( plugin_basename( __FILE__ ), '_inferno_nonce' );
 
             echo '<div class="inferno-meta-box">';
-            foreach($this->meta_box['fields'] as $field) {
-                new Inferno_Options_Machine($field);
+            foreach( $this->meta_box['fields'] as $field ) {
+                $field_value = get_post_meta( $post->ID, $field[ 'id' ], true );
+                new Inferno_Options_Machine( $field, $field_value );
             }
             echo '</div>';
         }

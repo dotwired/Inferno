@@ -6,12 +6,12 @@
 
 function inferno_get_post_meta($post_id, $option = '') 
 {
-    $return = get_post_meta($post_id, '_infernal-postmeta', true);
+    $return = get_post_meta($post_id, '_inferno-postmeta', true);
 
     if(!$return) {
-        global $infernal_metabox;
+        global $inferno_metabox;
 
-        foreach($infernal_metabox->metabox as $metabox) {
+        foreach($inferno_metabox->metabox as $metabox) {
             if($metabox['name'] == $option) {
                 return isset($metabox['default']) ? $metabox['default'] : null;
             }
@@ -22,9 +22,10 @@ function inferno_get_post_meta($post_id, $option = '')
 }
 
 function inferno_get_option($option_name = null, $default_value = null) {
-    global $infernal_option;
-    if(isset($infernal_option[$option_name]) && !empty($infernal_option[$option_name])) {
-        return $infernal_option[$option_name];
+    $inferno_option = get_option('inferno', array());
+
+    if(isset($inferno_option[$option_name]) && !empty($inferno_option[$option_name])) {
+        return $inferno_option[$option_name];
     }
     return $default_value;
 }
@@ -44,41 +45,25 @@ function inferno_preview($src = false, $width = false, $height = false, $effect 
     return $preview->get_output();
 }
 
-function inferno_society($size = '16px') {
-    global $infernal_society;
-    if(isset($infernal_society) && method_exists($infernal_society, 'get_output')) return $infernal_society->get_output($size);
-    return false;
-}
-
-function inferno_slider($args = array())
-{
-    global $infernal_slider;
-    if(isset($infernal_slider) && method_exists($infernal_slider, 'get_output')) return $infernal_slider->get_output($args);;
-    return false;
-}
-
 function inferno_portfolio($args = array()) {
-    global $infernal_portfolio;
-    if(isset($infernal_portfolio) && method_exists($infernal_portfolio, 'get_output')) return $infernal_portfolio->get_output($args);
-    return false;
-}
-
-function inferno_notification_bar() {
-    global $infernal_flame;
-    if(isset($infernal_flame) && method_exists($infernal_flame, 'get_notification_bar')) return $infernal_flame->get_notification_bar();
-    return false;
-}
-
-function inferno_gmaps() {
-    global $infernal_gmaps;
-    if(isset($infernal_gmaps) && method_exists($infernal_gmaps, 'get_output')) return $infernal_gmaps->get_output();
+    global $inferno_portfolio;
+    if(isset($inferno_portfolio) && method_exists($inferno_portfolio, 'get_output')) return $inferno_portfolio->get_output($args);
     return false;
 }
 
 function inferno_is_google_font($font = null) {
-    global $infernal_panel;
+    $default_fonts = array(
+        'Arial', 
+        'Arial Black', 
+        'Lucida Grande', 
+        'Helvetica', 
+        'Helvetica Neue', 
+        'Tahoma', 
+        'Georgia', 
+        'Times New Roman'
+    );
 
-    if($font !== null && !in_array($font, $infernal_panel->_default_fonts)) {
+    if($font !== null && !in_array($font, $default_fonts)) {
         return true;
     }
 
@@ -96,7 +81,7 @@ function inferno_get_google_font_url($font_collection = null)
     } elseif(is_array($font_collection) && !empty($font_collection)) {
         $url = 'http://fonts.googleapis.com/css?family=';
         foreach($font_collection as $font) {
-            if(inferno_is_google_font()) {
+            if(inferno_is_google_font($font)) {
                 $font = str_replace(' ', '+', $font);
                 $url .= $font . $styles . '|';
             }

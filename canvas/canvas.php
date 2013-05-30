@@ -25,7 +25,7 @@
                 <button name="inferno_action" class="button-primary" value="save"><?php _e('Save Changes', 'inferno'); ?></button>
                 <div class="clearfix"></div>
                 
-                <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce($this->_noncestr); ?>" />
+                <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce($this->noncestr); ?>" />
                 <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $('#inferno-canvas-reset').confirm({

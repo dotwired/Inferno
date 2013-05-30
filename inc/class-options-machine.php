@@ -280,7 +280,8 @@ if(!class_exists('Inferno_Options_Machine')) {
 
 
 
-        function googlefont() {
+        function googlefont() 
+        {
             ?>
             <span class="button googlefont">
                 <?php _e('Show / hide Google Font for this Option.', 'inferno'); ?>                   

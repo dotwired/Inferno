@@ -62,7 +62,7 @@ if(!class_exists('Inferno_Canvas')) {
             wp_enqueue_style('inferno-admin');
         }
 
-        function check_nonce()
+        private function check_nonce()
         {
             $nonce = $_POST['_wpnonce'];
             if(!wp_verify_nonce($nonce, $this->noncestr)) die(__("Security check failed.", 'inferno'));
@@ -73,7 +73,7 @@ if(!class_exists('Inferno_Canvas')) {
          * @version 1.0
          * @since 1.0
          */
-        function save()
+        public function save()
         {
             global $inferno_option;
 
@@ -88,7 +88,7 @@ if(!class_exists('Inferno_Canvas')) {
                     foreach($this->theme_settings as $topic ) {
                         foreach($topic['fields'] as $field) {
                             if(isset($_POST[$field['id']])) {
-                                $inferno_option[$field['id']] = Inferno_Helper::sanitize_data($_POST[$field['id']], $field['type']);
+                                $inferno_option[$field['id']] = $_POST[$field['id']];
 
                                 // if this is google font
                                 if(isset($_POST[$field['id'] . '_googlefont']) && !empty($_POST[$field['id'].'_googlefont'])) {
@@ -113,7 +113,7 @@ if(!class_exists('Inferno_Canvas')) {
             }
         }
 
-        function save_file($option)
+        public function save_file($option)
         {
             global $inferno_option;
 
@@ -148,7 +148,7 @@ if(!class_exists('Inferno_Canvas')) {
          * check $inferno_option for not available options and make them default
          * @return void
          */
-        function standarize_options() {
+        private function standarize_options() {
             global $inferno_option;
             
             if(!is_array($this->theme_settings) || empty($this->theme_settings)) return false;
@@ -166,7 +166,7 @@ if(!class_exists('Inferno_Canvas')) {
             }
         }
 
-        function canvas() 
+        public function canvas() 
         {
             require_once('canvas.php'); 
         }
@@ -175,7 +175,7 @@ if(!class_exists('Inferno_Canvas')) {
          * panel navigation
          * @return void
          */
-        function menu() 
+        private function menu() 
         { 
             if( !isset( $this->theme_settings ) || !is_array( $this->theme_settings ) || empty( $this->theme_settings ) ) return false;
 
@@ -184,7 +184,7 @@ if(!class_exists('Inferno_Canvas')) {
             <?php $i++; endforeach;
         }
 
-        function tabs()
+        private function tabs()
         {
             global $inferno_option;
 

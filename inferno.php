@@ -74,28 +74,53 @@ if(!class_exists('Inferno')) {
             $this->load_plugins();
             $this->load_widgets();
             $this->actions();
-            $this->init_meta_boxes();
-
-            new Inferno_Canvas();
-            new Inferno_Shortcodes();
         }
 
         private function load()
         {
+            $config_canvas = get_theme_support( 'inferno-canvas' );
+            $config_shortcodes = get_theme_support( 'inferno-shortcodes' );
+            $config_meta_boxes = get_theme_support( 'inferno-meta-boxes' );
+
             require_once(dirname(__FILE__) . '/inc/functions.php');
             require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
-
-            //require_once(dirname(__FILE__) . '/inc/class-helper.php');
-            require_once(dirname(__FILE__) . '/inc/class-widget.php');
-            require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
-            require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
-            require_once(dirname(__FILE__) . '/inc/class-shortcodes.php');
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
+            require_once(dirname(__FILE__) . '/inc/class-widget.php');
+            // todo: remove that? require_once(dirname(__FILE__) . '/inc/class-helper.php');
+
+
+            // options machine
+            if($config_canvas || $config_shortcodes || $config_meta_boxes) {
+                require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
+            }
+            
+            // meta boxes
+            if( $config_meta_boxes ) {
+                require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
+
+                foreach( $config_meta_boxes as $meta_box ) {
+                    new Inferno_Meta_Box( $meta_box );
+                }
+            }
+
+            // shortcodes
+            if( $config_shortcodes ) {
+                require_once( dirname(__FILE__) . '/generator/class-shortcode-generator.php' );
+                require_once( dirname(__FILE__) . '/generator/class-shortcodes.php' );
+
+                new Inferno_Shortcode_Generator();
+                new Inferno_Shortcodes();
+            }
+
+            // canvas
+            if( $config_canvas ) {
+                require_once( dirname( __FILE__ ) . '/canvas/class-canvas.php' );
+
+                new Inferno_Canvas( require_once ( $config_canvas[0] ) );
+            }
 
             // todo: require_once(dirname(__FILE__) . '/inc/breadcrumbs.php');
             // todo: require_once(dirname(__FILE__) . '/inc/pagination.php');
-
-            require_once(dirname(__FILE__) . '/canvas/class-canvas.php');
             // todo: require_once(dirname(__FILE__) . '/builder/class-builder.php');
         }
 
@@ -166,15 +191,6 @@ if(!class_exists('Inferno')) {
         public function getConfig()
         {
             return $this->_config;
-        }
-
-        private function init_meta_boxes()
-        {
-            $meta_boxes = require_once get_template_directory() . '/config/meta-boxes.php';
-
-            foreach( $meta_boxes as $meta_box ) {
-                new Inferno_Meta_Box( $meta_box );
-            }
         }
 
         private function load_plugins()

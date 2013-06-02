@@ -11,10 +11,12 @@ if(!class_exists('Inferno_Canvas')) {
         private $option_name = 'inferno';
 
         
-        public function __construct()
+        public function __construct( $config )
         {
             global $inferno_option;
-            $this->load_settings();
+            
+            $this->theme_settings = $config;
+            $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
 
             //get options
             $inferno_option = get_option($this->option_name, array());
@@ -130,18 +132,6 @@ if(!class_exists('Inferno_Canvas')) {
                     $msg = $attachment['error'];
                 }
             }
-        }
-
-        /**
-         * [settings description]
-         * @return [type] [description]
-         */
-        private function load_settings() {
-            if(@file_exists(get_template_directory() . '/config/canvas.php')) {
-                $this->theme_settings = @include_once(get_template_directory() . '/config/canvas.php');
-            }
-
-            $this->theme_settings[] = @include_once(dirname(__FILE__) . '/social.php');
         }
 
         /**

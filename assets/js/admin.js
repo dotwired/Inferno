@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
     /* ==========================================================================
-       Initialization
+       Inferno Canvas
        ========================================================================== */
 
     /* tabs */
@@ -18,6 +18,15 @@ jQuery(document).ready(function($) {
         setTimeout(function() {
             $('.inferno-message.ajax').hide(250);
         }, 7000);
+    });
+
+    /* ==========================================================================
+       Inferno Shortcode Generator
+       ========================================================================== */
+
+    $("#inferno-generator .inferno-shortcode").hide();
+    $("#inferno-generator-select").live("change", function(){
+        $(".inferno-shortcode." + $(this).val()).show();
     });
 
     /* ==========================================================================

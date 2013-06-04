@@ -5,12 +5,12 @@ jQuery(document).ready(function($) {
        ========================================================================== */
 
     /* tabs */
-    $(".inferno-canvas").tabs({
+    $("#inferno-canvas").tabs({
         fx: { opacity: 'toggle', duration: 200 }
     });
 
     /* form elements */
-    $(".inferno-canvas .radio").buttonset();
+    $("#inferno-canvas .radio").buttonset();
 
     /* ajax form */
     $('#inferno-panel-form').ajaxForm(function() {
@@ -24,17 +24,39 @@ jQuery(document).ready(function($) {
        Inferno Shortcode Generator
        ========================================================================== */
 
-    $("#inferno-generator .inferno-shortcode").hide();
-    $("#inferno-generator-select").live("change", function(){
-        $(".inferno-shortcode." + $(this).val()).show();
+    $(document).ajaxComplete(function() {
+        $("#inferno-generator .radio").buttonset();
     });
+
+    $("#inferno-generator-insert").live('click', function(){
+        $inferno_shortcode_result = $("#inferno-generator-result");
+        $inferno_shortcode_select = $("#inferno-generator-select");
+        $inferno_shortcode_result.val(""); // flush
+
+        $("#inferno-generator .inferno-setting").each(function(){
+            $setting = $(this);
+            if($setting.val()) {
+                $inferno_shortcode_result.val($inferno_shortcode_result.val() + ' ' + $setting.attr('name') + '="' + $setting.val() + '"');
+            }
+        });
+        $inferno_shortcode_result.val('[' + $inferno_shortcode_select.val() + ' ' + $inferno_shortcode_result.val() + ']');
+
+        var shortcode = $inferno_shortcode_result.val();
+        window.send_to_editor(shortcode);
+        tb_remove();
+
+        // Prevent default action
+        event.preventDefault();
+        return false;
+    });
+
 
     /* ==========================================================================
        Buttons
        ========================================================================== */
 
     /* media */
-    $('.inferno-canvas .media .button-upload').live('click', function() {
+    $('#inferno-canvas .media .button-upload').live('click', function() {
         $element = $(this);
         window.send_to_editor = function(html) {
             imgurl = $('img', html).attr('src');
@@ -46,7 +68,7 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-    $('.inferno-canvas .media .button-reset').live('click', function(){
+    $('#inferno-canvas .media .button-reset').live('click', function(){
         $container = $(this).parent();
         $container.find('.media-preview img').hide(200);
         $container.find('input[type="hidden"]').val('');
@@ -56,8 +78,8 @@ jQuery(document).ready(function($) {
 
 
     /* google webfonts button */
-    $('.inferno-canvas .googlefont-desc, .inferno-canvas .googlefont-setting').hide();
-    $('.inferno-canvas .button.googlefont').live('click', function(){
+    $('#inferno-canvas .googlefont-desc, #inferno-canvas .googlefont-setting').hide();
+    $('#inferno-canvas .button.googlefont').live('click', function(){
         var googlefonts_container = $(this).parent().parent().find('.googlefont-desc, .googlefont-setting');
         if(googlefonts_container.is(':visible'))
             googlefonts_container.slideUp(200);
@@ -65,7 +87,7 @@ jQuery(document).ready(function($) {
             googlefonts_container.slideDown(200);
     });
 
-    $('.inferno-canvas .googlefont-setting input').live('keyup', function(){
+    $('#inferno-canvas .googlefont-setting input').live('keyup', function(){
         var google_font = $(this).val().split(' ').join('+');
         $(this).parent().find('.googlefont-link').attr('href', 'http://fonts.googleapis.com/css?family=' + google_font);
         $(this).parent().find('.googlefont-canvas').attr('style', 'font-family: \'' + $(this).val() + '\' !important;');

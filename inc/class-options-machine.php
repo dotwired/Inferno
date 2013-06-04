@@ -34,7 +34,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         {
             if ( empty ( $setting ) ) return;
             $this->setting = $setting; 
-            $this->setting_value = $setting_value;
+            $this->setting_value = $setting_value ? $setting_value : $setting['std'];
             ?>
 
             <div class="field">
@@ -120,7 +120,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function text() 
         {
             ?>
-            <input type="text" <?php echo $this->get_name(); ?> value="<?php echo $this->setting_value; ?>" />
+            <input type="text" <?php echo $this->get_name(); ?> value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
             <?php 
             if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color') {
                 $this->colorpicker();
@@ -134,7 +134,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function textarea()
         {
             ?>
-            <textarea <?php echo $this->get_name(); ?>><?php echo esc_textarea( $this->setting_value ); ?></textarea>
+            <textarea <?php echo $this->get_name(); ?> class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
             <?php
         }
 
@@ -142,7 +142,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function colorpicker() 
         {
             ?>
-            <div class="colorSelector" id="ip-colorselector-<?php echo self::$count['colorpicker']; ?>">
+            <div class="colorSelector inferno-setting" id="ip-colorselector-<?php echo self::$count['colorpicker']; ?>">
                 <div style="background-color: <?php echo $this->setting_value; ?>;"></div>
             </div>
             <script type="text/javascript">
@@ -175,7 +175,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function range()
         {   
             ?>
-            <div id="range-slider-<?php echo self::$count['range']; ?>" class="range-slider"></div>
+            <div id="range-slider-<?php echo self::$count['range']; ?>" class="range-slider inferno-setting"></div>
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $('#range-slider-<?php echo self::$count['range']; ?>').slider({
@@ -208,7 +208,7 @@ if(!class_exists('Inferno_Options_Machine')) {
                              <?php echo $this->get_name(); ?>
                              value="<?php echo $value; ?>" 
                              id="radio-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>" 
-                             <?php if($value == $this->setting_value) echo "checked"; ?> />
+                             <?php if($value == $this->setting_value) echo "checked"; ?> class="inferno-setting" />
                 <label for="radio-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>">
                     <?php echo $label; ?>
                 </label>
@@ -220,7 +220,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function select()
         {
             ?>
-            <select <?php echo $this->get_name(); ?> id="<?php echo $this->setting['id']; ?>">
+            <select <?php echo $this->get_name(); ?> id="<?php echo $this->setting['id']; ?>" class="inferno-setting">
                 <?php 
                 foreach($this->setting['options'] as $value => $label) : ?>
                     <option value="<?php echo $value; ?>" <?php if($value == $this->setting_value) echo 'selected="selected"'; ?>>
@@ -237,7 +237,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         {
             ?>
             <input type="hidden" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png"
-                value="<?php echo $this->setting_value; ?>" />
+                value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
             <span class="button button-upload"><?php _e('Upload Image', 'inferno'); ?></span>
             <span class="button button-reset"><?php _e('Remove', 'inferno'); ?></span>
 
@@ -254,7 +254,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         {
             ?>
             <input type="text" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png"
-                value="<?php echo $this->setting_value; ?>" />
+                value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
             <span class="button upload"><?php _e('Upload Image', 'inferno'); ?></span>
             <?php
         }
@@ -264,7 +264,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function font()
         {
             ?>
-            <select <?php echo $this->get_name(); ?> id="<?php echo $this->setting['id']; ?>">
+            <select <?php echo $this->get_name(); ?> id="<?php echo $this->setting['id']; ?>" class="inferno-setting">
                 <?php 
                 foreach($this->fonts as $font) : ?>
                     <option value="<?php echo $font; ?>" <?php if($font == $this->setting_value) echo 'selected="selected"'; ?>>
@@ -298,7 +298,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         </div>
         <div class="field-setting googlefont-setting">
             <input type="text" name="<?php echo $this->setting['id']; ?>_googlefont" id="<?php echo $this->setting['id']; ?>_googlefont"
-                value="<?php if(!in_array($this->setting_value, $this->fonts)) echo $this->setting_value; ?>" />
+                value="<?php if(!in_array($this->setting_value, $this->fonts)) echo $this->setting_value; ?>" class="inferno-setting" />
             <div class="googlefont-canvas">
                 <?php _e('Grumpy wizards make toxic brew for the evil Queen and Jack.', 'inferno'); ?>
                 <link class="googlefont-link" href='' rel='stylesheet' type='text/css'>

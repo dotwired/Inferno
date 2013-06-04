@@ -105,8 +105,8 @@ if(!class_exists('Inferno')) {
 
             // shortcodes
             if( $config_shortcodes ) {
-                require_once( dirname(__FILE__) . '/generator/class-shortcode-generator.php' );
-                require_once( dirname(__FILE__) . '/generator/class-shortcodes.php' );
+                require_once( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
+                require_once( dirname(__FILE__) . '/shortcodes/class-shortcodes.php' );
 
                 new Inferno_Shortcode_Generator();
                 new Inferno_Shortcodes();

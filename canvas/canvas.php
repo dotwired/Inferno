@@ -1,7 +1,7 @@
 <div class="wrap">
     
     <form method="post" id="inferno-panel-form" action="<?php echo admin_url('themes.php?page=inferno-admin'); ?>" enctype="multipart/form-data">
-        <div class="inferno-canvas">
+        <div id="inferno-canvas">
             <header class="inferno-header"><img src="http://dotwired.de/static/inferno-header.png" alt="Inferno Panel" /></header>    
 
             <div class="bar">

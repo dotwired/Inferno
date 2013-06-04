@@ -85,7 +85,8 @@
    Global Inferno styles
    ========================================================================== */
 
-.inferno-canvas {
+#inferno-canvas,
+#inferno-generator {
     .button.button-reset {
         color: #ef4040;
     }
@@ -93,13 +94,12 @@
 
 
 
-
-
 /* ==========================================================================
    Inferno Canvas
    ========================================================================== */
 
-.inferno-canvas, .inferno-canvas * {
+#inferno-canvas, 
+#inferno-canvas * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -khtml-box-sizing: border-box;
@@ -111,7 +111,7 @@
     }
 }
 
-.inferno-canvas {
+#inferno-canvas {
     position: relative;
     width: 886px;
     margin: 25px 0;
@@ -291,10 +291,16 @@
             padding-top: 20px;
         }
     }
+}
 
-    /* Form Elements
-       ========================================================================== */
 
+
+/* ==========================================================================
+   Options Machine
+   ========================================================================== */
+
+#inferno-canvas,
+#inferno-generator {
     input, textarea {
         outline: none;
     }
@@ -324,6 +330,9 @@
         width: 80%;
         float: left;
     }
+
+    /* Radio
+       ========================================================================== */
 
     .radio {
         .ui-button {
@@ -383,7 +392,34 @@
         font-size: 15px;
         font-family: auto;
     }
+
+
+    /* Range
+       ========================================================================== */
+
+    .range-slider {
+        @include border-radius(6px);
+        @include box-shadow(1px, 1px, 1px, 0, #c6c5c5, inset);
+
+        position: relative;
+        height: 6px;
+        border: 1px #eee solid;
+
+        a {
+            @include gradient(#eee, #fff);
+            @include box-shadow(0px, 1px, 3px, 0, #9e9e9e, inset);
+            @include border-radius(100%);
+
+            position: absolute;
+            top: -3px;
+            width: 12px;
+            height: 12px;
+
+            outline: none;
+        }
+    }
 }
+
 
 
 /* ====================================================
@@ -399,7 +435,7 @@
 
 /* colorpicker */
 
-.inferno-canvas .colorSelector {
+#inferno-canvas .colorSelector {
 	float: right;
 }
 
@@ -477,30 +513,6 @@
 /* Range Slider
    ========================================================================== */
 
-.inferno-canvas,
-.inferno-meta-box {
-    .range-slider {
-        @include border-radius(6px);
-        @include box-shadow(1px, 1px, 1px, 0, #c6c5c5, inset);
-
-        position: relative;
-        height: 6px;
-        border: 1px #eee solid;
-
-        a {
-            @include gradient(#eee, #fff);
-            @include box-shadow(0px, 1px, 3px, 0, #9e9e9e, inset);
-            @include border-radius(100%);
-
-            position: absolute;
-            top: -3px;
-            width: 12px;
-            height: 12px;
-
-            outline: none;
-        }
-    }
-}
 
 /* Spinner
    ========================================================================== */

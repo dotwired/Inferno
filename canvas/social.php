@@ -3,128 +3,128 @@
     "icon" => "group",
     "fields" => array(
         array(
-            "name"  => "social_500px",
-            "label" => "500px",
+            "id"  => "social_500px",
+            "title" => "500px",
             "desc"  => "e.g. http://500px.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_behance",
-            "label" => "Behance",
+            "id"  => "social_behance",
+            "title" => "Behance",
             "desc"  => "e.g. http://www.behance.net/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_deviantart",
-            "label" => "Deviantart",
+            "id"  => "social_deviantart",
+            "title" => "Deviantart",
             "desc"  => "e.g. http://username.deviantart.com",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_dribbble",
-            "label" => "Dribbble",
+            "id"  => "social_dribbble",
+            "title" => "Dribbble",
             "desc"  => "e.g. http://dribbble.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_email",
-            "label" => "E-Mail",
+            "id"  => "social_email",
+            "title" => "E-Mail",
             "desc"  => "e.g. mailto:user@name.com",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_facebook",
-            "label" => "Facebook",
+            "id"  => "social_facebook",
+            "title" => "Facebook",
             "desc"  => "e.g. https://www.facebook.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_feed",
-            "label" => "Feed",
+            "id"  => "social_feed",
+            "title" => "Feed",
             "desc"  => "e.g. %s/feed",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_flickr",
-            "label" => "Flickr",
+            "id"  => "social_flickr",
+            "title" => "Flickr",
             "desc"  => "e.g. http://www.flickr.com/photos/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_github",
-            "label" => "Github",
+            "id"  => "social_github",
+            "title" => "Github",
             "desc"  => "e.g. https://github.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_gplus",
-            "label" => "Google+",
+            "id"  => "social_gplus",
+            "title" => "Google+",
             "desc"  => "e.g. http://plus.google.com/userID",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_instagram",
-            "label" => "Instagram",
+            "id"  => "social_instagram",
+            "title" => "Instagram",
             "desc"  => "e.g. skype:username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_pinterest",
-            "label" => "Pinterest",
+            "id"  => "social_pinterest",
+            "title" => "Pinterest",
             "desc"  => "e.g. http://pinterest.com/username/",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_skype",
-            "label" => "Skype",
+            "id"  => "social_skype",
+            "title" => "Skype",
             "desc"  => "e.g. skype:username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_soundcloud",
-            "label" => "Soundcloud",
+            "id"  => "social_soundcloud",
+            "title" => "Soundcloud",
             "desc"  => "e.g. http://soundcloud.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_spotify",
-            "label" => "Spotify",
+            "id"  => "social_spotify",
+            "title" => "Spotify",
             "desc"  => "e.g. http://open.spotify.com/user/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_stumbleupon",
-            "label" => "Stumbleupon",
+            "id"  => "social_stumbleupon",
+            "title" => "Stumbleupon",
             "desc"  => "e.g. http://www.stumbleupon.com/stumbler/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_tumblr",
-            "label" => "Tumblr",
+            "id"  => "social_tumblr",
+            "title" => "Tumblr",
             "desc"  => "e.g. http://username.tumblr.com",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_twitter",
-            "label" => "Twitter",
+            "id"  => "social_twitter",
+            "title" => "Twitter",
             "desc"  => "e.g. https://twitter.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_vimeo",
-            "label" => "Vimeo",
+            "id"  => "social_vimeo",
+            "title" => "Vimeo",
             "desc"  => "e.g. http://vimeo.com/username",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_wordpress",
-            "label" => "WordPress",
+            "id"  => "social_wordpress",
+            "title" => "WordPress",
             "desc"  => "e.g. http://username.wordpress.com",
             "type"  => "text"
         ),
         array(
-            "name"  => "social_youtube",
-            "label" => "Youtube",
+            "id"  => "social_youtube",
+            "title" => "Youtube",
             "desc"  => "e.g. http://www.youtube.com/user/username",
             "type"  => "text"
         )

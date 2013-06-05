@@ -1,6 +1,14 @@
 /* ==========================================================================
    Global Inferno styles
    ========================================================================== */
+#inferno-canvas *,
+#inferno-generator * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box; }
 #inferno-canvas .button.button-reset,
 #inferno-generator .button.button-reset {
   color: #ef4040; }
@@ -144,38 +152,56 @@
     float: left;
     color: #565656;
     background: #fff; }
-  #inferno-canvas .field {
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-    border-bottom: 1px #eee solid; }
-  #inferno-canvas .field-details {
-    float: left;
-    width: 356px;
-    margin-right: 30px; }
-    #inferno-canvas .field-details .more {
-      font-size: 11px;
-      color: #777;
-      font-family: georgia, serif;
-      font-style: italic;
-      margin-top: 10px;
-      display: block; }
-    #inferno-canvas .field-details.googlefont-desc {
-      padding-top: 20px; }
-  #inferno-canvas .field-setting {
-    float: left;
-    width: 300px; }
-    #inferno-canvas .field-setting.googlefont-setting {
-      padding-top: 20px; }
+
+/* ==========================================================================
+   Inferno Shortcode Generator
+   ========================================================================== */
+#inferno-generator {
+  padding: 30px 20px; }
+  #inferno-generator .shortcode-settings {
+    margin-bottom: 20px; }
 
 /* ==========================================================================
    Options Machine
    ========================================================================== */
 #inferno-canvas,
 #inferno-generator {
+  /* Fields
+     ========================================================================== */
+  /* Text
+     ========================================================================== */
   /* Radio
      ========================================================================== */
   /* Range
      ========================================================================== */ }
+  #inferno-canvas .field,
+  #inferno-generator .field {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px #eee solid; }
+  #inferno-canvas .field-setting,
+  #inferno-generator .field-setting {
+    float: left;
+    width: 50%;
+    padding-right: 30px; }
+    #inferno-canvas .field-setting.googlefont-setting,
+    #inferno-generator .field-setting.googlefont-setting {
+      padding-top: 20px; }
+  #inferno-canvas .field-details,
+  #inferno-generator .field-details {
+    float: left;
+    width: 50%; }
+    #inferno-canvas .field-details .more,
+    #inferno-generator .field-details .more {
+      font-size: 11px;
+      color: #777;
+      font-family: georgia, serif;
+      font-style: italic;
+      margin-top: 10px;
+      display: block; }
+    #inferno-canvas .field-details.googlefont-desc,
+    #inferno-generator .field-details.googlefont-desc {
+      padding-top: 20px; }
   #inferno-canvas input, #inferno-canvas textarea,
   #inferno-generator input,
   #inferno-generator textarea {
@@ -303,6 +329,9 @@
     margin-top: 15px;
     font-size: 15px;
     font-family: auto; }
+  #inferno-canvas .range .inferno-setting,
+  #inferno-generator .range .inferno-setting {
+    margin-bottom: 10px; }
   #inferno-canvas .range-slider,
   #inferno-generator .range-slider {
     border-radius: 6px;

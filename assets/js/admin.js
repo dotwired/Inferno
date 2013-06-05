@@ -32,6 +32,9 @@ jQuery(document).ready(function($) {
         $inferno_shortcode_result = $("#inferno-generator-result");
         $inferno_shortcode_select = $("#inferno-generator-select");
         $inferno_shortcode_result.val(""); // flush
+        var inferno_shortcode_only_atts = $("#inferno-shortcode-only-atts").val() === 'true' ? true : false;
+        var inferno_shortcode_content_att = $("#inferno-shortcode-content-att").val() !== '' ? $("#inferno-shortcode-content-att").val() : false;
+
 
         $("#inferno-generator .inferno-setting").each(function(){
             $setting = $(this);
@@ -40,6 +43,7 @@ jQuery(document).ready(function($) {
             }
         });
         $inferno_shortcode_result.val('[' + $inferno_shortcode_select.val() + ' ' + $inferno_shortcode_result.val() + ']');
+        if(!inferno_shortcode_only_atts) $inferno_shortcode_result.val($inferno_shortcode_result.val() + '[' + $inferno_shortcode_select.val()  + ']');
 
         var shortcode = $inferno_shortcode_result.val();
         window.send_to_editor(shortcode);

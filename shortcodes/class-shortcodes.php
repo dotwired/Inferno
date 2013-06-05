@@ -83,7 +83,8 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
         public function stacked( $atts, $content = null ) {
             extract( shortcode_atts( array(
-                'border' => 'no'
+                'border' => null,
+                'css_class' => null
             ), $atts ) );
 
             $borderclass = $border == 'no' ? ' noborder': null;
@@ -304,7 +305,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
         public function circle( $atts, $content = null ) {
             $width      = isset( $atts[ 'width' ] ) ? ' style="width: ' . $atts[ 'width' ] . ';"' : null;
-            $align      = isset( $atts[ 'align' ] ) ? ' align' . $atts[ 'align' ] : null; 
+            $align      = isset( $atts[ 'align' ] ) && $atts[ 'align' ] != 'no' ? ' align' . $atts[ 'align' ] : null; 
 
             return '<div class="infernal-circle' . $align . '"' . $width . '><div class="dummy"></div><div class="radius"><div class="element">'.do_shortcode( $content ).'</div></div></div>';
         }

@@ -39,11 +39,11 @@ if(!class_exists('Inferno_Options_Machine')) {
 
             <div class="field">
                 <?php if($this->setting['title']) : ?>
-                <div class="field-title"><strong><?php echo $this->setting['title']; ?></strong></div>
+                <div class="field-title"><h4><?php echo $this->setting['title']; ?></h4></div>
                 <?php endif; ?>
 
-                <?php $this->field_details(); ?>
                 <?php $this->field_setting(); ?>
+                <?php $this->field_details(); ?>
                 <div class="clear"></div>
             </div>
 

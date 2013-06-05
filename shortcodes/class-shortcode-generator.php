@@ -24,7 +24,5 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
         {
             require_once( 'generator-popup.php' );
         }
-
-        
     }
 }

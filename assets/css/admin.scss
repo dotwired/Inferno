@@ -87,6 +87,16 @@
 
 #inferno-canvas,
 #inferno-generator {
+
+    * {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -khtml-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;
+    }
+
     .button.button-reset {
         color: #ef4040;
     }
@@ -257,6 +267,31 @@
         color: #565656;
         background: #fff;
     }
+}
+
+
+/* ==========================================================================
+   Inferno Shortcode Generator
+   ========================================================================== */
+
+#inferno-generator {
+    padding: 30px 20px;
+
+    .shortcode-settings {
+        margin-bottom: 20px;
+    }
+}
+
+
+/* ==========================================================================
+   Options Machine
+   ========================================================================== */
+
+#inferno-canvas,
+#inferno-generator {
+
+    /* Fields
+       ========================================================================== */
 
     .field {
         padding-bottom: 15px;
@@ -264,10 +299,19 @@
         border-bottom: 1px #eee solid;
     }
 
+    .field-setting {
+        float: left;
+        width: 50%;
+        padding-right: 30px;
+
+        &.googlefont-setting {
+            padding-top: 20px;
+        }
+    }
+
     .field-details {
         float: left;
-        width: 356px;
-        margin-right: 30px;
+        width: 50%;
 
         .more {
             font-size: 11px;
@@ -283,24 +327,11 @@
         }
     }
 
-    .field-setting {
-        float: left;
-        width: 300px;
-
-        &.googlefont-setting {
-            padding-top: 20px;
-        }
-    }
-}
 
 
+    /* Text
+       ========================================================================== */
 
-/* ==========================================================================
-   Options Machine
-   ========================================================================== */
-
-#inferno-canvas,
-#inferno-generator {
     input, textarea {
         outline: none;
     }
@@ -396,6 +427,12 @@
 
     /* Range
        ========================================================================== */
+
+    .range {
+        .inferno-setting {
+            margin-bottom: 10px;
+        }
+    }
 
     .range-slider {
         @include border-radius(6px);

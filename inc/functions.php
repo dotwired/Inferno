@@ -166,3 +166,54 @@ function inferno_get_widget_data_for($sidebar_name) {
 
     return $output;
 }
+
+
+// props to http://wpforce.com/twitter-facebook-googleplus-fan-follower-count-php/
+function inferno_get_twitter_count( $username = null ) {
+    $count = get_transient( 'inferno_counter_twitter' );
+    
+    if ( $count !== false) return $count;
+        $count = 0;
+        $dataOrig = file_get_contents( 'http://twitter.com/users/show/' . $username );
+    if ( is_wp_error( $dataOrig ) ) {
+        return 'Twitter follower count could not be loaded.';
+    } else {
+        $profile = new SimpleXMLElement ( $dataOrig );
+        $countOrig = $profile->followers_count;
+        $count = strval ( $countOrig );
+    }
+    set_transient('inferno_counter_twitter', $count, 60*60*24); // 24 hour cache
+    return $count;
+}
+
+// props to http://wpforce.com/twitter-facebook-googleplus-fan-follower-count-php/
+function inferno_get_facebook_count( $id = null ) {
+    $count = get_transient('inferno_counter_facebook');
+    if ($count !== false) return $count;
+        $count = 0;
+        $data = wp_remote_get('http://api.facebook.com/restserver.php?method=facebook.fql.query&query=SELECT%20fan_count%20FROM%20page%20WHERE%20page_id=' . $id);
+    if (is_wp_error($data)) {
+        return 'Facebook fan count could not be loaded.';
+    } else {
+        $countOrig = strip_tags($data['body']);
+        $count = preg_replace('/\s+/','',$countOrig); // strip whitespace
+    }
+    set_transient('inferno_counter_facebook', $count, 60*60*24); // 24 hour cache
+    return $count;
+}
+
+// props to http://wpforce.com/twitter-facebook-googleplus-fan-follower-count-php/
+function inferno_get_gplus_count( $id = null ) {
+    $count = get_transient('inferno_counter_facebook');
+    if ($count !== false) return $count;
+        $count = 0;
+        $data = wp_remote_get('http://api.facebook.com/restserver.php?method=facebook.fql.query&query=SELECT%20fan_count%20FROM%20page%20WHERE%20page_id=' . $id);
+    if (is_wp_error($data)) {
+        return 'Facebook fan count could not be loaded.';
+    } else {
+        $countOrig = strip_tags($data['body']);
+        $count = preg_replace('/\s+/','',$countOrig); // strip whitespace
+    }
+    set_transient('inferno_counter_facebook', $count, 60*60*24); // 24 hour cache
+    return $count;
+}

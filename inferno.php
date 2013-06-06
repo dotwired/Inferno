@@ -31,6 +31,7 @@ if(!class_exists('Inferno')) {
             array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
+            array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
             array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
             array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
@@ -211,6 +212,7 @@ if(!class_exists('Inferno')) {
         private function load_widgets()
         {
             require_once( 'widgets/widget-video.php' );
+            require_once( 'widgets/widget-socialcounter.php' );
             //require_once( 'widgets/widget-video.php' );
         }
     }

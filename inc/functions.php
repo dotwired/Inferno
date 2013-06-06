@@ -217,3 +217,21 @@ function inferno_get_gplus_count( $id = null ) {
     set_transient('inferno_counter_facebook', $count, 60*60*24); // 24 hour cache
     return $count;
 }
+
+// props to http://wpforce.com/twitter-facebook-googleplus-fan-follower-count-php/
+function inferno_get_youtube_count( $username = null ) {
+    $count = get_transient( 'inferno_counter_youtube' );
+    
+    //if ( $count !== false) return $count;
+        $count = 0;
+        //$dataOrig = file_get_contents( 'http://gdata.youtube.com/feeds/api/users/' . $username );
+        $dataOrig = wp_remote_get( 'http://gdata.youtube.com/feeds/api/users/' . $username . '?v=2&alt=json' );
+    if ( is_wp_error( $dataOrig ) ) {
+        return 'Twitter follower count could not be loaded.';
+    } else {
+        $countOrig = $dataOrig->entry->{'yt$statistics'}->subscriberCount;
+        $count = strval ( $countOrig );
+    }
+    set_transient('inferno_counter_youtube', $count, 60*60*24); // 24 hour cache
+    return 222;
+}

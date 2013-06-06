@@ -40,6 +40,7 @@
             extract($args);
             $title = apply_filters('widget_title', $instance['title']);
             $twitter = $instance['twitter'];
+            $youtube = $instance['youtube'];
             $facebook = $instance['facebook'];
 
             $i = 0;
@@ -61,6 +62,12 @@
                     <p class="network">' . __('Twitter', 'inferno') . '</p>
                     <p class="fans">' . __('Followers', 'inferno') . '</p>
                     <p class="count">'  . inferno_get_twitter_count( $twitter ) . '</p></a></div>';
+            }
+            if($youtube) {
+                echo '<div class="counter-box youtube' . $width_class . '"><a href="https://www.youtube.com/user/' . $youtube . '">
+                    <p class="network">' . __('YouTube', 'inferno') . '</p>
+                    <p class="fans">' . __('Subscribers', 'inferno') . '</p>
+                    <p class="count">'  . inferno_get_youtube_count( $youtube ) . '</p></a></div>';
             }
             if($twitter) {
                 echo '<div class="counter-box facebook' . $width_class . '"><a href="https://www.facebook.com/' . $facebook . '">
@@ -86,6 +93,7 @@
             $instance = array();
             $instance['title'] = strip_tags($new_instance['title']);
             $instance['twitter'] = strip_tags($new_instance['twitter']);
+            $instance['youtube'] = strip_tags($new_instance['youtube']);
             $instance['facebook'] = strip_tags($new_instance['facebook']);
 
             return $instance;
@@ -102,6 +110,7 @@
         {
             $title = (isset($instance['title'])) ? $instance['title'] : $this->default['title'];
             $twitter = (isset($instance['twitter'])) ? $instance['twitter'] : $this->default['twitter'];
+            $youtube = (isset($instance['youtube'])) ? $instance['youtube'] : $this->default['youtube'];
             $facebook = (isset($instance['facebook'])) ? $instance['facebook'] : $this->default['facebook'];
             ?>
 
@@ -112,6 +121,10 @@
             <p><!-- twitter -->
                 <label for="<?php echo $this->get_field_id('twitter'); ?>"><?php _e('Twitter username:', 'inferno'); ?></label> 
                 <input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" name="<?php echo $this->get_field_name('twitter'); ?>" type="text" value="<?php echo esc_attr($twitter); ?>" />
+            </p>
+            <p><!-- youtube -->
+                <label for="<?php echo $this->get_field_id('youtube'); ?>"><?php _e('YouTube username:', 'inferno'); ?></label> 
+                <input class="widefat" id="<?php echo $this->get_field_id('youtube'); ?>" name="<?php echo $this->get_field_name('youtube'); ?>" type="text" value="<?php echo esc_attr($youtube); ?>" />
             </p>
             <p><!-- facebook -->
                 <label for="<?php echo $this->get_field_id('facebook'); ?>"><?php _e('Facebook page id:', 'inferno'); ?></label> 

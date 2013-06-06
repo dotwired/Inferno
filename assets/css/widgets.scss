@@ -13,8 +13,17 @@
             float: left;
         }
 
+        &.width-divide-by-3 {
+            width: 33.33%;
+            float: left;
+        }
+
         &.twitter {
             border-top: 9px #73d0f1 solid;
+        }
+
+        &.youtube {
+            border-top: 9px red solid;
         }
 
         &.facebook {

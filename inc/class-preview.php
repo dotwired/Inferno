@@ -6,12 +6,13 @@ if(!class_exists('Inferno_Preview')) {
 
         private $output;
 
-        /**
-         * @var $args array()
-         * $args['link'] 'image' | 'post'
-         * todo: change img_width to width and img_height to height
-         */
-        public function __construct($src = false, $width = false, $height = false, $effect = 'default', $link = false, $crop = true)
+        private $preview_templates = array(
+            'preview_default' => 'preview.php',
+            'preview_fold' => 'preview-fold.php',
+            'preview_flip' => 'preview-flip.php'
+        );
+
+        public function __construct($src = false, $width = false, $height = false, $effect = 'default', $permalink = false, $crop = true)
         { 
             global $post;
 
@@ -20,6 +21,20 @@ if(!class_exists('Inferno_Preview')) {
             $output = null;
 
             if(!$src && !has_post_thumbnail()) return false;
+
+            { // the templates
+                $theme_templates = (array) get_theme_support( 'inferno-templates' );
+                $templates = array();
+
+                foreach ( $this->preview_templates as $template_name => $file )
+                {
+                    if ( isset ( $theme_templates[0][ $template_name ] ) ) {
+                        $this->preview_templates[ $template_name ] = $theme_templates[0][ $template_name ];
+                    } else {
+                        $this->preview_templates[ $template_name ] = INFERNO_PATH . "templates/$file";
+                    }
+                }
+            }
 
             if(!$src) {
                 $thumb_id = get_post_thumbnail_id($post->ID);
@@ -35,17 +50,17 @@ if(!class_exists('Inferno_Preview')) {
 
             switch($effect) {
                 case 'fold':
-                    $this->template($template_hover, 'fold');
-                    //$this->preview_fold($thumb_url);
+                    require $this->preview_templates['preview_fold'];
+                    $this->preview_fold($thumb_url);
                     break;
                 case 'flip':
                     $this->preview_flip($thumb_url);
                     echo '<div class="back">';
-                    //$this->template($template_hover, 'flip');
+                    require $this->preview_templates['preview_flip'];
                     echo '</div>';
                     break;
                 default:
-                    //$this->template($template_hover);
+                    require $this->preview_templates['preview'];
                     $this->preview_default($thumb_url);
                     break;
             }

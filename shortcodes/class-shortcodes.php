@@ -612,7 +612,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             $i = 1;
             if(count( $postslist ) > 0 ) :
                 echo '<div class="inferno-recent-posts">';
-                foreach( $postslist as $post ) : setup_postdata( $post ); 
+                foreach( $postslist as $post ) : setup_postdata( $post );
                     if( $last ) $lastclass = ( ( $i / (int) $last ) == 1 ) ? ' last' : null;
                         require( $this->shortcode_templates[ 'recent_posts' ] );
                     $i++;

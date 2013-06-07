@@ -356,12 +356,8 @@
                 "id"    => "css_class",
                 "title" => "CSS Class",
                 "desc"  => "An additional, custom CSS class for the HTML element.",
-                "std"   => "no",
-                "type"  => "radio",
-                "options" => array(
-                    "yes" => "Yes",
-                    "no"  => "No"
-                )
+                "std"   => null,
+                "type"  => "text"
             )
         )
     ),

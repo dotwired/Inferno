@@ -70,8 +70,8 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
             foreach ( $this->shortcode_templates as $shortcode => $file )
             {
-                if ( isset ( $theme_templates[ $shortcode ] ) ) {
-                    $this->shortcode_templates[ $shortcode ] = locate_template( $theme_templates[ $shortcode ] );
+                if ( isset ( $theme_templates[0][ $shortcode ] ) ) {
+                    $this->shortcode_templates[ $shortcode ] = $theme_templates[0][ $shortcode ];
                 } else {
                     $this->shortcode_templates[ $shortcode ] = INFERNO_PATH . "templates/$file";
                 }

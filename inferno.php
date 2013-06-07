@@ -127,7 +127,8 @@ if(!class_exists('Inferno')) {
 
         public function menu($menu = null) {
             wp_nav_menu(array(
-                'menu' => $menu
+                'menu'       => $menu,
+                'items_wrap' => '<ul id="%1$s-list" class="%2$s">%3$s</ul>',
             ));
         }
 

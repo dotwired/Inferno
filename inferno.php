@@ -82,6 +82,7 @@ if(!class_exists('Inferno')) {
             $config_canvas = get_theme_support( 'inferno-canvas' );
             $config_shortcodes = get_theme_support( 'inferno-shortcodes' );
             $config_meta_boxes = get_theme_support( 'inferno-meta-boxes' );
+            $config_meta_boxes = require_once $config_meta_boxes[0];
 
             require_once(dirname(__FILE__) . '/inc/functions.php');
             require_once(dirname(__FILE__) . '/inc/aq_resizer.php');

@@ -157,7 +157,7 @@ if(!class_exists('Inferno')) {
                         'before_widget' => '<div id="%1$s" class="block %2$s"><div class="block-inner">',
                         'after_widget'  => '</div><div class="clear"></div></div>',
                         'before_title'  => '<h3 class="block-title">',
-                        'after_title'   => '</h3>'
+                        'after_title'   => '</h3><div class="title-decorator"></div>'
                     )
                 );
             }
@@ -215,6 +215,7 @@ if(!class_exists('Inferno')) {
         {
             require_once( 'widgets/widget-video.php' );
             require_once( 'widgets/widget-socialcounter.php' );
+            require_once( 'widgets/widget-openinghours.php' );
             //require_once( 'widgets/widget-video.php' );
         }
     }

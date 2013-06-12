@@ -1,7 +1,7 @@
 <?php
 
- if(!class_exists( 'Inferno_Widger_SocialCounter' ) ) {
-    class Inferno_Widger_SocialCounter extends Inferno_Widget
+ if(!class_exists( 'Inferno_Widget_SocialCounter' ) ) {
+    class Inferno_Widget_SocialCounter extends Inferno_Widget
     {
         public $widget = array(
             'title'       => 'Inferno Social Counter',
@@ -133,5 +133,5 @@
             <?php 
         }
     }
-    add_action('widgets_init', create_function('', 'return register_widget("Inferno_Widger_SocialCounter");'));
+    add_action('widgets_init', create_function('', 'return register_widget("Inferno_Widget_SocialCounter");'));
 }

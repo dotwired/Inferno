@@ -6,12 +6,19 @@ if(!class_exists('Inferno_Preview')) {
 
         private $output;
 
+        private $preview_templates = array(
+            'preview'        => 'preview.php',
+            'preview_fold'   => 'preview-fold.php',
+            'preview_flip'   => 'preview-flip.php',
+            'preview_sliced' => 'preview-sliced.php'
+        );
+
         /**
          * @var $args array()
          * $args['link'] 'image' | 'post'
          * todo: change img_width to width and img_height to height
          */
-        public function __construct($src = false, $width = false, $height = false, $effect = 'default', $link = false, $crop = true)
+        public function __construct($src = false, $width = false, $height = false, $effect = 'default', $permalink = false, $crop = true)
         { 
             global $post;
 
@@ -20,6 +27,8 @@ if(!class_exists('Inferno_Preview')) {
             $output = null;
 
             if(!$src && !has_post_thumbnail()) return false;
+
+            $this->process_templates();
 
             if(!$src) {
                 $thumb_id = get_post_thumbnail_id($post->ID);
@@ -35,17 +44,17 @@ if(!class_exists('Inferno_Preview')) {
 
             switch($effect) {
                 case 'fold':
-                    $this->template($template_hover, 'fold');
-                    //$this->preview_fold($thumb_url);
+                    require( $this->preview_templates[ 'preview_fold' ] );
+                    $this->preview_fold($thumb_url);
                     break;
                 case 'flip':
                     $this->preview_flip($thumb_url);
                     echo '<div class="back">';
-                    //$this->template($template_hover, 'flip');
+                    require( $this->preview_templates[ 'preview_flip' ] );
                     echo '</div>';
                     break;
                 default:
-                    //$this->template($template_hover);
+                    require( $this->preview_templates[ 'preview' ] );
                     $this->preview_default($thumb_url);
                     break;
             }
@@ -55,6 +64,21 @@ if(!class_exists('Inferno_Preview')) {
             $output = ob_get_contents();
             $this->output = $output;
             ob_end_clean();
+        }
+
+        private function process_templates()
+        {
+            $theme_templates = (array) get_theme_support( 'inferno-templates' );
+            $theme_templates = $theme_templates[0];
+
+            foreach ( $this->preview_templates as $preview_effect => $file )
+            {
+                if ( isset ( $theme_templates[ $preview_effect ] ) ) {
+                    $this->preview_templates[ $preview_effect ] = $theme_templates[ $preview_effect ];
+                } else {
+                    $this->preview_templates[ $preview_effect ] = INFERNO_PATH . "templates/$file";
+                }
+            }
         }
 
         public function get_output() 

@@ -66,12 +66,12 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             }
 
             $theme_templates = (array) get_theme_support( 'inferno-templates' );
-            $templates = array();
+            $theme_templates = $theme_templates[0];
 
             foreach ( $this->shortcode_templates as $shortcode => $file )
             {
                 if ( isset ( $theme_templates[ $shortcode ] ) ) {
-                    $this->shortcode_templates[ $shortcode ] = locate_template( $theme_templates[ $shortcode ] );
+                    $this->shortcode_templates[ $shortcode ] = $theme_templates[ $shortcode ];
                 } else {
                     $this->shortcode_templates[ $shortcode ] = INFERNO_PATH . "templates/$file";
                 }

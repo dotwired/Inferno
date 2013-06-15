@@ -38,7 +38,7 @@
             &:hover {
                 ul.sub-menu {
                     @include opacity(1);
-                    @include transition-delay(0ms);
+                    /*@include transition-delay(0ms);*/
 
                     visibility: visible;
                 }
@@ -48,8 +48,8 @@
     
     ul.sub-menu {
         @include opacity(0);
-        @include transition-duration(500ms);
-        @include transition-delay(300ms);
+        /*@include transition-duration(500ms);
+        @include transition-delay(300ms);*/
 
         position: absolute;
         top: 100%;

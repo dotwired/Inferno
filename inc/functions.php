@@ -93,6 +93,13 @@ function inferno_get_google_font_url($font_collection = null)
     return $url;
 }
 
+function inferno_get_image_id_from_url($image_url) {
+    global $wpdb;
+    $prefix = $wpdb->prefix;
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT id FROM " . $prefix . "posts" . " WHERE guid='%s';", $image_url )); 
+    return $attachment[0]; 
+}
+
 
 function inferno_widgets_exist($sidebar = array()){
     $sidebars_widgets = get_option('sidebars_widgets');

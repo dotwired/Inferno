@@ -73,5 +73,5 @@ Coming soon
 Changelog
 ---
 
-- *v0.9*
-    - `Initial release
+- **v0.9**
+    - Initial release

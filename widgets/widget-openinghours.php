@@ -136,7 +136,7 @@
             $thursday = (isset($instance['thursday'])) ? $instance['thursday'] : $this->default['thursday'];
             $friday = (isset($instance['friday'])) ? $instance['friday'] : $this->default['friday'];
             $saturday = (isset($instance['saturday'])) ? $instance['saturday'] : $this->default['saturday'];
-            $sunday = (isset($instance['wednesday'])) ? $instance['wednesday'] : $this->default['wednesday'];
+            $sunday = (isset($instance['sunday'])) ? $instance['sunday'] : $this->default['sunday'];
             ?>
 
             <p><!-- the widget title -->

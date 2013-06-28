@@ -133,32 +133,9 @@ if(!class_exists('Inferno')) {
 
         public function actions()
         {
-            add_action('init', array(&$this, 'add_menus'));
             add_action('init', array(&$this, 'assets'));
             add_action('init', array(&$this, 'fixing_hooks'));
-            add_action('widgets_init', array(&$this, 'register_sidebars'));
             add_action('after_setup_theme', 'translate');
-        }
-
-        public function add_menus()
-        {
-            register_nav_menus($this->_config['menus']);
-        }
-
-        public function register_sidebars()
-        {
-            foreach($this->_config['sidebars'] as $id => $title) {
-                register_sidebar(
-                    array(
-                        'name'          => $title,
-                        'id'            => $id,
-                        'before_widget' => '<div id="%1$s" class="block %2$s"><div class="block-inner">',
-                        'after_widget'  => '</div><div class="clear"></div></div>',
-                        'before_title'  => '<h3 class="block-title">',
-                        'after_title'   => '</h3><div class="title-decorator"></div>'
-                    )
-                );
-            }
         }
 
         public function assets()

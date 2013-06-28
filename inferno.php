@@ -68,9 +68,8 @@ if(!class_exists('Inferno')) {
             array('responsive-nav', 'assets/js/responsivenav.min.js', false, '1.0.14', true)
         );
 
-        public function __construct($_config)
+        public function __construct()
         {
-            $this->_config = $_config;
             $this->load();
             $this->load_plugins();
             $this->load_widgets();
@@ -163,12 +162,7 @@ if(!class_exists('Inferno')) {
 
         public function translate()
         {
-            load_theme_textdomain($this->_config[ 'theme_slug' ], get_template_directory() . '/languages');
-        }
-
-        public function getConfig()
-        {
-            return $this->_config;
+            load_theme_textdomain( 'inferno', INFERNO_URL . '/languages' );
         }
 
         private function load_plugins()
@@ -191,7 +185,9 @@ if(!class_exists('Inferno')) {
             require_once( 'widgets/widget-video.php' );
             require_once( 'widgets/widget-socialcounter.php' );
             require_once( 'widgets/widget-openinghours.php' );
-            //require_once( 'widgets/widget-video.php' );
+            require_once( 'widgets/widget-recenttweets.php' );
+            require_once( 'widgets/widget-socialprofiles.php' );
+            require_once( 'widgets/widget-flickr.php' );
         }
     }
 }

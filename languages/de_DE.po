@@ -1,0 +1,777 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Inferno\n"
+"POT-Creation-Date: 2013-06-28 16:43+0100\n"
+"PO-Revision-Date: 2013-06-28 16:46+0100\n"
+"Last-Translator: Maxim Zubarev <info@linkburg.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: ./..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: functions.php:112
+msgid "Header Navigation"
+msgstr ""
+
+#: functions.php:113
+msgid "Footer Navigation"
+msgstr ""
+
+#: functions.php:179
+msgid "Pingback:"
+msgstr ""
+
+#: functions.php:179
+msgid "(Edit)"
+msgstr ""
+
+#: functions.php:201
+msgid "Post author"
+msgstr ""
+
+#: functions.php:207
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: functions.php:211
+msgid "Reply"
+msgstr ""
+
+#: functions.php:216
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions.php:221
+msgid "Edit"
+msgstr ""
+
+#: functions.php:243
+msgid "Name"
+msgstr ""
+
+#: functions.php:243 functions.php:244
+msgid "required"
+msgstr ""
+
+#: functions.php:244
+msgid "Email"
+msgstr ""
+
+#: functions.php:245
+msgid "Website"
+msgstr ""
+
+#: functions.php:252
+msgid "Your Comment Entry"
+msgstr ""
+
+#: header.php:17
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: index.php:18
+msgid "Tags"
+msgstr ""
+
+#: index.php:22 inferno-templates/recent-posts.php:5
+msgid "Read more"
+msgstr ""
+
+#: index.php:36
+msgid "Older Posts"
+msgstr ""
+
+#: index.php:39
+msgid "Newer Posts"
+msgstr ""
+
+#: searchform.php:3
+msgid "Search"
+msgstr ""
+
+#: framework/canvas/canvas.php:24
+msgid "Reset to Defaults"
+msgstr ""
+
+#: framework/canvas/canvas.php:25
+msgid "Save Changes"
+msgstr ""
+
+#: framework/canvas/canvas.php:32
+msgid "Do You really want to reset all settings?"
+msgstr ""
+
+#: framework/canvas/canvas.php:37
+msgid "Yes"
+msgstr ""
+
+#: framework/canvas/canvas.php:38
+msgid "No"
+msgstr ""
+
+#: framework/canvas/canvas.php:48 framework/inc/class-slider.php:208
+#: framework/modules/society/society.php:290
+msgid "Options successfully saved!"
+msgstr ""
+
+#: framework/canvas/class-canvas.php:70
+msgid "Security check failed."
+msgstr ""
+
+#: framework/inc/class-options-machine.php:241
+#: framework/inc/class-options-machine.php:258
+msgid "Upload Image"
+msgstr ""
+
+#: framework/inc/class-options-machine.php:242
+msgid "Remove"
+msgstr ""
+
+#: framework/inc/class-options-machine.php:287
+msgid "Show / hide Google Font for this Option."
+msgstr ""
+
+#: framework/inc/class-options-machine.php:293
+msgid ""
+"Enter the Name of the Google Webfont You want to use, for example \"Droid "
+"Serif\" (without quotes). Leave blank to use a Font from the selector above."
+msgstr ""
+
+#: framework/inc/class-options-machine.php:296
+msgid ""
+"You can view all Google fonts <a href=\"http://www.google.com/webfonts"
+"\">here</a>. Consider, that You have to respect case-sensitivity. If the "
+"font has been successfully recognized, the demo text will change to the "
+"entered font."
+msgstr ""
+
+#: framework/inc/class-options-machine.php:303
+msgid "Grumpy wizards make toxic brew for the evil Queen and Jack."
+msgstr ""
+
+#: framework/inc/class-slider.php:60
+msgid "Slides"
+msgstr ""
+
+#: framework/inc/class-slider.php:61
+msgid "Slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:62
+#: framework/modules/portfolio/portfolio.php:69
+msgid "Add new"
+msgstr ""
+
+#: framework/inc/class-slider.php:63
+msgid "Add new slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:64
+msgid "Edit slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:65
+msgid "New slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:66
+msgid "All slides"
+msgstr ""
+
+#: framework/inc/class-slider.php:67
+msgid "View slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:68
+msgid "Search slides"
+msgstr ""
+
+#: framework/inc/class-slider.php:69
+msgid "No slides found"
+msgstr ""
+
+#: framework/inc/class-slider.php:70
+msgid "No slides found in Trash"
+msgstr ""
+
+#: framework/inc/class-slider.php:72
+msgid "FlexSlider"
+msgstr ""
+
+#: framework/inc/class-slider.php:82
+msgid "slide"
+msgstr ""
+
+#: framework/inc/class-slider.php:95
+msgid "Slider groups"
+msgstr ""
+
+#: framework/inc/class-slider.php:96 framework/inc/class-slider.php:109
+#: framework/inc/class-slider.php:303
+msgid "Slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:97
+msgid "Search slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:98
+msgid "Popular slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:99
+msgid "All slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:102
+msgid "Edit slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:103
+msgid "Update slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:104
+msgid "Add new slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:105
+msgid "New slider name"
+msgstr ""
+
+#: framework/inc/class-slider.php:106
+msgid "Separate slider with commas"
+msgstr ""
+
+#: framework/inc/class-slider.php:107
+msgid "Add or remove slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:108
+msgid "Choose from the most used slider"
+msgstr ""
+
+#: framework/inc/class-slider.php:129
+msgid "Slider animation"
+msgstr ""
+
+#: framework/inc/class-slider.php:141
+msgid "Slider control navigation"
+msgstr ""
+
+#: framework/inc/class-slider.php:146
+msgid "Slider animation speed"
+msgstr ""
+
+#: framework/inc/class-slider.php:151
+msgid "Slider speed"
+msgstr ""
+
+#: framework/inc/class-slider.php:156
+msgid "Slider stylesheet"
+msgstr ""
+
+#: framework/inc/class-slider.php:161
+msgid "Slider overlay"
+msgstr ""
+
+#: framework/inc/class-slider.php:166
+msgid "Slider overlay CSS class"
+msgstr ""
+
+#: framework/inc/class-slider.php:212
+#: framework/modules/society/society.php:294
+msgid "Options could not be saved. Please try again or make further steps."
+msgstr ""
+
+#: framework/inc/class-slider.php:279
+msgid "Slide caption"
+msgstr ""
+
+#: framework/inc/class-slider.php:281
+msgid "Whether to show an image caption or not."
+msgstr ""
+
+#: framework/inc/class-slider.php:292
+msgid "Slide link"
+msgstr ""
+
+#: framework/inc/class-slider.php:294
+msgid "Where do You want to link this slide?"
+msgstr ""
+
+#: framework/inc/class-slider.php:305
+msgid "Whether to show a slider on this page or not."
+msgstr ""
+
+#: framework/inc/class-slider.php:316
+msgid "Slider source"
+msgstr ""
+
+#: framework/inc/class-slider.php:318
+msgid ""
+"Chose the source where the slider of this page should fetch images from."
+msgstr ""
+
+#: framework/inc/class-slider.php:327
+msgid "Slider size"
+msgstr ""
+
+#: framework/inc/class-slider.php:329
+msgid ""
+"Type in the desired slider size, for example \"960x300\". Wrong inputs may "
+"lead to unexpected results. Leave blank to use the original size of the used "
+"images."
+msgstr ""
+
+#: framework/inc/class-slider.php:336
+msgid "Slider link"
+msgstr ""
+
+#: framework/inc/class-slider.php:338
+msgid "Where do You want to generate the link to the URL for the slides?"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:67
+#: framework/modules/portfolio/portfolio.php:79
+msgid "Portfolio"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:68
+msgid "Work"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:70
+msgid "Add new work"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:71
+msgid "Edit work"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:72
+msgid "New work"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:73
+msgid "All works"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:74
+msgid "View work"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:75
+msgid "Search portfolio"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:76
+msgid "No work found"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:77
+msgid "No works found in Trash"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:90
+msgid "portfolio"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:100
+#: framework/modules/portfolio/portfolio.php:101
+msgid "Category"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:102
+msgid "Search categories"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:103
+msgid "Popular categories"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:104
+msgid "All categories"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:107
+msgid "Edit portfolio"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:108
+msgid "Update category"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:109
+msgid "Add new category"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:110
+msgid "New portfolio category name"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:111
+msgid "Separate categories with commas"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:112
+msgid "Add or remove category"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:113
+msgid "Choose from the most used category"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:114
+msgid "Categories"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:153
+msgid "Hide the post thumbnail in the slider"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:155
+msgid ""
+"You can hide the post thumbnail image which you defined for the portfolio "
+"preview from the work slider."
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:166
+msgid "Ajax portfolio"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:168
+msgid "Do you want to use ajax on this portfolio page?"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:179
+msgid "Portfolio image size"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:181
+msgid ""
+"Type in the image size (proportion) of the generated images, such as "
+"\"400x200\" where \"400\" is the image width and \"200\" the image height. "
+"Images will be scaled down for responsive purposes, while large image "
+"proportion will cause more load time but better quality."
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:188
+msgid "Portfolio hover effect"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:190
+msgid "Which effect to use for preview hovering."
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:239
+msgid "Show all"
+msgstr ""
+
+#: framework/modules/portfolio/portfolio.php:335
+msgid "Load more items."
+msgstr ""
+
+#: framework/modules/society/society.php:138
+msgid "Available icon sets:"
+msgstr ""
+
+#: framework/modules/society/society.php:144
+msgid "Iconset"
+msgstr ""
+
+#: framework/modules/society/society.php:145
+msgid "Icon Size"
+msgstr ""
+
+#: framework/modules/society/society.php:146
+msgid "Open Links"
+msgstr ""
+
+#: framework/modules/society/society.php:147
+msgid "Hover Effect"
+msgstr ""
+
+#: framework/modules/society/society.php:148
+msgid "Align"
+msgstr ""
+
+#: framework/modules/society/society.php:149
+msgid "Preview"
+msgstr ""
+
+#: framework/modules/society/society.php:301
+msgid ""
+"Paste the URLs of Your social network accounts. The widget and shortcode "
+"will automatically link to the specified URLs."
+msgstr ""
+
+#: framework/shortcodes/class-shortcode-generator.php:20
+msgid "Insert Shortcode"
+msgstr ""
+
+#: framework/shortcodes/generator-popup.php:5
+msgid "Select Shortcode"
+msgstr ""
+
+#: framework/shortcodes/generator-popup.php:5
+msgid "Shortcode not found"
+msgstr ""
+
+#: framework/shortcodes/generator.php:30
+msgid "Insert Shortcode into Editor"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:90
+#: framework/widgets/widget-openinghours.php:143
+#: framework/widgets/widget-recenttweets.php:92
+#: framework/widgets/widget-socialcounter.php:118
+#: framework/widgets/widget-socialprofiles.php:102
+#: framework/widgets/widget-video.php:88
+msgid "Title:"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:94
+msgid "Flickr ID:"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:96
+msgid "Type in here Your <a href=\"http://idgettr.com/\">Flickr ID</a>"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:99
+msgid "Amount of Photos to show:"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:107
+msgid "Photos to show:"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:109
+msgid "Random"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:110
+msgid "Latest"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:114
+msgid "Stream Type:"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:116
+msgid "User"
+msgstr ""
+
+#: framework/widgets/widget-flickr.php:117
+msgid "Group"
+msgstr ""
+
+#: framework/widgets/widget-openinghours.php:61
+msgid "Monday"
+msgstr "Montag"
+
+#: framework/widgets/widget-openinghours.php:66
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: framework/widgets/widget-openinghours.php:71
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: framework/widgets/widget-openinghours.php:76
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: framework/widgets/widget-openinghours.php:81
+msgid "Friday"
+msgstr "Freitag"
+
+#: framework/widgets/widget-openinghours.php:86
+msgid "Saturday"
+msgstr "Samstag"
+
+#: framework/widgets/widget-openinghours.php:91
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: framework/widgets/widget-openinghours.php:147
+msgid "Monday:"
+msgstr "Montag:"
+
+#: framework/widgets/widget-openinghours.php:151
+msgid "Tuesday:"
+msgstr "Dienstag:"
+
+#: framework/widgets/widget-openinghours.php:155
+msgid "Wednesday:"
+msgstr "Mittwoch:"
+
+#: framework/widgets/widget-openinghours.php:159
+msgid "Thursday:"
+msgstr "Donnerstag:"
+
+#: framework/widgets/widget-openinghours.php:163
+msgid "Friday:"
+msgstr "Freitag"
+
+#: framework/widgets/widget-openinghours.php:167
+msgid "Saturday:"
+msgstr "Samstag:"
+
+#: framework/widgets/widget-openinghours.php:171
+msgid "sunday:"
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:96
+msgid "Username:"
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:100
+msgid "Amount of Tweets to show:"
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:108
+msgid "Loading Text:"
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:110
+msgid "While tweet is not loaded yet."
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:113
+msgid "Template:"
+msgstr ""
+
+#: framework/widgets/widget-recenttweets.php:115
+msgid ""
+"Template used to construct each tweet li - see <a href=\"https://github.com/"
+"seaofclouds/tweet/\">jQuery tweet plugin</a> source code for available vars."
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:62
+msgid "Twitter"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:63
+msgid "Followers"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:68
+msgid "YouTube"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:69
+msgid "Subscribers"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:74
+msgid "Facebook"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:75
+msgid "Fans"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:122
+msgid "Twitter username:"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:126
+msgid "YouTube username:"
+msgstr ""
+
+#: framework/widgets/widget-socialcounter.php:130
+msgid "Facebook page id:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:106
+msgid "Icon Size:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:108
+msgid "16px"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:109
+msgid "32px"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:113
+msgid "Align:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:115
+msgid "No alignment"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:116
+msgid "Center alignment"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:117
+msgid "Left alignment"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:118
+msgid "Right alignment"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:122
+msgid "Open Links in:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:124
+msgid "Same window"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:125
+msgid "New window"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:129
+msgid "Hover Effect:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:131
+msgid "No hover effect"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:132
+msgid "Fade in"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:133
+msgid "Fade out"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:137
+msgid "Icon Set:"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:139
+msgid "ZillaSocial"
+msgstr ""
+
+#: framework/widgets/widget-socialprofiles.php:140
+msgid "Somicro"
+msgstr ""
+
+#: framework/widgets/widget-video.php:92
+msgid "Description:"
+msgstr ""
+
+#: framework/widgets/widget-video.php:96
+msgid "Embed Code:"
+msgstr ""
+
+#: framework/widgets/widget-video.php:98
+msgid "Paste the embed code of the video."
+msgstr ""

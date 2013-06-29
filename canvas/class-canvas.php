@@ -11,12 +11,14 @@ if(!class_exists('Inferno_Canvas')) {
         private $option_name = 'inferno';
 
         
-        public function __construct( $config )
+        public function __construct()
         {
             global $inferno_option;
             
-            $this->theme_settings = $config;
-            $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
+            $theme_support = get_theme_support('inferno-canvas');
+
+            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) $this->theme_settings = @include_once($theme_support[0]['file']);
+            if($theme_support[0]['social-profiles'] === true) $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
 
             //get options
             $inferno_option = get_option($this->option_name, array());

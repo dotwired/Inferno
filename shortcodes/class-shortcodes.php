@@ -39,6 +39,10 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             'launch',
             'skillbar',
             'staff_member',
+            'pricing_table',
+            'pricing_box',
+            'pricing_row',
+            'pricing_price',
 
             // content element lists
             'portfolio',
@@ -449,6 +453,49 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             $output = ob_get_contents();
             ob_end_clean();
             return $output;
+        }
+
+        public function pricing_table() {} // TODO
+
+        public function pricing_box( $atts, $content = null ) 
+        {
+            extract( shortcode_atts( array(
+                'featured'       => null,
+                'featured_label' => null,
+                'title'          => null,
+                'color'          => null // TODO
+            ), $atts ) );
+
+            $featured_class = null;
+            if($featured == 'yes') $featured_class = ' featured';
+
+            $color_class = null;
+            if($color != null) $color_class = ' ' . $color;
+
+            $output = '<div class="pricing-box' . $featured_class . $color_class .'">';
+            if($featured_label) $output .= '<div class="feature"><span>' . $featured_label . '</span></div>';
+            if($title) $output .= '<div class="title">' . $title . '</div>';
+            $output .= do_shortcode( $content ) . '<div class="clear"></div></div>';
+
+            return $output;
+        }
+
+        public function pricing_price( $atts, $content = null ) 
+        {
+            extract( shortcode_atts( array(
+                'price'    => null,
+                'currency' => "$",
+                'info'     => null, // TODO maybe find a better attr name?
+            ), $atts ) );
+
+            $price = explode(".", $price);
+
+            return '<div class="price"><span class="currency">' . $currency . '</span>' . $price[0] . '<span class="decimal">' . $price[1] . '</span><br /><span class="info">' . $info . '</span></div>';
+        }
+
+        public function pricing_row( $atts, $content = null ) 
+        {
+            return '<div class="row">' . $content . '</div>';
         }
 
 

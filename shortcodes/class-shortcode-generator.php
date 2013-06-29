@@ -7,9 +7,17 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
 
         public $shortcodes = array();
 
-        public function __construct( $config = array() ) 
+        public function __construct() 
         {
-            $this->shortcodes = require( 'shortcodes.php' );
+            $theme_support = get_theme_support('inferno-shortcodes');
+
+            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) $this->shortcodes = @include_once($theme_support[0]['file']);
+
+            if($theme_support[0]['builtin-shortcodes'] === true) {
+                require_once( dirname(__FILE__) . '/class-shortcodes.php' );
+                new Inferno_Shortcodes();
+                $this->shortcodes[] = require_once(dirname(__FILE__) . '/shortcodes.php');
+            }
 
             add_action( 'media_buttons', array( &$this, 'add_generator_button' ), 100 );
             add_action( 'admin_footer', array( &$this, 'generator_popup' ) );

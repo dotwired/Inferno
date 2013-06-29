@@ -146,7 +146,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
     color: #fff; }
     .infernal-button.purple:hover {
-      background: #7a2c7a;
+      background: #351330;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
     .infernal-button.purple:active {
       background: #351330;
@@ -184,10 +184,27 @@
       color: #eee;
       box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5); }
   .infernal-button.yellow {
+    background: #fccb50;
+    background: -moz-linear-gradient(top, #fccb50 0%, #f3b71b 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fccb50), color-stop(100%, #f3b71b));
+    background: -webkit-linear-gradient(top, #fccb50 0%, #f3b71b 100%);
+    background: -o-linear-gradient(top, #fccb50 0%, #f3b71b 100%);
+    background: -ms-linear-gradient(top, #fccb50 0%, #f3b71b 100%);
+    background: linear-gradient(to bottom, #fccb50 0%, #f3b71b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
     color: #fff; }
     .infernal-button.yellow:hover {
+      background: #f3b71b;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
     .infernal-button.yellow:active {
+      background: #f3b71b;
+      background: -moz-linear-gradient(top, #f3b71b 0%, #eaae15 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3b71b), color-stop(100%, #eaae15));
+      background: -webkit-linear-gradient(top, #f3b71b 0%, #eaae15 100%);
+      background: -o-linear-gradient(top, #f3b71b 0%, #eaae15 100%);
+      background: -ms-linear-gradient(top, #f3b71b 0%, #eaae15 100%);
+      background: linear-gradient(to bottom, #f3b71b 0%, #eaae15 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
       color: #eee;
       box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5); }
 
@@ -431,7 +448,7 @@
   width: 100%;
   background: #fff;
   text-align: center;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.25);
   font-size: 13px;
   margin-bottom: 15px;
   overflow: hidden; }
@@ -455,7 +472,7 @@
       text-transform: uppercase;
       border-bottom-left-radius: 7px;
       border-bottom-right-radius: 7px; }
-  .pricing-box .heading {
+  .pricing-box .title {
     padding: 25px 0;
     font-size: 180%;
     line-height: 150%;
@@ -477,8 +494,10 @@
     .pricing-box .price .currency, .pricing-box .price .info {
       color: #606060; }
     .pricing-box .price .currency {
+      margin-right: 5px;
       font-weight: 100; }
     .pricing-box .price .decimal {
+      margin-left: 3px;
       font-weight: 100;
       text-decoration: underline; }
     .pricing-box .price .info {
@@ -510,6 +529,12 @@
     color: #9b339b; }
   .pricing-box.purple.featured {
     border-color: #9b339b; }
+  .pricing-box.yellow .feature span {
+    background: #f3b71b; }
+  .pricing-box.yellow .price {
+    color: #f3b71b; }
+  .pricing-box.yellow.featured {
+    border-color: #f3b71b; }
   .pricing-box .one-half,
   .pricing-box .one-third,
   .pricing-box .two-thirds,

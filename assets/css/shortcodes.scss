@@ -38,7 +38,7 @@
 }
 
 @mixin gradient-purple-hover {
-    background: #7a2c7a;
+    background: #351330;
 }
 
 @mixin gradient-purple-active {
@@ -46,12 +46,15 @@
 }
 
 @mixin gradient-yellow {
+    @include gradient(#fccb50, #f3b71b);
 }
 
 @mixin gradient-yellow-hover {
+    background: #f3b71b;
 }
 
 @mixin gradient-yellow-active {
+    @include gradient(#f3b71b, #eaae15);
 }
 
 
@@ -573,7 +576,7 @@
     width: 100%;
     background: #fff;
     text-align: center;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     font-size: 13px;
     margin-bottom: 15px;
     overflow: hidden;
@@ -602,7 +605,7 @@
         }
     }
 
-    .heading {
+    .title {
         padding: 25px 0;
         font-size: 180%;
         line-height: 150%;
@@ -631,10 +634,12 @@
         }
 
         .currency {
+            margin-right: 5px;
             font-weight: 100;
         }
 
         .decimal {
+            margin-left: 3px;
             font-weight: 100;
             text-decoration: underline;
         }
@@ -681,6 +686,12 @@
         .feature span { background: #9b339b; }
         .price { color: #9b339b; }
         &.featured { border-color: #9b339b; }
+    }
+
+    &.yellow {
+        .feature span { background: #f3b71b; }
+        .price { color: #f3b71b; }
+        &.featured { border-color: #f3b71b; }
     }
 
     .one-half, 

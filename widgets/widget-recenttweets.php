@@ -1,7 +1,7 @@
 <?php
 
  
-class Infernal_Widget_RecentTweets extends Infernal_Widget
+class Inferno_Widget_RecentTweets extends Inferno_Widget
 {
     // make clear that this widget needs to give some dynamic vars to the 
     // client server side.
@@ -115,6 +115,6 @@ class Infernal_Widget_RecentTweets extends Infernal_Widget
             <small><?php _e('Template used to construct each tweet li - see <a href="https://github.com/seaofclouds/tweet/">jQuery tweet plugin</a> source code for available vars.', 'inferno'); ?></small>
         </p>
         <?php 
-    }
+    } 
 }
-add_action('widgets_init', create_function('', 'return register_widget("Infernal_Widget_RecentTweets");'));
+add_action('widgets_init', create_function('', 'return register_widget("Inferno_Widget_RecentTweets");'));

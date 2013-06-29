@@ -1,7 +1,7 @@
 <?php
 
  
-class Infernal_Widget_Flickr extends Infernal_Widget
+class Inferno_Widget_Flickr extends Inferno_Widget
 {
     public $widget = array(
         'title'       => 'Infernal Flickr',
@@ -118,7 +118,7 @@ class Infernal_Widget_Flickr extends Infernal_Widget
             </select> 
         </p>
         <?php 
-    }
+    }  
 }
-add_action('widgets_init', create_function('', 'return register_widget("Infernal_Widget_Flickr");'));
+add_action('widgets_init', create_function('', 'return register_widget("Inferno_Widget_Flickr");'));
 

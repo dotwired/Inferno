@@ -1,7 +1,7 @@
 <?php
 
  
-class Infernal_Widget_Society extends Infernal_Widget
+class Inferno_Widget_Society extends Inferno_Widget
 {
     public $widget = array(
         'title'       => 'Infernal Society',
@@ -143,5 +143,5 @@ class Infernal_Widget_Society extends Infernal_Widget
         <?php 
     }
 }
-add_action('widgets_init', create_function('', 'return register_widget("Infernal_Widget_Society");'));
+add_action('widgets_init', create_function('', 'return register_widget("Inferno_Widget_Society");'));
 

@@ -1,9 +1,9 @@
 /* ==========================================================================
    1. fold effect
    ========================================================================== */
-.csstransforms3d .preview-thumb.fold,
-.csstransforms3d .preview-thumb.fold .panel,
-.csstransforms3d .preview-thumb.fold .panel .overlay {
+.csstransforms3d .inferno-preview.fold,
+.csstransforms3d .inferno-preview.fold .panel,
+.csstransforms3d .inferno-preview.fold .panel .overlay {
   transition-duration: 100ms;
   -webkit-transition-duration: 100ms;
   -khtml-transition-duration: 100ms;
@@ -34,7 +34,7 @@
   -ms-transform-origin: left center;
   -webkit-transform-origin: left center; }
 
-.csstransforms3d .preview-thumb.fold .overlay {
+.csstransforms3d .inferno-preview.fold .overlay {
   position: absolute;
   width: 100%;
   top: 0;
@@ -44,15 +44,15 @@
   background: -khtml-linear-gradient(left, transparent, rgba(0, 0, 0, 0.15));
   background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.15)); }
 
-.csstransforms3d .preview-thumb.fold .panel1 .overlay {
+.csstransforms3d .inferno-preview.fold .panel1 .overlay {
   left: auto;
   right: 0;
   width: 15%; }
 
-.csstransforms3d .preview-thumb.fold:hover .panel .overlay {
+.csstransforms3d .inferno-preview.fold:hover .panel .overlay {
   opacity: 0.8; }
 
-.csstransforms3d .preview-thumb.fold:hover .panel {
+.csstransforms3d .inferno-preview.fold:hover .panel {
   transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
   -webkit-transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
   -khtml-transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
@@ -60,7 +60,7 @@
   -ms-transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
   -o-transition-timing-function: cubic-bezier(0, 0, 0.58, 1); }
 
-.csstransforms3d .preview-thumb.fold:hover .panel2 {
+.csstransforms3d .inferno-preview.fold:hover .panel2 {
   transform: rotateY(-70deg);
   -webkit-transform: rotateY(-70deg);
   -khtml-transform: rotateY(-70deg);
@@ -68,24 +68,24 @@
   -ms-transform: rotateY(-70deg);
   -o-transform: rotateY(-70deg); }
 
-.csstransforms3d .preview-thumb.fold .panel2 .overlay {
+.csstransforms3d .inferno-preview.fold .panel2 .overlay {
   background: linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
   background: -khtml-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4)); }
 
-.csstransforms3d .preview-thumb.fold .panel3 {
+.csstransforms3d .inferno-preview.fold .panel3 {
   transform-origin: 100% 0;
   -o-transform-origin: 100% 0;
   -moz-transform-origin: 100% 0;
   -ms-transform-origin: 100% 0;
   -webkit-transform-origin: 100% 0; }
 
-.csstransforms3d .preview-thumb.fold .panel3 .overlay {
+.csstransforms3d .inferno-preview.fold .panel3 .overlay {
   background: linear-gradient(left, transparent, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.6));
   background: -khtml-linear-gradient(left, transparent, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.6));
   background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.6)); }
 
-.csstransforms3d .preview-thumb.fold:hover .panel3 {
+.csstransforms3d .inferno-preview.fold:hover .panel3 {
   -webkit-transform: translateX(-132.3%) rotateY(70deg);
   -khtml-transform: translateX(-132.3%) rotateY(70deg);
   -moz-transform: translateX(-132.3%) rotateY(70deg);
@@ -93,7 +93,7 @@
   -o-transform: translateX(-132.3%) rotateY(70deg);
   transform: translateX(-132.3%) rotateY(70deg); }
 
-.csstransforms3d .preview-thumb.fold .panel4 {
+.csstransforms3d .inferno-preview.fold .panel4 {
   transition-timing-function: cubic-bezier(0.6, 0, 1, 1);
   -webkit-transition-timing-function: cubic-bezier(0.6, 0, 1, 1);
   -khtml-transition-timing-function: cubic-bezier(0.6, 0, 1, 1);
@@ -101,7 +101,7 @@
   -ms-transition-timing-function: cubic-bezier(0.6, 0, 1, 1);
   -o-transition-timing-function: cubic-bezier(0.6, 0, 1, 1); }
 
-.csstransforms3d .preview-thumb.fold:hover .panel4 {
+.csstransforms3d .inferno-preview.fold:hover .panel4 {
   -webkit-transform: translateX(-132.3%) rotateY(-70deg);
   -khtml-transform: translateX(-132.3%) rotateY(-70deg);
   -moz-transform: translateX(-132.3%) rotateY(-70deg);
@@ -115,17 +115,17 @@
   -ms-transition-timing-function: cubic-bezier(0, 0.2, 0.58, 1);
   -o-transition-timing-function: cubic-bezier(0, 0.2, 0.58, 1); }
 
-.csstransforms3d .preview-thumb.fold .panel3 .overlay {
+.csstransforms3d .inferno-preview.fold .panel3 .overlay {
   background: linear-gradient(right, transparent, rgba(0, 0, 0, 0.6));
   background: -khtml-linear-gradient(right, transparent, rgba(0, 0, 0, 0.6));
   background: -webkit-linear-gradient(right, transparent, rgba(0, 0, 0, 0.6)); }
 
-.csstransforms3d .preview-thumb.fold .panel4shadow {
+.csstransforms3d .inferno-preview.fold .panel4shadow {
   left: 75%;
   opacity: 0;
   background: rgba(0, 0, 0, 0.3); }
 
-.csstransforms3d .preview-thumb.fold:hover .panel4shadow {
+.csstransforms3d .inferno-preview.fold:hover .panel4shadow {
   opacity: 1;
   -webkit-transform: translateX(-123%) rotateY(-70deg);
   -khtml-transform: translateX(-123%) rotateY(-70deg);
@@ -139,13 +139,13 @@
    ========================================================================== */
 /* -- make sure to declare a default for every property that you want animated -- */
 /* -- general styles, including Y axis rotation -- */
-.csstransforms3d .preview-thumb.flip {
+.csstransforms3d .inferno-preview.flip {
   -webkit-perspective: 600px;
   -moz-perspective: 600px;
   -ms-perspective: 600px;
   -o-perspective: 600px;
   perspective: 600px; }
-  .csstransforms3d .preview-thumb.flip .front, .csstransforms3d .preview-thumb.flip .back {
+  .csstransforms3d .inferno-preview.flip .front, .csstransforms3d .inferno-preview.flip .back {
     position: relative;
     z-index: 900;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
@@ -169,7 +169,7 @@
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out; }
-  .csstransforms3d .preview-thumb.flip .back {
+  .csstransforms3d .inferno-preview.flip .back {
     display: block;
     position: absolute;
     top: 0;
@@ -183,14 +183,14 @@
     -ms-transform: rotateY(-180deg);
     -o-transform: rotateY(-180deg);
     transform: rotateY(-179.9999deg); }
-  .csstransforms3d .preview-thumb.flip:hover .front {
+  .csstransforms3d .inferno-preview.flip:hover .front {
     z-index: 900;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg); }
-  .csstransforms3d .preview-thumb.flip:hover .back {
+  .csstransforms3d .inferno-preview.flip:hover .back {
     z-index: 1000;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     -moz-transform: rotateX(0deg) rotateY(0deg);

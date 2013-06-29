@@ -13,11 +13,8 @@ if(!class_exists('Inferno_Preview')) {
             'preview_sliced' => 'preview-sliced.php'
         );
 
-        /**
-         * @var $args array()
-         * $args['link'] 'image' | 'post'
-         * todo: change img_width to width and img_height to height
-         */
+
+
         public function __construct($src = false, $width = false, $height = false, $effect = 'default', $permalink = false, $crop = true)
         { 
             global $post;

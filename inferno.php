@@ -13,11 +13,15 @@ if(!class_exists('Inferno')) {
     class Inferno {
 
         /**
-         * the config
+         * the config. initially turn off everything
          * 
          * @var array
          */
-        private $_config = array();
+        private $_config = array(
+            'canvas' => false,
+            'shortcodes' => false,
+            'meta-box' => false
+        );
 
         /**
          * register all styles which come with the theme framework
@@ -68,8 +72,14 @@ if(!class_exists('Inferno')) {
             array('responsive-nav', 'assets/js/responsivenav.min.js', false, '1.0.14', true)
         );
 
+
+
         public function __construct()
         {
+            $this->_config['canvas'] = get_theme_support( 'inferno-canvas' );
+            $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );
+            $this->_config['meta-box'] = get_theme_support( 'inferno-meta-box' );
+
             $this->load();
             $this->load_plugins();
             $this->load_widgets();
@@ -78,10 +88,6 @@ if(!class_exists('Inferno')) {
 
         private function load()
         {
-            $canvas = get_theme_support( 'inferno-canvas' );
-            $shortcodes = get_theme_support( 'inferno-shortcodes' );
-            $meta_boxes = get_theme_support( 'inferno-meta-boxes' );
-
             require_once(dirname(__FILE__) . '/inc/functions.php');
             require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
@@ -89,30 +95,30 @@ if(!class_exists('Inferno')) {
             // todo: remove that? require_once(dirname(__FILE__) . '/inc/class-helper.php');
 
             // options machine
-            if($canvas || $shortcodes || $meta_boxes) {
+            if($this->_config['canvas'] || $this->_config['shortcodes'] || $this->_config['meta_box']) {
                 require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
             }
             
             // meta boxes
-            if( $meta_boxes[0] ) {
+            if( $this->_config['meta-box'][0] ) {
                 require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
 
-                if(isset($meta_boxes[0]['file']) && is_string($meta_boxes[0]['file'])) {
-                    foreach( @include_once($meta_boxes[0]['file']) as $meta_box ) {
+                if(isset($this->_config['meta-box'][0]['file']) && is_string($this->_config['meta-box'][0]['file'])) {
+                    foreach( @include_once($this->_config['meta-box'][0]['file']) as $meta_box ) {
                         new Inferno_Meta_Box( $meta_box );
                     }
                 }
             }
 
             // shortcodes
-            if( $shortcodes ) {
+            if( $this->_config['shortcodes'] ) {
                 require_once( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
 
                 new Inferno_Shortcode_Generator();
             }
 
             // canvas
-            if( $canvas ) {
+            if( $this->_config['canvas'] ) {
                 require_once( dirname( __FILE__ ) . '/canvas/class-canvas.php' );
                 new Inferno_Canvas();
             }
@@ -127,6 +133,7 @@ if(!class_exists('Inferno')) {
             add_action('init', array(&$this, 'assets'));
             add_action('init', array(&$this, 'fixing_hooks'));
             add_action('after_setup_theme', array(&$this, 'translate'));
+            add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
         }
 
         public function assets()
@@ -143,6 +150,35 @@ if(!class_exists('Inferno')) {
                     wp_deregister_style($style[0]);
                     wp_register_style($style[0], get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/' . $style[1], $style[2], $style[3], $style[4]);
                 }
+            }
+        }
+
+        /**
+         * see http://wordpress.stackexchange.com/questions/41207/how-do-i-enqueue-styles-scripts-on-certain-wp-admin-pages and 
+         * http://codex.wordpress.org/Plugin_API/Action_Reference/admin_enqueue_scripts for more details. maybe improve this some time
+         */
+        public function admin_enqueue($hook)
+        {
+            if((($this->_config['shortcodes'] || $this->_config['meta-box']) && ($hook == 'post.php' || $hook == 'post-new.php')) || 
+                    ($this->_config['canvas'] && $hook == 'appearance_page_inferno-admin')) {
+                wp_enqueue_script('jquery');
+                wp_enqueue_script('jquery-ui-core');
+                wp_enqueue_script('jquery-ui-widget');
+                wp_enqueue_script('jquery-ui-tabs');
+                wp_enqueue_script('jquery-ui-slider');
+                wp_enqueue_script('jquery-ui-sortable');
+                wp_enqueue_script('jquery-ui-button');
+                wp_enqueue_script('jquery-form');
+                wp_enqueue_script('media-upload');
+                wp_enqueue_script('thickbox');
+                wp_enqueue_script('jquery-confirm');
+                wp_enqueue_script('jquery-colorpicker');
+                wp_enqueue_script('inferno-admin');
+
+                wp_enqueue_style('thickbox');
+                wp_enqueue_style('inferno-colorpicker');
+                wp_enqueue_style('font-awesome');
+                wp_enqueue_style('inferno-admin');
             }
         }
 

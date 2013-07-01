@@ -643,12 +643,12 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
  
             if( $include_without_thumbnail !== 'yes' ) $args[ 'meta_key' ] = '_thumbnail_id';
 
-            if( $categories ) {
-                $args[ 'tax_query' ] = array(
+            if($categories) {
+                $args['tax_query'] = array(array(
                     'taxonomy' => 'category',
-                    'field'    => 'slug',
-                    'terms'    => $categories
-                );
+                    'field' => 'id',
+                    'terms' => explode(',', $categories)
+                ));
             }
 
             global $post;

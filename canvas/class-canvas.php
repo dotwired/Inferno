@@ -29,41 +29,17 @@ if(!class_exists('Inferno_Canvas')) {
 
             // save data
             add_action('admin_init', array(&$this, 'save')); 
-
-            add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
         }
 
         public function admin_menu()
         {
-            add_theme_page(
+            $hook = add_theme_page(
                 'Theme Options',
                 'Theme Options',
                 'edit_theme_options',
                 'inferno-admin',
                 array(&$this, 'canvas')
             );
-        }
-
-        public function admin_enqueue()
-        {
-            wp_enqueue_script('jquery');
-            wp_enqueue_script('jquery-ui-core');
-            wp_enqueue_script('jquery-ui-widget');
-            wp_enqueue_script('jquery-ui-tabs');
-            wp_enqueue_script('jquery-ui-slider');
-            wp_enqueue_script('jquery-ui-sortable');
-            wp_enqueue_script('jquery-ui-button');
-            wp_enqueue_script('jquery-form');
-            wp_enqueue_script('media-upload');
-            wp_enqueue_script('thickbox');
-            wp_enqueue_script('jquery-confirm');
-            wp_enqueue_script('jquery-colorpicker');
-            wp_enqueue_script('inferno-admin');
-
-            wp_enqueue_style('thickbox');
-            wp_enqueue_style('inferno-colorpicker');
-            wp_enqueue_style('font-awesome');
-            wp_enqueue_style('inferno-admin');
         }
 
         private function check_nonce()

@@ -2,7 +2,8 @@
    Global Inferno styles
    ========================================================================== */
 #inferno-canvas *,
-#inferno-generator * {
+#inferno-generator *,
+.inferno-meta-box * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -khtml-box-sizing: border-box;
@@ -10,7 +11,8 @@
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box; }
 #inferno-canvas .button.button-reset,
-#inferno-generator .button.button-reset {
+#inferno-generator .button.button-reset,
+.inferno-meta-box .button.button-reset {
   color: #ef4040; }
 
 /* ==========================================================================
@@ -165,7 +167,8 @@
    Options Machine
    ========================================================================== */
 #inferno-canvas,
-#inferno-generator {
+#inferno-generator,
+.inferno-meta-box {
   /* Fields
      ========================================================================== */
   /* Text
@@ -175,24 +178,29 @@
   /* Range
      ========================================================================== */ }
   #inferno-canvas .field,
-  #inferno-generator .field {
+  #inferno-generator .field,
+  .inferno-meta-box .field {
     padding-bottom: 15px;
     margin-bottom: 30px;
     border-bottom: 1px #eee solid; }
   #inferno-canvas .field-setting,
-  #inferno-generator .field-setting {
+  #inferno-generator .field-setting,
+  .inferno-meta-box .field-setting {
     float: left;
     width: 50%;
     padding-right: 30px; }
     #inferno-canvas .field-setting.googlefont-setting,
-    #inferno-generator .field-setting.googlefont-setting {
+    #inferno-generator .field-setting.googlefont-setting,
+    .inferno-meta-box .field-setting.googlefont-setting {
       padding-top: 20px; }
   #inferno-canvas .field-details,
-  #inferno-generator .field-details {
+  #inferno-generator .field-details,
+  .inferno-meta-box .field-details {
     float: left;
     width: 50%; }
     #inferno-canvas .field-details .more,
-    #inferno-generator .field-details .more {
+    #inferno-generator .field-details .more,
+    .inferno-meta-box .field-details .more {
       font-size: 11px;
       color: #777;
       font-family: georgia, serif;
@@ -200,15 +208,20 @@
       margin-top: 10px;
       display: block; }
     #inferno-canvas .field-details.googlefont-desc,
-    #inferno-generator .field-details.googlefont-desc {
+    #inferno-generator .field-details.googlefont-desc,
+    .inferno-meta-box .field-details.googlefont-desc {
       padding-top: 20px; }
   #inferno-canvas input, #inferno-canvas textarea,
   #inferno-generator input,
-  #inferno-generator textarea {
+  #inferno-generator textarea,
+  .inferno-meta-box input,
+  .inferno-meta-box textarea {
     outline: none; }
   #inferno-canvas input[type=text], #inferno-canvas textarea,
   #inferno-generator input[type=text],
-  #inferno-generator textarea {
+  #inferno-generator textarea,
+  .inferno-meta-box input[type=text],
+  .inferno-meta-box textarea {
     background: #eeeeee;
     background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
@@ -227,20 +240,25 @@
     max-width: 100%;
     text-align: left !important; }
   #inferno-canvas textarea,
-  #inferno-generator textarea {
+  #inferno-generator textarea,
+  .inferno-meta-box textarea {
     height: 130px; }
   #inferno-canvas select,
-  #inferno-generator select {
+  #inferno-generator select,
+  .inferno-meta-box select {
     width: 100%; }
   #inferno-canvas input[type=file],
-  #inferno-generator input[type=file] {
+  #inferno-generator input[type=file],
+  .inferno-meta-box input[type=file] {
     margin-top: 7px; }
   #inferno-canvas .ip-colorpicker input[type=text],
-  #inferno-generator .ip-colorpicker input[type=text] {
+  #inferno-generator .ip-colorpicker input[type=text],
+  .inferno-meta-box .ip-colorpicker input[type=text] {
     width: 80%;
     float: left; }
   #inferno-canvas .radio .ui-button,
-  #inferno-generator .radio .ui-button {
+  #inferno-generator .radio .ui-button,
+  .inferno-meta-box .radio .ui-button {
     background: white;
     background: -moz-linear-gradient(top, white 0%, #eeeeee 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #eeeeee));
@@ -262,7 +280,8 @@
     font-size: 12px;
     font-weight: 900; }
     #inferno-canvas .radio .ui-button:hover,
-    #inferno-generator .radio .ui-button:hover {
+    #inferno-generator .radio .ui-button:hover,
+    .inferno-meta-box .radio .ui-button:hover {
       background: #eeeeee;
       background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
@@ -272,7 +291,8 @@
       background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
   #inferno-canvas .radio .ui-corner-left,
-  #inferno-generator .radio .ui-corner-left {
+  #inferno-generator .radio .ui-corner-left,
+  .inferno-meta-box .radio .ui-corner-left {
     border-top-left-radius: 4px;
     -webkit-border-top-left-radius: 4px;
     -khtml-border-top-left-radius: 4px;
@@ -284,7 +304,8 @@
     -ms-border-bottom-left-radius: 4px;
     -o-border-bottom-left-radius: 4px; }
   #inferno-canvas .radio .ui-corner-right,
-  #inferno-generator .radio .ui-corner-right {
+  #inferno-generator .radio .ui-corner-right,
+  .inferno-meta-box .radio .ui-corner-right {
     border-top-right-radius: 4px;
     -webkit-border-top-right-radius: 4px;
     -khtml-border-top-right-radius: 4px;
@@ -296,7 +317,8 @@
     -ms-border-bottom-right-radius: 4px;
     -o-border-bottom-right-radius: 4px; }
   #inferno-canvas .radio .ui-state-active,
-  #inferno-generator .radio .ui-state-active {
+  #inferno-generator .radio .ui-state-active,
+  .inferno-meta-box .radio .ui-state-active {
     box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
     -webkit-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
     -khtml-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
@@ -304,7 +326,8 @@
     -o-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
     color: #999; }
     #inferno-canvas .radio .ui-state-active:hover,
-    #inferno-generator .radio .ui-state-active:hover {
+    #inferno-generator .radio .ui-state-active:hover,
+    .inferno-meta-box .radio .ui-state-active:hover {
       background: #eeeeee;
       background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
@@ -314,26 +337,31 @@
       background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
   #inferno-canvas .radio .ui-helper-hidden-accessible,
-  #inferno-generator .radio .ui-helper-hidden-accessible {
+  #inferno-generator .radio .ui-helper-hidden-accessible,
+  .inferno-meta-box .radio .ui-helper-hidden-accessible {
     position: absolute;
     display: none; }
   #inferno-canvas .media img,
-  #inferno-generator .media img {
+  #inferno-generator .media img,
+  .inferno-meta-box .media img {
     margin-top: 10px;
     max-width: 100%;
     border: 5px #eee solid; }
   #inferno-canvas .googlefont-canvas,
-  #inferno-generator .googlefont-canvas {
+  #inferno-generator .googlefont-canvas,
+  .inferno-meta-box .googlefont-canvas {
     padding: 10px;
     border: 4px #eee solid;
     margin-top: 15px;
     font-size: 15px;
     font-family: auto; }
   #inferno-canvas .range .inferno-setting,
-  #inferno-generator .range .inferno-setting {
+  #inferno-generator .range .inferno-setting,
+  .inferno-meta-box .range .inferno-setting {
     margin-bottom: 10px; }
   #inferno-canvas .range-slider,
-  #inferno-generator .range-slider {
+  #inferno-generator .range-slider,
+  .inferno-meta-box .range-slider {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -khtml-border-radius: 6px;
@@ -348,7 +376,8 @@
     height: 6px;
     border: 1px #eee solid; }
     #inferno-canvas .range-slider a,
-    #inferno-generator .range-slider a {
+    #inferno-generator .range-slider a,
+    .inferno-meta-box .range-slider a {
       background: #eeeeee;
       background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));

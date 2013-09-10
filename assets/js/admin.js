@@ -48,16 +48,21 @@ jQuery(document).ready(function($) {
     /* Tabs
        ========================================================================== */
     $("#inferno-canvas").tabs({
-        fx: { opacity: 'toggle', duration: 200 }
+        hide: { effect: 'fadeOut', duration: 150 },
+        show: { effect: 'fadeIn', duration: 150 }
     });
 
     /* Ajax form
        ========================================================================== */
     $('#inferno-panel-form').ajaxForm(function() {
         $('.inferno-message.ajax').show(250);
+        $('.inferno-message.ajax i').animate({ fontSize: '30px' }, 200);
+        $('.inferno-message.ajax p').animate({ fontSize: '12px' }, 200);
         setTimeout(function() {
             $('.inferno-message.ajax').hide(250);
-        }, 7000);
+            $('.inferno-message.ajax i').animate({ fontSize: '0px' }, 200);
+            $('.inferno-message.ajax p').animate({ fontSize: '0px' }, 200);
+        }, 5000);
     });
 
     /* Reset button

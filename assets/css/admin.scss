@@ -245,15 +245,30 @@
        ========================================================================== */
 
     .inferno-message {
+        @include border-radius(5px);
         position: fixed;
         left: 50%;
         top: 50%;
         margin: -75px 0 0 -75px;
         width: 150px;
         height: 150px;
+        padding: 30px 10px;
         display: none;
 
         background: url(../img/dark-trans-bg.png);
+        font-size: 0px;
+        text-align: center;
+
+        i {
+            font-weight: 900;
+            color: #037c11;
+        }
+
+        p {
+            color: #ccc;
+            font-weight: 900;
+            line-height: 150%;
+        }
     }
 
 

@@ -2,7 +2,7 @@
     
     <form method="post" id="inferno-panel-form" action="<?php echo admin_url('themes.php?page=inferno-admin'); ?>" enctype="multipart/form-data">
         <div id="inferno-canvas">
-            <header class="inferno-header"><img src="http://dotwired.de/static/inferno-header.png" alt="Inferno Panel" /></header>    
+            <header class="inferno-header"><img src="http://www.themedale.net/inferno/header.png" alt="Inferno Panel" /></header>    
 
             <div class="bar">
                 <div class="inferno-version">
@@ -45,6 +45,7 @@
             <div class="clearfix"></div>
 
             <div class="inferno-message success ajax">
+                <i class="icon-ok"></i>
                 <p><?php _e('Options successfully saved!', 'inferno'); ?></p>
             </div>
         </div>

@@ -179,17 +179,22 @@ function inferno_get_widget_data_for($sidebar_name) {
 function inferno_get_twitter_count( $username = null ) {
     $count = get_transient( 'inferno_counter_twitter' );
     
-    if ( $count !== false) return $count;
-        $count = 0;
-        $dataOrig = file_get_contents( 'http://twitter.com/users/show/' . $username );
-    if ( is_wp_error( $dataOrig ) ) {
+    try {
+        if ( $count !== false) return $count;
+            $count = 0;
+            $dataOrig = file_get_contents( 'http://twitter.com/users/show/' . $username );
+        if ( is_wp_error( $dataOrig ) ) {
+            return 'Twitter follower count could not be loaded.';
+        } else {
+            @$profile = new SimpleXMLElement ( $dataOrig );
+            $countOrig = $profile->followers_count;
+            $count = strval ( $countOrig );
+        }
+        set_transient('inferno_counter_twitter', $count, 60*60*24); // 24 hour cache
+    } catch(Exception $e) {
         return 'Twitter follower count could not be loaded.';
-    } else {
-        $profile = new SimpleXMLElement ( $dataOrig );
-        $countOrig = $profile->followers_count;
-        $count = strval ( $countOrig );
     }
-    set_transient('inferno_counter_twitter', $count, 60*60*24); // 24 hour cache
+    
     return $count;
 }
 

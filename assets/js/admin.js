@@ -24,6 +24,11 @@ jQuery(document).ready(function($) {
     });
 
 
+    /* Image picker
+       ========================================================================== */
+    $('.imagepicker select').imagepicker()
+
+
     /* Google webfonts button
        ========================================================================== */
     $('#inferno-canvas .googlefont-desc, #inferno-canvas .googlefont-setting').hide();

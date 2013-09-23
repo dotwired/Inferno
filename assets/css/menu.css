@@ -1,12 +1,15 @@
+#menu-header div.menu > ul,
 #menu-header ul.menu {
   position: relative;
   z-index: 9999;
   margin: 0;
   padding: 0; }
+  #menu-header div.menu > ul li,
   #menu-header ul.menu li {
     position: relative;
     display: block;
     float: left; }
+    #menu-header div.menu > ul li:hover ul.sub-menu,
     #menu-header ul.menu li:hover ul.sub-menu {
       opacity: 1;
       -webkit-opacity: 1;

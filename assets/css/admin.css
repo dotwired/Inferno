@@ -191,6 +191,8 @@
   /* Radio
      ========================================================================== */
   /* Range
+     ========================================================================== */
+  /* Image Picker
      ========================================================================== */ }
   #inferno-canvas .field,
   #inferno-generator .field,
@@ -416,6 +418,15 @@
       width: 12px;
       height: 12px;
       outline: none; }
+  #inferno-canvas .imagepicker .thumbnail,
+  #inferno-generator .imagepicker .thumbnail,
+  .inferno-meta-box .imagepicker .thumbnail {
+    max-width: 100%; }
+    #inferno-canvas .imagepicker .thumbnail img,
+    #inferno-generator .imagepicker .thumbnail img,
+    .inferno-meta-box .imagepicker .thumbnail img {
+      max-width: 100%;
+      display: block; }
 
 /* ====================================================
 

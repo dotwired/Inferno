@@ -32,6 +32,7 @@ if(!class_exists('Inferno')) {
             array('css3d', 'assets/css/supports3d.css', array('infernal-flame'), INFERNO_VERSION, 'all'),
             array('flexslider', 'assets/css/flexslider.css', false, '2.1.1', 'all'),
             array('font-awesome', 'assets/css/font-awesome.css', false, '3.0.2', 'all'),
+            array('image-picker', 'assets/css/image-picker.css', false, '0.1.7', 'all'),
             array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
@@ -59,6 +60,7 @@ if(!class_exists('Inferno')) {
             array('jquery-fitvids', 'assets/js/jquery/jquery.fitvids.min.js', array('jquery'), '1.0', true),
             array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.min.js', array('jquery'), '2.1', true),
             array('jquery-hoverintent', 'assets/js/jquery/jquery.hoverintent.min.js', array('jquery'), 'r7', true),
+            array('jquery-image-picker', 'assets/js/jquery/jquery.image-picker.min.js', array('jquery'), '0.1.7', true),
             array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.min.js', array('jquery'), '2.1.1', true),
             array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true),
             array('jquery-isotope', 'assets/js/jquery/jquery.isotope.min.js', array('jquery'), '1.5.25', true),
@@ -171,6 +173,7 @@ if(!class_exists('Inferno')) {
                 wp_enqueue_script('jquery-form');
                 wp_enqueue_script('media-upload');
                 wp_enqueue_script('thickbox');
+                wp_enqueue_script('jquery-image-picker');
                 wp_enqueue_script('jquery-confirm');
                 wp_enqueue_script('jquery-colorpicker');
                 wp_enqueue_script('inferno-admin');
@@ -178,6 +181,7 @@ if(!class_exists('Inferno')) {
                 wp_enqueue_style('thickbox');
                 wp_enqueue_style('inferno-colorpicker');
                 wp_enqueue_style('font-awesome');
+                wp_enqueue_style('image-picker');
                 wp_enqueue_style('inferno-admin');
             }
         }
@@ -201,10 +205,6 @@ if(!class_exists('Inferno')) {
 
             if( get_theme_support( 'inferno-widget-css-classes' ) ) {
                 require_once( 'plugins/widget-css-classes/widget-css-classes.php' );
-            }
-
-            if( get_theme_support( 'inferno-meta-slider' ) ) {
-                require_once( 'plugins/ml-slider/ml-slider.php' );
             }
         }
 

@@ -1,5 +1,26 @@
 <?php
 
+/**
+ * Options Machine
+ *
+ * @version 1.0
+ * @since 0.9
+ * @package WP_Inferno
+ * 
+ * Supported options:
+ * - text           : Plain text input
+ * - textarea       : Plain text area
+ * - colorpicker    : A color picker
+ * - color          : Synonym for "colorpicker"
+ * - range          : A range slider, supports units (see http://jqueryui.com/slider/ for example)
+ * - radio          : A radio field
+ * - file           : For any file upload
+ * - media          : Upload for images (with live preview)
+ * - select         : Select input
+ * - font           : Embed font, including Google fonts
+ * - imagepicker    : Select field for images (images as preview), suitable for patterns or similar
+ * - imageselect    : Synonym for "imagepicker"
+ */
 
 if(!class_exists('Inferno_Options_Machine')) {
     class Inferno_Options_Machine {
@@ -78,6 +99,8 @@ if(!class_exists('Inferno_Options_Machine')) {
         {
             if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color')
                 $class = 'colorpicker';
+            elseif($this->setting['type'] == 'imagepicker' || $this->setting['type'] == 'imageselect')
+                $class = 'imagepicker';
             else
                 $class = $this->setting['type'];
 
@@ -108,6 +131,10 @@ if(!class_exists('Inferno_Options_Machine')) {
                     break;
                 case 'font':
                     $this->font();
+                    break;
+                case 'imagepicker':
+                case 'imageselect':
+                    $this->select();
                     break;
                 default:
                     $this->text(); // will maybe call $this->range or $this->colorpicker
@@ -223,7 +250,8 @@ if(!class_exists('Inferno_Options_Machine')) {
             <select <?php echo $this->get_name(); ?> id="<?php echo $this->setting['id']; ?>" class="inferno-setting">
                 <?php 
                 foreach($this->setting['options'] as $value => $label) : ?>
-                    <option value="<?php echo $value; ?>" <?php if($value == $this->setting_value) echo 'selected="selected"'; ?>>
+                    <option value="<?php echo $value; ?>"<?php if($value == $this->setting_value) echo ' selected="selected"'; 
+                        if($this->setting['type'] == 'imageselect' || $this->setting['type'] == 'imagepicker') echo ' data-img-src="' . $label . '"'; ?>>
                         <?php echo $label; ?>
                     </option>
                 <?php 

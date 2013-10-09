@@ -10,6 +10,8 @@ if(!class_exists('Inferno_Canvas')) {
 
         private $option_name = 'inferno';
 
+        private $advanced_mode = false;
+
         
         public function __construct()
         {
@@ -17,8 +19,15 @@ if(!class_exists('Inferno_Canvas')) {
             
             $theme_support = get_theme_support('inferno-canvas');
 
-            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) $this->theme_settings = @include_once($theme_support[0]['file']);
-            if($theme_support[0]['social-profiles'] === true) $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
+            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {
+                $this->theme_settings = @include_once($theme_support[0]['file']);
+            }
+            if($theme_support[0]['social_profiles'] === true) { 
+                $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
+            }
+            if($theme_support[0]['advanced_mode'] === true) {
+                $this->advanced_mode = true;
+            }
 
             //get options
             $inferno_option = get_option($this->option_name, array());

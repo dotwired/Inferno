@@ -90,6 +90,21 @@ jQuery(document).ready(function($) {
         $container.find('input[type="hidden"]').val('');
     });
 
+    /* Advanced mode
+       ========================================================================== */
+    $('#inferno-canvas .field.advanced').slideUp(0);
+    $('#inferno-canvas button.advanced-mode').live('click', function(e){
+        e.preventDefault();
+        var btn = $(this);
+        if(btn.hasClass('inactive')) {
+            btn.removeClass('inactive').addClass('active');
+            $('#inferno-canvas .field.advanced').slideDown(200);
+        } else if(btn.hasClass('active')) {
+            btn.removeClass('active').addClass('inactive');
+            $('#inferno-canvas .field.advanced').slideUp(200);
+        }
+    });
+
 
     /* ==========================================================================
        Inferno Shortcode Generator

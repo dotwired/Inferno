@@ -15,6 +15,9 @@
                 <ul>
                     <?php $this->menu(); ?>
                 </ul>
+                <?php if($this->advanced_mode === true) : ?>
+                <button class="advanced-mode inactive"><?php _e('Advanced mode'); ?></button>
+                <?php endif; ?>
             </nav>
             <section class="content">
                 <?php $this->tabs(); ?>

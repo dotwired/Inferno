@@ -56,9 +56,10 @@ if(!class_exists('Inferno_Options_Machine')) {
             if ( empty ( $setting ) ) return;
             $this->setting = $setting; 
             $this->setting_value = $setting_value ? $setting_value : $setting['std'];
+            if($this->setting['advanced'] === true) $class .= ' advanced';
             ?>
 
-            <div class="field">
+            <div class="field<?php echo $class; ?>">
                 <?php if($this->setting['title']) : ?>
                 <div class="field-title"><h4><?php echo $this->setting['title']; ?></h4></div>
                 <?php endif; ?>
@@ -114,7 +115,6 @@ if(!class_exists('Inferno_Options_Machine')) {
                 $class = 'imagepicker';
             else
                 $class = $this->setting['type'];
-
 
             echo '<div class="field-setting ' . $class . '">';
 

@@ -26,18 +26,30 @@ jQuery(document).ready(function($) {
 
     /* Image picker
        ========================================================================== */
-    $('.imagepicker select').imagepicker()
+    $('.imagepicker select').imagepicker();
 
 
     /* Google webfonts button
        ========================================================================== */
-    $('#inferno-canvas .googlefont-desc, #inferno-canvas .googlefont-setting').hide();
-    $('#inferno-canvas .button.googlefont').live('click', function(){
-        var googlefonts_container = $(this).parent().parent().find('.googlefont-desc, .googlefont-setting');
-        if(googlefonts_container.is(':visible'))
+    $('#inferno-canvas .googlefont-desc, #inferno-canvas .googlefont-setting, #inferno-canvas .button.googlefont.hide').hide();
+    $('#inferno-canvas .button.googlefont.hide').hide();
+    $('#inferno-canvas .button.googlefont').live('click', function() {
+        var btn = $(this);
+        var googlefonts_container = btn.parent().parent().find('.googlefont-desc, .googlefont-setting');
+        btn.parent().find('.button.googlefont').css({ display: 'none' });
+        if(btn.hasClass('hide')) {
+            btn.parent().find('.button.googlefont.show').css({ display: 'inline-block' });
             googlefonts_container.slideUp(200);
-        else
+        } else if(btn.hasClass('show')) {
+            btn.parent().find('.button.googlefont.hide').css({ display: 'inline-block' });
             googlefonts_container.slideDown(200);
+        }           
+    });
+    $('#inferno-canvas .button.googlefont.hide').live('click', function() {
+        var googlefonts_container = $(this).parent().parent().find('.googlefont-desc, .googlefont-setting');
+        $(this).parent().find('.button.googlefont.show').show();
+        $(this).hide();
+        googlefonts_container.slideUp(200);            
     });
 
     $('#inferno-canvas .googlefont-setting input').live('keyup', function(){

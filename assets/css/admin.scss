@@ -321,7 +321,7 @@
         width: 50%;
         padding-right: 30px;
 
-        &.googlefont-setting {
+        .googlefont-setting {
             padding-top: 20px;
         }
     }
@@ -339,7 +339,7 @@
             display: block;
         }
 
-        &.googlefont-desc {
+        .googlefont-desc {
             padding-top: 20px;
         }
     }
@@ -372,11 +372,6 @@
 
     input[type=file] {
         margin-top: 7px;
-    }
-
-    .ip-colorpicker input[type=text] {
-        width: 80%;
-        float: left;
     }
 
     /* Radio
@@ -425,6 +420,11 @@
         }
     }
 
+
+
+    /* Media (images)
+       ========================================================================== */
+
     .media {
         img {
             margin-top: 10px;
@@ -433,12 +433,17 @@
         }
     }
 
-    .googlefont-canvas {
-        padding: 10px;
-        border: 4px #eee solid;
-        margin-top: 15px;
-        font-size: 15px;
-        font-family: auto;
+
+    /* Colorpicker
+       ========================================================================== */
+
+    .color-picker input[type=text] {
+        width: 80%;
+        float: left;
+    }
+
+    .colorSelector {
+        float: right;
     }
 
 
@@ -487,107 +492,25 @@
             }
         }
     }
-}
 
 
 
-/* ====================================================
+    /* Font
+       ========================================================================== */
 
-	EXTENSIONS
-
-==================================================== */
-
-
-/* range */
-
-
-
-/* colorpicker */
-
-#inferno-canvas .colorSelector {
-	float: right;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-#infernal-canvas.infernal-society {
-    .form-table {
-        th {
-            width: 150px;
-            vertical-align: middle;
+    .font {
+        select {
+            margin-bottom: 10px;
         }
     }
 
-    input[type=text], select {
-        width: 250px;
-        margin-right: 20px;
-    }
-
-    .iconset-columnlabel {
-        position: relative;
-        bottom: -20px;
-        margin: 0 0 0 280px;
-
-        span {
-            display: inline-block;
-            width: 22px;
-            transform: rotate(-50deg);
-            -webkit-transform: rotate(-50deg);
-            -moz-transform: rotate(-50deg);
-            -ms-transform: rotate(-50deg);
-            -o-transform: rotate(-50deg);
-            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-        }
-    }
-
-    .profile-iconsets-available {
-        display: inline-block;
-        margin-right: 20px;
-
-        .icon-ok, .icon-remove {
-            width: 22px;
-            padding: 0 5px;
-        }
-
-        .icon-ok {
-            color: green;
-        }
-
-        .icon-remove {
-            color: red;
-        }
+    .googlefont-canvas {
+        padding: 10px;
+        border: 4px #eee solid;
+        margin-top: 15px;
+        font-size: 15px;
+        font-family: auto;
     }
 }
 
-
-
-
-
-
-
-
-/* ==========================================================================
-   Field Elements
-   ========================================================================== */
-
-/* Range Slider
-   ========================================================================== */
-
-
-/* Spinner
-   ========================================================================== */
-
-
-
-/* Media
-   ========================================================================== */
 

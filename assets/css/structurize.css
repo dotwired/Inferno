@@ -63,3 +63,9 @@
 
 .five-sixths {
   width: 82.67%; }
+
+@media only screen and (max-width: 767px) {
+  .one-half, .one-third, .two-thirds, .one-fourth, .three-fourths, .one-fifth, .two-fifths, .three-fifths, .four-fifths, .one-half.last, .one-third.last, .two-thirds.last, .one-fourth.last, .three-fourths.last, .one-fifth.last, .two-fifths.last, .three-fifths.last, .four-fifths.last {
+    float: none !important;
+    width: 100% !important;
+    margin: 0 auto 50px !important; } }

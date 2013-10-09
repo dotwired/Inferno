@@ -91,6 +91,17 @@ if(!class_exists('Inferno_Options_Machine')) {
                 <?php if(isset($this->setting['more']) && $this->setting['more'] != '') : ?>
                     <span class="more"><?php echo $this->setting['more']; ?></span>
                 <?php endif; ?>
+
+                <?php if($this->setting['type'] == 'font') : ?>
+                    <div class="googlefont-desc">
+                        <label for="<?php echo $this->setting['id'] . '_googlefont'; ?>">
+                            <?php _e('Enter the Name of the Google Webfont You want to use, for example "Droid Serif" (without quotes). Leave blank to use a Font from the selector above.', 'inferno'); ?>
+                        </label>
+                        <span class="more">
+                            <?php _e('You can view all Google fonts <a href="http://www.google.com/webfonts">here</a>. Consider, that You have to respect case-sensitivity. If the font has been successfully recognized, the demo text will change to the entered font.', 'inferno'); ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php
         }
@@ -98,7 +109,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function field_setting() 
         {
             if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color')
-                $class = 'colorpicker';
+                $class = 'color-picker';
             elseif($this->setting['type'] == 'imagepicker' || $this->setting['type'] == 'imageselect')
                 $class = 'imagepicker';
             else
@@ -144,7 +155,7 @@ if(!class_exists('Inferno_Options_Machine')) {
             echo '</div>';
         }
 
-        function text() 
+        function text()
         {
             ?>
             <input type="text" <?php echo $this->get_name(); ?> value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
@@ -311,25 +322,16 @@ if(!class_exists('Inferno_Options_Machine')) {
         function googlefont() 
         {
             ?>
-            <span class="button googlefont">
-                <?php _e('Show / hide Google Font for this Option.', 'inferno'); ?>                   
-            </span>
-        </div>
-        <div class="clear"></div>
-        <div class="field-details googlefont-desc">
-            <label for="<?php echo $this->setting['id'] . '_googlefont'; ?>">
-                <?php _e('Enter the Name of the Google Webfont You want to use, for example "Droid Serif" (without quotes). Leave blank to use a Font from the selector above.', 'inferno'); ?>
-            </label>
-            <span class="more">
-                <?php _e('You can view all Google fonts <a href="http://www.google.com/webfonts">here</a>. Consider, that You have to respect case-sensitivity. If the font has been successfully recognized, the demo text will change to the entered font.', 'inferno'); ?>
-            </span>
-        </div>
-        <div class="field-setting googlefont-setting">
-            <input type="text" name="<?php echo $this->setting['id']; ?>_googlefont" id="<?php echo $this->setting['id']; ?>_googlefont"
-                value="<?php if(!in_array($this->setting_value, $this->fonts)) echo $this->setting_value; ?>" class="inferno-setting" />
-            <div class="googlefont-canvas">
-                <?php _e('Grumpy wizards make toxic brew for the evil Queen and Jack.', 'inferno'); ?>
-                <link class="googlefont-link" href='' rel='stylesheet' type='text/css'>
+            <span class="button googlefont show"><?php _e('Show Google Font for this Option.', 'inferno'); ?></span>
+            <span class="button googlefont hide"><?php _e('Hide Google Font for this Option.', 'inferno'); ?></span>
+    
+            <div class="googlefont-setting">
+                <input type="text" name="<?php echo $this->setting['id']; ?>_googlefont" id="<?php echo $this->setting['id']; ?>_googlefont"
+                    value="<?php if(!in_array($this->setting_value, $this->fonts)) echo $this->setting_value; ?>" class="inferno-setting" />
+                <div class="googlefont-canvas">
+                    <?php _e('Grumpy wizards make toxic brew for the evil Queen and Jack.', 'inferno'); ?>
+                    <link class="googlefont-link" href='' rel='stylesheet' type='text/css'>
+                </div>
             </div>
             <?php
         }

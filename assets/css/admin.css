@@ -190,9 +190,15 @@
      ========================================================================== */
   /* Radio
      ========================================================================== */
+  /* Media (images)
+     ========================================================================== */
+  /* Colorpicker
+     ========================================================================== */
   /* Range
      ========================================================================== */
   /* Image Picker
+     ========================================================================== */
+  /* Font
      ========================================================================== */ }
   #inferno-canvas .field,
   #inferno-generator .field,
@@ -206,9 +212,9 @@
     float: left;
     width: 50%;
     padding-right: 30px; }
-    #inferno-canvas .field-setting.googlefont-setting,
-    #inferno-generator .field-setting.googlefont-setting,
-    .inferno-meta-box .field-setting.googlefont-setting {
+    #inferno-canvas .field-setting .googlefont-setting,
+    #inferno-generator .field-setting .googlefont-setting,
+    .inferno-meta-box .field-setting .googlefont-setting {
       padding-top: 20px; }
   #inferno-canvas .field-details,
   #inferno-generator .field-details,
@@ -224,9 +230,9 @@
       font-style: italic;
       margin-top: 10px;
       display: block; }
-    #inferno-canvas .field-details.googlefont-desc,
-    #inferno-generator .field-details.googlefont-desc,
-    .inferno-meta-box .field-details.googlefont-desc {
+    #inferno-canvas .field-details .googlefont-desc,
+    #inferno-generator .field-details .googlefont-desc,
+    .inferno-meta-box .field-details .googlefont-desc {
       padding-top: 20px; }
   #inferno-canvas input, #inferno-canvas textarea,
   #inferno-generator input,
@@ -268,11 +274,6 @@
   #inferno-generator input[type=file],
   .inferno-meta-box input[type=file] {
     margin-top: 7px; }
-  #inferno-canvas .ip-colorpicker input[type=text],
-  #inferno-generator .ip-colorpicker input[type=text],
-  .inferno-meta-box .ip-colorpicker input[type=text] {
-    width: 80%;
-    float: left; }
   #inferno-canvas .radio .ui-button,
   #inferno-generator .radio .ui-button,
   .inferno-meta-box .radio .ui-button {
@@ -364,14 +365,15 @@
     margin-top: 10px;
     max-width: 100%;
     border: 5px #eee solid; }
-  #inferno-canvas .googlefont-canvas,
-  #inferno-generator .googlefont-canvas,
-  .inferno-meta-box .googlefont-canvas {
-    padding: 10px;
-    border: 4px #eee solid;
-    margin-top: 15px;
-    font-size: 15px;
-    font-family: auto; }
+  #inferno-canvas .color-picker input[type=text],
+  #inferno-generator .color-picker input[type=text],
+  .inferno-meta-box .color-picker input[type=text] {
+    width: 80%;
+    float: left; }
+  #inferno-canvas .colorSelector,
+  #inferno-generator .colorSelector,
+  .inferno-meta-box .colorSelector {
+    float: right; }
   #inferno-canvas .range .inferno-setting,
   #inferno-generator .range .inferno-setting,
   .inferno-meta-box .range .inferno-setting {
@@ -427,53 +429,15 @@
     .inferno-meta-box .imagepicker .thumbnail img {
       max-width: 100%;
       display: block; }
-
-/* ====================================================
-
-	EXTENSIONS
-
-==================================================== */
-/* range */
-/* colorpicker */
-#inferno-canvas .colorSelector {
-  float: right; }
-
-#infernal-canvas.infernal-society .form-table th {
-  width: 150px;
-  vertical-align: middle; }
-#infernal-canvas.infernal-society input[type=text], #infernal-canvas.infernal-society select {
-  width: 250px;
-  margin-right: 20px; }
-#infernal-canvas.infernal-society .iconset-columnlabel {
-  position: relative;
-  bottom: -20px;
-  margin: 0 0 0 280px; }
-  #infernal-canvas.infernal-society .iconset-columnlabel span {
-    display: inline-block;
-    width: 22px;
-    transform: rotate(-50deg);
-    -webkit-transform: rotate(-50deg);
-    -moz-transform: rotate(-50deg);
-    -ms-transform: rotate(-50deg);
-    -o-transform: rotate(-50deg);
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
-#infernal-canvas.infernal-society .profile-iconsets-available {
-  display: inline-block;
-  margin-right: 20px; }
-  #infernal-canvas.infernal-society .profile-iconsets-available .icon-ok, #infernal-canvas.infernal-society .profile-iconsets-available .icon-remove {
-    width: 22px;
-    padding: 0 5px; }
-  #infernal-canvas.infernal-society .profile-iconsets-available .icon-ok {
-    color: green; }
-  #infernal-canvas.infernal-society .profile-iconsets-available .icon-remove {
-    color: red; }
-
-/* ==========================================================================
-   Field Elements
-   ========================================================================== */
-/* Range Slider
-   ========================================================================== */
-/* Spinner
-   ========================================================================== */
-/* Media
-   ========================================================================== */
+  #inferno-canvas .font select,
+  #inferno-generator .font select,
+  .inferno-meta-box .font select {
+    margin-bottom: 10px; }
+  #inferno-canvas .googlefont-canvas,
+  #inferno-generator .googlefont-canvas,
+  .inferno-meta-box .googlefont-canvas {
+    padding: 10px;
+    border: 4px #eee solid;
+    margin-top: 15px;
+    font-size: 15px;
+    font-family: auto; }

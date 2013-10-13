@@ -1,3 +1,81 @@
+@-webkit-keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    -webkit-box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    -webkit-box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    -webkit-box-shadow: none; } }
+
+@-khtml-keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    -khtml-box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    -khtml-box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    -khtml-box-shadow: none; } }
+
+@-moz-keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    -moz-box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    -moz-box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    -moz-box-shadow: none; } }
+
+@-ms-keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    -ms-box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    -ms-box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    -ms-box-shadow: none; } }
+
+@-o-keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    -o-box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    -o-box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    -o-box-shadow: none; } }
+
+@keyframes advanced-pulse {
+  from {
+    background-color: #749a02;
+    box-shadow: none; }
+
+  50% {
+    background-color: #91bd09;
+    box-shadow: 0 0 18px #91bd09; }
+
+  to {
+    background-color: #749a02;
+    box-shadow: none; } }
+
 /* ==========================================================================
    Global Inferno styles
    ========================================================================== */
@@ -100,7 +178,7 @@
           -ms-text-shadow: 1px 1px 1px black;
           -o-text-shadow: 1px 1px 1px black;
           color: #fff; }
-        #inferno-canvas .menu li.ui-state-active div {
+        #inferno-canvas .menu li.ui-state-active i {
           color: #f05b23; }
     #inferno-canvas .menu a {
       text-shadow: 1px 1px 1px white;
@@ -115,11 +193,45 @@
       line-height: 35px;
       font-weight: 500;
       outline: none; }
-      #inferno-canvas .menu a div {
+      #inferno-canvas .menu a i {
         display: inline-block;
-        margin-right: 10px; }
+        width: 20px; }
       #inferno-canvas .menu a span {
         display: inline-block; }
+    #inferno-canvas .menu button.advanced-mode {
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -khtml-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      display: block;
+      margin: 20px auto;
+      padding: 7px 12px;
+      font-weight: 500;
+      color: #fff;
+      border: none;
+      background: #ccc;
+      outline: none;
+      cursor: pointer; }
+      #inferno-canvas .menu button.advanced-mode.active {
+        -webkit-animation-name: advanced-pulse;
+        -webkit-animation-duration: 4s;
+        -webkit-animation-iteration-count: infinite;
+        -khtml-animation-name: advanced-pulse;
+        -khtml-animation-duration: 4s;
+        -khtml-animation-iteration-count: infinite;
+        -moz-animation-name: advanced-pulse;
+        -moz-animation-duration: 4s;
+        -moz-animation-iteration-count: infinite;
+        -ms-animation-name: advanced-pulse;
+        -ms-animation-duration: 4s;
+        -ms-animation-iteration-count: infinite;
+        -o-animation-name: advanced-pulse;
+        -o-animation-duration: 4s;
+        -o-animation-iteration-count: infinite;
+        animation-name: advanced-pulse;
+        animation-duration: 4s;
+        animation-iteration-count: infinite; }
   #inferno-canvas .footer {
     background: #555555;
     background: -moz-linear-gradient(top, #555555 0%, #333333 100%);

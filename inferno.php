@@ -29,7 +29,7 @@ if(!class_exists('Inferno')) {
          * @var array
          */
         public $register_styles = array(
-            array('css3d', 'assets/css/supports3d.css', array('infernal-flame'), INFERNO_VERSION, 'all'),
+            array('css3d', 'assets/css/supports3d.css', false, INFERNO_VERSION, 'all'),
             array('flexslider', 'assets/css/flexslider.css', false, '2.1.1', 'all'),
             array('font-awesome', 'assets/css/font-awesome.css', false, '3.0.2', 'all'),
             array('image-picker', 'assets/css/image-picker.css', false, '0.1.7', 'all'),
@@ -37,6 +37,7 @@ if(!class_exists('Inferno')) {
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
             array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
+            array('magnific-popup', 'assets/css/magnific-popup.css', false, '0.9.7', 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
             array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
             array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
@@ -64,6 +65,7 @@ if(!class_exists('Inferno')) {
             array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.min.js', array('jquery'), '2.1.1', true),
             array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true),
             array('jquery-isotope', 'assets/js/jquery/jquery.isotope.min.js', array('jquery'), '1.5.25', true),
+            array('jquery-magnific-popup', 'assets/js/jquery/jquery.magnific-popup.min.js', array('jquery'), '0.9.7', true),
             array('jquery-placeholder', 'assets/js/jquery/jquery.placeholder.min.js', array('jquery'), '2.0.7', true),
             array('jquery-rotate', 'assets/js/jquery/jquery.rotate.min.js', array('jquery'), null, true),
             array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.min.js', array('jquery'), '1.4.5 BETA', true),

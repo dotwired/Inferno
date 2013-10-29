@@ -13,18 +13,20 @@ if(!class_exists('Inferno')) {
     class Inferno {
 
         /**
-         * the config. initially turn off everything
+         * This is the config. Initially turn off everything.
          * 
          * @var array
          */
         private $_config = array(
-            'canvas' => false,
-            'shortcodes' => false,
-            'meta-box' => false
+            'canvas'      => false,
+            'shortcodes'  => false,
+            'meta-box'    => false,
+            'breadcrumbs' => false,
+            'portfolio'   => false
         );
 
         /**
-         * register all styles which come with the theme framework
+         * Register all styles which come with the theme framework.
          * 
          * @var array
          */
@@ -37,6 +39,7 @@ if(!class_exists('Inferno')) {
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
             array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
+            array('inferno-portfolio', 'assets/css/portfolio.css', false, INFERNO_VERSION, 'all'),
             array('magnific-popup', 'assets/css/magnific-popup.css', false, '0.9.7', 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
             array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
@@ -45,7 +48,7 @@ if(!class_exists('Inferno')) {
         );
 
         /**
-         * register all scripts which come with the theme framework
+         * Register all scripts which come with the theme framework.
          * 
          * @var array
          */
@@ -77,12 +80,15 @@ if(!class_exists('Inferno')) {
         );
 
 
-
+        /**
+         * Get configuration for optional modules and call initialization functions.
+         */
         public function __construct()
         {
-            $this->_config['canvas'] = get_theme_support( 'inferno-canvas' );
+            $this->_config['canvas']     = get_theme_support( 'inferno-canvas' );
             $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );
-            $this->_config['meta-box'] = get_theme_support( 'inferno-meta-box' );
+            $this->_config['meta-box']   = get_theme_support( 'inferno-meta-box' );
+            $this->_config['portfolio']  = get_theme_support( 'inferno-portfolio' );
 
             $this->load();
             $this->load_plugins();
@@ -90,6 +96,9 @@ if(!class_exists('Inferno')) {
             $this->actions();
         }
 
+        /**
+         * Include and initialize basic resources. Check for optional modules to load, if enqueued, load them, too.
+         */
         private function load()
         {
             require_once(dirname(__FILE__) . '/inc/functions.php');
@@ -119,6 +128,12 @@ if(!class_exists('Inferno')) {
                 require_once( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
 
                 new Inferno_Shortcode_Generator();
+            }
+
+            if( $this->_config['portfolio'] ) {
+                require_once( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
+
+                new Inferno_Portfolio();
             }
 
             // canvas

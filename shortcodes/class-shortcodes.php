@@ -504,18 +504,18 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
         ======================================================================== */
 
         /**
-         * todo: bring it back. maybe. maybe not.
          * Displays the portfolio in an even more extended way then [recent_posts]
+         * TODO: support infinite loading / scrolling
          * 
          * @param  [type] $atts    [description]
          * @param  [type] $content [description]
          * @return [type]          [description]
-         *
+         */
         public function portfolio( $atts, $content = null ) {
-            global $infernal_portfolio, $infernal_flame;
-
-            if(!is_object( $infernal_portfolio ) )
+            if(!class_exists('Inferno_Portfolio')) {
+                // TODO: Implement a notice / alert system for the admin or check out if there is a WP native one
                 return;
+            }
 
             $atts = shortcode_atts(array(
                 'categories' => null,
@@ -534,18 +534,15 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             if( $atts[ 'filter' ] == 'yes' ) $atts[ 'filter' ] = true; else $atts[ 'filter' ] = false;
             if( $atts[ 'lightbox' ] == 'yes' ) $atts[ 'lightbox' ] = true; else $atts[ 'lightbox' ] = false;
             if( $atts[ 'link' ] != 'media' ) $atts[ 'lightbox' ] = false;
-            if( $atts[ 'infinite' ] != 'click' || $atts[ 'infinite' ] != 'auto' ) $atts[ 'infinite' ] = false;
 
             ob_start();
             
-            echo $infernal_portfolio->get_output( $atts );
+            Inferno_Portfolio::get_output( $atts );
 
             $output = ob_get_contents();
             ob_end_clean();
             return $output;
         }
-        */
-
 
 
 

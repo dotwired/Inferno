@@ -54,6 +54,7 @@ if(!class_exists('Inferno_Meta_Box')) {
             }
         }
 
+        /*
         public function admin_enqueue()
         {
             wp_enqueue_script('jquery');
@@ -75,6 +76,7 @@ if(!class_exists('Inferno_Meta_Box')) {
             wp_enqueue_style('font-awesome');
             wp_enqueue_style('inferno');
         }
+        */
 
         public function save($post_id)
         {

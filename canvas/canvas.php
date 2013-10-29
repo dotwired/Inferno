@@ -16,7 +16,7 @@
                     <?php $this->menu(); ?>
                 </ul>
                 <?php if($this->advanced_mode === true) : ?>
-                <button class="advanced-mode inactive"><?php _e('Advanced mode'); ?></button>
+                <button class="advanced-mode inactive"><?php _e('Advanced mode', 'inferno'); ?></button>
                 <?php endif; ?>
             </nav>
             <section class="content">

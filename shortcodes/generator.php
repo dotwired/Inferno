@@ -27,5 +27,5 @@ $generator = new Inferno_Shortcode_Generator();
 <input id="inferno-shortcode-content-att" type="hidden" value="<?php echo isset($shortcode['content_att']) ? $shortcode['content_att'] : null; ?>" />
 <input id="inferno-generator-result" type="hidden" value="" />
 
-<button class="button button-primary button-large" id="inferno-generator-insert"><?php _e("Insert Shortcode into Editor"); ?></button>
+<button class="button button-primary button-large" id="inferno-generator-insert"><?php _e("Insert Shortcode into Editor", 'inferno'); ?></button>
 <?php endif; endforeach; ?>

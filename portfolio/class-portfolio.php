@@ -12,6 +12,8 @@ if(!class_exists('Inferno_Portfolio')) {
             'hover_effect' => 'fold'
         );
 
+        public static $portfolio_count = 1;
+
         function __construct()
         {
             add_action('init', array(&$this, 'init'), 1);
@@ -25,9 +27,9 @@ if(!class_exists('Inferno_Portfolio')) {
             wp_enqueue_script('animate-scale');
             wp_enqueue_script('css-transform');
             wp_enqueue_script('jquery-isotope');
-            wp_enqueue_script('inferno-portfolio');
 
             wp_enqueue_style('inferno-portfolio');
+            wp_enqueue_style('css3d');
         }
 
 
@@ -37,35 +39,34 @@ if(!class_exists('Inferno_Portfolio')) {
 
             // create slide post type
             $portfolio_labels = array(
-              'name'               => __('Portfolio', 'inferno'),
-              'singular_name'      => __('Work', 'inferno'),
-              'add_new'            => __('Add new', 'inferno'),
-              'add_new_item'       => __('Add new work', 'inferno'),
-              'edit_item'          => __('Edit work', 'inferno'),
-              'new_item'           => __('New work', 'inferno'),
-              'all_items'          => __('All works', 'inferno'),
-              'view_item'          => __('View work', 'inferno'),
-              'search_items'       => __('Search portfolio', 'inferno'),
-              'not_found'          => __('No work found', 'inferno'),
-              'not_found_in_trash' => __('No works found in Trash', 'inferno'), 
-              'parent_item_colon'  => '',
-              'menu_name'          => __('Portfolio', 'inferno')
-
+                'name'               => __('Portfolio', 'inferno'),
+                'singular_name'      => __('Work', 'inferno'),
+                'add_new'            => __('Add new', 'inferno'),
+                'add_new_item'       => __('Add new work', 'inferno'),
+                'edit_item'          => __('Edit work', 'inferno'),
+                'new_item'           => __('New work', 'inferno'),
+                'all_items'          => __('All works', 'inferno'),
+                'view_item'          => __('View work', 'inferno'),
+                'search_items'       => __('Search portfolio', 'inferno'),
+                'not_found'          => __('No work found', 'inferno'),
+                'not_found_in_trash' => __('No works found in Trash', 'inferno'), 
+                'parent_item_colon'  => '',
+                'menu_name'          => __('Portfolio', 'inferno')
             );
 
             $args = array(
-              'labels'             => $portfolio_labels,
-              'public'             => true,
-              'publicly_queryable' => true,
-              'show_ui'            => true, 
-              'show_in_menu'       => true, 
-              'query_var'          => true,
-              'rewrite'            => array('slug' => __('portfolio', 'URL slug', 'inferno')),
-              'capability_type'    => 'page',
-              'has_archive'        => true, 
-              'hierarchical'       => false,
-              'menu_position'      => null,
-              'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt')
+                'labels'             => $portfolio_labels,
+                'public'             => true,
+                'publicly_queryable' => true,
+                'show_ui'            => true, 
+                'show_in_menu'       => true, 
+                'query_var'          => true,
+                'rewrite'            => array('slug' => __('portfolio', 'URL slug', 'inferno')),
+                'capability_type'    => 'page',
+                'has_archive'        => true, 
+                'hierarchical'       => false,
+                'menu_position'      => null,
+                'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt')
             ); 
             register_post_type('portfolio', $args);
 
@@ -102,105 +103,100 @@ if(!class_exists('Inferno_Portfolio')) {
          */
         private static function filter($categories = array())
         {
-            if(!empty($categories)) {
-                $portfolio_categories = get_terms('portfolio_category', array('include' => $categories)); 
-            } else {
-                $portfolio_categories = get_terms('portfolio_category', 'object'); 
-            }
+            $portfolio_categories = get_terms( 'portfolio_category' );
+            $count = count( $portfolio_categories );
 
-            if($portfolio_categories) {
-                echo '<div class="portfolio-filter-container">';
-                echo '<ul class="portfolio-filter">';
-                echo '<li class="selected"><a href="#" data-filter="*">' . __('Show all', 'inferno') . '</a></li>';
-                foreach($portfolio_categories  as $portfolio_category) {
-                    echo '<li><a href="#" data-filter=".' . $portfolio_category->slug . '">' . $portfolio_category->name . '</a></li>';
-                }
-                echo '</ul>';
-                echo '<div class="clear"></div>';
-                echo '</div>';
-            }  
+            if($count == 0) return;
+
+            echo '<ul class="portfolio-filter">';
+            echo '<li><a href="#" data-filter="*">' . __('Show all', 'inferno') . '</a></li>';
+            foreach( $portfolio_categories as $term ) {
+                echo '<li><a href="#" data-filter=".' . $term->slug . '">' . $term->name . '</a></li>';
+            }
+            echo '</ul>';
+            echo '<div class="clear"></div>';
         }
 
         /**
-         * print the portfolio list
+         * print the filter for the portfolio
          * 
          * @param  array  $args [description]
          * @return [type]       [description]
          */
-        private static function work_list($args = array())
+        private static function worklist($atts = array())
         {
-            echo '<ul class="portfolio-list" data-columns="' . $args['columns'] . '" data-basewidth="' . $args['img_width'] . '" data-baseheight="' . $args['img_height'] . '" data-infinite="' . ((!$args['infinite']) ? 'off' : $args['infinite']) . '">';
+            $atts = shortcode_atts(array(
+                'categories' => null,
+                'filter'     => true,
+                'img_width'  => 300,
+                'img_height' => 150,
+                'limit'      => false,
+                'effect'     => 'default',
+                'link'       => 'post',
+                'lightbox'   => true
+            ), $atts );
 
-            $query_args = array(
-                'numberposts' => $args['limit'],
-                'post_type' => 'portfolio'
-            );
 
-            global $wp_query, $post;
-            $ajax = ($args['ajax'] == true) ? ' ajax' : null;
+            $portfolio_query = new WP_Query(array(
+                'post_type' => 'portfolio',
+                'numberposts' => $atts['limit']
+            ));
 
-            $portfoliolist = get_posts($query_args);
-            $i = 1;
-            foreach($portfoliolist as $post) : setup_postdata($post); 
-                $data_class = '';
-                $term_list = wp_get_post_terms($post->ID, 'portfolio_category', array('fields' => 'all'));
-                foreach($term_list as $term)
-                    $data_class .= ' ' . $term->slug;
+            if($portfolio_query->have_posts()) {
+                echo '<div class="portfolio-list">';
+                $i = 1;
 
-                echo '<li data-id="id-' . $i . '" class="preview-box ' . $ajax . $data_class . '">';
-                $preview_args = array(
-                    'img_url'        => false,
-                    'img_width'      => $args['img_width'],
-                    'img_height'     => $args['img_height'],
-                    'effect'         => $args['effect'],
-                    'template_hover' => 'preview-work-hover',
-                    'link'           => $args['link'],
-                    'lightbox'       => $args['lightbox']
-                );
+                while($portfolio_query->have_posts()) {
+                    $portfolio_query->the_post();
+                    $data_class = '';
+                    $terms = wp_get_post_terms(get_the_ID(), 'portfolio_category', array('fields' => 'all'));
+                    foreach($terms as $term) $data_class .= $term->slug . ' ';
 
-                $preview = new Inferno_Preview(false, $args['img_width'], $args['img_height'], $args['effect'], $args['link']);
-                echo $preview->get_output();
-                echo '</li>';
-                $i++;
-            endforeach;
-            echo '</ul>';
+                    echo '<div data-id="' . $i . '" class="preview-box ' . $data_class . '">';
+                    $preview = new Inferno_preview(false, $atts['img_width'], $atts['img_height'], $atts['effect'], $atts['link']);
+                    echo $preview->get_output();
+                    echo '</div>';
+                    $i++;
+                }
+
+                echo '</div>';
+            }
+
+            wp_reset_postdata();
         }
 
 
         /**
          * @var $args string|array containing ids of categories to include
          */
-        public static function get_output($args = array())
+        public static function get_output($atts = array())
         {
-            $args = shortcode_atts(array(
+            $atts = shortcode_atts(array(
                 'categories' => null,
-                'img_width'  => 300,
-                'img_height' => 150,
-                'columns'    => 3,
                 'filter'     => true,
-                'limit'      => 3,
+                'limit'      => false,
                 'effect'     => 'default',
                 'link'       => 'post',
-                'ajax'       => false,
-                'lightbox'   => false
-            ), $args);
+                'lightbox'   => true
+            ), $atts );
 
             ob_start();
 
-            echo '<div class="inferno-portfolio">';
+            echo '<div id="inferno-portfolio-' . self::$portfolio_count . '" class="inferno-portfolio">';
 
-            if(is_string($args['categories'])) {
+            if(is_string($atts['categories'])) {
                 $categories = explode(',', $categories);
                 $categories = array_map('trim', $categories);
             }
 
-            if(!is_array($args['categories']))
-                $args['categories'] = null;
+            if(!is_array($atts['categories'])) {
+                $atts['categories'] = null;
+            }
 
-            if($args['filter'] == true) self::filter($args['categories']);
+            if($atts['filter'] == true) self::filter($atts['categories']);
 
-            self::work_list($args);
-
+            self::worklist($atts);
+            // self::javascript(); TODO at some time let create INFERNO the js
             echo '</div>';
 
             $output = ob_get_contents();
@@ -209,5 +205,9 @@ if(!class_exists('Inferno_Portfolio')) {
             return $output;
         }
 
+
+        public static function javascript() {
+            require_once('embedded-js.php');
+        }
     }
 }

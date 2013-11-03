@@ -36,8 +36,11 @@ if(!class_exists('Inferno_Preview')) {
             $thumb_url = aq_resize($src, $width, $height, true, true, true);
             ob_start();
 
-            if($permalink) echo '<a href="' . $permalink . '" class="inferno-preview ' . $effect . '">';
-            else echo '<div class="inferno-preview ' . $effect . '">';
+            if($permalink) {
+                echo '<a href="' . $permalink . '" class="inferno-preview ' . $effect . '">';
+            } else {
+                echo '<div class="inferno-preview ' . $effect . '">';
+            }
 
             switch($effect) {
                 case 'fold':
@@ -55,8 +58,12 @@ if(!class_exists('Inferno_Preview')) {
                     $this->preview_default($thumb_url);
                     break;
             }
-            if($permalink) echo '</a>';
-            else echo '</div>';
+
+            if($permalink) {
+                echo '</a>';
+            } else {
+                echo '</div>';
+            }
 
             $output = ob_get_contents();
             $this->output = $output;

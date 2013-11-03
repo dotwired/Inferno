@@ -43,6 +43,7 @@ if(!class_exists('Inferno')) {
             array('magnific-popup', 'assets/css/magnific-popup.css', false, '0.9.7', 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
             array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
+            array('structurize-responsive', 'assets/css/structurize-responsive.css', false, INFERNO_VERSION, 'all'),
             array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
             array('wpstyles', 'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all')  
         );
@@ -53,8 +54,8 @@ if(!class_exists('Inferno')) {
          * @var array
          */
         public $register_scripts = array(
-            array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
             array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
+            array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
             array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.min.js', array('jquery'), '1.4.10', true),
             array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.min.js', array('jquery'), null, true),
             array('jquery-cookie', 'assets/js/jquery/jquery.cookie.min.js', array('jquery'), '1.3.1', true),

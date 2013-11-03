@@ -299,7 +299,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             ), $atts, 'circle' );
 
             $width = isset( $atts[ 'width' ] ) ? ' style="width: ' . $atts[ 'width' ] . ';"' : null;
-            $align = isset( $atts[ 'align' ] ) && $atts[ 'align' ] != 'no' ? ' align' . $atts[ 'align' ] : null; 
+            $align = isset( $atts[ 'align' ] ) && $atts[ 'align' ] != 'no' && !$atts[ 'align' ] ? ' align' . $atts[ 'align' ] : null; 
 
             return '<div class="infernal-circle' . $align . '"' . $width . '><div class="dummy"></div><div class="radius"><div class="element">'.do_shortcode( $content ).'</div></div></div>';
         }
@@ -502,14 +502,16 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
             $atts = shortcode_atts(array(
                 'categories' => null,
                 'filter'     => true,
+                'img_width'  => 300,
+                'img_height' => 150,
                 'limit'      => false,
                 'effect'     => 'default',
                 'link'       => 'post',
                 'lightbox'   => true
             ), $atts, 'portfolio' );
 
-            $atts['filter'] = filter_var( $args['filter'], FILTER_VALIDATE_BOOLEAN );
-            $atts['lightbox'] = filter_var( $args['lightbox'], FILTER_VALIDATE_BOOLEAN );
+            $atts['filter'] = filter_var( $atts['filter'], FILTER_VALIDATE_BOOLEAN );
+            $atts['lightbox'] = filter_var( $atts['lightbox'], FILTER_VALIDATE_BOOLEAN );
             if( $atts[ 'link' ] != 'media' ) $atts[ 'lightbox' ] = false;
 
             ob_start();

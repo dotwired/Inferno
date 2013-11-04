@@ -1,0 +1,1 @@
+<span><?php _e('View', 'inferno'); ?></span>

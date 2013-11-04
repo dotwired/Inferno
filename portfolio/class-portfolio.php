@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Is the static way really the better way... ?
+ * 
  */
 if(!class_exists('Inferno_Portfolio')) {
 
@@ -9,13 +9,33 @@ if(!class_exists('Inferno_Portfolio')) {
 
         // some default settings
         public $settings = array(
-            'hover_effect' => 'fold'
+            'categories' => null,
+            'filter'     => true,
+            'img_width'  => 300,
+            'img_height' => 150,
+            'limit'      => false,
+            'effect'     => 'default',
+            'link'       => 'post',
+            'lightbox'   => true
         );
 
-        public static $portfolio_count = 1;
+        public static $portfolio_count = 0;
 
-        function __construct()
+        public function __construct( $atts = array() )
         {
+            $atts = shortcode_atts(array(
+                'categories' => null,
+                'filter'     => true,
+                'img_width'  => 300,
+                'img_height' => 150,
+                'limit'      => false,
+                'effect'     => 'default',
+                'link'       => 'post',
+                'lightbox'   => true
+            ), $atts );
+
+            $this->settings = $atts;
+
             add_action('init', array(&$this, 'init'), 1);
             add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
         }
@@ -33,7 +53,7 @@ if(!class_exists('Inferno_Portfolio')) {
         }
 
 
-        function init()
+        public function init()
         {
             add_theme_support('post-thumbnails');
 
@@ -101,7 +121,7 @@ if(!class_exists('Inferno_Portfolio')) {
         /**
          * The image filter
          */
-        private static function filter($categories = array())
+        private function filter($categories = array())
         {
             $portfolio_categories = get_terms( 'portfolio_category' );
             $count = count( $portfolio_categories );
@@ -123,23 +143,11 @@ if(!class_exists('Inferno_Portfolio')) {
          * @param  array  $args [description]
          * @return [type]       [description]
          */
-        private static function worklist($atts = array())
+        private function worklist()
         {
-            $atts = shortcode_atts(array(
-                'categories' => null,
-                'filter'     => true,
-                'img_width'  => 300,
-                'img_height' => 150,
-                'limit'      => false,
-                'effect'     => 'default',
-                'link'       => 'post',
-                'lightbox'   => true
-            ), $atts );
-
-
             $portfolio_query = new WP_Query(array(
                 'post_type' => 'portfolio',
-                'numberposts' => $atts['limit']
+                'numberposts' => $this->settings['limit']
             ));
 
             if($portfolio_query->have_posts()) {
@@ -152,8 +160,24 @@ if(!class_exists('Inferno_Portfolio')) {
                     $terms = wp_get_post_terms(get_the_ID(), 'portfolio_category', array('fields' => 'all'));
                     foreach($terms as $term) $data_class .= $term->slug . ' ';
 
+                    $link = false;
+                    if($this->settings['link'] == 'post') {
+                        $link = get_permalink();
+                    } elseif($this->settings['link'] == 'media') {
+                        $link = null;
+                    }
+
                     echo '<div data-id="' . $i . '" class="preview-box ' . $data_class . '">';
-                    $preview = new Inferno_preview(false, $atts['img_width'], $atts['img_height'], $atts['effect'], $atts['link']);
+                    $preview = new Inferno_preview(
+                        false, 
+                        $this->settings['img_width'], 
+                        $this->settings['img_height'],  
+                        $link,
+                        true,
+                        $this->settings['effect'],
+                        'portfolio'
+                    );
+
                     echo $preview->get_output();
                     echo '</div>';
                     $i++;
@@ -169,34 +193,25 @@ if(!class_exists('Inferno_Portfolio')) {
         /**
          * @var $args string|array containing ids of categories to include
          */
-        public static function get_output($atts = array())
+        public function get_output()
         {
-            $atts = shortcode_atts(array(
-                'categories' => null,
-                'filter'     => true,
-                'limit'      => false,
-                'effect'     => 'default',
-                'link'       => 'post',
-                'lightbox'   => true
-            ), $atts );
-
             ob_start();
 
-            echo '<div id="inferno-portfolio-' . self::$portfolio_count . '" class="inferno-portfolio">';
+            echo '<div id="inferno-portfolio-' . ++self::$portfolio_count . '" class="inferno-portfolio">';
 
-            if(is_string($atts['categories'])) {
+            if(is_string($this->settings['categories'])) {
                 $categories = explode(',', $categories);
                 $categories = array_map('trim', $categories);
             }
 
-            if(!is_array($atts['categories'])) {
-                $atts['categories'] = null;
+            if(!is_array($this->settings['categories'])) {
+                $this->settings['categories'] = null;
             }
 
-            if($atts['filter'] == true) self::filter($atts['categories']);
+            if($this->settings['filter'] == true) $this->filter($this->settings['categories']);
 
-            self::worklist($atts);
-            // self::javascript(); TODO at some time let create INFERNO the js
+            $this->worklist($this->settings);
+            // $this->javascript(); TODO at some time let create INFERNO the js
             echo '</div>';
 
             $output = ob_get_contents();
@@ -206,7 +221,7 @@ if(!class_exists('Inferno_Portfolio')) {
         }
 
 
-        public static function javascript() {
+        public function javascript() {
             require_once('embedded-js.php');
         }
     }

@@ -516,7 +516,8 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
             ob_start();
             
-            echo Inferno_Portfolio::get_output( $atts );
+            $portfolio = new Inferno_Portfolio($atts);
+            echo $portfolio->get_output();
 
             $output = ob_get_contents();
             ob_end_clean();
@@ -637,7 +638,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
                 echo '<div class="inferno-recent-posts">';
                 foreach( $postslist as $post ) : setup_postdata( $post );
                     if( $last ) $lastclass = ( ( $i / (int) $last ) == 1 ) ? ' last' : null;
-                        require( $this->shortcode_templates[ 'recent_posts' ] );
+                        include(locate_template( $this->shortcode_templates[ 'recent_posts' ] ) );
                     $i++;
                 endforeach;
                 echo '<div class="clear"></div>';

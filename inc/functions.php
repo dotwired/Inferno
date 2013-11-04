@@ -38,10 +38,10 @@ function i_uo() {}
 function inferno_update_option() {}
 */
 
-function inferno_preview($src = false, $width = false, $height = false, $effect = 'default', $link = false, $crop = true) {
+function inferno_preview($src = false, $width = false, $height = false, $link = false, $crop = true, $effect = 'default', $module = null) {
     if(!class_exists('Inferno_Preview')) return;
 
-    $preview = new Inferno_Preview($src, $width, $height, $effect, $link, $crop);
+    $preview = new Inferno_Preview($src, $width, $height, $link, $crop, $effect, $module);
     return $preview->get_output();
 }
 

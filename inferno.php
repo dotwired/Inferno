@@ -92,7 +92,6 @@ if(!class_exists('Inferno')) {
             $this->_config['portfolio']  = get_theme_support( 'inferno-portfolio' );
 
             $this->load();
-            $this->load_plugins();
             $this->load_widgets();
             $this->actions();
         }
@@ -102,6 +101,7 @@ if(!class_exists('Inferno')) {
          */
         private function load()
         {
+            require_once(dirname(__FILE__) . '/inc/class-tgm-plugin-activation.php');
             require_once(dirname(__FILE__) . '/inc/functions.php');
             require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
@@ -154,6 +154,7 @@ if(!class_exists('Inferno')) {
             add_action('init', array(&$this, 'fixing_hooks'));
             add_action('after_setup_theme', array(&$this, 'translate'));
             add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
+            add_action('tgmpa_register', 'inferno_require_plugins'); // hook, don't forget to mention this in the docs!
         }
 
         public function assets()
@@ -213,17 +214,6 @@ if(!class_exists('Inferno')) {
         public function translate()
         {
             load_theme_textdomain( 'inferno', INFERNO_PATH . 'languages' );
-        }
-
-        private function load_plugins()
-        {
-            if( get_theme_support( 'inferno-multiple-post-thumbnails' ) ) {
-                require_once('plugins/multiple-post-thumbnails/multi-post-thumbnails.php');
-            }
-
-            if( get_theme_support( 'inferno-widget-css-classes' ) ) {
-                require_once( 'plugins/widget-css-classes/widget-css-classes.php' );
-            }
         }
 
         private function load_widgets()

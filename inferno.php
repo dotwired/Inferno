@@ -154,7 +154,6 @@ if(!class_exists('Inferno')) {
             add_action('init', array(&$this, 'fixing_hooks'));
             add_action('after_setup_theme', array(&$this, 'translate'));
             add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
-            add_action('tgmpa_register', 'inferno_require_plugins'); // hook, don't forget to mention this in the docs!
         }
 
         public function assets()

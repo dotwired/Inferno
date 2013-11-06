@@ -147,7 +147,7 @@ if(!class_exists('Inferno_Portfolio')) {
         {
             $portfolio_query = new WP_Query(array(
                 'post_type' => 'portfolio',
-                'numberposts' => $this->settings['limit']
+                'posts_per_page' => $this->settings['limit'] ? $this->settings['limit'] : -1
             ));
 
             if($portfolio_query->have_posts()) {

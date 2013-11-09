@@ -440,7 +440,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
                 'color'          => null // TODO
             ), $atts, 'pricing_box' );
 
-            $atts['featured'] = filter_var( $atts['featured'], FILTER_VALIDATE_BOOL );
+            $atts['featured'] = filter_var( $atts['featured'], FILTER_VALIDATE_BOOLEAN );
             if($atts['featured']) $featured_class = ' featured';
             if($atts['color']) $color_class = ' ' . $atts['color'];
 
@@ -460,7 +460,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
                 'info'     => null, // TODO maybe find a better attr name?
             ), $atts, 'pricing_price' );
 
-            if(str_pos($atts['price'], '.') !== false) {
+            if(strpos($atts['price'], '.') !== false) {
                 $price = explode(".", $atts['price']);
             } else if(str_pos($atts['price'], ',') !== false) {
                 $price = explode(",", $atts['price']);

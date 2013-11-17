@@ -507,11 +507,13 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
                 'limit'      => false,
                 'effect'     => 'default',
                 'link'       => 'post',
-                'lightbox'   => true
+                'lightbox'   => true,
+                'paginate'   => false
             ), $atts, 'portfolio' );
 
             $atts['filter'] = filter_var( $atts['filter'], FILTER_VALIDATE_BOOLEAN );
             $atts['lightbox'] = filter_var( $atts['lightbox'], FILTER_VALIDATE_BOOLEAN );
+            $atts['paginate'] = filter_var( $atts['paginate'], FILTER_VALIDATE_BOOLEAN );
             if( $atts[ 'link' ] != 'media' ) $atts[ 'lightbox' ] = false;
 
             ob_start();

@@ -16,7 +16,9 @@ if(!class_exists('Inferno_Portfolio')) {
             'limit'      => false,
             'effect'     => 'default',
             'link'       => 'post',
-            'lightbox'   => true
+            'lightbox'   => true,
+            'paginate'   => false,
+            ''
         );
 
         public static $portfolio_count = 0;
@@ -31,7 +33,8 @@ if(!class_exists('Inferno_Portfolio')) {
                 'limit'      => false,
                 'effect'     => 'default',
                 'link'       => 'post',
-                'lightbox'   => true
+                'lightbox'   => true,
+                'paginate'   => false
             ), $atts );
 
             $this->settings = $atts;
@@ -181,6 +184,11 @@ if(!class_exists('Inferno_Portfolio')) {
                     echo $preview->get_output();
                     echo '</div>';
                     $i++;
+                }
+
+                if($this->settings['paginate'] == true) {
+                    next_posts_link(__('Older entries', 'inferno'));
+                    previous_posts_link(__('Newer entries', 'inferno'));
                 }
 
                 echo '</div>';

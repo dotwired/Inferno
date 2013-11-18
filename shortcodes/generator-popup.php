@@ -9,7 +9,6 @@
                     <?php endforeach; ?>
                 </select>
             </header>
-
             <section id="inferno-generator-shortcode"></section>
         </div>
     </div>

@@ -11,12 +11,17 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
         {
             $theme_support = get_theme_support('inferno-shortcodes');
 
-            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) $this->shortcodes = @include_once($theme_support[0]['file']);
+            if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {
+                $tmp_shortcodes = include ( locate_template( $theme_support[0]['file'] ) );
+                $this->shortcodes = $tmp_shortcodes;
+                unset($tmp_shortcodes);
+            }
 
             if($theme_support[0]['builtin-shortcodes'] === true) {
-                require_once( dirname(__FILE__) . '/class-shortcodes.php' );
+                include( dirname(__FILE__) . '/class-shortcodes.php' );
                 new Inferno_Shortcodes();
-                $this->shortcodes[] = require_once(dirname(__FILE__) . '/shortcodes.php');
+                $tmp_shortcodes = include(dirname(__FILE__) . '/shortcodes.php');
+                $this->shortcodes[] = $tmp_shortcodes[0];
             }
 
             add_action( 'media_buttons', array( &$this, 'add_generator_button' ), 100 );
@@ -30,7 +35,7 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
 
         public function generator_popup() 
         {
-            require_once( 'generator-popup.php' );
+            include( 'generator-popup.php' );
         }
     }
 }

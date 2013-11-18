@@ -55,8 +55,9 @@ if(!class_exists('Inferno_Options_Machine')) {
         {
             if ( empty ( $setting ) ) return;
             $this->setting = $setting; 
-            $this->setting_value = $setting_value ? $setting_value : $setting['std'];
-            if($this->setting['advanced'] === true) $class .= ' advanced';
+            $this->setting_value = $setting_value ? $setting_value : (isset($setting['std']) ? $setting['std'] : null);
+            $class = '';
+            if(isset($this->setting['advanced']) && $this->setting['advanced'] === true) $class .= ' advanced';
             ?>
 
             <div class="field<?php echo $class; ?>">
@@ -218,12 +219,12 @@ if(!class_exists('Inferno_Options_Machine')) {
                 jQuery(document).ready(function($) {
                     $('#range-slider-<?php echo self::$count['range']; ?>').slider({
                         <?php 
-                        echo 'min: ' . ($this->setting['min'] ? $this->setting['min'] : 0) . ',';
-                        echo 'max: ' . ($this->setting['max'] ? $this->setting['max'] : 100) . ',';
-                        echo 'step: ' . ($this->setting['step'] ? $this->setting['step'] : 1) . ',';
+                        echo 'min: ' . (isset($this->setting['min']) ? $this->setting['min'] : 0) . ',';
+                        echo 'max: ' . (isset($this->setting['max']) ? $this->setting['max'] : 100) . ',';
+                        echo 'step: ' . (isset($this->setting['step']) ? $this->setting['step'] : 1) . ',';
 
                         if($this->setting_value != null) :
-                            $range_value = str_replace($this->setting['unit'], '', $this->setting_value); ?>
+                            $range_value = isset($this->setting['unit']) ? str_replace($this->setting['unit'], '', $this->setting_value) : $this->setting_value; ?>
                             value: <?php echo (int)$range_value; ?>,
                         <?php 
                         endif; ?>

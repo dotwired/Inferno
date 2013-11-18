@@ -1,6 +1,6 @@
 <div class="wrap">
     
-    <form method="post" id="inferno-panel-form" action="<?php echo admin_url('themes.php?page=inferno-admin'); ?>" enctype="multipart/form-data">
+    <form method="post" id="inferno-panel-form" action="<?php echo admin_url('themes.php?page=inferno-admin'); ?>" enctype="multipart/form-data"<?php if(Inferno::$_debug === true) echo ' data-debug="true"'; ?>>
         <div id="inferno-canvas">
             <header class="inferno-header"><img src="http://www.themedale.net/inferno/header.png" alt="Inferno Panel" /></header>    
 
@@ -24,8 +24,8 @@
             </section>
             <div class="clearfix"></div>
             <footer class="footer">
-                <button name="inferno_action" class="button button-reset" value="reset" id="inferno-canvas-reset"><?php _e('Reset to Defaults', 'inferno'); ?></button>
-                <button name="inferno_action" class="button-primary" value="save"><?php _e('Save Changes', 'inferno'); ?></button>
+                <button type="submit" name="inferno_action" class="button button-reset" value="reset" id="inferno-canvas-reset"><?php _e('Reset to Defaults', 'inferno'); ?></button>
+                <button type="submit" name="inferno_action" class="button-primary" value="save"><?php _e('Save Changes', 'inferno'); ?></button>
                 <div class="clearfix"></div>
                 
                 <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce($this->noncestr); ?>" />

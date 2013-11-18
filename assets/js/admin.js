@@ -1,6 +1,4 @@
 jQuery(document).ready(function($) {
-    $(window).load(function(){
-
 
     /* ==========================================================================
        Inferno globally
@@ -95,13 +93,26 @@ jQuery(document).ready(function($) {
         }, 5000);
     }
 
-    $('#inferno-panel-form').submit(function(){
-        $(this).ajaxSubmit({
-            success: successResponse,
-            error: errorResponse
-        });
+    function showRequest(formData, jqForm, options) {
+        // formData is an array; here we use $.param to convert it to a string to display it 
+        // but the form plugin does this for you automatically when it submits the data 
+        var queryString = $.param(formData);
+     
+        // jqForm is a jQuery object encapsulating the form element.  To access the 
+        // DOM element for the form do this: 
+        // var formElement = jqForm[0]; 
+     
+        alert('About to submit: \n\n' + queryString);
+     
+        // here we could return false to prevent the form from being submitted; 
+        // returning anything other than false will allow the form submit to continue 
+        return true;
+    }
 
-        return false;
+    $('#inferno-panel-form').ajaxForm({
+        beforeSubmit: ($('#inferno-panel-form').data('debug') === true ? showRequest : null),
+        success: successResponse,
+        error: errorResponse
     });
 
     /* Reset button
@@ -160,6 +171,5 @@ jQuery(document).ready(function($) {
         // Prevent default action
         event.preventDefault();
         return false;
-    });
     });
 });

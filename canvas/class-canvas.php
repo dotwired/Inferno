@@ -68,7 +68,6 @@ if(!class_exists('Inferno_Canvas')) {
 
             // if there are some actions with the theme optionspage
             if(isset($_POST['inferno_action'])) {
-
                 // check wp nonce
                 $this->check_nonce();
 
@@ -98,7 +97,7 @@ if(!class_exists('Inferno_Canvas')) {
                     $location = $_SERVER['REQUEST_URI'] . "&settings-updated=true";
                 }
 
-                header("Location: $location");
+                #header("Location: $location");
             }
         }
 

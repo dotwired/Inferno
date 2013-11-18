@@ -1,4 +1,6 @@
 jQuery(document).ready(function($) {
+    $(window).load(function(){
+
 
     /* ==========================================================================
        Inferno globally
@@ -71,15 +73,35 @@ jQuery(document).ready(function($) {
 
     /* Ajax form
        ========================================================================== */
-    $('#inferno-panel-form').ajaxForm(function() {
-        $('.inferno-message.ajax').show(250);
-        $('.inferno-message.ajax i').animate({ fontSize: '30px' }, 200);
-        $('.inferno-message.ajax p').animate({ fontSize: '12px' }, 200);
+    function successResponse(responseText, statusText, xhr, $form) {
+        $('.inferno-message.ajax.success').show(250);
+        $('.inferno-message.ajax.success i').animate({ fontSize: '30px' }, 200);
+        $('.inferno-message.ajax.success p').animate({ fontSize: '12px' }, 200);
         setTimeout(function() {
-            $('.inferno-message.ajax').hide(250);
-            $('.inferno-message.ajax i').animate({ fontSize: '0px' }, 200);
-            $('.inferno-message.ajax p').animate({ fontSize: '0px' }, 200);
+            $('.inferno-message.ajax.success').hide(250);
+            $('.inferno-message.ajax.success i').animate({ fontSize: '0px' }, 200);
+            $('.inferno-message.ajax.success p').animate({ fontSize: '0px' }, 200);
         }, 5000);
+    }
+
+    function errorResponse() {
+        $('.inferno-message.ajax.error').show(250);
+        $('.inferno-message.ajax.error i').animate({ fontSize: '30px' }, 200);
+        $('.inferno-message.ajax.error p').animate({ fontSize: '12px' }, 200);
+        setTimeout(function() {
+            $('.inferno-message.ajax.error').hide(250);
+            $('.inferno-message.ajax.error i').animate({ fontSize: '0px' }, 200);
+            $('.inferno-message.ajax.error p').animate({ fontSize: '0px' }, 200);
+        }, 5000);
+    }
+
+    $('#inferno-panel-form').submit(function(){
+        $(this).ajaxSubmit({
+            success: successResponse,
+            error: errorResponse
+        });
+
+        return false;
     });
 
     /* Reset button
@@ -138,5 +160,6 @@ jQuery(document).ready(function($) {
         // Prevent default action
         event.preventDefault();
         return false;
+    });
     });
 });

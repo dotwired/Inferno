@@ -33,7 +33,7 @@ if(!class_exists('Inferno')) {
         public $register_styles = array(
             array('css3d', 'assets/css/supports3d.css', false, INFERNO_VERSION, 'all'),
             array('flexslider', 'assets/css/flexslider.css', false, '2.1.1', 'all'),
-            array('font-awesome', 'assets/css/font-awesome.css', false, '3.0.2', 'all'),
+            array('font-awesome', 'assets/css/font-awesome.css', false, '4.0.3', 'all'),
             array('image-picker', 'assets/css/image-picker.css', false, '0.1.7', 'all'),
             array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
@@ -118,7 +118,7 @@ if(!class_exists('Inferno')) {
                 require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
 
                 if(isset($this->_config['meta-box'][0]['file']) && is_string($this->_config['meta-box'][0]['file'])) {
-                    foreach( @include_once($this->_config['meta-box'][0]['file']) as $meta_box ) {
+                    foreach( include( locate_template( $this->_config['meta-box'][0]['file'] ) ) as $meta_box ) {
                         new Inferno_Meta_Box( $meta_box );
                     }
                 }
@@ -126,20 +126,20 @@ if(!class_exists('Inferno')) {
 
             // shortcodes
             if( $this->_config['shortcodes'] ) {
-                require_once( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
+                require( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
 
                 new Inferno_Shortcode_Generator();
             }
 
             if( $this->_config['portfolio'] ) {
-                require_once( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
+                require( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
 
                 new Inferno_Portfolio();
             }
 
             // canvas
             if( $this->_config['canvas'] ) {
-                require_once( dirname( __FILE__ ) . '/canvas/class-canvas.php' );
+                require( dirname( __FILE__ ) . '/canvas/class-canvas.php' );
                 new Inferno_Canvas();
             }
 

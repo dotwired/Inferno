@@ -20,10 +20,10 @@ if(!class_exists('Inferno_Canvas')) {
             $theme_support = get_theme_support('inferno-canvas');
 
             if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {
-                $this->theme_settings = @include_once($theme_support[0]['file']);
+                $this->theme_settings = include( locate_template( $theme_support[0]['file'] ) );
             }
             if($theme_support[0]['social_profiles'] === true) { 
-                $this->theme_settings[] = require_once(dirname(__FILE__) . '/social.php');
+                $this->theme_settings[] = include( dirname( __FILE__ ) . '/social.php' );
             }
             if($theme_support[0]['advanced_mode'] === true) {
                 $this->advanced_mode = true;

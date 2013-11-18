@@ -48,8 +48,12 @@
             <div class="clearfix"></div>
 
             <div class="inferno-message success ajax">
-                <i class="icon-ok"></i>
+                <i class="fa fa-check"></i>
                 <p><?php _e('Options successfully saved!', 'inferno'); ?></p>
+            </div>
+            <div class="inferno-message error ajax">
+                <i class="fa fa-times"></i>
+                <p><?php _e('Options could not be saved! Eventually contact support.', 'inferno'); ?></p>
             </div>
         </div>
     </form>

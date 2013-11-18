@@ -1,16 +1,16 @@
-#menu-header div.menu > ul,
-#menu-header ul.menu {
+#nav-header div.menu > ul,
+#nav-header ul.menu {
   position: relative;
   z-index: 9999;
   margin: 0;
   padding: 0; }
-  #menu-header div.menu > ul li,
-  #menu-header ul.menu li {
+  #nav-header div.menu > ul li,
+  #nav-header ul.menu li {
     position: relative;
     display: block;
     float: left; }
-    #menu-header div.menu > ul li:hover ul.sub-menu,
-    #menu-header ul.menu li:hover ul.sub-menu {
+    #nav-header div.menu > ul li:hover ul.sub-menu,
+    #nav-header ul.menu li:hover ul.sub-menu {
       opacity: 1;
       -webkit-opacity: 1;
       -khtml-opacity: 1;
@@ -18,7 +18,7 @@
       -o-opacity: 1;
       /*@include transition-delay(0ms);*/
       visibility: visible; }
-#menu-header ul.sub-menu {
+#nav-header ul.sub-menu {
   opacity: 0;
   -webkit-opacity: 0;
   -khtml-opacity: 0;
@@ -32,5 +32,5 @@
   margin: 0;
   padding: 0;
   visibility: hidden; }
-  #menu-header ul.sub-menu li {
+  #nav-header ul.sub-menu li {
     float: none; }

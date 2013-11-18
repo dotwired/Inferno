@@ -541,6 +541,14 @@
     .inferno-meta-box .imagepicker .thumbnail img {
       max-width: 100%;
       display: block; }
+  #inferno-canvas ul.thumbnails.image_picker_selector li .thumbnail,
+  #inferno-generator ul.thumbnails.image_picker_selector li .thumbnail,
+  .inferno-meta-box ul.thumbnails.image_picker_selector li .thumbnail {
+    padding: 4px; }
+  #inferno-canvas ul.thumbnails.image_picker_selector li .thumbnail.selected,
+  #inferno-generator ul.thumbnails.image_picker_selector li .thumbnail.selected,
+  .inferno-meta-box ul.thumbnails.image_picker_selector li .thumbnail.selected {
+    background: #0088cc; }
   #inferno-canvas .font select,
   #inferno-generator .font select,
   .inferno-meta-box .font select {

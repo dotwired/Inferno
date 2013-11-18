@@ -1,3 +1,5 @@
+$inferno-color: #0088cc;
+
 @mixin gradient($color-top, $color-bottom) {
     background: $color-top;
     background: -moz-linear-gradient(top, $color-top 0%, $color-bottom 100%);
@@ -561,6 +563,14 @@
                 display: block;
             }
         }
+    }
+
+    ul.thumbnails.image_picker_selector li .thumbnail {
+        padding: 4px;
+    }
+
+    ul.thumbnails.image_picker_selector li .thumbnail.selected {
+        background: $inferno-color;
     }
 
 

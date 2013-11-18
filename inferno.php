@@ -26,6 +26,11 @@ if(!class_exists('Inferno')) {
         );
 
         /**
+         *  Debug constant
+         */
+        public static $_debug = false;
+
+        /**
          * Register all styles which come with the theme framework.
          * 
          * @var array
@@ -33,7 +38,7 @@ if(!class_exists('Inferno')) {
         public $register_styles = array(
             array('css3d', 'assets/css/supports3d.css', false, INFERNO_VERSION, 'all'),
             array('flexslider', 'assets/css/flexslider.css', false, '2.1.1', 'all'),
-            array('font-awesome', 'assets/css/font-awesome.css', false, '4.0.3', 'all'),
+            array('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, '4.0.3', 'all'),
             array('image-picker', 'assets/css/image-picker.css', false, '0.1.7', 'all'),
             array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
@@ -84,8 +89,10 @@ if(!class_exists('Inferno')) {
         /**
          * Get configuration for optional modules and call initialization functions.
          */
-        public function __construct()
+        public function __construct($debug = false)
         {
+            self::$_debug = $debug;
+
             $this->_config['canvas']     = get_theme_support( 'inferno-canvas' );
             $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );
             $this->_config['meta-box']   = get_theme_support( 'inferno-meta-box' );
@@ -161,14 +168,14 @@ if(!class_exists('Inferno')) {
             if(is_array($this->register_scripts) && !empty($this->register_scripts)) {
                 foreach($this->register_scripts as $script) {
                     wp_deregister_script($script[0]);
-                    wp_register_script($script[0], get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/' . $script[1], $script[2], $script[3], $script[4]);
+                    wp_register_script($script[0], (substr($script[1], 0, 2) == '//' ? null : get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/') . $script[1], $script[2], $script[3], $script[4]);
                 }
             }
 
             if(is_array($this->register_styles) && !empty($this->register_styles)) {
                 foreach($this->register_styles as $style) {
                     wp_deregister_style($style[0]);
-                    wp_register_style($style[0], get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/' . $style[1], $style[2], $style[3], $style[4]);
+                    wp_register_style($style[0], (substr($style[1], 0, 2) == '//' ? null : get_template_directory_uri() . '/' . basename(dirname(__FILE__)) . '/') . $style[1], $style[2], $style[3], $style[4]);
                 }
             }
         }

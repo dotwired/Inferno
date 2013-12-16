@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  */
 if(!class_exists('Inferno_Portfolio')) {
 
@@ -17,8 +17,7 @@ if(!class_exists('Inferno_Portfolio')) {
             'effect'     => 'default',
             'link'       => 'post',
             'lightbox'   => true,
-            'paginate'   => false,
-            ''
+            'paginate'   => false
         );
 
         public static $portfolio_count = 0;
@@ -72,7 +71,7 @@ if(!class_exists('Inferno_Portfolio')) {
                 'view_item'          => __('View work', 'inferno'),
                 'search_items'       => __('Search portfolio', 'inferno'),
                 'not_found'          => __('No work found', 'inferno'),
-                'not_found_in_trash' => __('No works found in Trash', 'inferno'), 
+                'not_found_in_trash' => __('No works found in Trash', 'inferno'),
                 'parent_item_colon'  => '',
                 'menu_name'          => __('Portfolio', 'inferno')
             );
@@ -81,16 +80,16 @@ if(!class_exists('Inferno_Portfolio')) {
                 'labels'             => $portfolio_labels,
                 'public'             => true,
                 'publicly_queryable' => true,
-                'show_ui'            => true, 
-                'show_in_menu'       => true, 
+                'show_ui'            => true,
+                'show_in_menu'       => true,
                 'query_var'          => true,
                 'rewrite'            => array('slug' => __('portfolio', 'URL slug', 'inferno')),
                 'capability_type'    => 'page',
-                'has_archive'        => true, 
+                'has_archive'        => true,
                 'hierarchical'       => false,
                 'menu_position'      => null,
                 'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt')
-            ); 
+            );
             register_post_type('portfolio', $args);
 
             $taxonomy_labels = array(
@@ -101,7 +100,7 @@ if(!class_exists('Inferno_Portfolio')) {
                 'all_items'                  => __('All categories', 'inferno'),
                 'parent_item'                => null,
                 'parent_item_colon'          => null,
-                'edit_item'                  => __('Edit portfolio', 'inferno'), 
+                'edit_item'                  => __('Edit portfolio', 'inferno'),
                 'update_item'                => __('Update category', 'inferno'),
                 'add_new_item'               => __('Add new category', 'inferno'),
                 'new_item_name'              => __('New portfolio category name', 'inferno'),
@@ -109,7 +108,7 @@ if(!class_exists('Inferno_Portfolio')) {
                 'add_or_remove_items'        => __('Add or remove category', 'inferno'),
                 'choose_from_most_used'      => __('Choose from the most used category', 'inferno'),
                 'menu_name'                  => __('Categories', 'inferno'),
-            ); 
+            );
 
             register_taxonomy('portfolio_category', 'portfolio', array(
                 'hierarchical'          => true,
@@ -142,15 +141,19 @@ if(!class_exists('Inferno_Portfolio')) {
 
         /**
          * print the filter for the portfolio
-         * 
+         *
          * @param  array  $args [description]
          * @return [type]       [description]
          */
         private function worklist()
         {
+            // TODO: get_query_var( 'paged' ) is given by codex, but not working in this case?
+            $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+
             $portfolio_query = new WP_Query(array(
                 'post_type' => 'portfolio',
-                'posts_per_page' => $this->settings['limit'] ? $this->settings['limit'] : -1
+                'posts_per_page' => $this->settings['limit'] ? $this->settings['limit'] : -1,
+                'paged' => $paged
             ));
 
             if($portfolio_query->have_posts()) {
@@ -172,9 +175,9 @@ if(!class_exists('Inferno_Portfolio')) {
 
                     echo '<div data-id="' . $i . '" class="preview-box ' . $data_class . '">';
                     $preview = new Inferno_preview(
-                        false, 
-                        $this->settings['img_width'], 
-                        $this->settings['img_height'],  
+                        false,
+                        $this->settings['img_width'],
+                        $this->settings['img_height'],
                         $link,
                         true,
                         $this->settings['effect'],
@@ -187,8 +190,13 @@ if(!class_exists('Inferno_Portfolio')) {
                 }
 
                 if($this->settings['paginate'] == true) {
-                    next_posts_link(__('Older entries', 'inferno'));
+                    echo '<div class="pagination">';
+                    echo '<div class="next">';
+                    next_posts_link(__('Older entries', 'inferno'), $portfolio_query->max_num_pages);
+                    echo '</div><div class="prev">';
                     previous_posts_link(__('Newer entries', 'inferno'));
+                    echo '</div>';
+                    echo '</div>';
                 }
 
                 echo '</div>';

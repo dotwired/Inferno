@@ -14,7 +14,7 @@ if(!class_exists('Inferno')) {
 
         /**
          * This is the config. Initially turn off everything.
-         * 
+         *
          * @var array
          */
         private $_config = array(
@@ -50,39 +50,42 @@ if(!class_exists('Inferno')) {
             array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
             array('structurize-responsive', 'assets/css/structurize-responsive.css', false, INFERNO_VERSION, 'all'),
             array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
-            array('wpstyles', 'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all')  
+            array('wpstyles', 'assets/css/wpstyles.css', false, INFERNO_VERSION, 'all')
         );
 
         /**
          * Register all scripts which come with the theme framework.
-         * 
+         *
          * @var array
          */
         public $register_scripts = array(
+            array('eventemitter', 'assets/js/event-emitter.js', false, '4.2.5', true),
             array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
             array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
-            array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.min.js', array('jquery'), '1.4.10', true),
-            array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.min.js', array('jquery'), null, true),
-            array('jquery-cookie', 'assets/js/jquery/jquery.cookie.min.js', array('jquery'), '1.3.1', true),
-            array('jquery-confirm', 'assets/js/jquery/jquery.confirm.min.js', array('jquery'), '1.3', true),
-            array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.min.js', array('jquery'), null, true),
-            array('jquery-easing', 'assets/js/jquery/jquery.easing.min.js', array('jquery'), '1.3', true),
-            array('jquery-fitvids', 'assets/js/jquery/jquery.fitvids.min.js', array('jquery'), '1.0', true),
-            array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.min.js', array('jquery'), '2.1', true),
-            array('jquery-hoverintent', 'assets/js/jquery/jquery.hoverintent.min.js', array('jquery'), 'r7', true),
-            array('jquery-image-picker', 'assets/js/jquery/jquery.image-picker.min.js', array('jquery'), '0.1.7', true),
-            array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.min.js', array('jquery'), '2.1.1', true),
-            array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true),
-            array('jquery-isotope', 'assets/js/jquery/jquery.isotope.min.js', array('jquery'), '1.5.25', true),
-            array('jquery-magnific-popup', 'assets/js/jquery/jquery.magnific-popup.min.js', array('jquery'), '0.9.7', true),
-            array('jquery-placeholder', 'assets/js/jquery/jquery.placeholder.min.js', array('jquery'), '2.0.7', true),
-            array('jquery-rotate', 'assets/js/jquery/jquery.rotate.min.js', array('jquery'), null, true),
-            array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.min.js', array('jquery'), '1.4.5 BETA', true),
-            array('jquery-superfish', 'assets/js/jquery/jquery.superfish.min.js', array('jquery'), '1.7.2', true),
-            array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.min.js', array('jquery'), '1.0.14', true),
-            array('jquery-tweet', 'assets/js/jquery/jquery.tweet.min.js', array('jquery'), null, true),
-            array('modernizr', 'assets/js/modernizr.min.js', false, '2.6.2', true),
-            array('responsive-nav', 'assets/js/responsivenav.min.js', false, '1.0.14', true)
+            array('jquery-blur', 'assets/js/jquery/jquery.blur.js', array('jquery'), '1', true),
+            array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.js', array('jquery'), '1.4.10', true),
+            array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.js', array('jquery'), null, true),
+            array('jquery-cookie', 'assets/js/jquery/jquery.cookie.js', array('jquery'), '1.3.1', true),
+            array('jquery-confirm', 'assets/js/jquery/jquery.confirm.js', array('jquery'), '1.3', true),
+            array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.js', array('jquery'), null, true),
+            array('jquery-easing', 'assets/js/jquery/jquery.easing.js', array('jquery'), '1.3', true),
+            array('jquery-fitvids', 'assets/js/jquery/jquery.fitvids.js', array('jquery'), '1.0', true),
+            array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.js', array('jquery'), '2.1', true),
+            array('jquery-hoverintent', 'assets/js/jquery/jquery.hoverintent.js', array('jquery'), 'r7', true),
+            array('jquery-image-picker', 'assets/js/jquery/jquery.image-picker.js', array('jquery'), '0.1.7', true),
+            array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.js', array('jquery', 'eventemitter'), '3.0.4', true),
+            array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.js', array('jquery'), '2.0b2.120519', true),
+            array('jquery-isotope', 'assets/js/jquery/jquery.isotope.js', array('jquery'), '1.5.25', true),
+            array('jquery-magnific-popup', 'assets/js/jquery/jquery.magnific-popup.js', array('jquery'), '0.9.7', true),
+            array('jquery-pjax', 'assets/js/jquery/jquery.pjax.js', array('jquery'), '1.7.3', true),
+            array('jquery-placeholder', 'assets/js/jquery/jquery.placeholder.js', array('jquery'), '2.0.7', true),
+            array('jquery-rotate', 'assets/js/jquery/jquery.rotate.js', array('jquery'), null, true),
+            array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
+            array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
+            array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.js', array('jquery'), '1.0.14', true),
+            array('jquery-tweet', 'assets/js/jquery/jquery.tweet.js', array('jquery'), null, true),
+            array('modernizr', 'assets/js/modernizr.js', false, '2.6.2', true),
+            array('responsive-nav', 'assets/js/responsivenav.js', false, '1.0.14', true)
         );
 
 
@@ -119,7 +122,7 @@ if(!class_exists('Inferno')) {
             if($this->_config['canvas'] || $this->_config['shortcodes'] || $this->_config['meta_box']) {
                 require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
             }
-            
+
             // meta boxes
             if( $this->_config['meta-box'][0] ) {
                 require_once(dirname(__FILE__) . '/inc/class-meta-box.php');

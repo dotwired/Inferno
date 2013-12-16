@@ -25,9 +25,13 @@ if(!class_exists('Inferno_Preview')) {
             'preview'   => 'preview.php'
         );
 
+        private $img_width = 0;
+
+        private $img_height = 0;
+
 
         public function __construct($src = false, $width = false, $height = false, $permalink = false, $crop = true, $effect = 'default', $module = null)
-        { 
+        {
             if(!method_exists($this, 'preview_' . $effect)) {
                 return;
             }
@@ -48,14 +52,18 @@ if(!class_exists('Inferno_Preview')) {
                 $src = $thumb[0];
             }
 
-            $thumb_url = aq_resize($src, $width, $height, true, true, true);
+            $thumb_arr = aq_resize($src, $width, $height, true, false, true);
+            $thumb_url = $thumb_arr[0];
+            $this->img_width = $thumb_arr[1];
+            $this->img_height = $thumb_arr[2];
+
             ob_start();
 
             if($permalink || $permalink === null) {
                 if($permalink) {
                     echo '<a href="' . $permalink . '" class="inferno-preview ' . $effect . '">';
                 } else {
-                    echo '<a href="' . $src . '" class="inferno-preview ' . $effect . '">';   
+                    echo '<a href="' . $src . '" class="inferno-preview ' . $effect . '">';
                 }
             } else {
                 echo '<div class="inferno-preview ' . $effect . '">';
@@ -138,7 +146,7 @@ if(!class_exists('Inferno_Preview')) {
             }
         }
 
-        public function get_output() 
+        public function get_output()
         {
             return $this->output;
         }
@@ -160,7 +168,7 @@ if(!class_exists('Inferno_Preview')) {
             <div class="panel panel4" style="background-image: url(<?php echo $img_url; ?>);">
                 <div class="overlay"></div>
             </div>
-            <img src="<?php echo $img_url ?>" alt="" class="fallback" />
+            <img src="<?php echo $img_url ?>" alt="" class="fallback" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
             <?php
         }
 
@@ -168,7 +176,7 @@ if(!class_exists('Inferno_Preview')) {
         {
             ?>
             <div class="front">
-                <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" />
+                <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
             </div>
             <?php
         }
@@ -176,7 +184,7 @@ if(!class_exists('Inferno_Preview')) {
         private function preview_default($img_url)
         {
             ?>
-            <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" />
+            <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
             <?php
         }
     }

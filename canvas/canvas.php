@@ -2,21 +2,22 @@
     
     <form method="post" id="inferno-panel-form" action="<?php echo admin_url('themes.php?page=inferno-admin'); ?>" enctype="multipart/form-data"<?php if(Inferno::$_debug === true) echo ' data-debug="true"'; ?>>
         <div id="inferno-canvas">
-            <header class="inferno-header"><img src="http://www.themedale.net/inferno/header.png" alt="Inferno Panel" /></header>    
-
-            <div class="bar">
-                <div class="inferno-version">
-                    <i class="icon-fire"></i>
+            <header class="inferno-header">
+                <h1 class="inferno-brand">WP-Inferno</h1>
+                <p class="inferno-version">
                     <?php _e(sprintf('You are running Inferno version %s', INFERNO_VERSION), 'inferno'); ?>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+                </p>
+            </header>
+
             <nav class="menu">
                 <ul>
                     <?php $this->menu(); ?>
                 </ul>
                 <?php if($this->advanced_mode === true) : ?>
-                <button class="advanced-mode inactive"><?php _e('Advanced mode', 'inferno'); ?></button>
+                <button class="advanced-mode">
+                    <span><i class="fa fa-cog"></i></span>
+                    <p><?php _e('Advanced', 'inferno'); ?></p>
+                </button>
                 <?php endif; ?>
             </nav>
             <section class="content">

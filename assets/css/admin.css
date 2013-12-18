@@ -1,81 +1,3 @@
-@-webkit-keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    -webkit-box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    -webkit-box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    -webkit-box-shadow: none; } }
-
-@-khtml-keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    -khtml-box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    -khtml-box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    -khtml-box-shadow: none; } }
-
-@-moz-keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    -moz-box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    -moz-box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    -moz-box-shadow: none; } }
-
-@-ms-keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    -ms-box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    -ms-box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    -ms-box-shadow: none; } }
-
-@-o-keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    -o-box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    -o-box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    -o-box-shadow: none; } }
-
-@keyframes advanced-pulse {
-  from {
-    background-color: #749a02;
-    box-shadow: none; }
-
-  50% {
-    background-color: #91bd09;
-    box-shadow: 0 0 18px #91bd09; }
-
-  to {
-    background-color: #749a02;
-    box-shadow: none; } }
-
 /* ==========================================================================
    Global Inferno styles
    ========================================================================== */
@@ -101,6 +23,7 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -khtml-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box; }
   #inferno-canvas .clearfix,
@@ -109,10 +32,8 @@
 
 #inferno-canvas {
   position: relative;
-  width: 886px;
+  width: 900px;
   margin: 25px 0;
-  border: 5px #eee solid;
-  background: #eaeaea url(../img/bg.png);
   /* Header
      ========================================================================== */
   /* Navigation
@@ -123,115 +44,102 @@
      ========================================================================== */
   /* Content with Tabs and Options
      ========================================================================== */ }
-  #inferno-canvas .header {
+  #inferno-canvas .inferno-header {
     width: 100%;
-    height: 131px;
-    background: white url(../img/loading.gif) no-repeat center center; }
-  #inferno-canvas .bar {
-    background: #555555;
-    background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
-    background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -o-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
-    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-    color: #ddd;
-    font-size: 12px;
-    line-height: 22px;
-    height: 35px;
-    padding: 0 25px;
-    border-bottom: 5px #eee solid;
-    line-height: 30px; }
-    #inferno-canvas .bar .version, #inferno-canvas .bar .branding {
-      height: 30px;
-      float: left; }
-    #inferno-canvas .bar .branding {
-      float: right; }
-    #inferno-canvas .bar .icon-fire, #inferno-canvas .bar .icon-road {
-      margin-right: 6px; }
-    #inferno-canvas .bar a {
-      color: #fff;
-      text-decoration: none; }
-      #inferno-canvas .bar a:hover {
-        text-decoration: underline; }
+    height: 65px;
+    background: #3f3f41; }
+    #inferno-canvas .inferno-header .inferno-brand {
+      float: left;
+      width: 150px;
+      height: 65px;
+      margin: 0;
+      line-height: 65px;
+      font-size: 18px;
+      background: #ea793d;
+      text-transform: uppercase;
+      text-align: center;
+      color: #fff; }
+    #inferno-canvas .inferno-header p.inferno-version {
+      float: left;
+      margin: 0 25px;
+      width: 700px;
+      font-size: 13px;
+      line-height: 65px;
+      color: #9f9f9f; }
   #inferno-canvas .menu {
-    width: 140px;
-    float: left; }
+    width: 150px;
+    float: left;
+    background: #474751;
+    text-transform: uppercase; }
     #inferno-canvas .menu li {
-      width: 140px;
+      width: 150px;
       height: 35px;
       margin-bottom: 0; }
-      #inferno-canvas .menu li.ui-state-active {
-        background: #555555;
-        background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
-        background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
-        background: -o-linear-gradient(top, #555555 0%, #333333 100%);
-        background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
-        background: linear-gradient(to bottom, #555555 0%, #333333 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
-        #inferno-canvas .menu li.ui-state-active a {
-          text-shadow: 1px 1px 1px black;
-          -webkit-text-shadow: 1px 1px 1px black;
-          -khtml-text-shadow: 1px 1px 1px black;
-          -ms-text-shadow: 1px 1px 1px black;
-          -o-text-shadow: 1px 1px 1px black;
-          color: #fff; }
-        #inferno-canvas .menu li.ui-state-active i {
-          color: #f05b23; }
+      #inferno-canvas .menu li.ui-state-active a {
+        color: #ea793d;
+        border-left: 2px #46b9d6 solid; }
+      #inferno-canvas .menu li.ui-state-active i {
+        color: #ea793d; }
     #inferno-canvas .menu a {
-      text-shadow: 1px 1px 1px white;
-      -webkit-text-shadow: 1px 1px 1px white;
-      -khtml-text-shadow: 1px 1px 1px white;
-      -ms-text-shadow: 1px 1px 1px white;
-      -o-text-shadow: 1px 1px 1px white;
+      transition-duration: 0.3s;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -ms-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
       display: block;
       padding-left: 15px;
       text-decoration: none;
-      color: #444;
+      color: #aaa;
       line-height: 35px;
       font-weight: 500;
       outline: none; }
       #inferno-canvas .menu a i {
         display: inline-block;
-        width: 20px; }
+        width: 40px; }
       #inferno-canvas .menu a span {
         display: inline-block; }
+      #inferno-canvas .menu a:hover {
+        color: #f9f9f9; }
     #inferno-canvas .menu button.advanced-mode {
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -khtml-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
       display: block;
-      margin: 20px auto;
-      padding: 7px 12px;
+      height: 46px;
+      width: 100%;
+      margin: 0 0 25px 0;
+      padding: 0;
       font-weight: 500;
-      color: #fff;
+      color: #aaa;
       border: none;
-      background: #ccc;
+      text-transform: uppercase;
+      background: #5c5c66;
       outline: none;
       cursor: pointer; }
-      #inferno-canvas .menu button.advanced-mode.active {
-        -webkit-animation-name: advanced-pulse;
-        -webkit-animation-duration: 4s;
-        -webkit-animation-iteration-count: infinite;
-        -khtml-animation-name: advanced-pulse;
-        -khtml-animation-duration: 4s;
-        -khtml-animation-iteration-count: infinite;
-        -moz-animation-name: advanced-pulse;
-        -moz-animation-duration: 4s;
-        -moz-animation-iteration-count: infinite;
-        -ms-animation-name: advanced-pulse;
-        -ms-animation-duration: 4s;
-        -ms-animation-iteration-count: infinite;
-        -o-animation-name: advanced-pulse;
-        -o-animation-duration: 4s;
-        -o-animation-iteration-count: infinite;
-        animation-name: advanced-pulse;
-        animation-duration: 4s;
-        animation-iteration-count: infinite; }
+      #inferno-canvas .menu button.advanced-mode span {
+        display: block;
+        float: left;
+        width: 46px;
+        height: 46px;
+        background: #3f3f41;
+        color: #474751; }
+        #inferno-canvas .menu button.advanced-mode span i {
+          transition-duration: 0.5s;
+          -webkit-transition-duration: 0.5s;
+          -moz-transition-duration: 0.5s;
+          -ms-transition-duration: 0.5s;
+          -o-transition-duration: 0.5s;
+          font-size: 20px;
+          line-height: 46px;
+          text-align: center;
+          color: #5c5c66; }
+          #inferno-canvas .menu button.advanced-mode span i.fa-spin {
+            color: #ea793d; }
+      #inferno-canvas .menu button.advanced-mode p {
+        display: block;
+        float: left;
+        width: 104px;
+        height: 46px;
+        margin: 0;
+        text-align: center;
+        line-height: 46px; }
   #inferno-canvas .footer {
     background: #555555;
     background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
@@ -241,9 +149,6 @@
     background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
     background: linear-gradient(to bottom, #555555 0%, #333333 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-    color: #ddd;
-    font-size: 12px;
-    line-height: 22px;
     height: 44px;
     padding: 10px 20px;
     line-height: 24px; }
@@ -276,7 +181,7 @@
       font-weight: 900;
       line-height: 150%; }
   #inferno-canvas .content {
-    width: 736px;
+    width: 750px;
     padding: 25px;
     float: left;
     color: #565656;
@@ -423,29 +328,19 @@
   #inferno-canvas .radio .ui-corner-left,
   #inferno-generator .radio .ui-corner-left,
   .inferno-meta-box .radio .ui-corner-left {
-    border-top-left-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-    -khtml-border-top-left-radius: 4px;
-    -ms-border-top-left-radius: 4px;
-    -o-border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-border-bottom-left-radius: 4px;
-    -khtml-border-bottom-left-radius: 4px;
-    -ms-border-bottom-left-radius: 4px;
-    -o-border-bottom-left-radius: 4px; }
+    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    -khtml-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px; }
   #inferno-canvas .radio .ui-corner-right,
   #inferno-generator .radio .ui-corner-right,
   .inferno-meta-box .radio .ui-corner-right {
-    border-top-right-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-    -khtml-border-top-right-radius: 4px;
-    -ms-border-top-right-radius: 4px;
-    -o-border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    -webkit-border-bottom-right-radius: 4px;
-    -khtml-border-bottom-right-radius: 4px;
-    -ms-border-bottom-right-radius: 4px;
-    -o-border-bottom-right-radius: 4px; }
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -khtml-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0; }
   #inferno-canvas .radio .ui-state-active,
   #inferno-generator .radio .ui-state-active,
   .inferno-meta-box .radio .ui-state-active {
@@ -548,7 +443,7 @@
   #inferno-canvas ul.thumbnails.image_picker_selector li .thumbnail.selected,
   #inferno-generator ul.thumbnails.image_picker_selector li .thumbnail.selected,
   .inferno-meta-box ul.thumbnails.image_picker_selector li .thumbnail.selected {
-    background: #0088cc; }
+    background: #3f3f41; }
   #inferno-canvas .font select,
   #inferno-generator .font select,
   .inferno-meta-box .font select {

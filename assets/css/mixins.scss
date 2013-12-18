@@ -1,0 +1,59 @@
+@mixin box-sizing($setting) {
+    box-sizing: $setting;
+    -webkit-box-sizing: $setting;
+    -khtml-box-sizing: $setting;
+    -moz-box-sizing: $setting;
+    -ms-box-sizing: $setting;
+    -o-box-sizing: $setting;
+}
+
+@mixin gradient($color-top, $color-bottom) {
+    background: $color-top;
+    background: -moz-linear-gradient(top, $color-top 0%, $color-bottom 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color-top), color-stop(100%,$color-bottom));
+    background: -webkit-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: -o-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: -ms-linear-gradient(top, $color-top 0%,$color-bottom 100%);
+    background: linear-gradient(to bottom, $color-top 0%,$color-bottom 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
+}
+
+@mixin transition-all($time) {
+    transition: all $time;
+    -webkit-transition: all $time;
+    -moz-transition: all $time;
+    -ms-transition: all $time;
+    -o-transition: all $time;
+}
+
+@mixin transition-duration($time) {
+    transition-duration: $time;
+    -webkit-transition-duration: $time;
+    -moz-transition-duration: $time;
+    -ms-transition-duration: $time;
+    -o-transition-duration: $time;
+}
+
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color, $inset) {
+    box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -khtml-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -ms-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+    -o-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+}
+
+@mixin text-shadow($h-shadow, $v-shadow, $blur, $color) {
+    text-shadow: $h-shadow $v-shadow $blur $color;
+    -webkit-text-shadow: $h-shadow $v-shadow $blur $color;
+    -khtml-text-shadow: $h-shadow $v-shadow $blur $color;
+    -ms-text-shadow: $h-shadow $v-shadow $blur $color;
+    -o-text-shadow: $h-shadow $v-shadow $blur $color;
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}

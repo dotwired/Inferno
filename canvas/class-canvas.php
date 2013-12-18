@@ -156,7 +156,7 @@ if(!class_exists('Inferno_Canvas')) {
             if( !isset( $this->theme_settings ) || !is_array( $this->theme_settings ) || empty( $this->theme_settings ) ) return false;
 
             $i = 1; foreach( $this->theme_settings as $topic ) : ?>
-            <li><?php echo '<a href="#tab-' . $i . '" id="tablink-' . $i . '"><i class="icon-' . $topic[ 'icon' ] . '"></i><span>' . $topic[ 'title' ] . '</span></a>'; ?></li>
+            <li><?php echo '<a href="#tab-' . $i . '" id="tablink-' . $i . '"><i class="fa fa-' . $topic[ 'icon' ] . '"></i><span>' . $topic[ 'title' ] . '</span></a>'; ?></li>
             <?php $i++; endforeach;
         }
 

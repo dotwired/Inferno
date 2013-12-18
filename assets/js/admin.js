@@ -129,11 +129,11 @@ jQuery(document).ready(function($) {
     $('#inferno-canvas button.advanced-mode').live('click', function(e){
         e.preventDefault();
         var btn = $(this);
-        if(btn.hasClass('inactive')) {
-            btn.removeClass('inactive').addClass('active');
+        if(!btn.find('i.fa').hasClass('fa-spin')) {
+            btn.find('i.fa').addClass('fa-spin');
             $('#inferno-canvas .field.advanced').slideDown(200);
-        } else if(btn.hasClass('active')) {
-            btn.removeClass('active').addClass('inactive');
+        } else if(btn.find('i.fa').hasClass('fa-spin')) {
+            btn.find('i.fa').removeClass('fa-spin');
             $('#inferno-canvas .field.advanced').slideUp(200);
         }
     });

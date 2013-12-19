@@ -26,9 +26,16 @@ if(!class_exists('Inferno')) {
         );
 
         /**
-         *  Debug constant
+         * Debug constant
+         * @var boolean
          */
         public static $_debug = false;
+
+        /**
+         * Whether to brand the panel with the theme name
+         * @var boolean
+         */
+        public static $_brand_theme = false;
 
         /**
          * Register all styles which come with the theme framework.
@@ -99,9 +106,10 @@ if(!class_exists('Inferno')) {
         /**
          * Get configuration for optional modules and call initialization functions.
          */
-        public function __construct($debug = false)
+        public function __construct($brand_theme = false, $debug = false)
         {
             self::$_debug = $debug;
+            self::$_brand_theme = $brand_theme;
 
             $this->_config['canvas']     = get_theme_support( 'inferno-canvas' );
             $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );

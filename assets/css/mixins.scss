@@ -34,20 +34,20 @@
     -o-transition-duration: $time;
 }
 
-@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color, $inset) {
-    box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
-    -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
-    -khtml-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
-    -ms-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
-    -o-box-shadow: $h-shadow $v-shadow $blur $spread $color $inset;
+@mixin box-shadow($properties) {
+    box-shadow: $properties;
+    -webkit-box-shadow: $properties;
+    -khtml-box-shadow: $properties;
+    -ms-box-shadow: $properties;
+    -o-box-shadow: $properties;
 }
 
-@mixin text-shadow($h-shadow, $v-shadow, $blur, $color) {
-    text-shadow: $h-shadow $v-shadow $blur $color;
-    -webkit-text-shadow: $h-shadow $v-shadow $blur $color;
-    -khtml-text-shadow: $h-shadow $v-shadow $blur $color;
-    -ms-text-shadow: $h-shadow $v-shadow $blur $color;
-    -o-text-shadow: $h-shadow $v-shadow $blur $color;
+@mixin text-shadow($properties) {
+    text-shadow: $properties;
+    -webkit-text-shadow: $properties;
+    -khtml-text-shadow: $properties;
+    -ms-text-shadow: $properties;
+    -o-text-shadow: $properties;
 }
 
 @mixin border-radius($radius) {

@@ -10,10 +10,73 @@
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box; }
-#inferno-canvas .button.button-reset,
-#inferno-generator .button.button-reset,
-.inferno-meta-box .button.button-reset {
-  color: #ef4040; }
+#inferno-canvas .button,
+#inferno-canvas .button-reset,
+#inferno-canvas .button-primary,
+#inferno-canvas .button-upload,
+#inferno-generator .button,
+#inferno-generator .button-reset,
+#inferno-generator .button-primary,
+#inferno-generator .button-upload,
+.inferno-meta-box .button,
+.inferno-meta-box .button-reset,
+.inferno-meta-box .button-primary,
+.inferno-meta-box .button-upload {
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -khtml-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  height: 28px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 22px;
+  border: none;
+  outline: none;
+  background: #46b9d6;
+  color: #fff; }
+  #inferno-canvas .button:hover,
+  #inferno-canvas .button-reset:hover,
+  #inferno-canvas .button-primary:hover,
+  #inferno-canvas .button-upload:hover,
+  #inferno-generator .button:hover,
+  #inferno-generator .button-reset:hover,
+  #inferno-generator .button-primary:hover,
+  #inferno-generator .button-upload:hover,
+  .inferno-meta-box .button:hover,
+  .inferno-meta-box .button-reset:hover,
+  .inferno-meta-box .button-primary:hover,
+  .inferno-meta-box .button-upload:hover {
+    background: #fff;
+    color: #46b9d6; }
+#inferno-canvas .button-primary,
+#inferno-generator .button-primary,
+.inferno-meta-box .button-primary {
+  background: #44bea7;
+  border: 3px #44bea7 solid; }
+  #inferno-canvas .button-primary:hover,
+  #inferno-generator .button-primary:hover,
+  .inferno-meta-box .button-primary:hover {
+    color: #44bea7; }
+#inferno-canvas .button-reset,
+#inferno-generator .button-reset,
+.inferno-meta-box .button-reset {
+  background: #3f3f41;
+  border: 3px #3f3f41 solid; }
+  #inferno-canvas .button-reset:hover,
+  #inferno-generator .button-reset:hover,
+  .inferno-meta-box .button-reset:hover {
+    color: #3f3f41; }
+#inferno-canvas .button-upload,
+#inferno-generator .button-upload,
+.inferno-meta-box .button-upload {
+  background: #46b9d6;
+  border: 3px #46b9d6 solid; }
 
 /* ==========================================================================
    Inferno Canvas
@@ -31,26 +94,35 @@
     clear: both; }
 
 #inferno-canvas {
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
   position: relative;
-  width: 900px;
+  width: 960px;
   margin: 25px 0;
+  float: left;
+  background: #fff;
+  opacity: 0;
   /* Header
      ========================================================================== */
   /* Navigation
      ========================================================================== */
-  /* Footer
+  /* Content with Tabs and Options
      ========================================================================== */
   /* Messages
-     ========================================================================== */
-  /* Content with Tabs and Options
      ========================================================================== */ }
+  #inferno-canvas.show {
+    opacity: 1; }
   #inferno-canvas .inferno-header {
     width: 100%;
     height: 65px;
     background: #3f3f41; }
     #inferno-canvas .inferno-header .inferno-brand {
+      position: relative;
       float: left;
-      width: 150px;
+      width: 170px;
       height: 65px;
       margin: 0;
       line-height: 65px;
@@ -59,28 +131,40 @@
       text-transform: uppercase;
       text-align: center;
       color: #fff; }
-    #inferno-canvas .inferno-header p.inferno-version {
+      #inferno-canvas .inferno-header .inferno-brand span {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 12px;
+        left: 0;
+        bottom: 6px;
+        font-size: 12px;
+        font-weight: 100;
+        color: #fff;
+        line-height: 12px;
+        opacity: 0.5; }
+    #inferno-canvas .inferno-header p.inferno-info {
       float: left;
       margin: 0 25px;
-      width: 700px;
+      width: 740px;
       font-size: 13px;
       line-height: 65px;
       color: #9f9f9f; }
-  #inferno-canvas .menu {
-    width: 150px;
+  #inferno-canvas .inferno-menu {
+    width: 170px;
     float: left;
     background: #474751;
     text-transform: uppercase; }
-    #inferno-canvas .menu li {
-      width: 150px;
+    #inferno-canvas .inferno-menu li {
+      width: 170px;
       height: 35px;
       margin-bottom: 0; }
-      #inferno-canvas .menu li.ui-state-active a {
+      #inferno-canvas .inferno-menu li.ui-state-active a {
         color: #ea793d;
         border-left: 2px #46b9d6 solid; }
-      #inferno-canvas .menu li.ui-state-active i {
-        color: #ea793d; }
-    #inferno-canvas .menu a {
+      #inferno-canvas .inferno-menu li.ui-state-active i {
+        color: #46b9d6; }
+    #inferno-canvas .inferno-menu a {
       transition-duration: 0.3s;
       -webkit-transition-duration: 0.3s;
       -moz-transition-duration: 0.3s;
@@ -93,14 +177,19 @@
       line-height: 35px;
       font-weight: 500;
       outline: none; }
-      #inferno-canvas .menu a i {
+      #inferno-canvas .inferno-menu a i {
+        transition-duration: 0.3s;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -ms-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
         display: inline-block;
         width: 40px; }
-      #inferno-canvas .menu a span {
+      #inferno-canvas .inferno-menu a span {
         display: inline-block; }
-      #inferno-canvas .menu a:hover {
+      #inferno-canvas .inferno-menu a:hover {
         color: #f9f9f9; }
-    #inferno-canvas .menu button.advanced-mode {
+    #inferno-canvas .inferno-menu button.advanced-mode {
       display: block;
       height: 46px;
       width: 100%;
@@ -113,14 +202,14 @@
       background: #5c5c66;
       outline: none;
       cursor: pointer; }
-      #inferno-canvas .menu button.advanced-mode span {
+      #inferno-canvas .inferno-menu button.advanced-mode span {
         display: block;
         float: left;
         width: 46px;
         height: 46px;
         background: #3f3f41;
         color: #474751; }
-        #inferno-canvas .menu button.advanced-mode span i {
+        #inferno-canvas .inferno-menu button.advanced-mode span i {
           transition-duration: 0.5s;
           -webkit-transition-duration: 0.5s;
           -moz-transition-duration: 0.5s;
@@ -130,9 +219,9 @@
           line-height: 46px;
           text-align: center;
           color: #5c5c66; }
-          #inferno-canvas .menu button.advanced-mode span i.fa-spin {
+          #inferno-canvas .inferno-menu button.advanced-mode span i.fa-spin {
             color: #ea793d; }
-      #inferno-canvas .menu button.advanced-mode p {
+      #inferno-canvas .inferno-menu button.advanced-mode p {
         display: block;
         float: left;
         width: 104px;
@@ -140,22 +229,34 @@
         margin: 0;
         text-align: center;
         line-height: 46px; }
-  #inferno-canvas .footer {
-    background: #555555;
-    background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
-    background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -o-linear-gradient(top, #555555 0%, #333333 100%);
-    background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
-    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-    height: 44px;
-    padding: 10px 20px;
-    line-height: 24px; }
-    #inferno-canvas .footer a {
-      color: #fff; }
-    #inferno-canvas .footer .button-primary {
-      float: right; }
+  #inferno-canvas .inferno-content {
+    width: 790px;
+    float: left;
+    color: #565656; }
+  #inferno-canvas .inferno-settings {
+    padding: 25px; }
+  #inferno-canvas .inferno-footer {
+    width: 790px;
+    height: 100px;
+    float: left;
+    padding: 25px;
+    background: #fff;
+    border-top: 2px #eee solid; }
+    #inferno-canvas .inferno-footer .button-primary,
+    #inferno-canvas .inferno-footer .button-reset {
+      float: right;
+      margin-left: 20px; }
+    #inferno-canvas .inferno-footer span {
+      display: block;
+      float: right;
+      height: 28px;
+      line-height: 28px;
+      color: red;
+      text-align: right; }
+      #inferno-canvas .inferno-footer span a {
+        color: red;
+        text-decoration: underline;
+        font-weight: 900; }
   #inferno-canvas .inferno-message {
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -180,12 +281,6 @@
       color: #ccc;
       font-weight: 900;
       line-height: 150%; }
-  #inferno-canvas .content {
-    width: 750px;
-    padding: 25px;
-    float: left;
-    color: #565656;
-    background: #fff; }
 
 /* ==========================================================================
    Inferno Shortcode Generator
@@ -223,12 +318,16 @@
     padding-bottom: 15px;
     margin-bottom: 30px;
     border-bottom: 1px #eee solid; }
+  #inferno-canvas .field-title,
+  #inferno-generator .field-title,
+  .inferno-meta-box .field-title {
+    text-transform: uppercase; }
   #inferno-canvas .field-setting,
   #inferno-generator .field-setting,
   .inferno-meta-box .field-setting {
     float: left;
-    width: 50%;
-    padding-right: 30px; }
+    width: 320px;
+    margin-right: 50px; }
     #inferno-canvas .field-setting .googlefont-setting,
     #inferno-generator .field-setting .googlefont-setting,
     .inferno-meta-box .field-setting .googlefont-setting {
@@ -237,7 +336,7 @@
   #inferno-generator .field-details,
   .inferno-meta-box .field-details {
     float: left;
-    width: 50%; }
+    width: 370px; }
     #inferno-canvas .field-details .more,
     #inferno-generator .field-details .more,
     .inferno-meta-box .field-details .more {
@@ -262,23 +361,37 @@
   #inferno-generator textarea,
   .inferno-meta-box input[type=text],
   .inferno-meta-box textarea {
-    background: #eeeeee;
-    background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
-    background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
-    background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
-    background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
-    background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-    box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
-    -webkit-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
-    -khtml-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
-    -ms-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
-    -o-box-shadow: 1px 1px 2px 0 #e6e6e6 inset;
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -khtml-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
     padding: 8px 6px 6px;
     width: 100%;
     max-width: 100%;
-    text-align: left !important; }
+    text-align: left;
+    border: 3px #eee solid; }
+    #inferno-canvas input[type=text]:focus, #inferno-canvas textarea:focus,
+    #inferno-generator input[type=text]:focus,
+    #inferno-generator textarea:focus,
+    .inferno-meta-box input[type=text]:focus,
+    .inferno-meta-box textarea:focus {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -khtml-box-shadow: none;
+      -ms-box-shadow: none;
+      -o-box-shadow: none;
+      border-color: #46b9d6; }
   #inferno-canvas textarea,
   #inferno-generator textarea,
   .inferno-meta-box textarea {
@@ -294,19 +407,6 @@
   #inferno-canvas .radio .ui-button,
   #inferno-generator .radio .ui-button,
   .inferno-meta-box .radio .ui-button {
-    background: white;
-    background: -moz-linear-gradient(top, white 0%, #eeeeee 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #eeeeee));
-    background: -webkit-linear-gradient(top, white 0%, #eeeeee 100%);
-    background: -o-linear-gradient(top, white 0%, #eeeeee 100%);
-    background: -ms-linear-gradient(top, white 0%, #eeeeee 100%);
-    background: linear-gradient(to bottom, white 0%, #eeeeee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-    text-shadow: 1px 1px 1px white;
-    -webkit-text-shadow: 1px 1px 1px white;
-    -khtml-text-shadow: 1px 1px 1px white;
-    -ms-text-shadow: 1px 1px 1px white;
-    -o-text-shadow: 1px 1px 1px white;
     border: 1px #DFDFDF solid;
     margin-right: -1px;
     padding: 7px 11px 6px;
@@ -314,17 +414,6 @@
     float: left;
     font-size: 12px;
     font-weight: 900; }
-    #inferno-canvas .radio .ui-button:hover,
-    #inferno-generator .radio .ui-button:hover,
-    .inferno-meta-box .radio .ui-button:hover {
-      background: #eeeeee;
-      background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
-      background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
   #inferno-canvas .radio .ui-corner-left,
   #inferno-generator .radio .ui-corner-left,
   .inferno-meta-box .radio .ui-corner-left {
@@ -344,23 +433,7 @@
   #inferno-canvas .radio .ui-state-active,
   #inferno-generator .radio .ui-state-active,
   .inferno-meta-box .radio .ui-state-active {
-    box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
-    -webkit-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
-    -khtml-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
-    -ms-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
-    -o-box-shadow: 1px 1px 3px 0 #d9d9d9 inset;
     color: #999; }
-    #inferno-canvas .radio .ui-state-active:hover,
-    #inferno-generator .radio .ui-state-active:hover,
-    .inferno-meta-box .radio .ui-state-active:hover {
-      background: #eeeeee;
-      background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
-      background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 ); }
   #inferno-canvas .radio .ui-helper-hidden-accessible,
   #inferno-generator .radio .ui-helper-hidden-accessible,
   .inferno-meta-box .radio .ui-helper-hidden-accessible {
@@ -381,10 +454,34 @@
   #inferno-generator .colorSelector,
   .inferno-meta-box .colorSelector {
     float: right; }
-  #inferno-canvas .range .inferno-setting,
-  #inferno-generator .range .inferno-setting,
-  .inferno-meta-box .range .inferno-setting {
-    margin-bottom: 10px; }
+  #inferno-canvas .range,
+  #inferno-generator .range,
+  .inferno-meta-box .range {
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    background: #eee;
+    overflow: hidden; }
+    #inferno-canvas .range .inferno-setting,
+    #inferno-generator .range .inferno-setting,
+    .inferno-meta-box .range .inferno-setting {
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -khtml-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      width: 100px;
+      height: 28px;
+      margin: 0;
+      padding: 0;
+      float: left;
+      background: #46b9d6;
+      border: none;
+      text-align: center;
+      line-height: 29px;
+      color: #fff; }
   #inferno-canvas .range-slider,
   #inferno-generator .range-slider,
   .inferno-meta-box .range-slider {
@@ -393,39 +490,27 @@
     -khtml-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
-    box-shadow: 1px 1px 1px 0 #c6c5c5 inset;
-    -webkit-box-shadow: 1px 1px 1px 0 #c6c5c5 inset;
-    -khtml-box-shadow: 1px 1px 1px 0 #c6c5c5 inset;
-    -ms-box-shadow: 1px 1px 1px 0 #c6c5c5 inset;
-    -o-box-shadow: 1px 1px 1px 0 #c6c5c5 inset;
     position: relative;
-    height: 6px;
-    border: 1px #eee solid; }
+    float: left;
+    width: 190px;
+    height: 5px;
+    margin: 12px;
+    border: 1px #eee solid;
+    background: #fff; }
     #inferno-canvas .range-slider a,
     #inferno-generator .range-slider a,
     .inferno-meta-box .range-slider a {
-      background: #eeeeee;
-      background: -moz-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, white));
-      background: -webkit-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -o-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: -ms-linear-gradient(top, #eeeeee 0%, white 100%);
-      background: linear-gradient(to bottom, #eeeeee 0%, white 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-      box-shadow: 0px 1px 3px 0 #9e9e9e inset;
-      -webkit-box-shadow: 0px 1px 3px 0 #9e9e9e inset;
-      -khtml-box-shadow: 0px 1px 3px 0 #9e9e9e inset;
-      -ms-box-shadow: 0px 1px 3px 0 #9e9e9e inset;
-      -o-box-shadow: 0px 1px 3px 0 #9e9e9e inset;
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -khtml-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
       position: absolute;
-      top: -3px;
-      width: 12px;
-      height: 12px;
+      top: -4px;
+      width: 11px;
+      height: 11px;
+      margin: 0 0 0 -5px;
+      background: #5c5c66;
       outline: none; }
   #inferno-canvas .imagepicker .thumbnail,
   #inferno-generator .imagepicker .thumbnail,

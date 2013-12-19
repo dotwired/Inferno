@@ -7,8 +7,13 @@ $dark-nuance: #3f3f41;
 $grey-nuance: #474751;
 
 $header-height: 65px;
-$nav-width: 150px;
-$content-width: 750px;
+$nav-width: 170px;
+$content-width: 790px;
+$content-inner-width: $content-width - 50px;
+$field-setting-width: $content-inner-width / 2 - 50px;
+$field-details-width: $content-inner-width / 2;
+$full-width: $nav-width + $content-width;
+$footer-height: 100px;
 
 
 
@@ -25,9 +30,49 @@ $content-width: 750px;
     * {
         @include box-sizing(border-box);
     }
+    
+    .button,
+    .button-reset,
+    .button-primary,
+    .button-upload {
+        @include transition-duration(0.3s);
+        @include box-shadow(none);
+        height: 28px;
+        padding-left: 15px;
+        padding-right: 15px;
+        line-height: 22px;
+        border: none;
+        outline: none;
+        background: $blue;
+        color: #fff;
 
-    .button.button-reset {
-        color: #ef4040;
+        &:hover {
+            background: #fff;
+            color: $blue;
+        }
+    }
+
+    .button-primary {
+        background: $green;
+        border: 3px $green solid;
+
+        &:hover {
+            color: $green;
+        }
+    }
+
+    .button-reset {
+        background: $dark-nuance;
+        border: 3px $dark-nuance solid;
+
+        &:hover {
+            color: $dark-nuance;
+        }
+    }
+
+    .button-upload {
+        background: $blue;
+        border: 3px $blue solid;
     }
 }
 
@@ -47,9 +92,17 @@ $content-width: 750px;
 }
 
 #inferno-canvas {
+    @include transition-duration(1s);
     position: relative;
-    width: 900px;
+    width: $full-width;
     margin: 25px 0;
+    float: left;
+    background: #fff;
+    opacity: 0;
+
+    &.show {
+        opacity: 1;
+    }
 
     /* Header
        ========================================================================== */
@@ -60,6 +113,7 @@ $content-width: 750px;
         background: $dark-nuance;
 
         .inferno-brand {
+            position: relative;
             float: left;
             width: $nav-width;
             height: $header-height;
@@ -70,9 +124,23 @@ $content-width: 750px;
             text-transform: uppercase;
             text-align: center;
             color: #fff;
+
+            span {
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 12px;
+                left: 0;
+                bottom: 6px;
+                font-size: 12px;
+                font-weight: 100;
+                color: #fff;
+                line-height: 12px;
+                opacity: 0.5;
+            }
         }
 
-        p.inferno-version {
+        p.inferno-info {
             float: left;
             margin: 0 25px;
             width: $content-width - 50;
@@ -86,7 +154,7 @@ $content-width: 750px;
     /* Navigation
        ========================================================================== */
 
-    .menu {
+    .inferno-menu {
         width: $nav-width;
         float: left;
         background: $grey-nuance;
@@ -105,7 +173,7 @@ $content-width: 750px;
                 }
 
                 i {
-                    color: $orange;
+                    color: $blue;
                 }
             }
         }
@@ -121,6 +189,7 @@ $content-width: 750px;
             outline: none;
 
             i {
+                @include transition-duration(0.3s);
                 display: inline-block;
                 width: 40px;
             }
@@ -182,23 +251,46 @@ $content-width: 750px;
     }
 
 
-
-    /* Footer
+    /* Content with Tabs and Options
        ========================================================================== */
 
-    .footer {
-        @include gradient(#555, #333);
+    .inferno-content {
+        width: $content-width;
+        float: left;
+        color: #565656;
+    }
 
-        height: 44px;
-        padding: 10px 20px;
-        line-height: 24px;
+    .inferno-settings {
+        padding: 25px;
+    }
 
-        a {
-            color: #fff;
+    .inferno-footer {
+        width: $content-width;
+        height: $footer-height;
+        float: left;
+        padding: 25px;
+        background: #fff;
+        border-top: 2px #eee solid;
+
+        .button-primary, 
+        .button-reset {
+            float: right;
+            margin-left: 20px;
         }
 
-        .button-primary {
+        span {
+            display: block;
             float: right;
+            height: 28px;
+            line-height: 28px;
+            color: red;
+            text-align: right;
+
+            a {
+                color: red;
+                text-decoration: underline;
+                font-weight: 900;
+            }
         }
     }
 
@@ -233,19 +325,6 @@ $content-width: 750px;
             line-height: 150%;
         }
     }
-
-
-
-    /* Content with Tabs and Options
-       ========================================================================== */
-
-    .content {
-        width: $content-width;
-        padding: 25px;
-        float: left;
-        color: #565656;
-        background: #fff;
-    }
 }
 
 
@@ -279,10 +358,14 @@ $content-width: 750px;
         border-bottom: 1px #eee solid;
     }
 
+    .field-title {
+        text-transform: uppercase;
+    }
+
     .field-setting {
         float: left;
-        width: 50%;
-        padding-right: 30px;
+        width: $field-setting-width;
+        margin-right: 50px;
 
         .googlefont-setting {
             padding-top: 20px;
@@ -291,7 +374,7 @@ $content-width: 750px;
 
     .field-details {
         float: left;
-        width: 50%;
+        width: $field-details-width;
 
         .more {
             font-size: 11px;
@@ -317,12 +400,19 @@ $content-width: 750px;
     }
 
     input[type=text], textarea {
-        @include gradient(#eee, #fff);
-        @include box-shadow(1px, 1px, 2px, 0, #e6e6e6, inset);
+        @include transition-duration(0.3s);
+        @include border-radius(4px);
+        @include box-shadow(none);
         padding: 8px 6px 6px;
         width: 100%;
         max-width: 100%;
-        text-align: left !important;
+        text-align: left;
+        border: 3px #eee solid;
+
+        &:focus {
+            @include box-shadow(none);
+            border-color: $blue;
+        }
     }
 
     textarea {
@@ -342,9 +432,6 @@ $content-width: 750px;
 
     .radio {
         .ui-button {
-            @include gradient(#fff, #eee);
-            @include text-shadow(1px, 1px, 1px, #fff);
-
             border: 1px #DFDFDF solid;
             margin-right: -1px;
             padding: 7px 11px 6px;
@@ -352,10 +439,6 @@ $content-width: 750px;
             float: left;
             font-size: 12px;
             font-weight: 900;
-
-            &:hover {
-                @include gradient(#eee, #fff);
-            }
         }
 
         .ui-corner-left {
@@ -367,12 +450,7 @@ $content-width: 750px;
         }
 
         .ui-state-active {
-            @include box-shadow(1px, 1px, 3px, 0, #d9d9d9, inset);
             color: #999;
-
-            &:hover {
-                @include gradient(#eee, #fff);
-            }
         }
 
         .ui-helper-hidden-accessible {
@@ -412,29 +490,43 @@ $content-width: 750px;
        ========================================================================== */
 
     .range {
+        @include border-radius(6px);
+        background: #eee;
+        overflow: hidden;
+
         .inferno-setting {
-            margin-bottom: 10px;
+            @include border-radius(0);
+            width: 100px;
+            height: 28px;
+            margin: 0;
+            padding: 0;
+            float: left;
+            background: $blue;
+            border: none;
+            text-align: center;
+            line-height: 29px;
+            color: #fff;
         }
     }
 
     .range-slider {
         @include border-radius(6px);
-        @include box-shadow(1px, 1px, 1px, 0, #c6c5c5, inset);
-
         position: relative;
-        height: 6px;
+        float: left;
+        width: $field-setting-width - 130px;
+        height: 5px;
+        margin: 12px;
         border: 1px #eee solid;
+        background: #fff;
 
         a {
-            @include gradient(#eee, #fff);
-            @include box-shadow(0px, 1px, 3px, 0, #9e9e9e, inset);
             @include border-radius(100%);
-
             position: absolute;
-            top: -3px;
-            width: 12px;
-            height: 12px;
-
+            top: -4px;
+            width: 11px;
+            height: 11px;
+            margin: 0 0 0 -5px;
+            background: #5c5c66;
             outline: none;
         }
     }

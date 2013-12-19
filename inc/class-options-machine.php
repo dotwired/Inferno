@@ -8,18 +8,20 @@
  * @package WP_Inferno
  * 
  * Supported options:
- * - text           : Plain text input
- * - textarea       : Plain text area
- * - colorpicker    : A color picker
+ * - checkbox       : Checkbox (basically ON / OFF switch)
  * - color          : Synonym for "colorpicker"
- * - range          : A range slider, supports units (see http://jqueryui.com/slider/ for example)
- * - radio          : A radio field
+ * - colorpicker    : A color picker
  * - file           : For any file upload
- * - media          : Upload for images (with live preview)
- * - select         : Select input
  * - font           : Embed font, including Google fonts
  * - imagepicker    : Select field for images (images as preview), suitable for patterns or similar
  * - imageselect    : Synonym for "imagepicker"
+ * - transfer       : Import or export inferno panel settings
+ * - media          : Upload for images (with live preview)
+ * - radio          : A radio field
+ * - range          : A range slider, supports units (see http://jqueryui.com/slider/ for example)
+ * - select         : Select input
+ * - text           : Plain text input
+ * - textarea       : Plain text area
  */
 
 if(!class_exists('Inferno_Options_Machine')) {
@@ -129,6 +131,9 @@ if(!class_exists('Inferno_Options_Machine')) {
                 case 'textarea':
                     $this->textarea();
                     break;
+                case 'checkbox':
+                    $this->checkbox();
+                    break;
                 case 'radio':
                     $this->radio();
                     break;
@@ -147,6 +152,9 @@ if(!class_exists('Inferno_Options_Machine')) {
                 case 'imagepicker':
                 case 'imageselect':
                     $this->select();
+                    break;
+                case 'transfer':
+                    $this->transfer();
                     break;
                 default:
                     $this->text(); // will maybe call $this->range or $this->colorpicker
@@ -181,7 +189,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function colorpicker() 
         {
             ?>
-            <div class="colorSelector inferno-setting" id="ip-colorselector-<?php echo self::$count['colorpicker']; ?>">
+            <div class="colorSelector" id="ip-colorselector-<?php echo self::$count['colorpicker']; ?>">
                 <div style="background-color: <?php echo $this->setting_value; ?>;"></div>
             </div>
             <script type="text/javascript">
@@ -214,7 +222,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function range()
         {   
             ?>
-            <div id="range-slider-<?php echo self::$count['range']; ?>" class="range-slider inferno-setting"></div>
+            <div id="range-slider-<?php echo self::$count['range']; ?>" class="range-slider"></div>
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $('#range-slider-<?php echo self::$count['range']; ?>').slider({
@@ -238,6 +246,10 @@ if(!class_exists('Inferno_Options_Machine')) {
             <?php self::$count['range']++;
         }
 
+        function checkbox()
+        {
+
+        }
 
 
         function radio()
@@ -334,6 +346,17 @@ if(!class_exists('Inferno_Options_Machine')) {
                     <link class="googlefont-link" href='' rel='stylesheet' type='text/css'>
                 </div>
             </div>
+            <?php
+        }
+
+        function transfer()
+        {
+            $this->setting['id'] = 'transfer'; // overwrite to "transfer"
+            $settings = get_option('inferno', array()); // get all the inferno panel settings
+            $this->setting_value = base64_encode(serialize($settings)); // not malicious, ignore alerts on this line
+            ?>
+            <textarea <?php echo $this->get_name(); ?> class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
+            <button name="transfer" value="import" class="button"><?php _e('Import options', 'inferno'); ?></button>
             <?php
         }
     }

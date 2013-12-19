@@ -4,6 +4,18 @@ jQuery(document).ready(function($) {
        Inferno globally
        ========================================================================== */
 
+    function equalHeightInfernoColumn() {
+        if($('#inferno-canvas .inferno-menu').height() > $('#inferno-canvas .inferno-content').height()) {
+            $('#inferno-canvas .inferno-menu').animate({ 
+                height: Math.max.apply(Math, [ $('#inferno-canvas .inferno-content').height(), $('#inferno-canvas .inferno-menu > ul').outerHeight(true) + $('#inferno-canvas .inferno-menu > button').outerHeight(true) ]) + 'px'
+            });
+        } else {
+            $('#inferno-canvas .inferno-menu').animate({ 
+                height: $('#inferno-canvas .inferno-content').height() + 'px'
+            });
+        }
+    }
+
     /* Form elements
        ========================================================================== */
     $("#inferno-canvas .radio, .inferno-meta-box .radio").buttonset();
@@ -39,17 +51,17 @@ jQuery(document).ready(function($) {
         btn.parent().find('.button.googlefont').css({ display: 'none' });
         if(btn.hasClass('hide')) {
             btn.parent().find('.button.googlefont.show').css({ display: 'inline-block' });
-            googlefonts_container.slideUp(200);
+            googlefonts_container.slideUp(200, function() { equalHeightInfernoColumn(); });
         } else if(btn.hasClass('show')) {
             btn.parent().find('.button.googlefont.hide').css({ display: 'inline-block' });
-            googlefonts_container.slideDown(200);
-        }           
+            googlefonts_container.slideDown(200, function() { equalHeightInfernoColumn(); });
+        }        
     });
     $('#inferno-canvas .button.googlefont.hide').live('click', function() {
         var googlefonts_container = $(this).parent().parent().find('.googlefont-desc, .googlefont-setting');
         $(this).parent().find('.button.googlefont.show').show();
         $(this).hide();
-        googlefonts_container.slideUp(200);            
+        googlefonts_container.slideUp(200, function() { equalHeightInfernoColumn(); });  
     });
 
     $('#inferno-canvas .googlefont-setting input').live('keyup', function(){
@@ -66,8 +78,12 @@ jQuery(document).ready(function($) {
        ========================================================================== */
     $("#inferno-canvas").tabs({
         hide: { effect: 'fadeOut', duration: 150 },
-        show: { effect: 'fadeIn', duration: 150 }
+        show: { effect: 'fadeIn', duration: 150 },
+        activate: function(event, ui) {
+            equalHeightInfernoColumn();
+        }
     });
+
 
     /* Ajax form
        ========================================================================== */
@@ -125,17 +141,30 @@ jQuery(document).ready(function($) {
 
     /* Advanced mode
        ========================================================================== */
-    $('#inferno-canvas .field.advanced').slideUp(0);
+    $('#inferno-canvas .field.advanced').slideUp(0, function() { equalHeightInfernoColumn(); });
     $('#inferno-canvas button.advanced-mode').live('click', function(e){
         e.preventDefault();
         var btn = $(this);
         if(!btn.find('i.fa').hasClass('fa-spin')) {
             btn.find('i.fa').addClass('fa-spin');
-            $('#inferno-canvas .field.advanced').slideDown(200);
+            $('#inferno-canvas .field.advanced').slideDown(200, function() { equalHeightInfernoColumn(); });
         } else if(btn.find('i.fa').hasClass('fa-spin')) {
             btn.find('i.fa').removeClass('fa-spin');
-            $('#inferno-canvas .field.advanced').slideUp(200);
+            $('#inferno-canvas .field.advanced').slideUp(200, function() { equalHeightInfernoColumn(); });
         }
+    });
+
+
+    /* Transfer option
+       ========================================================================== */
+
+    $('#inferno-canvas .field-setting.transfer textarea').on('focus', function(){
+        $(this).select();
+        $(this).mouseup(function() {
+            // Prevent further mouseup intervention
+            $(this).unbind("mouseup");
+            return false;
+        });
     });
 
 
@@ -171,5 +200,14 @@ jQuery(document).ready(function($) {
         // Prevent default action
         event.preventDefault();
         return false;
+    });
+
+    
+    /* ==========================================================================
+       Unleash the Inferno
+       ========================================================================== */
+
+    $(window).load(function(){
+        $('#inferno-canvas').addClass('show');
     });
 });

@@ -25,6 +25,9 @@ if(!class_exists('Inferno_Canvas')) {
             if($theme_support[0]['social_profiles'] === true) { 
                 $this->theme_settings[] = include( dirname( __FILE__ ) . '/social.php' );
             }
+            if($theme_support[0]['backup'] === true) { 
+                $this->theme_settings[] = include( dirname( __FILE__ ) . '/backup.php' );
+            }
             if($theme_support[0]['advanced_mode'] === true) {
                 $this->advanced_mode = true;
             }
@@ -57,6 +60,11 @@ if(!class_exists('Inferno_Canvas')) {
             if(!wp_verify_nonce($nonce, $this->noncestr)) die(__("Security check failed.", 'inferno'));
         }
 
+        private function error()
+        {
+
+        }
+
         /**
          * Perform the saving from the received panel data.
          * @version 1.0
@@ -75,7 +83,7 @@ if(!class_exists('Inferno_Canvas')) {
                 if($_POST['inferno_action'] == 'save') {
                     foreach($this->theme_settings as $topic ) {
                         foreach($topic['fields'] as $field) {
-                            if(isset($_POST[$field['id']])) {
+                            if(isset($_POST[$field['id']]) && $field['type'] != 'transfer') {
                                 $inferno_option[$field['id']] = $_POST[$field['id']];
 
                                 // if this is google font
@@ -83,12 +91,18 @@ if(!class_exists('Inferno_Canvas')) {
                                     $inferno_option[$field['id']] = trim(stripslashes($_POST[$field['id'].'_googlefont']));
                                 }
 
-                                update_option($this->option_name, $inferno_option);
+                            } else {
+                                unset($inferno_option[$field['id']]);
                             }
                         }
                     }
+
+                    update_option($this->option_name, $inferno_option);
+
                 } elseif($_POST['inferno_action'] == 'reset' && get_option($this->option_name)) {
-                    if(!delete_option($this->option_name)) $this->error('Reset', null, 'Reset action failed');
+                    delete_option($this->option_name);
+                } elseif($_POST['inferno_action'] == 'import') {
+                    update_option($this->option_name, unserialize(base64_decode($_POST['transfer'])));
                 }
 
                 if(stristr($_SERVER['REQUEST_URI'], '&settings-updated=true')) {

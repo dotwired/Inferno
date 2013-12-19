@@ -5,6 +5,7 @@ $blue: #46b9d6;
 $green: #44bea7;
 $dark-nuance: #3f3f41;
 $grey-nuance: #474751;
+$border-grey: #eee;
 
 $header-height: 65px;
 $nav-width: 170px;
@@ -41,7 +42,7 @@ $footer-height: 100px;
         padding-left: 15px;
         padding-right: 15px;
         line-height: 22px;
-        border: none;
+        border: 3px $blue solid;
         outline: none;
         background: $blue;
         color: #fff;
@@ -54,7 +55,7 @@ $footer-height: 100px;
 
     .button-primary {
         background: $green;
-        border: 3px $green solid;
+        border-color: $green;
 
         &:hover {
             color: $green;
@@ -63,16 +64,11 @@ $footer-height: 100px;
 
     .button-reset {
         background: $dark-nuance;
-        border: 3px $dark-nuance solid;
+        border-color: $dark-nuance;
 
         &:hover {
             color: $dark-nuance;
         }
-    }
-
-    .button-upload {
-        background: $blue;
-        border: 3px $blue solid;
     }
 }
 
@@ -93,12 +89,14 @@ $footer-height: 100px;
 
 #inferno-canvas {
     @include transition-duration(1s);
+    @include border-radius(4px);
     position: relative;
     width: $full-width;
     margin: 25px 0;
     float: left;
     background: #fff;
     opacity: 0;
+    overflow: hidden;
 
     &.show {
         opacity: 1;
@@ -241,7 +239,7 @@ $footer-height: 100px;
             p {
                 display: block;
                 float: left;
-                width: 104px;
+                width: 124px;
                 height: 46px;
                 margin: 0;
                 text-align: center;
@@ -270,7 +268,7 @@ $footer-height: 100px;
         float: left;
         padding: 25px;
         background: #fff;
-        border-top: 2px #eee solid;
+        border-top: 2px $border-grey solid;
 
         .button-primary, 
         .button-reset {
@@ -355,7 +353,7 @@ $footer-height: 100px;
     .field {
         padding-bottom: 15px;
         margin-bottom: 30px;
-        border-bottom: 1px #eee solid;
+        border-bottom: 1px $border-grey solid;
     }
 
     .field-title {
@@ -399,15 +397,18 @@ $footer-height: 100px;
         outline: none;
     }
 
-    input[type=text], textarea {
+    input[type=text], textarea, select {
         @include transition-duration(0.3s);
         @include border-radius(4px);
         @include box-shadow(none);
+        display: block;
         padding: 8px 6px 6px;
         width: 100%;
         max-width: 100%;
         text-align: left;
-        border: 3px #eee solid;
+        border: 3px $border-grey solid;
+        color: #333;
+        background: transparent;
 
         &:focus {
             @include box-shadow(none);
@@ -427,13 +428,43 @@ $footer-height: 100px;
         margin-top: 7px;
     }
 
+
+    /* Select
+       ========================================================================== */
+
+    .select {
+        position: relative;
+
+        select.inferno-setting {
+            @include appearance(none);
+            position: relative;
+            height: 39px;
+            line-height: 1;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        &:before {
+            position: absolute;
+            right: 10px;
+            top: 1px;
+            display: block;
+            width: 15px;
+            height: 39px;
+            line-height: 39px;
+            font-family: FontAwesome;
+            content: "\f0d7";
+            font-size: 18px;
+        }
+    }
+
     /* Radio
        ========================================================================== */
 
     .radio {
         .ui-button {
-            border: 1px #DFDFDF solid;
-            margin-right: -1px;
+            border: 3px $border-grey solid;
+            margin-right: -3px;
             padding: 7px 11px 6px;
             display: block;
             float: left;
@@ -442,20 +473,77 @@ $footer-height: 100px;
         }
 
         .ui-corner-left {
-            @include border-radius(0 0 4px 4px);
+            @include border-radius(4px 0 0 4px);
         }
 
         .ui-corner-right {
-            @include border-radius(4px 4px 0 0);
+            @include border-radius(0 4px 4px 0);
         }
 
         .ui-state-active {
-            color: #999;
+            margin-left: 3px;
+            margin-right: 0;
+            border-color: $green;
+            background: $green;
+            color: #fff;
         }
 
         .ui-helper-hidden-accessible {
             position: absolute;
             display: none;
+        }
+    }
+
+    
+    /* Checkbox
+       ========================================================================== */
+
+    .checkbox {
+        .ui-button {
+            @include transition-duration(0.3s);
+            @include border-radius(14px);
+            position: relative;
+            display: inline-block;
+            height: 28px;
+            padding: 0 15px 0 30px;
+            border: 3px $orange solid;
+            background: $orange;
+            line-height: 22px;
+            color: #fff;
+            text-transform: uppercase;
+
+            &:before {
+                @include border-radius(100%);
+                position: absolute;
+                left: 2px;
+                top: 2px;
+                display: block;
+                width: 18px;
+                height: 18px;
+                content: "";
+                background: #ddd;
+            }
+
+            &:hover {
+                background: #fff;
+                color: $orange;
+            }
+        }
+
+        .ui-state-active {
+            padding: 0 30px 0 15px;
+            border: 3px $green solid;
+            background: $green;
+
+            &:before {
+                left: auto;
+                right: 2px;
+                top: 2px;
+            }
+
+            &:hover {
+                color: $green;
+            }
         }
     }
 
@@ -468,7 +556,7 @@ $footer-height: 100px;
         img {
             margin-top: 10px;
             max-width: 100%;
-            border: 5px #eee solid;
+            border: 5px $border-grey solid;
         }
     }
 
@@ -491,10 +579,11 @@ $footer-height: 100px;
 
     .range {
         @include border-radius(6px);
-        background: #eee;
+        background: $border-grey;
         overflow: hidden;
 
         .inferno-setting {
+            @include transition-duration(0.3s);
             @include border-radius(0);
             width: 100px;
             height: 28px;
@@ -502,10 +591,15 @@ $footer-height: 100px;
             padding: 0;
             float: left;
             background: $blue;
-            border: none;
+            border: 3px $blue solid;
             text-align: center;
-            line-height: 29px;
+            line-height: 23px;
             color: #fff;
+
+            &:focus {
+                background: #fff;
+                color: $blue;
+            }
         }
     }
 
@@ -516,7 +610,7 @@ $footer-height: 100px;
         width: $field-setting-width - 130px;
         height: 5px;
         margin: 12px;
-        border: 1px #eee solid;
+        border: 1px $border-grey solid;
         background: #fff;
 
         a {
@@ -567,10 +661,32 @@ $footer-height: 100px;
 
     .googlefont-canvas {
         padding: 10px;
-        border: 4px #eee solid;
+        border: 4px $border-grey solid;
         margin-top: 15px;
         font-size: 15px;
         font-family: auto;
+    }
+
+
+
+
+    /* Transfer (import / export)
+       ========================================================================== */
+
+    .transfer {
+        .inferno-setting {
+            margin-bottom: 10px;
+        }
+
+        span {
+            color: red;
+
+            a {
+                color: red;
+                text-decoration: underline;
+                font-weight: 900;
+            }
+        }
     }
 }
 

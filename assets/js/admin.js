@@ -19,6 +19,14 @@ jQuery(document).ready(function($) {
     /* Form elements
        ========================================================================== */
     $("#inferno-canvas .radio, .inferno-meta-box .radio").buttonset();
+    $("#inferno-canvas .checkbox input, .inferno-meta-box .checkbox input").button().change(function(){
+        $label = $(this).next('label.ui-button');
+        if($label.hasClass('ui-state-active')) {
+            $label.find('span.ui-button-text').text($label.data('true'));
+        } else {
+            $label.find('span.ui-button-text').text($label.data('false'));
+        }
+    });
 
 
     /* Upload button
@@ -130,6 +138,8 @@ jQuery(document).ready(function($) {
         success: successResponse,
         error: errorResponse
     });
+
+
 
     /* Reset button
        ========================================================================== */

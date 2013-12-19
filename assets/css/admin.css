@@ -36,7 +36,7 @@
   padding-left: 15px;
   padding-right: 15px;
   line-height: 22px;
-  border: none;
+  border: 3px #46b9d6 solid;
   outline: none;
   background: #46b9d6;
   color: #fff; }
@@ -58,7 +58,7 @@
 #inferno-generator .button-primary,
 .inferno-meta-box .button-primary {
   background: #44bea7;
-  border: 3px #44bea7 solid; }
+  border-color: #44bea7; }
   #inferno-canvas .button-primary:hover,
   #inferno-generator .button-primary:hover,
   .inferno-meta-box .button-primary:hover {
@@ -67,16 +67,11 @@
 #inferno-generator .button-reset,
 .inferno-meta-box .button-reset {
   background: #3f3f41;
-  border: 3px #3f3f41 solid; }
+  border-color: #3f3f41; }
   #inferno-canvas .button-reset:hover,
   #inferno-generator .button-reset:hover,
   .inferno-meta-box .button-reset:hover {
     color: #3f3f41; }
-#inferno-canvas .button-upload,
-#inferno-generator .button-upload,
-.inferno-meta-box .button-upload {
-  background: #46b9d6;
-  border: 3px #46b9d6 solid; }
 
 /* ==========================================================================
    Inferno Canvas
@@ -99,12 +94,18 @@
   -moz-transition-duration: 1s;
   -ms-transition-duration: 1s;
   -o-transition-duration: 1s;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   position: relative;
   width: 960px;
   margin: 25px 0;
   float: left;
   background: #fff;
   opacity: 0;
+  overflow: hidden;
   /* Header
      ========================================================================== */
   /* Navigation
@@ -224,7 +225,7 @@
       #inferno-canvas .inferno-menu button.advanced-mode p {
         display: block;
         float: left;
-        width: 104px;
+        width: 124px;
         height: 46px;
         margin: 0;
         text-align: center;
@@ -241,7 +242,7 @@
     float: left;
     padding: 25px;
     background: #fff;
-    border-top: 2px #eee solid; }
+    border-top: 2px #eeeeee solid; }
     #inferno-canvas .inferno-footer .button-primary,
     #inferno-canvas .inferno-footer .button-reset {
       float: right;
@@ -300,7 +301,11 @@
      ========================================================================== */
   /* Text
      ========================================================================== */
+  /* Select
+     ========================================================================== */
   /* Radio
+     ========================================================================== */
+  /* Checkbox
      ========================================================================== */
   /* Media (images)
      ========================================================================== */
@@ -311,13 +316,15 @@
   /* Image Picker
      ========================================================================== */
   /* Font
+     ========================================================================== */
+  /* Transfer (import / export)
      ========================================================================== */ }
   #inferno-canvas .field,
   #inferno-generator .field,
   .inferno-meta-box .field {
     padding-bottom: 15px;
     margin-bottom: 30px;
-    border-bottom: 1px #eee solid; }
+    border-bottom: 1px #eeeeee solid; }
   #inferno-canvas .field-title,
   #inferno-generator .field-title,
   .inferno-meta-box .field-title {
@@ -356,11 +363,13 @@
   .inferno-meta-box input,
   .inferno-meta-box textarea {
     outline: none; }
-  #inferno-canvas input[type=text], #inferno-canvas textarea,
+  #inferno-canvas input[type=text], #inferno-canvas textarea, #inferno-canvas select,
   #inferno-generator input[type=text],
   #inferno-generator textarea,
+  #inferno-generator select,
   .inferno-meta-box input[type=text],
-  .inferno-meta-box textarea {
+  .inferno-meta-box textarea,
+  .inferno-meta-box select {
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
@@ -376,16 +385,21 @@
     -khtml-box-shadow: none;
     -ms-box-shadow: none;
     -o-box-shadow: none;
+    display: block;
     padding: 8px 6px 6px;
     width: 100%;
     max-width: 100%;
     text-align: left;
-    border: 3px #eee solid; }
-    #inferno-canvas input[type=text]:focus, #inferno-canvas textarea:focus,
+    border: 3px #eeeeee solid;
+    color: #333;
+    background: transparent; }
+    #inferno-canvas input[type=text]:focus, #inferno-canvas textarea:focus, #inferno-canvas select:focus,
     #inferno-generator input[type=text]:focus,
     #inferno-generator textarea:focus,
+    #inferno-generator select:focus,
     .inferno-meta-box input[type=text]:focus,
-    .inferno-meta-box textarea:focus {
+    .inferno-meta-box textarea:focus,
+    .inferno-meta-box select:focus {
       box-shadow: none;
       -webkit-box-shadow: none;
       -khtml-box-shadow: none;
@@ -404,11 +418,42 @@
   #inferno-generator input[type=file],
   .inferno-meta-box input[type=file] {
     margin-top: 7px; }
+  #inferno-canvas .select,
+  #inferno-generator .select,
+  .inferno-meta-box .select {
+    position: relative; }
+    #inferno-canvas .select select.inferno-setting,
+    #inferno-generator .select select.inferno-setting,
+    .inferno-meta-box .select select.inferno-setting {
+      appearance: none;
+      -webkit-appearance: none;
+      -khtml-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      position: relative;
+      height: 39px;
+      line-height: 1;
+      font-size: 14px;
+      cursor: pointer; }
+    #inferno-canvas .select:before,
+    #inferno-generator .select:before,
+    .inferno-meta-box .select:before {
+      position: absolute;
+      right: 10px;
+      top: 1px;
+      display: block;
+      width: 15px;
+      height: 39px;
+      line-height: 39px;
+      font-family: FontAwesome;
+      content: "\f0d7";
+      font-size: 18px; }
   #inferno-canvas .radio .ui-button,
   #inferno-generator .radio .ui-button,
   .inferno-meta-box .radio .ui-button {
-    border: 1px #DFDFDF solid;
-    margin-right: -1px;
+    border: 3px #eeeeee solid;
+    margin-right: -3px;
     padding: 7px 11px 6px;
     display: block;
     float: left;
@@ -417,34 +462,97 @@
   #inferno-canvas .radio .ui-corner-left,
   #inferno-generator .radio .ui-corner-left,
   .inferno-meta-box .radio .ui-corner-left {
-    border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -khtml-border-radius: 0 0 4px 4px;
-    -ms-border-radius: 0 0 4px 4px;
-    -o-border-radius: 0 0 4px 4px; }
+    border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -khtml-border-radius: 4px 0 0 4px;
+    -ms-border-radius: 4px 0 0 4px;
+    -o-border-radius: 4px 0 0 4px; }
   #inferno-canvas .radio .ui-corner-right,
   #inferno-generator .radio .ui-corner-right,
   .inferno-meta-box .radio .ui-corner-right {
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    -khtml-border-radius: 4px 4px 0 0;
-    -ms-border-radius: 4px 4px 0 0;
-    -o-border-radius: 4px 4px 0 0; }
+    border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0 4px 4px 0;
+    -khtml-border-radius: 0 4px 4px 0;
+    -ms-border-radius: 0 4px 4px 0;
+    -o-border-radius: 0 4px 4px 0; }
   #inferno-canvas .radio .ui-state-active,
   #inferno-generator .radio .ui-state-active,
   .inferno-meta-box .radio .ui-state-active {
-    color: #999; }
+    margin-left: 3px;
+    margin-right: 0;
+    border-color: #44bea7;
+    background: #44bea7;
+    color: #fff; }
   #inferno-canvas .radio .ui-helper-hidden-accessible,
   #inferno-generator .radio .ui-helper-hidden-accessible,
   .inferno-meta-box .radio .ui-helper-hidden-accessible {
     position: absolute;
     display: none; }
+  #inferno-canvas .checkbox .ui-button,
+  #inferno-generator .checkbox .ui-button,
+  .inferno-meta-box .checkbox .ui-button {
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    border-radius: 14px;
+    -webkit-border-radius: 14px;
+    -khtml-border-radius: 14px;
+    -ms-border-radius: 14px;
+    -o-border-radius: 14px;
+    position: relative;
+    display: inline-block;
+    height: 28px;
+    padding: 0 15px 0 30px;
+    border: 3px #ea793d solid;
+    background: #ea793d;
+    line-height: 22px;
+    color: #fff;
+    text-transform: uppercase; }
+    #inferno-canvas .checkbox .ui-button:before,
+    #inferno-generator .checkbox .ui-button:before,
+    .inferno-meta-box .checkbox .ui-button:before {
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -khtml-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      display: block;
+      width: 18px;
+      height: 18px;
+      content: "";
+      background: #ddd; }
+    #inferno-canvas .checkbox .ui-button:hover,
+    #inferno-generator .checkbox .ui-button:hover,
+    .inferno-meta-box .checkbox .ui-button:hover {
+      background: #fff;
+      color: #ea793d; }
+  #inferno-canvas .checkbox .ui-state-active,
+  #inferno-generator .checkbox .ui-state-active,
+  .inferno-meta-box .checkbox .ui-state-active {
+    padding: 0 30px 0 15px;
+    border: 3px #44bea7 solid;
+    background: #44bea7; }
+    #inferno-canvas .checkbox .ui-state-active:before,
+    #inferno-generator .checkbox .ui-state-active:before,
+    .inferno-meta-box .checkbox .ui-state-active:before {
+      left: auto;
+      right: 2px;
+      top: 2px; }
+    #inferno-canvas .checkbox .ui-state-active:hover,
+    #inferno-generator .checkbox .ui-state-active:hover,
+    .inferno-meta-box .checkbox .ui-state-active:hover {
+      color: #44bea7; }
   #inferno-canvas .media img,
   #inferno-generator .media img,
   .inferno-meta-box .media img {
     margin-top: 10px;
     max-width: 100%;
-    border: 5px #eee solid; }
+    border: 5px #eeeeee solid; }
   #inferno-canvas .color-picker input[type=text],
   #inferno-generator .color-picker input[type=text],
   .inferno-meta-box .color-picker input[type=text] {
@@ -462,11 +570,16 @@
     -khtml-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
-    background: #eee;
+    background: #eeeeee;
     overflow: hidden; }
     #inferno-canvas .range .inferno-setting,
     #inferno-generator .range .inferno-setting,
     .inferno-meta-box .range .inferno-setting {
+      transition-duration: 0.3s;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -ms-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
       border-radius: 0;
       -webkit-border-radius: 0;
       -khtml-border-radius: 0;
@@ -478,10 +591,15 @@
       padding: 0;
       float: left;
       background: #46b9d6;
-      border: none;
+      border: 3px #46b9d6 solid;
       text-align: center;
-      line-height: 29px;
+      line-height: 23px;
       color: #fff; }
+      #inferno-canvas .range .inferno-setting:focus,
+      #inferno-generator .range .inferno-setting:focus,
+      .inferno-meta-box .range .inferno-setting:focus {
+        background: #fff;
+        color: #46b9d6; }
   #inferno-canvas .range-slider,
   #inferno-generator .range-slider,
   .inferno-meta-box .range-slider {
@@ -495,7 +613,7 @@
     width: 190px;
     height: 5px;
     margin: 12px;
-    border: 1px #eee solid;
+    border: 1px #eeeeee solid;
     background: #fff; }
     #inferno-canvas .range-slider a,
     #inferno-generator .range-slider a,
@@ -537,7 +655,21 @@
   #inferno-generator .googlefont-canvas,
   .inferno-meta-box .googlefont-canvas {
     padding: 10px;
-    border: 4px #eee solid;
+    border: 4px #eeeeee solid;
     margin-top: 15px;
     font-size: 15px;
     font-family: auto; }
+  #inferno-canvas .transfer .inferno-setting,
+  #inferno-generator .transfer .inferno-setting,
+  .inferno-meta-box .transfer .inferno-setting {
+    margin-bottom: 10px; }
+  #inferno-canvas .transfer span,
+  #inferno-generator .transfer span,
+  .inferno-meta-box .transfer span {
+    color: red; }
+    #inferno-canvas .transfer span a,
+    #inferno-generator .transfer span a,
+    .inferno-meta-box .transfer span a {
+      color: red;
+      text-decoration: underline;
+      font-weight: 900; }

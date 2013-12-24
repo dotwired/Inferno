@@ -22,12 +22,17 @@ function inferno_get_post_meta($post_id, $option = '')
 }
 
 function inferno_get_option($option_name = null, $default_value = null) {
-    $inferno_option = get_option('inferno', array());
+    global $inferno_option;
 
     if(isset($inferno_option[$option_name]) && !empty($inferno_option[$option_name])) {
         return $inferno_option[$option_name];
     }
     return $default_value;
+}
+
+
+function inferno_is_login_page() {
+    return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 }
 
 

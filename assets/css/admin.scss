@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import 'mixins';
 
 $orange: #ea793d;
@@ -18,6 +19,33 @@ $footer-height: 100px;
 
 
 
+/* ==========================================================================
+   Demo canvas
+   ========================================================================== */
+
+#inferno-demo-opener {
+    @include transition-duration(0.3s);
+    position: fixed;
+    left: 0;
+    top: 100px;
+    width: 50px;
+    height: 50px;
+    background: $orange;
+
+    &:hover {
+        background: $blue;
+    }
+}
+
+.mfp-content {
+    #inferno-panel-form {
+        @include box-sizing(border-box);
+        width: $full-width + 50px;
+        margin: 25px auto;
+        padding: 0 25px;
+        background: #eee;
+    }
+}
 
 
 /* ==========================================================================
@@ -31,6 +59,10 @@ $footer-height: 100px;
     * {
         @include box-sizing(border-box);
     }
+
+    *[role=button] {
+        cursor: pointer;
+    }
     
     .button,
     .button-reset,
@@ -38,6 +70,8 @@ $footer-height: 100px;
     .button-upload {
         @include transition-duration(0.3s);
         @include box-shadow(none);
+        @include border-radius(3px);
+        display: inline-block;
         height: 28px;
         padding-left: 15px;
         padding-right: 15px;
@@ -46,6 +80,7 @@ $footer-height: 100px;
         outline: none;
         background: $blue;
         color: #fff;
+        cursor: pointer;
 
         &:hover {
             background: #fff;
@@ -72,6 +107,26 @@ $footer-height: 100px;
     }
 }
 
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+ 
+.clearfix {
+    display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+    display: block;
+}
+ 
+* html .clearfix {
+    height: 1%;
+}
 
 
 /* ==========================================================================
@@ -79,8 +134,10 @@ $footer-height: 100px;
    ========================================================================== */
 
 #inferno-canvas, 
-#inferno-canvas * {
+#inferno-canvas *:not(.fa) {
     @include box-sizing(border-box);
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
 
     .clearfix {
         clear: both;
@@ -97,6 +154,7 @@ $footer-height: 100px;
     background: #fff;
     opacity: 0;
     overflow: hidden;
+    font-size: 16px;
 
     &.show {
         opacity: 1;
@@ -118,8 +176,10 @@ $footer-height: 100px;
             margin: 0;
             line-height: $header-height;
             font-size: 18px;
+            font-weight: 600;
             background: $orange;
             text-transform: uppercase;
+            font-style: normal;
             text-align: center;
             color: #fff;
 
@@ -142,7 +202,7 @@ $footer-height: 100px;
             float: left;
             margin: 0 25px;
             width: $content-width - 50;
-            font-size: 13px;
+            font-size: 12px;
             line-height: $header-height;
             color: #9f9f9f;
         }
@@ -157,6 +217,11 @@ $footer-height: 100px;
         float: left;
         background: $grey-nuance;
         text-transform: uppercase;
+        font-size: 12px;
+
+        > ul.ui-tabs-nav {
+            margin: 15px 0;
+        }
 
         li {
             width: $nav-width;
@@ -208,6 +273,7 @@ $footer-height: 100px;
             margin: 0 0 25px 0;
             padding: 0;
             font-weight: 500;
+            font-size: 12px;
             color: #aaa;
             border: none;
             text-transform: uppercase;
@@ -297,6 +363,18 @@ $footer-height: 100px;
     /* Messages
        ========================================================================== */
 
+    .inferno-notice {
+        @include box-shadow(0 1px 3px 0 rgba(0, 0, 0, .2));
+        margin: 25px;
+        padding: 15px 12px 5px;
+        border-left: 4px solid $green;
+        font-size: 12px;
+
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
     .inferno-message {
         @include border-radius(5px);
         position: fixed;
@@ -311,6 +389,12 @@ $footer-height: 100px;
         background: url(../img/dark-trans-bg.png);
         font-size: 0px;
         text-align: center;
+
+        &.error {
+            i {
+                color: red;
+            }
+        }
 
         i {
             font-weight: 900;
@@ -351,19 +435,26 @@ $footer-height: 100px;
        ========================================================================== */
 
     .field {
-        padding-bottom: 15px;
-        margin-bottom: 30px;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
         border-bottom: 1px $border-grey solid;
+        font-size: 12px;
     }
 
     .field-title {
+        margin-bottom: 10px;
         text-transform: uppercase;
+        font-size: 14px;
     }
 
     .field-setting {
         float: left;
         width: $field-setting-width;
         margin-right: 50px;
+
+        .inferno-setting {
+            margin-bottom: 10px;
+        }
 
         .googlefont-setting {
             padding-top: 20px;
@@ -402,6 +493,7 @@ $footer-height: 100px;
         @include border-radius(4px);
         @include box-shadow(none);
         display: block;
+        margin-bottom: 10px;
         padding: 8px 6px 6px;
         width: 100%;
         max-width: 100%;
@@ -632,6 +724,17 @@ $footer-height: 100px;
     .imagepicker {
         .thumbnail {
             max-width: 100%;
+            @include transition-duration(0.3s);
+            padding: 4px;
+            cursor: pointer;
+
+            &:not(.selected):hover {
+                background: $dark-nuance;
+            }
+
+            &.selected {
+                background: $green;
+            }
 
             img {
                 max-width: 100%;
@@ -640,24 +743,9 @@ $footer-height: 100px;
         }
     }
 
-    ul.thumbnails.image_picker_selector li .thumbnail {
-        padding: 4px;
-    }
-
-    ul.thumbnails.image_picker_selector li .thumbnail.selected {
-        background: $dark-nuance;
-    }
-
-
 
     /* Font
        ========================================================================== */
-
-    .font {
-        select {
-            margin-bottom: 10px;
-        }
-    }
 
     .googlefont-canvas {
         padding: 10px;
@@ -674,10 +762,6 @@ $footer-height: 100px;
        ========================================================================== */
 
     .transfer {
-        .inferno-setting {
-            margin-bottom: 10px;
-        }
-
         span {
             color: red;
 

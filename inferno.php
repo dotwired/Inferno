@@ -31,11 +31,6 @@ if(!class_exists('Inferno')) {
          */
         public static $_debug = false;
 
-        /**
-         * Whether to brand the panel with the theme name
-         * @var boolean
-         */
-        public static $_brand_theme = false;
 
         /**
          * Register all styles which come with the theme framework.
@@ -52,6 +47,7 @@ if(!class_exists('Inferno')) {
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
             array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
             array('inferno-portfolio', 'assets/css/portfolio.css', false, INFERNO_VERSION, 'all'),
+            array('inferno-ui-helper', 'assets/css/ui-helper.css', false, INFERNO_VERSION, 'all'),
             array('jscrollpane', 'assets/css/jscrollpane.css', false, '2.0.19', 'all'),
             array('magnific-popup', 'assets/css/magnific-popup.css', false, '0.9.7', 'all'),
             array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
@@ -104,12 +100,44 @@ if(!class_exists('Inferno')) {
 
 
         /**
+         * The script handles needed for any inferno administration purposes
+         */
+        public static $admin_scripts = array(
+            'jquery',
+            'jquery-ui-core',
+            'jquery-ui-widget',
+            'jquery-ui-tabs',
+            'jquery-ui-slider',
+            'jquery-ui-sortable',
+            'jquery-ui-button',
+            'jquery-form',
+            'media-upload',
+            'thickbox',
+            'jquery-image-picker',
+            'jquery-confirm',
+            'jquery-colorpicker',
+            'inferno-admin'
+        );
+
+        /**
+         * The style handles needed for any inferno administration purposes
+         */
+        public static $admin_styles = array(
+            'thickbox',
+            'inferno-colorpicker',
+            'font-awesome',
+            'image-picker',
+            'inferno-admin',
+            'inferno-ui-helper'
+        );
+
+
+        /**
          * Get configuration for optional modules and call initialization functions.
          */
-        public function __construct($brand_theme = false, $debug = false)
+        public function __construct($debug = false)
         {
             self::$_debug = $debug;
-            self::$_brand_theme = $brand_theme;
 
             $this->_config['canvas']     = get_theme_support( 'inferno-canvas' );
             $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );
@@ -131,7 +159,6 @@ if(!class_exists('Inferno')) {
             require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
             require_once(dirname(__FILE__) . '/inc/class-widget.php');
-            // todo: remove that? require_once(dirname(__FILE__) . '/inc/class-helper.php');
 
             // options machine
             if($this->_config['canvas'] || $this->_config['shortcodes'] || $this->_config['meta_box']) {
@@ -165,7 +192,18 @@ if(!class_exists('Inferno')) {
             // canvas
             if( $this->_config['canvas'] ) {
                 require( dirname( __FILE__ ) . '/canvas/class-canvas.php' );
-                new Inferno_Canvas();
+                $current_user = wp_get_current_user();
+
+                // TODO maybe do this in a cooler way?
+                if($this->_config['canvas'][0]['demo_mode'] == true 
+                    && isset($this->_config['canvas'][0]['demo_account'])
+                    && (!is_user_logged_in()
+                    || $current_user->user_login == $this->_config['canvas'][0]['demo_account'])) {
+                    require( dirname( __FILE__ ) . '/canvas/class-demo-canvas.php' );
+                    new Inferno_Demo_Canvas();
+                } else {
+                    new Inferno_Canvas();
+                }
             }
 
             // todo: require_once(dirname(__FILE__) . '/inc/breadcrumbs.php');
@@ -176,7 +214,7 @@ if(!class_exists('Inferno')) {
         public function actions()
         {
             add_action('init', array(&$this, 'assets'));
-            add_action('init', array(&$this, 'fixing_hooks'));
+            add_action('init', array(&$this, 'fixing_hooks')); // make that dynamically callable
             add_action('after_setup_theme', array(&$this, 'translate'));
             add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
         }
@@ -205,27 +243,13 @@ if(!class_exists('Inferno')) {
         public function admin_enqueue($hook)
         {
             if((($this->_config['shortcodes'] || $this->_config['meta-box']) && ($hook == 'post.php' || $hook == 'post-new.php')) || 
-                    ($this->_config['canvas'] && $hook == 'appearance_page_inferno-admin')) {
-                wp_enqueue_script('jquery');
-                wp_enqueue_script('jquery-ui-core');
-                wp_enqueue_script('jquery-ui-widget');
-                wp_enqueue_script('jquery-ui-tabs');
-                wp_enqueue_script('jquery-ui-slider');
-                wp_enqueue_script('jquery-ui-sortable');
-                wp_enqueue_script('jquery-ui-button');
-                wp_enqueue_script('jquery-form');
-                wp_enqueue_script('media-upload');
-                wp_enqueue_script('thickbox');
-                wp_enqueue_script('jquery-image-picker');
-                wp_enqueue_script('jquery-confirm');
-                wp_enqueue_script('jquery-colorpicker');
-                wp_enqueue_script('inferno-admin');
-
-                wp_enqueue_style('thickbox');
-                wp_enqueue_style('inferno-colorpicker');
-                wp_enqueue_style('font-awesome');
-                wp_enqueue_style('image-picker');
-                wp_enqueue_style('inferno-admin');
+            ($this->_config['canvas'] && $hook == 'appearance_page_inferno-admin')) {
+                foreach(self::$admin_scripts as $script) {
+                    wp_enqueue_script($script);
+                }
+                foreach(self::$admin_styles as $style) {
+                    wp_enqueue_style($style);
+                }
             }
         }
 

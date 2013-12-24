@@ -1,10 +1,33 @@
 jQuery(document).ready(function($) {
 
+    // get the demo mode
+    var demo_mode = $('#inferno-panel-form').data('demo') == true ? true : false;
+
+    /* ==========================================================================
+       Inferno opener
+       ========================================================================== */
+
+    // TODO: make this maybe an iframe popup to prevent style and script incopatibilities of panel and frontend?
+    if(demo_mode) {
+        $('#inferno-demo-opener').magnificPopup({
+          type:'inline',
+          midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+    }
+
     /* ==========================================================================
        Inferno globally
        ========================================================================== */
 
+    // TODO: make this height fix cleaner: http://stackoverflow.com/questions/2345784/jquery-get-height-of-hidden-element-in-jquery
     function equalHeightInfernoColumn() {
+        var originClass = $('#inferno-panel-form').attr('class');
+        $('#inferno-panel-form.mfp-hide').css({
+            position:   'absolute',
+            visibility: 'hidden',
+            display:    'block'
+        }).removeClass('mfp-hide');
+
         if($('#inferno-canvas .inferno-menu').height() > $('#inferno-canvas .inferno-content').height()) {
             $('#inferno-canvas .inferno-menu').animate({ 
                 height: Math.max.apply(Math, [ $('#inferno-canvas .inferno-content').height(), $('#inferno-canvas .inferno-menu > ul').outerHeight(true) + $('#inferno-canvas .inferno-menu > button').outerHeight(true) ]) + 'px'
@@ -14,6 +37,8 @@ jQuery(document).ready(function($) {
                 height: $('#inferno-canvas .inferno-content').height() + 'px'
             });
         }
+
+        $('#inferno-panel-form').removeAttr('style').attr('class', originClass);
     }
 
     /* Form elements
@@ -31,17 +56,19 @@ jQuery(document).ready(function($) {
 
     /* Upload button
        ========================================================================== */
-    $('#inferno-canvas .media .button-upload, .inferno-meta-box .media .button-upload').live('click', function() {
-        $element = $(this);
-        window.send_to_editor = function(html) {
-            imgurl = $('img', html).attr('src');
-            $element.parent().find('input[type="hidden"]').val(imgurl);
-            $element.parent().find('.media-preview').html('<img src="' + $element.parent().find('input[type="hidden"]').val() + '" alt="" />');
-            tb_remove();
-        };
-        tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true');
-        return false;
-    });
+    if(!demo_mode) {
+        $('#inferno-canvas .media .button-upload, .inferno-meta-box .media .button-upload').live('click', function() {
+            $element = $(this);
+            window.send_to_editor = function(html) {
+                imgurl = $('img', html).attr('src');
+                $element.parent().find('input[type="hidden"]').val(imgurl);
+                $element.parent().find('.media-preview').html('<img src="' + $element.parent().find('input[type="hidden"]').val() + '" alt="" />');
+                tb_remove();
+            };
+            tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true');
+            return false;
+        });
+    }
 
 
     /* Image picker
@@ -133,11 +160,13 @@ jQuery(document).ready(function($) {
         return true;
     }
 
-    $('#inferno-panel-form').ajaxForm({
-        beforeSubmit: ($('#inferno-panel-form').data('debug') === true ? showRequest : null),
-        success: successResponse,
-        error: errorResponse
-    });
+    if(!demo_mode) {
+        $('#inferno-panel-form').ajaxForm({
+            beforeSubmit: ($('#inferno-panel-form').data('debug') === true ? showRequest : null),
+            success: successResponse,
+            error: errorResponse
+        });
+    }
 
 
 

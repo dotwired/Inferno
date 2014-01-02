@@ -12,12 +12,11 @@ if(!class_exists('Inferno_Canvas')) {
 
         protected $advanced_mode = false;
 
+        protected $brand_theme = false;
+
         protected $demo_mode = false;
 
         protected $demo_account = false;
-
-        protected $brand_theme = false;
-
         
         public function __construct()
         {
@@ -53,10 +52,6 @@ if(!class_exists('Inferno_Canvas')) {
             }
             if($theme_support[0]['brand_theme'] === true) {
                 $this->brand_theme = true;
-            }
-            if($theme_support[0]['demo_mode'] === true) {
-                $this->demo_mode = true;
-                $this->demo_account = $theme_support[0]['demo_account'];
             }
         }
 

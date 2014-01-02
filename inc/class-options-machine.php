@@ -11,12 +11,12 @@
  * - checkbox       : Checkbox (basically ON / OFF switch)
  * - color          : Synonym for "colorpicker"
  * - colorpicker    : A color picker
- * - file           : For any file upload
+ * - file           : Alias for "media"
  * - font           : Embed font, including Google fonts
  * - imagepicker    : Select field for images (images as preview), suitable for patterns or similar
  * - imageselect    : Synonym for "imagepicker"
  * - transfer       : Import or export inferno panel settings
- * - media          : Upload for images (with live preview)
+ * - media          : Upload for images (files) (with live preview)
  * - radio          : A radio field
  * - range          : A range slider, supports units (see http://jqueryui.com/slider/ for example)
  * - select         : Select input
@@ -113,11 +113,13 @@ if(!class_exists('Inferno_Options_Machine')) {
 
         function field_setting() 
         {
-            if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color')
+            if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color') {
                 $class = 'color-picker';
-            elseif($this->setting['type'] == 'imagepicker' || $this->setting['type'] == 'imageselect')
+            } elseif($this->setting['type'] == 'imagepicker' || $this->setting['type'] == 'imageselect') {
                 $class = 'imagepicker';
-            else
+            } elseif($this->setting['type'] == 'file') {
+                $class = 'media';
+            } else
                 $class = $this->setting['type'];
 
             echo '<div class="field-setting ' . $class . '">';
@@ -139,8 +141,6 @@ if(!class_exists('Inferno_Options_Machine')) {
                     $this->radio();
                     break;
                 case 'file':
-                    $this->file();
-                    break;
                 case 'media':
                     $this->media();
                     break;
@@ -296,7 +296,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function media()
         {
             ?>
-            <input type="hidden" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png"
+            <input type="text" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png,*.ico"
                 value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
             <span class="button button-upload"><?php _e('Upload Image', 'inferno'); ?></span>
             <span class="button button-reset"><?php _e('Remove', 'inferno'); ?></span>
@@ -308,17 +308,6 @@ if(!class_exists('Inferno_Options_Machine')) {
             </div>
             <?php
         }
-
-
-        function file()
-        {
-            ?>
-            <input type="text" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png"
-                value="<?php echo $this->setting_value; ?>" class="inferno-setting" id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" />
-            <span class="button upload"><?php _e('Upload Image', 'inferno'); ?></span>
-            <?php
-        }
-
 
 
         function font()

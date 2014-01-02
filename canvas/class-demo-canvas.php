@@ -12,6 +12,8 @@ if(!class_exists('Inferno_Demo_Canvas')) {
 
             global $inferno_option;
             $this->setup();
+            $this->demo_mode = true;
+            $this->demo_account = $theme_support[0]['demo_account'];
 
             //get options
             if(isset($_COOKIE[$this->_cookie_name])) {

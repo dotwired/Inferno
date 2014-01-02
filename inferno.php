@@ -112,6 +112,7 @@ if(!class_exists('Inferno')) {
             'jquery-ui-button',
             'jquery-form',
             'media-upload',
+            'jquery-magnific-popup',
             'thickbox',
             'jquery-image-picker',
             'jquery-confirm',

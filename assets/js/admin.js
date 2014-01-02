@@ -57,12 +57,12 @@ jQuery(document).ready(function($) {
     /* Upload button
        ========================================================================== */
     if(!demo_mode) {
-        $('#inferno-canvas .media .button-upload, .inferno-meta-box .media .button-upload').live('click', function() {
+        $('#inferno-canvas .media .button-upload, .inferno-meta-box .media .button-upload').on('click', function() {
             $element = $(this);
             window.send_to_editor = function(html) {
                 imgurl = $('img', html).attr('src');
-                $element.parent().find('input[type="hidden"]').val(imgurl);
-                $element.parent().find('.media-preview').html('<img src="' + $element.parent().find('input[type="hidden"]').val() + '" alt="" />');
+                $element.parent().find('input[type="text"]').val(imgurl);
+                $element.parent().find('.media-preview').html('<img src="' + $element.parent().find('input[type="text"]').val() + '" alt="" />');
                 tb_remove();
             };
             tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true');

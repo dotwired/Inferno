@@ -12,7 +12,9 @@ if(!class_exists('Inferno_Demo_Canvas')) {
 
             global $inferno_option;
             $this->setup();
+
             $this->demo_mode = true;
+            $theme_support = get_theme_support('inferno-canvas');
             $this->demo_account = $theme_support[0]['demo_account'];
 
             //get options

@@ -153,7 +153,8 @@ if(!class_exists('Inferno_Portfolio')) {
             $portfolio_query = new WP_Query(array(
                 'post_type' => 'portfolio',
                 'posts_per_page' => $this->settings['limit'] ? $this->settings['limit'] : -1,
-                'paged' => $paged
+                'paged' => $paged,
+                'meta_key' => '_thumbnail_id' // only query posts with thumbnail
             ));
 
             if($portfolio_query->have_posts()) {

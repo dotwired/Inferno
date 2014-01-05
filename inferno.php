@@ -68,12 +68,13 @@ if(!class_exists('Inferno')) {
             array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
             array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
             array('iscroll', 'assets/js/iscroll.js', false, '4.2.5', true),
+            array('jquery-animate-scale', 'assets/js/jquery.animate.scale.js', false, null, true),
             array('jquery-blur', 'assets/js/jquery/jquery.blur.js', array('jquery'), '1', true),
             array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.js', array('jquery'), '1.4.10', true),
             array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.js', array('jquery'), null, true),
             array('jquery-cookie', 'assets/js/jquery/jquery.cookie.js', array('jquery'), '1.3.1', true),
             array('jquery-confirm', 'assets/js/jquery/jquery.confirm.js', array('jquery'), '1.3', true),
-            array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.js', array('jquery'), null, true),
+            array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.js', array('jquery', 'jquery-animate-scale'), null, true),
             array('jquery-easing', 'assets/js/jquery/jquery.easing.js', array('jquery'), '1.3', true),
             array('jquery-fitvids', 'assets/js/jquery/jquery.fitvids.js', array('jquery'), '1.0', true),
             array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.js', array('jquery'), '2.1', true),
@@ -93,7 +94,6 @@ if(!class_exists('Inferno')) {
             array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
             array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
             array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.js', array('jquery'), '1.0.14', true),
-            array('jquery-tweet', 'assets/js/jquery/jquery.tweet.js', array('jquery'), null, true),
             array('modernizr', 'assets/js/modernizr.js', false, '2.6.2', true),
             array('responsive-nav', 'assets/js/responsivenav.js', false, '1.0.14', true)
         );

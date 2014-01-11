@@ -1,0 +1,172 @@
+@import 'mixins';
+
+$header-height: 65px;
+$nav-width: 170px;
+$content-width: 510px;
+$content-inner-width: $content-width - 50px;
+$field-setting-width: $content-inner-width / 2 - 50px;
+$field-details-width: $content-inner-width / 2;
+$full-width: $nav-width + $content-width;
+$footer-height: 100px;
+
+@media all and (max-width: 1160px) and (min-width: 767px) {
+  #inferno-canvas {
+    width: $full-width;
+
+    .inferno-header {
+      .inferno-brand {
+        width: $nav-width;
+      }
+    }
+
+    .inferno-content, 
+    .inferno-footer {
+      width: $content-width;
+    }
+
+    .field {
+      @include box-orient(vertical);
+      display: box;
+      display: -webkit-box;
+      display: -khtml-box;
+      display: -moz-box;
+      display: -ms-box;
+      display: -o-box;
+    }
+
+    .field-setting,
+    .field-details {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .field-details {
+      @include box-ordinal-group(2);
+      margin-bottom: 15px;
+    }
+
+    .field-setting {
+      @include box-ordinal-group(3);
+    }
+  }
+}
+
+
+
+
+
+
+
+$header-height: 65px;
+$nav-width: 170px;
+$content-width: 530px;
+$content-inner-width: $content-width - 50px;
+$field-setting-width: $content-inner-width / 2 - 50px;
+$field-details-width: $content-inner-width / 2;
+$full-width: $nav-width + $content-width;
+$footer-height: 130px;
+
+@media all and (max-width: 766px) {
+
+  #inferno-canvas {
+    @include border-radius(0);
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: auto;
+    margin: 0;
+
+    .inferno-header {
+      .inferno-brand {
+        width: $nav-width;
+      }
+
+      .inferno-info {
+        padding-left: 70px;
+      }
+    }
+
+    #inferno-mobile-menu-toggle {
+      display: block;
+    }
+
+    .inferno-menu {
+      position: absolute;
+      z-index: 499;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    .inferno-content, 
+    .inferno-footer {
+      position: relative;
+      width: 100%;
+    }
+
+    .inferno-footer {
+      height: $footer-height;
+      font-size: 13px;
+    }
+
+    .inferno-content {
+      &.menu-active {
+        left: $nav-width;
+      }
+    }
+
+    .field {
+      @include box-orient(vertical);
+      display: box;
+      display: -webkit-box;
+      display: -khtml-box;
+      display: -moz-box;
+      display: -ms-box;
+      display: -o-box;
+    }
+
+    .field-setting,
+    .field-details {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .field-details {
+      @include box-ordinal-group(2);
+      margin-bottom: 15px;
+    }
+
+    .field-setting {
+      @include box-ordinal-group(3);
+    }
+  }
+}
+
+
+@media all and (max-width: 587px) {
+  #inferno-canvas {
+    top: 46px;
+
+    .inferno-info {
+      display: none;
+    }
+    
+    .inferno-footer {
+      .button-primary,
+      .button-reset {
+        margin: 0;
+        padding: 0 10px 1px;
+        font-size: 12px;
+      }
+
+      .button-primary {
+        margin-left: 10px;
+      }
+    }
+    
+  }
+}

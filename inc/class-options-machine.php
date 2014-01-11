@@ -266,9 +266,9 @@ if(!class_exists('Inferno_Options_Machine')) {
                 <input type="radio" 
                              <?php echo $this->get_name(); ?>
                              value="<?php echo $value; ?>" 
-                             id="inferno-concrete-setting-<?php echo $this->setting['id']; ?> . '-' . <?php echo self::$count['radio']; ?>" 
+                             id="inferno-concrete-setting-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>" 
                              <?php if($value == $this->setting_value) echo "checked"; ?> class="inferno-setting" />
-                <label for="inferno-concrete-setting-<?php echo $this->setting['id']; ?> . '-' . <?php echo self::$count['radio']; ?>">
+                <label for="inferno-concrete-setting-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>">
                     <?php echo $label; ?>
                 </label>
                 <?php 

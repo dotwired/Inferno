@@ -43,6 +43,7 @@ if(!class_exists('Inferno')) {
             array('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, '4.0.3', 'all'),
             array('image-picker', 'assets/css/image-picker.css', false, '0.1.7', 'all'),
             array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
+            array('inferno-mobile-admin', 'assets/css/mobile-admin.css', false, INFERNO_VERSION, 'all'),
             array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
             array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
             array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
@@ -129,6 +130,7 @@ if(!class_exists('Inferno')) {
             'font-awesome',
             'image-picker',
             'inferno-admin',
+            'inferno-mobile-admin',
             'inferno-ui-helper'
         );
 

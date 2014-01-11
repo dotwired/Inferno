@@ -73,8 +73,7 @@ $footer-height: 100px;
         @include border-radius(3px);
         display: inline-block;
         height: 28px;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 0 15px 1px;
         line-height: 22px;
         border: 3px $blue solid;
         outline: none;
@@ -145,7 +144,7 @@ html[xmlns] .clearfix {
 }
 
 #inferno-canvas {
-    @include transition-duration(1s);
+    @include transition(opacity 1s);
     @include border-radius(4px);
     position: relative;
     width: $full-width;
@@ -198,10 +197,10 @@ html[xmlns] .clearfix {
             }
         }
 
-        p.inferno-info {
+        .inferno-info {
+            @include transition-duration(1s);
             float: left;
-            margin: 0 25px;
-            width: $content-width - 50;
+            padding: 0 25px;
             font-size: 12px;
             line-height: $header-height;
             color: #9f9f9f;
@@ -407,7 +406,36 @@ html[xmlns] .clearfix {
             line-height: 150%;
         }
     }
+
+    /* Mobile Menu
+       ========================================================================== */
+
+    #inferno-mobile-menu-toggle {
+        position: absolute;
+        left: $nav-width;
+        display: none;
+        width: 40px;
+        height: 40px;
+        margin: (($header-height - 40px) / 2) 15px;
+        color: #9f9f9f;
+        text-decoration: none;
+        outline: none;
+
+        &.active {
+            color: #ddd;
+        }
+
+        i {
+            display: block;
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            line-height: 40px;
+            text-align: center;
+        }
+    }
 }
+
 
 
 /* ==========================================================================
@@ -458,6 +486,15 @@ html[xmlns] .clearfix {
 
         .googlefont-setting {
             padding-top: 20px;
+        }
+
+        &:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            line-height: 0;
+            height: 0;
         }
     }
 

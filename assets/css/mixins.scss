@@ -27,17 +27,19 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
 }
 
-@mixin transition-all($time) {
-    transition: all $time;
-    -webkit-transition: all $time;
-    -moz-transition: all $time;
-    -ms-transition: all $time;
-    -o-transition: all $time;
+@mixin transition($property) {
+    transition: $property;
+    -webkit-transition: $property;
+    -khtml-transition: $property;
+    -moz-transition: $property;
+    -ms-transition: $property;
+    -o-transition: $property;
 }
 
 @mixin transition-duration($time) {
     transition-duration: $time;
     -webkit-transition-duration: $time;
+    -khtml-transition-duration: $time;
     -moz-transition-duration: $time;
     -ms-transition-duration: $time;
     -o-transition-duration: $time;
@@ -47,6 +49,7 @@
     box-shadow: $properties;
     -webkit-box-shadow: $properties;
     -khtml-box-shadow: $properties;
+    -moz-box-shadow: $properties;
     -ms-box-shadow: $properties;
     -o-box-shadow: $properties;
 }
@@ -55,6 +58,7 @@
     text-shadow: $properties;
     -webkit-text-shadow: $properties;
     -khtml-text-shadow: $properties;
+    -moz-text-shadow: $properties;
     -ms-text-shadow: $properties;
     -o-text-shadow: $properties;
 }
@@ -63,6 +67,25 @@
     border-radius: $radius;
     -webkit-border-radius: $radius;
     -khtml-border-radius: $radius;
+    -moz-border-radius: $radius;
     -ms-border-radius: $radius;
     -o-border-radius: $radius;
+}
+
+@mixin box-orient($direction) {
+    box-orient: $direction;
+    -webkit-box-orient: $direction;
+    -khtml-box-orient: $direction;
+    -moz-box-orient: $direction;
+    -ms-box-orient: $direction;
+    -o-box-orient: $direction;
+}
+
+@mixin box-ordinal-group($order) {
+    box-ordinal-group: $order;
+    -webkit-box-ordinal-group: $order;
+    -khtml-box-ordinal-group: $order;
+    -moz-box-ordinal-group: $order;
+    -ms-box-ordinal-group: $order;
+    -o-box-ordinal-group: $order;
 }

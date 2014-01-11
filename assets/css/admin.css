@@ -5,6 +5,7 @@
 #inferno-demo-opener {
   transition-duration: 0.3s;
   -webkit-transition-duration: 0.3s;
+  -khtml-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -59,23 +60,25 @@
 .inferno-meta-box .button-upload {
   transition-duration: 0.3s;
   -webkit-transition-duration: 0.3s;
+  -khtml-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   box-shadow: none;
   -webkit-box-shadow: none;
   -khtml-box-shadow: none;
+  -moz-box-shadow: none;
   -ms-box-shadow: none;
   -o-box-shadow: none;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
+  -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   display: inline-block;
   height: 28px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0 15px 1px;
   line-height: 22px;
   border: 3px #46b9d6 solid;
   outline: none;
@@ -150,14 +153,16 @@ html[xmlns] .clearfix {
     clear: both; }
 
 #inferno-canvas {
-  transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  -moz-transition-duration: 1s;
-  -ms-transition-duration: 1s;
-  -o-transition-duration: 1s;
+  transition: opacity 1s;
+  -webkit-transition: opacity 1s;
+  -khtml-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -ms-transition: opacity 1s;
+  -o-transition: opacity 1s;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   position: relative;
@@ -175,6 +180,8 @@ html[xmlns] .clearfix {
   /* Content with Tabs and Options
      ========================================================================== */
   /* Messages
+     ========================================================================== */
+  /* Mobile Menu
      ========================================================================== */ }
   #inferno-canvas.show {
     opacity: 1; }
@@ -208,10 +215,15 @@ html[xmlns] .clearfix {
         color: #fff;
         line-height: 12px;
         opacity: 0.5; }
-    #inferno-canvas .inferno-header p.inferno-info {
+    #inferno-canvas .inferno-header .inferno-info {
+      transition-duration: 1s;
+      -webkit-transition-duration: 1s;
+      -khtml-transition-duration: 1s;
+      -moz-transition-duration: 1s;
+      -ms-transition-duration: 1s;
+      -o-transition-duration: 1s;
       float: left;
-      margin: 0 25px;
-      width: 740px;
+      padding: 0 25px;
       font-size: 12px;
       line-height: 65px;
       color: #9f9f9f; }
@@ -235,6 +247,7 @@ html[xmlns] .clearfix {
     #inferno-canvas .inferno-menu a {
       transition-duration: 0.3s;
       -webkit-transition-duration: 0.3s;
+      -khtml-transition-duration: 0.3s;
       -moz-transition-duration: 0.3s;
       -ms-transition-duration: 0.3s;
       -o-transition-duration: 0.3s;
@@ -248,6 +261,7 @@ html[xmlns] .clearfix {
       #inferno-canvas .inferno-menu a i {
         transition-duration: 0.3s;
         -webkit-transition-duration: 0.3s;
+        -khtml-transition-duration: 0.3s;
         -moz-transition-duration: 0.3s;
         -ms-transition-duration: 0.3s;
         -o-transition-duration: 0.3s;
@@ -281,6 +295,7 @@ html[xmlns] .clearfix {
         #inferno-canvas .inferno-menu button.advanced-mode span i {
           transition-duration: 0.5s;
           -webkit-transition-duration: 0.5s;
+          -khtml-transition-duration: 0.5s;
           -moz-transition-duration: 0.5s;
           -ms-transition-duration: 0.5s;
           -o-transition-duration: 0.5s;
@@ -330,6 +345,7 @@ html[xmlns] .clearfix {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     -khtml-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     -o-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     margin: 25px;
@@ -342,6 +358,7 @@ html[xmlns] .clearfix {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     position: fixed;
@@ -364,6 +381,25 @@ html[xmlns] .clearfix {
       color: #ccc;
       font-weight: 900;
       line-height: 150%; }
+  #inferno-canvas #inferno-mobile-menu-toggle {
+    position: absolute;
+    left: 170px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: 12.5px 15px;
+    color: #9f9f9f;
+    text-decoration: none;
+    outline: none; }
+    #inferno-canvas #inferno-mobile-menu-toggle.active {
+      color: #ddd; }
+    #inferno-canvas #inferno-mobile-menu-toggle i {
+      display: block;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      line-height: 40px;
+      text-align: center; }
 
 /* ==========================================================================
    Inferno Shortcode Generator
@@ -428,6 +464,15 @@ html[xmlns] .clearfix {
     #inferno-generator .field-setting .googlefont-setting,
     .inferno-meta-box .field-setting .googlefont-setting {
       padding-top: 20px; }
+    #inferno-canvas .field-setting:after,
+    #inferno-generator .field-setting:after,
+    .inferno-meta-box .field-setting:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0; }
   #inferno-canvas .field-details,
   #inferno-generator .field-details,
   .inferno-meta-box .field-details {
@@ -461,17 +506,20 @@ html[xmlns] .clearfix {
   .inferno-meta-box select {
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
+    -khtml-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     -ms-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -khtml-border-radius: 4px;
+    -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     box-shadow: none;
     -webkit-box-shadow: none;
     -khtml-box-shadow: none;
+    -moz-box-shadow: none;
     -ms-box-shadow: none;
     -o-box-shadow: none;
     display: block;
@@ -493,6 +541,7 @@ html[xmlns] .clearfix {
       box-shadow: none;
       -webkit-box-shadow: none;
       -khtml-box-shadow: none;
+      -moz-box-shadow: none;
       -ms-box-shadow: none;
       -o-box-shadow: none;
       border-color: #46b9d6; }
@@ -555,6 +604,7 @@ html[xmlns] .clearfix {
     border-radius: 4px 0 0 4px;
     -webkit-border-radius: 4px 0 0 4px;
     -khtml-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
     -ms-border-radius: 4px 0 0 4px;
     -o-border-radius: 4px 0 0 4px; }
   #inferno-canvas .radio .ui-corner-right,
@@ -563,6 +613,7 @@ html[xmlns] .clearfix {
     border-radius: 0 4px 4px 0;
     -webkit-border-radius: 0 4px 4px 0;
     -khtml-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
     -ms-border-radius: 0 4px 4px 0;
     -o-border-radius: 0 4px 4px 0; }
   #inferno-canvas .radio .ui-state-active,
@@ -583,12 +634,14 @@ html[xmlns] .clearfix {
   .inferno-meta-box .checkbox .ui-button {
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
+    -khtml-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     -ms-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     border-radius: 14px;
     -webkit-border-radius: 14px;
     -khtml-border-radius: 14px;
+    -moz-border-radius: 14px;
     -ms-border-radius: 14px;
     -o-border-radius: 14px;
     position: relative;
@@ -606,6 +659,7 @@ html[xmlns] .clearfix {
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -khtml-border-radius: 100%;
+      -moz-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
       position: absolute;
@@ -658,6 +712,7 @@ html[xmlns] .clearfix {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -khtml-border-radius: 6px;
+    -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
     background: #eeeeee;
@@ -667,12 +722,14 @@ html[xmlns] .clearfix {
     .inferno-meta-box .range .inferno-setting {
       transition-duration: 0.3s;
       -webkit-transition-duration: 0.3s;
+      -khtml-transition-duration: 0.3s;
       -moz-transition-duration: 0.3s;
       -ms-transition-duration: 0.3s;
       -o-transition-duration: 0.3s;
       border-radius: 0;
       -webkit-border-radius: 0;
       -khtml-border-radius: 0;
+      -moz-border-radius: 0;
       -ms-border-radius: 0;
       -o-border-radius: 0;
       width: 100px;
@@ -696,6 +753,7 @@ html[xmlns] .clearfix {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -khtml-border-radius: 6px;
+    -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
     position: relative;
@@ -711,6 +769,7 @@ html[xmlns] .clearfix {
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -khtml-border-radius: 100%;
+      -moz-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
       position: absolute;
@@ -726,6 +785,7 @@ html[xmlns] .clearfix {
     max-width: 100%;
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
+    -khtml-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     -ms-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;

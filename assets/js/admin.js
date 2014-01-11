@@ -109,6 +109,29 @@ jQuery(document).ready(function($) {
        Inferno Canvas
        ========================================================================== */
 
+    /* Mobile menu
+       ========================================================================== */
+
+    $('#inferno-mobile-menu-toggle').on('click', function(event){
+        event.preventDefault();
+        var toggle = $(this);
+
+        if(toggle.hasClass('active')) {
+            toggle.removeClass('active');
+            $('#inferno-canvas .inferno-menu').removeClass('active');
+            $('#inferno-canvas .inferno-content').removeClass('menu-active');
+        } else {
+            toggle.addClass('active');
+            $('#inferno-canvas .inferno-menu').addClass('active');
+            $('#inferno-canvas .inferno-content').addClass('menu-active');
+        }
+
+        return false;
+    });
+
+
+
+
     /* Tabs
        ========================================================================== */
     $("#inferno-canvas").tabs({

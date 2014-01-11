@@ -15,6 +15,7 @@ $class = $this->demo_mode  === true ? ' class="inferno-demo white-popup mfp-hide
                     WP-Inferno
                 <?php endif; ?>
             </h1>
+            <a href="#" id="inferno-mobile-menu-toggle"><i class="fa fa-bars"></i></a>
             <p class="inferno-info">
                 <?php _e(sprintf('You are running Inferno version %s', INFERNO_VERSION), 'inferno'); ?>
             </p>

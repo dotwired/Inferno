@@ -6,7 +6,11 @@ All PHP classes are really plug and play. Also, it is unlikely to produce any er
 
 ### Inferno_Preview
 
-This class generates preview images (with help of the [Aqua Resizer][Aqua Resizer] class) wrapped with cool effects and eventually links. 
+This class generates preview images (with help of the [Aqua Resizer][Aqua Resizer] class) wrapped with cool effects and eventually links.
+
+```php
+
+```
 
 
 ## External maintained classes

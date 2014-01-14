@@ -444,6 +444,11 @@ html[xmlns] .clearfix {
 
 #inferno-generator {
     padding: 30px 20px;
+    background: #fff;
+
+    .inferno-shortcode {
+        display: none;
+    }
 
     .shortcode-settings {
         margin-bottom: 20px;
@@ -809,6 +814,14 @@ html[xmlns] .clearfix {
             }
         }
     }
+}
+
+
+/* Colorpicker fix
+   ========================================================================== */
+
+.colorpicker {
+    z-index: 590;
 }
 
 

@@ -405,7 +405,10 @@ html[xmlns] .clearfix {
    Inferno Shortcode Generator
    ========================================================================== */
 #inferno-generator {
-  padding: 30px 20px; }
+  padding: 30px 20px;
+  background: #fff; }
+  #inferno-generator .inferno-shortcode {
+    display: none; }
   #inferno-generator .shortcode-settings {
     margin-bottom: 20px; }
 
@@ -822,3 +825,8 @@ html[xmlns] .clearfix {
       color: red;
       text-decoration: underline;
       font-weight: 900; }
+
+/* Colorpicker fix
+   ========================================================================== */
+.colorpicker {
+  z-index: 590; }

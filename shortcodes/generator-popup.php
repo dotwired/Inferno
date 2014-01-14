@@ -9,15 +9,18 @@
                     <?php endforeach; ?>
                 </select>
             </header>
-            <section id="inferno-generator-shortcode"></section>
+            <section id="inferno-generator-shortcode">
+                <?php include( 'generator.php' ); ?>
+            </section>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-    $("#inferno-generator-select").live("change", function(){
-        $('#inferno-generator-shortcode').load('<?php echo INFERNO_URL; ?>/shortcodes/generator.php?shortcode=' + $(this).val(), function() {});
+    $("#inferno-generator-select").on("change", function(){
+        $('#inferno-generator-shortcode .inferno-shortcode').css({ display: 'none' });
+        $('#inferno-generator-shortcode #inferno-shortcode-' + $(this).val() + '.inferno-shortcode').css({ display: 'block' });
     });
 });
 </script>

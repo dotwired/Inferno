@@ -13,23 +13,15 @@
                 "id"    => "border",
                 "title" => "Border",
                 "desc"  => "Show border.",
-                "std"   => "no",
-                "type"  => "radio",
-                "options" => array(
-                    "yes" => "Yes",
-                    "no"  => "No"
-                )
+                "std"   => false,
+                "type"  => "checkbox"
             ),
             array(
                 "id"    => "css_class",
                 "title" => "CSS Class",
                 "desc"  => "An additional, custom CSS class for the HTML element.",
-                "std"   => "no",
-                "type"  => "radio",
-                "options" => array(
-                    "yes" => "Yes",
-                    "no"  => "No"
-                )
+                "std"   => false,
+                "type"  => "checkbox"
             )
         )
     ),

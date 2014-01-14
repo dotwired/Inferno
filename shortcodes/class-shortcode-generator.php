@@ -21,7 +21,7 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
                 include( dirname(__FILE__) . '/class-shortcodes.php' );
                 new Inferno_Shortcodes();
                 $tmp_shortcodes = include(dirname(__FILE__) . '/shortcodes.php');
-                $this->shortcodes[] = $tmp_shortcodes[0];
+                $this->shortcodes = array_merge($this->shortcodes, $tmp_shortcodes);
             }
 
             add_action( 'media_buttons', array( &$this, 'add_generator_button' ), 100 );

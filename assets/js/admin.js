@@ -236,6 +236,14 @@ jQuery(document).ready(function($) {
 
     $(document).ajaxComplete(function() {
         $("#inferno-generator .radio").buttonset();
+        $("#inferno-generator .checkbox input").button().change(function(){
+            $label = $(this).next('label.ui-button');
+            if($label.hasClass('ui-state-active')) {
+                $label.find('span.ui-button-text').text($label.data('true'));
+            } else {
+                $label.find('span.ui-button-text').text($label.data('false'));
+            }
+        });
     });
 
     $("#inferno-generator-insert").live('click', function(){

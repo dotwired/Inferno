@@ -66,6 +66,7 @@ if(!class_exists('Inferno')) {
          */
         public $register_scripts = array(
             array('eventemitter', 'assets/js/event-emitter.js', false, '4.2.5', true),
+            array('eventie', 'assets/js/eventie.js', false, '1.0.4', true),
             array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
             array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
             array('iscroll', 'assets/js/iscroll.js', false, '4.2.5', true),
@@ -76,15 +77,17 @@ if(!class_exists('Inferno')) {
             array('jquery-cookie', 'assets/js/jquery/jquery.cookie.js', array('jquery'), '1.3.1', true),
             array('jquery-confirm', 'assets/js/jquery/jquery.confirm.js', array('jquery'), '1.3', true),
             array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.js', array('jquery', 'jquery-animate-scale'), null, true),
+            array('jquery-debouncedresize', 'assets/js/jquery/jquery.debouncedresize.js', array('jquery'), '1', true),
             array('jquery-easing', 'assets/js/jquery/jquery.easing.js', array('jquery'), '1.3', true),
             array('jquery-fitvids', 'assets/js/jquery/jquery.fitvids.js', array('jquery'), '1.0', true),
             array('jquery-flexslider', 'assets/js/jquery/jquery.flexslider.js', array('jquery'), '2.1', true),
             array('jquery-hoverintent', 'assets/js/jquery/jquery.hoverintent.js', array('jquery'), 'r7', true),
             array('jquery-image-picker', 'assets/js/jquery/jquery.image-picker.js', array('jquery'), '0.1.7', true),
-            array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.js', array('jquery', 'eventemitter'), '3.0.4', true),
+            array('jquery-imagesloaded', 'assets/js/jquery/jquery.imagesloaded.js', array('jquery', 'eventemitter', 'eventie'), '3.1.1', true),
             array('jquery-infinitescroll', 'assets/js/jquery/jquery.infinitescroll.js', array('jquery'), '2.0b2.120519', true),
             array('jquery-infinitescroll-behavior-local', 'assets/js/jquery/jquery.infinitescroll.behavior-local.js', array('jquery-infinitescroll'), '2.0b2.120519', true),
             array('jquery-isotope', 'assets/js/jquery/jquery.isotope.js', array('jquery'), '1.5.25', true),
+            array('jquery-isotope-2', 'assets/js/jquery/jquery.isotope2.js', false, '2.0b7', true),
             array('jquery-jscrollpane', 'assets/js/jquery/jquery.jscrollpane.js', array('jquery'), '2.0.19', true),
             array('jquery-magnific-popup', 'assets/js/jquery/jquery.magnific-popup.js', array('jquery'), '0.9.7', true),
             array('jquery-mousewheel', 'assets/js/jquery/jquery.mousewheel.js', array('jquery'), '3.1.8', true),
@@ -94,6 +97,7 @@ if(!class_exists('Inferno')) {
             array('jquery-rotate', 'assets/js/jquery/jquery.rotate.js', array('jquery'), null, true),
             array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
             array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
+            array('jquery-throttledresize', 'assets/js/jquery/jquery.throttledresize.js', array('jquery'), '1', true),
             array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.js', array('jquery'), '1.0.14', true),
             array('modernizr', 'assets/js/modernizr.js', false, '2.6.2', true),
             array('responsive-nav', 'assets/js/responsivenav.js', false, '1.0.14', true)
@@ -163,33 +167,10 @@ if(!class_exists('Inferno')) {
             require_once(dirname(__FILE__) . '/inc/class-preview.php');
             require_once(dirname(__FILE__) . '/inc/class-widget.php');
 
+            # TODO move the following 2 blocks to admin_inferno later or something
             // options machine
             if($this->_config['canvas'] || $this->_config['shortcodes'] || $this->_config['meta_box']) {
                 require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
-            }
-
-            // meta boxes
-            if( $this->_config['meta-box'][0] ) {
-                require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
-
-                if(isset($this->_config['meta-box'][0]['file']) && is_string($this->_config['meta-box'][0]['file'])) {
-                    foreach( include( locate_template( $this->_config['meta-box'][0]['file'] ) ) as $meta_box ) {
-                        new Inferno_Meta_Box( $meta_box );
-                    }
-                }
-            }
-
-            // shortcodes
-            if( $this->_config['shortcodes'] ) {
-                require( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
-
-                new Inferno_Shortcode_Generator();
-            }
-
-            if( $this->_config['portfolio'] ) {
-                require( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
-
-                new Inferno_Portfolio();
             }
 
             // canvas
@@ -209,6 +190,12 @@ if(!class_exists('Inferno')) {
                 }
             }
 
+            if( $this->_config['portfolio'] ) {
+                require( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
+
+                new Inferno_Portfolio();
+            }
+
             // todo: require_once(dirname(__FILE__) . '/inc/breadcrumbs.php');
             // todo: require_once(dirname(__FILE__) . '/inc/pagination.php');
             // todo: require_once(dirname(__FILE__) . '/builder/class-builder.php');
@@ -218,6 +205,7 @@ if(!class_exists('Inferno')) {
         {
             add_action('init', array(&$this, 'assets'));
             add_action('init', array(&$this, 'fixing_hooks')); // make that dynamically callable
+            add_action('admin_init', array($this, 'admin_inferno'));
             add_action('after_setup_theme', array(&$this, 'translate'));
             add_action('admin_enqueue_scripts', array(&$this, 'admin_enqueue'));
         }
@@ -255,6 +243,28 @@ if(!class_exists('Inferno')) {
                 }
             }
         }
+
+        public function admin_inferno()
+        {
+            // meta boxes
+            if( $this->_config['meta-box'][0] ) {
+                require_once(dirname(__FILE__) . '/inc/class-meta-box.php');
+
+                if(isset($this->_config['meta-box'][0]['file']) && is_string($this->_config['meta-box'][0]['file'])) {
+                    foreach( include( locate_template( $this->_config['meta-box'][0]['file'] ) ) as $meta_box ) {
+                        new Inferno_Meta_Box( $meta_box );
+                    }
+                }
+            }
+
+            // shortcodes
+            if( $this->_config['shortcodes'] ) {
+                require( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
+
+                new Inferno_Shortcode_Generator();
+            }
+        }
+
 
         public function fixing_hooks()
         {

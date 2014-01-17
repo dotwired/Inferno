@@ -35,7 +35,9 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
 
         public function generator_popup() 
         {
-            include( 'generator-popup.php' );
+            $screen = get_current_screen();
+            if($screen->base == 'post')
+                include( 'generator-popup.php' );
         }
     }
 }

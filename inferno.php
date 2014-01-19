@@ -89,6 +89,7 @@ if(!class_exists('Inferno')) {
             array('jquery-isotope', 'assets/js/jquery/jquery.isotope.js', array('jquery'), '1.5.25', true),
             array('jquery-isotope-2', 'assets/js/jquery/jquery.isotope2.js', false, '2.0b7', true),
             array('jquery-jscrollpane', 'assets/js/jquery/jquery.jscrollpane.js', array('jquery'), '2.0.19', true),
+            array('jquery-mobile', 'assets/js/jquery/jquery.mobile.js', array('jquery'), '1.4.0', true),
             array('jquery-magnific-popup', 'assets/js/jquery/jquery.magnific-popup.js', array('jquery'), '0.9.7', true),
             array('jquery-mousewheel', 'assets/js/jquery/jquery.mousewheel.js', array('jquery'), '3.1.8', true),
             array('jquery-perfect-scrollbar', 'assets/js/jquery/jquery.perfect-scrollbar.js', array('jquery'), '0.4.6', true),

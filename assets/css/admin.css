@@ -14,9 +14,9 @@
   top: 100px;
   width: 50px;
   height: 50px;
-  background: #ea793d; }
+  background: #ea793d url(../img/inferno-demo-opener.png) center center no-repeat; }
   #inferno-demo-opener:hover {
-    background: #46b9d6; }
+    background-color: #46b9d6; }
 
 .mfp-content #inferno-panel-form {
   box-sizing: border-box;

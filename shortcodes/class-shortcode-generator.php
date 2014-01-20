@@ -8,7 +8,7 @@ if(!class_exists( 'Inferno_Shortcode_Generator' ) ) {
         public $shortcodes = array();
 
         public function __construct() 
-        {
+        {            
             $theme_support = get_theme_support('inferno-shortcodes');
 
             if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {

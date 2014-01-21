@@ -51,6 +51,12 @@ if(!class_exists('Inferno_Demo_Canvas')) {
             // additional scripts & styles for the demo
             wp_enqueue_script('jquery-magnific-popup');
             wp_enqueue_style('magnific-popup');
+
+            $jsstrings = array(
+                'demo_opener_qtip' => __('Play with the theme settings.', 'inferno'),
+            );
+
+            wp_localize_script('inferno-admin', 'INFERNO', $jsstrings);
         }
 
         public function auto_login()

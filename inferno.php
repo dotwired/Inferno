@@ -53,6 +53,7 @@ if(!class_exists('Inferno')) {
       array('magnific-popup', 'assets/css/magnific-popup.css', false, '0.9.7', 'all'),
       array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
       array('perfect-scrollbar', 'assets/css/perfect-scrollbar.css', false, '0.4.6', 'all'),
+      array('qtip', 'assets/css/jquery.qtip.css', false, '2.2.0', 'all'),
       array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
       array('structurize-responsive', 'assets/css/structurize-responsive.css', false, INFERNO_VERSION, 'all'),
       array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
@@ -95,6 +96,7 @@ if(!class_exists('Inferno')) {
       array('jquery-perfect-scrollbar', 'assets/js/jquery/jquery.perfect-scrollbar.js', array('jquery'), '0.4.6', true),
       array('jquery-pjax', 'assets/js/jquery/jquery.pjax.js', array('jquery'), '1.7.3', true),
       array('jquery-placeholder', 'assets/js/jquery/jquery.placeholder.js', array('jquery'), '2.0.7', true),
+      array('jquery-qtip', 'assets/js/jquery/jquery.qtip.js', array('jquery'), '2.2.0', true),
       array('jquery-rotate', 'assets/js/jquery/jquery.rotate.js', array('jquery'), null, true),
       array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
       array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
@@ -123,6 +125,7 @@ if(!class_exists('Inferno')) {
       'jquery-image-picker',
       'jquery-confirm',
       'jquery-colorpicker',
+      'jquery-qtip',
       'inferno-admin'
     );
 
@@ -136,7 +139,8 @@ if(!class_exists('Inferno')) {
       'image-picker',
       'inferno-admin',
       'inferno-mobile-admin',
-      'inferno-ui-helper'
+      'inferno-ui-helper',
+      'qtip'
     );
 
 

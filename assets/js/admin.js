@@ -10,8 +10,21 @@ jQuery(document).ready(function($) {
     // TODO: make this maybe an iframe popup to prevent style and script incopatibilities of panel and frontend?
     if(demo_mode) {
         $('#inferno-demo-opener').magnificPopup({
-          type:'inline',
-          midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+            type:'inline',
+            midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+
+        $('#inferno-demo-opener').qtip({
+            content: {
+                text: INFERNO.demo_opener_qtip
+            },
+            style: {
+                classes: 'qtip-bootstrap'
+            },
+            position: {
+                my: 'left center',
+                at: 'right center'
+            }
         });
     }
 

@@ -44,11 +44,11 @@ if(!class_exists('Inferno_Portfolio')) {
 
         public function enqueue()
         {
-            wp_enqueue_script('jquery-imagesloaded');
             wp_enqueue_script('jquery-easing');
             wp_enqueue_script('animate-scale');
             wp_enqueue_script('css-transform');
             wp_enqueue_script('jquery-isotope');
+            wp_enqueue_script('jquery-imagesloaded');
 
             wp_enqueue_style('inferno-portfolio');
             wp_enqueue_style('css3d');

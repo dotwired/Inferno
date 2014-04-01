@@ -1,5 +1,29 @@
 # Function Reference
 
+## inferno_get_option()
+
+### Description
+
+A safe way of getting values for a named option saved with the Inferno admin canvas. If the desired option does not exist, or no value is associated with it, NULL will be returned.
+
+### Usage
+
+```php
+<?php echo inferno_get_option($option_name, $default_value); ?>
+```
+
+### Parameters
+
+<dl>
+  <dt>*`$option_name`*</dt>
+  <dd>(string) (required) The key by which you want to retrieve the option value. Default: NULL</dd>
+
+  <dt>*`$default_value`*</dt>
+  <dd>(mixed) The default value to return if no value is returned (ie. the option is not in the database). Default: NULL</dd>
+</dl>
+
+
+
 ## inferno_preview()
 
 ### Description

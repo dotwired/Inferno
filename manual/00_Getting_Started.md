@@ -20,7 +20,7 @@ By that WP-Inferno makes sure you don't need much more than itself to create a p
 Inferno doesn't include much if you don't opt into the features and functions you need. This allows to keep your theme as performant and quick as possible, without needless additional load, at least not added by Inferno.
 
 You need to opt in the features you want before you initialize Inferno itself. Use the WordPress native [`add_theme_support()`][add_theme_support]-function to do so.
-Here is a quick and dirty example of the currently supported options:
+Here is a quick and dirty example of how a theme could incorporate Inferno:
 
 ```php
 <?php

@@ -1,6 +1,6 @@
 # Getting Started
 
-WP-Inferno is designed to be an all in one, drop and play theme plugin. You embed it, call it and configure it just as you need it. Everything is opt-in, so you need to tell WP-Inferno exactly what you want, because by default it doesn't do very much.
+WP-Inferno is designed to be a full featured, all in one, drop and play theme framework. You embed it, call it and configure it just as you need it. Everything is opt-in, so you need to tell WP-Inferno exactly what you want, because by default it doesn't do very much.
 
 Here is an overview about what WP-Inferno is capable of:
 
@@ -23,10 +23,11 @@ You need to opt in the features you want before you initialize Inferno itself. U
 Here is a quick and dirty example of the currently supported options:
 
 ```php
+<?php
 add_theme_support( 'inferno-canvas', array(
     'file'            => 'config/canvas.php', # relative path to your canvas config file from your current theme directory, respects child themes
     'social_profiles' => true, # whether Inferno shall include the default social profiles section
-    'backup'          => true, # whether Inferno shall include the default 
+    'backup'          => true, # whether Inferno shall include the default backup section
     'advanced_mode'   => true, # whether you want to enable settings for advanced mode
     'demo_mode'       => true, # whether you want to activate the demo mode
     'demo_account'    => 'demo', # username of the demo account (needs to be created by yourself)
@@ -45,15 +46,21 @@ add_theme_support( 'inferno-templates', array(
     'preview_flip' => 'inferno-templates/preview-flip.php', # relative path to your flip effect preview template
 ) );
 add_theme_support( 'inferno-portfolio' ); # add this to enable the Inferno Portfolio
+?>
 ```
 
-## Deployment
+## Deployment / Installation
 
 In the and, all you need to embed WP-Inferno into your WordPress theme is to drop the framework into your theme directory and initiate Inferno with two sweet lines of code like in the following example:
 
 ```php
+<?php
 require_once(dirname(__FILE__) . '/Inferno/inferno.php' );
 if( !isset( $theme_framework ) ) $theme_framework = new Inferno(true);
+?>
 ```
+
+That's basically it. Now go and configure the hell out of your theme.
+
 
 [add_theme_support]: http://codex.wordpress.org/Function_Reference/add_theme_support

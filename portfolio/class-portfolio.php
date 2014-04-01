@@ -175,7 +175,8 @@ if(!class_exists('Inferno_Portfolio')) {
                     }
 
                     echo '<div data-id="' . $i . '" class="preview-box ' . $data_class . '">';
-                    $preview = new Inferno_preview(
+
+                    $preview_args = array(
                         false,
                         $this->settings['img_width'],
                         $this->settings['img_height'],
@@ -185,7 +186,7 @@ if(!class_exists('Inferno_Portfolio')) {
                         'portfolio'
                     );
 
-                    echo $preview->get_output();
+                    echo inferno_preview($preview_args);
                     echo '</div>';
                     $i++;
                 }

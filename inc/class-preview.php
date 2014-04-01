@@ -29,7 +29,6 @@ if(!class_exists('Inferno_Preview')) {
 
         private $img_height = 0;
 
-
         public function __construct($src = false, $width = false, $height = false, $permalink = false, $crop = true, $effect = 'default', $module = null)
         {
             if(!method_exists($this, 'preview_' . $effect)) {

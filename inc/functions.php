@@ -43,10 +43,19 @@ function i_uo() {}
 function inferno_update_option() {}
 */
 
-function inferno_preview($src = false, $width = false, $height = false, $link = false, $crop = true, $effect = 'default', $module = null) {
+function inferno_preview($args = array()) {
+    $args += array(
+        'src'    => false, 
+        'width'  => false, 
+        'height' => false, 
+        'link'   => false, 
+        'crop'   => true, 
+        'effect' => 'default', 
+        'module' => null
+    );
     if(!class_exists('Inferno_Preview')) return;
 
-    $preview = new Inferno_Preview($src, $width, $height, $link, $crop, $effect, $module);
+    $preview = new Inferno_Preview($args['src'], $args['width'], $args['height'], $args['link'], $args['crop'], $args['effect'], $args['module']);
     return $preview->get_output();
 }
 

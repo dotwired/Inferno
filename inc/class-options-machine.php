@@ -125,11 +125,13 @@ if(!class_exists('Inferno_Options_Machine')) {
             echo '<div class="field-setting ' . $class . '">';
 
             switch($this->setting['type']) {
-                case 'text':
                 case 'colorpicker':
                 case 'color':
+                    $this->colorpicker();
+                    break;
                 case 'range':
-                    $this->text(); // will maybe call $this->range or $this->colorpicker
+                case 'text':
+                    $this->text(); // will maybe call $this->range
                     break;
                 case 'textarea':
                     $this->textarea();
@@ -190,27 +192,19 @@ if(!class_exists('Inferno_Options_Machine')) {
         function colorpicker() 
         {
             ?>
-            <div class="colorSelector" id="colorselector-<?php echo self::$count['colorpicker']; ?>">
-                <div style="background-color: <?php echo $this->setting_value; ?>;"></div>
-            </div>
+            <input type="text" class="inferno-color-selector" id="colorselector-<?php echo self::$count['colorpicker']; ?>" value="<?php echo $this->setting_value; ?>" />
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     // call the colorpicker
-                    $('#colorselector-<?php echo self::$count['colorpicker']; ?>').ColorPicker({
+                    $('#colorselector-<?php echo self::$count['colorpicker']; ?>').spectrum({
                         color: '<?php echo $this->setting_value; ?>',
-                        onShow: function(colpkr) {
-                            $(colpkr).fadeIn(500);
-                            return false;
-                        },
-                        onHide: function(colpkr) {
-                            $(colpkr).fadeOut(500);
-                            return false;
-                        },
-                        onChange: function(hsb, hex, rgb) {
-                            $('#colorselector-<?php echo self::$count['colorpicker']; ?> div').css({'background-color': '#' + hex});
-                            $('#colorselector-<?php echo self::$count['colorpicker']; ?>').parent().find('input').val('#' + hex);
-                        }
-                    });
+                        showAlpha: true,
+                        showInput: true,
+                        showInitial: true,
+                        clickoutFiresChange: true,
+                        showButtons: false,
+                        preferredFormat: "rgb"
+                    }).show();
                 });
             </script>
             <?php self::$count['colorpicker']++;

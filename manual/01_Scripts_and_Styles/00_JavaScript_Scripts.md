@@ -27,6 +27,7 @@ All scripts which come with WP-Inferno are licensed under [MIT license][license_
 * `jquery-perfect-scrollbar` - [perfect-scrollbar][jquery-perfect-scrollbar] by HyeonJe Jun
 * `jquery-pjax` - [Pjax][jquery-pjax] by Chris Wanstrath
 * `jquery-placeholder` - [HTML5 Placeholder][jquery-placeholder] by Mathias Bynens
+* `jquery-qtip` - [qTip<sup>2</sup>][jquery-placeholder] by Craig Thompson
 * `jquery-rotate` - monkey patch for `jquery-css-transform` by Zachary Johnson
 * `jquery-scrollto` - [ScrollTo][jquery-scrollto] by Ariel Flesler
 * `jquery-superfish` - [SuperFish][jquery-superfish] by Joel Birch
@@ -37,12 +38,12 @@ All scripts which come with WP-Inferno are licensed under [MIT license][license_
 You can call any of these scripts by their aliases with the [`wp_enqueue_script()`][wp_enqueue_script]-function of WordPress in your themes [functions.php][functions.php] like simply:
 
 ```php
-wp_enqueue_script("modernizr");
+<?php wp_enqueue_script("modernizr"); ?>
 ```
 
 ## Acknowledgments
 
-At this point I personally want to thank all script authors who are doing such a great job in providing useful scripts for free to other people and make possible for others to create further great projects and products. Be assured that I am planning and working towards rewarding you for this invaluable work.
+At this point thank you to all script authors who are doing such a great job in providing useful scripts for free to other people and make possible for others to create further great projects and products.
 
 [license_mit]: http://opensource.org/licenses/MIT
 [license_gpl]: http://www.gnu.org/licenses/gpl.html
@@ -72,6 +73,7 @@ At this point I personally want to thank all script authors who are doing such a
 [jquery-perfect-scrollbar]: https://github.com/noraesae/perfect-scrollbar 
 [jquery-pjax]: https://github.com/mathiasbynens/jquery-placeholder
 [jquery-placeholder]: https://github.com/mathiasbynens/jquery-placeholder
+[jquery-qtip]: http://qtip2.com/
 [jquery-scrollto]: https://github.com/flesler/jquery.scrollTo
 [jquery-superfish]: https://github.com/joeldbirch/superfish/
 [jquery-tinynav]: https://github.com/viljamis/TinyNav.js

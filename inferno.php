@@ -45,7 +45,6 @@ if(!class_exists('Inferno')) {
       array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
       array('inferno-mobile-admin', 'assets/css/mobile-admin.css', false, INFERNO_VERSION, 'all'),
       array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
-      array('inferno-colorpicker', 'assets/css/colorpicker.css', false, null, 'all'),
       array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
       array('inferno-portfolio', 'assets/css/portfolio.css', false, INFERNO_VERSION, 'all'),
       array('inferno-ui-helper', 'assets/css/ui-helper.css', false, INFERNO_VERSION, 'all'),
@@ -54,6 +53,7 @@ if(!class_exists('Inferno')) {
       array('normalize', 'assets/css/normalize.css', false, INFERNO_VERSION, 'all'),
       array('perfect-scrollbar', 'assets/css/perfect-scrollbar.css', false, '0.4.6', 'all'),
       array('qtip', 'assets/css/jquery.qtip.css', false, '2.2.0', 'all'),
+      array('spectrum', 'assets/css/spectrum.css', false, '1.3.3', 'all'),
       array('structurize', 'assets/css/structurize.css', false, INFERNO_VERSION, 'all'),
       array('structurize-responsive', 'assets/css/structurize-responsive.css', false, INFERNO_VERSION, 'all'),
       array('shortcodes', 'assets/css/shortcodes.css', false, INFERNO_VERSION, 'all'),
@@ -74,7 +74,6 @@ if(!class_exists('Inferno')) {
       array('jquery-animate-scale', 'assets/js/jquery.animate.scale.js', false, null, true),
       array('jquery-blur', 'assets/js/jquery/jquery.blur.js', array('jquery'), '1', true),
       array('jquery-colorbox', 'assets/js/jquery/jquery.colorbox.js', array('jquery'), '1.4.10', true),
-      array('jquery-colorpicker', 'assets/js/jquery/jquery.colorpicker.js', array('jquery'), null, true),
       array('jquery-cookie', 'assets/js/jquery/jquery.cookie.js', array('jquery'), '1.3.1', true),
       array('jquery-confirm', 'assets/js/jquery/jquery.confirm.js', array('jquery'), '1.3', true),
       array('jquery-css-transform', 'assets/js/jquery/jquery.css.transform.js', array('jquery', 'jquery-animate-scale'), null, true),
@@ -99,6 +98,7 @@ if(!class_exists('Inferno')) {
       array('jquery-qtip', 'assets/js/jquery/jquery.qtip.js', array('jquery'), '2.2.0', true),
       array('jquery-rotate', 'assets/js/jquery/jquery.rotate.js', array('jquery'), null, true),
       array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
+      array('jquery-spectrum', 'assets/js/jquery/jquery.spectrum.js', array('jquery'), '1.3.3', true),
       array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
       array('jquery-throttledresize', 'assets/js/jquery/jquery.throttledresize.js', array('jquery'), '1', true),
       array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.js', array('jquery'), '1.0.14', true),
@@ -124,8 +124,8 @@ if(!class_exists('Inferno')) {
       'thickbox',
       'jquery-image-picker',
       'jquery-confirm',
-      'jquery-colorpicker',
       'jquery-qtip',
+      'jquery-spectrum',
       'inferno-admin'
     );
 
@@ -133,14 +133,14 @@ if(!class_exists('Inferno')) {
      * The style handles needed for any inferno administration purposes
      */
     public static $admin_styles = array(
-      'thickbox',
-      'inferno-colorpicker',
       'font-awesome',
       'image-picker',
       'inferno-admin',
       'inferno-mobile-admin',
       'inferno-ui-helper',
-      'qtip'
+      'qtip',
+      'spectrum',
+      'thickbox'
     );
 
 

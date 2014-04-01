@@ -1,6 +1,3 @@
 .*
 !/.gitignore
-plugins/ml-slider/
-plugins/wooslider/
-plugins/multiple-post-thumbnails/
-plugins/widget-css-classes/
+.DS_Store

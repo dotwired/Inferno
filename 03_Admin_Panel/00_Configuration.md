@@ -5,20 +5,30 @@ To activate the admin panel at all you need to activate it in your `functions.ph
 ```php
 <?php
 add_theme_support( 'inferno-canvas', array(
-    'file'            => 'config/canvas.php', # relative path to your canvas config file from your current theme directory, respects child themes
+    'file'            => 'config/canvas.php', # relative path to your canvas config file from your current theme directory, respects child themes. Required
     'social_profiles' => true, # whether Inferno shall include the default social profiles section
     'backup'          => true, # whether Inferno shall include the default backup section
     'advanced_mode'   => true, # whether you want to enable settings for advanced mode
     'demo_mode'       => true, # whether you want to activate the demo mode
-    'demo_account'    => 'demo', # username of the demo account (needs to be created by yourself)
+    'demo_account'    => 'demo', # username of the demo account (needs to be created by yourself and have the subscriber role)
     'brand_theme'     => true # whether you want to brand the admin panel with your themes name (Inferno uses the name from the theme style.css)
 ) );
 ?>
 ```
 
+## Demo mode
+
+This is a completely new feature no admin panel out there can provide. Are you eventually tired of creating color and font and whatsoever switcher manually for each theme?
+
+This hassle ends with the demo mode of Inferno. Just turn it on (by creating a subscriber demo account, passing its username to the `demo_account` value of the array and setting `demo_mode` to true) and it will generate the admin panel in the frontend of your WordPress site. Visitors are able to change all settings except uploading files (the settings are not being stored in the database but in user cookies for each visitor separately).
+
+That way, people can change permanently all the settings provided by the theme (which will actually take effect instantly but only single visitors) and though not affect the site itself.
+
+
+
 ## Config file
 
-The settings for your theme go into the file you have specified when addded theme support of the canvas (see above). For a complete list of setting fields refer to the [Options Machine][options_machine].
+The settings for your theme go into the file you have specified when addded theme support for the canvas (see above). For a complete list of setting fields refer to the [Options Machine][options_machine].
 
 That config file could look like the one in the following (each option type is given once):
 

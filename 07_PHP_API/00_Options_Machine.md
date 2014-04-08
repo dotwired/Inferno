@@ -102,3 +102,37 @@ array(
 )
 ?>
 ```
+
+
+### Text field
+
+#### Example
+
+```php
+<?php
+array(
+  "title"   => __("Welcome message", 'theme_domain'),
+  "id"      => "welcome",
+  "desc"    => __("Say hello to your users.", 'theme_domain'),
+  "std"     => "Hello world!",
+  "type"    => "text"
+)
+?>
+```
+
+
+### Text area
+
+#### Example
+
+```php
+<?php
+array(
+  "title"   => __("Welcome message", 'theme_domain'),
+  "id"      => "welcome",
+  "desc"    => __("Say hello to your users.", 'theme_domain'),
+  "std"     => "Hello world!",
+  "type"    => "text"
+)
+?>
+```

@@ -247,17 +247,34 @@ jQuery(document).ready(function($) {
        Inferno Shortcode Generator
        ========================================================================== */
 
-    $(document).ajaxComplete(function() {
-        $("#inferno-generator .radio").buttonset();
-        $("#inferno-generator .checkbox input").button().change(function(){
-            $label = $(this).next('label.ui-button');
-            if($label.hasClass('ui-state-active')) {
-                $label.find('span.ui-button-text').text($label.data('true'));
-            } else {
-                $label.find('span.ui-button-text').text($label.data('false'));
-            }
-        });
+    $('#inferno-generator-insert').hide();
+    $("#inferno-generator-select").on("change", function(){
+        $('#inferno-generator-shortcode .inferno-shortcode').css({ display: 'none' });
+        $('#inferno-generator-shortcode #inferno-shortcode-' + $(this).val() + '.inferno-shortcode').css({ display: 'block' });
+
+        if(!$(this).val() || $(this).val() === 'raw') {
+            $('#inferno-generator-insert').hide();
+        } else {
+            $('#inferno-generator-insert').show();
+        }
     });
+
+    $('.mfp.inferno-shortcode-generator-button').magnificPopup({
+        type: 'inline',
+        showCloseBtn: true,
+        closeBtnInside: true
+    });
+
+    $("#inferno-generator .radio").buttonset();
+    $("#inferno-generator .checkbox input[type=checkbox]").button().change(function(){
+        $label = $(this).next('label.ui-button').first();
+        if($label.hasClass('ui-state-active')) {
+            $label.find('span.ui-button-text').text($label.data('true'));
+        } else {
+            $label.find('span.ui-button-text').text($label.data('false'));
+        }
+    });
+
 
     $("#inferno-generator-insert").live('click', function(){
         $inferno_shortcode_result = $("#inferno-generator-result");
@@ -267,18 +284,27 @@ jQuery(document).ready(function($) {
         var inferno_shortcode_content_att = $("#inferno-shortcode-content-att").val() !== '' ? $("#inferno-shortcode-content-att").val() : false;
 
 
-        $("#inferno-generator .inferno-setting").each(function(){
+        var $shortcode_container = $("#inferno-generator").find('.inferno-shortcode').filter(':visible:first');
+        var shortcode_id = $shortcode_container.data('shortcode-id');
+
+        $shortcode_container.find('.inferno-setting').each(function(){
             $setting = $(this);
-            if($setting.val()) {
-                $inferno_shortcode_result.val($inferno_shortcode_result.val() + ' ' + $setting.attr('name') + '="' + $setting.val() + '"');
+
+            // remove that nasty shortcode id at the beginnging + the _
+            var setting_id = $setting.attr('name').substring(shortcode_id.length + 1);
+
+            // TODO: all this process may be lightened up some time. kinda confusing and complex right now
+            if((($setting.is('input[type=text]') || $setting.is('textarea')) && $setting.val()) ||
+                (($setting.is('input[type=checkbox]') || $setting.is('input[type=radio]')) && $setting.is(':checked') && $setting.val())) {
+                $inferno_shortcode_result.val($inferno_shortcode_result.val() + ' ' + setting_id + '="' + $setting.val() + '"');
             }
         });
-        $inferno_shortcode_result.val('[' + $inferno_shortcode_select.val() + ' ' + $inferno_shortcode_result.val() + ']');
+        $inferno_shortcode_result.val('[' + $inferno_shortcode_select.val() + $inferno_shortcode_result.val() + ']');
         if(!inferno_shortcode_only_atts) $inferno_shortcode_result.val($inferno_shortcode_result.val() + '[' + $inferno_shortcode_select.val()  + ']');
 
         var shortcode = $inferno_shortcode_result.val();
         window.send_to_editor(shortcode);
-        tb_remove();
+        $.magnificPopup.instance.close();
 
         // Prevent default action
         event.preventDefault();

@@ -18,11 +18,12 @@ if(!class_exists('Inferno')) {
      * @var array
      */
     private $_config = array(
-      'canvas'      => false,
-      'shortcodes'  => false,
-      'meta-box'    => false,
-      'breadcrumbs' => false,
-      'portfolio'   => false
+      'canvas'              => false,
+      'shortcodes'          => false,
+      'shortcode-generator' => false,
+      'meta-box'            => false,
+      'breadcrumbs'         => false,
+      'portfolio'           => false
     );
 
     /**
@@ -68,7 +69,6 @@ if(!class_exists('Inferno')) {
     public $register_scripts = array(
       array('eventemitter', 'assets/js/event-emitter.js', false, '4.2.5', true),
       array('eventie', 'assets/js/eventie.js', false, '1.0.4', true),
-      array('inferno', 'assets/js/inferno.js', array('jquery'), INFERNO_VERSION, true),
       array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
       array('iscroll', 'assets/js/iscroll.js', false, '4.2.5', true),
       array('jquery-animate-scale', 'assets/js/jquery.animate.scale.js', false, null, true),
@@ -138,6 +138,7 @@ if(!class_exists('Inferno')) {
       'inferno-admin',
       'inferno-mobile-admin',
       'inferno-ui-helper',
+      'magnific-popup',
       'qtip',
       'spectrum',
       'thickbox'
@@ -151,10 +152,11 @@ if(!class_exists('Inferno')) {
     {
       self::$_debug = $debug;
 
-      $this->_config['canvas']     = get_theme_support( 'inferno-canvas' );
-      $this->_config['shortcodes'] = get_theme_support( 'inferno-shortcodes' );
-      $this->_config['meta-box']   = get_theme_support( 'inferno-meta-box' );
-      $this->_config['portfolio']  = get_theme_support( 'inferno-portfolio' );
+      $this->_config['canvas']              = get_theme_support( 'inferno-canvas' );
+      $this->_config['shortcodes']          = get_theme_support( 'inferno-shortcodes' );
+      $this->_config['shortcode-generator'] = get_theme_support( 'inferno-shortcode-generator' );
+      $this->_config['meta-box']            = get_theme_support( 'inferno-meta-box' );
+      $this->_config['portfolio']           = get_theme_support( 'inferno-portfolio' );
 
       $this->load();
       $this->load_widgets();
@@ -174,8 +176,8 @@ if(!class_exists('Inferno')) {
 
       // options machine
       if((isset($this->_config['canvas']) && $this->_config['canvas']) || 
-          isset($this->_config['shortcodes']) && $this->_config['shortcodes'] || 
-          isset($this->_config['meta_box']) && $this->_config['meta_box']) {
+          isset($this->_config['shortcode-generator']) && $this->_config['shortcode-generator'] || 
+          isset($this->_config['meta-box']) && $this->_config['meta-box']) {
         require_once(dirname(__FILE__) . '/inc/class-options-machine.php');
       }
 
@@ -209,6 +211,12 @@ if(!class_exists('Inferno')) {
 
       // shortcodes
       if( isset($this->_config['shortcodes']) && $this->_config['shortcodes'] ) {
+        include( dirname(__FILE__) . '/shortcodes/class-shortcodes.php' );
+        new Inferno_Shortcodes();
+      }
+
+      // shortcode generator
+      if( isset($this->_config['shortcode-generator']) && $this->_config['shortcode-generator'] ) {
         require( dirname(__FILE__) . '/shortcodes/class-shortcode-generator.php' );
 
         new Inferno_Shortcode_Generator();

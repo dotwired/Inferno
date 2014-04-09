@@ -443,9 +443,18 @@ html[xmlns] .clearfix {
    Inferno Shortcode Generator
    ========================================================================== */
 
+.inferno-shortcode-generator-button {
+    i.fa {
+        display: block;
+        line-height: 18px;
+    }
+}
+
 #inferno-generator {
+    margin: 50px auto;
     padding: 30px 20px;
     background: #fff;
+    max-width: 740px;
 
     .inferno-shortcode {
         display: none;
@@ -569,7 +578,8 @@ html[xmlns] .clearfix {
 
     .select {
         position: relative;
-
+        
+        #inferno-generator-select,
         select.inferno-setting {
             @include appearance(none);
             position: relative;

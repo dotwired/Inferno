@@ -192,7 +192,7 @@ if(!class_exists('Inferno_Options_Machine')) {
         function colorpicker() 
         {
             ?>
-            <input type="text" class="inferno-color-selector" id="colorselector-<?php echo self::$count['colorpicker']; ?>" value="<?php echo $this->setting_value; ?>" />
+            <input type="text" <?php echo $this->get_name(); ?> class="inferno-setting inferno-color-selector" id="colorselector-<?php echo self::$count['colorpicker']; ?>" value="<?php echo $this->setting_value; ?>" />
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     // call the colorpicker

@@ -405,9 +405,15 @@ html[xmlns] .clearfix {
 /* ==========================================================================
    Inferno Shortcode Generator
    ========================================================================== */
+.inferno-shortcode-generator-button i.fa {
+  display: block;
+  line-height: 18px; }
+
 #inferno-generator {
+  margin: 50px auto;
   padding: 30px 20px;
-  background: #fff; }
+  background: #fff;
+  max-width: 740px; }
   #inferno-generator .inferno-shortcode {
     display: none; }
   #inferno-generator .shortcode-settings {
@@ -565,8 +571,11 @@ html[xmlns] .clearfix {
   #inferno-generator .select,
   .inferno-meta-box .select {
     position: relative; }
+    #inferno-canvas .select #inferno-generator-select,
     #inferno-canvas .select select.inferno-setting,
+    #inferno-generator .select #inferno-generator-select,
     #inferno-generator .select select.inferno-setting,
+    .inferno-meta-box .select #inferno-generator-select,
     .inferno-meta-box .select select.inferno-setting {
       appearance: none;
       -webkit-appearance: none;

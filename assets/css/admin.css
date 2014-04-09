@@ -410,14 +410,28 @@ html[xmlns] .clearfix {
   line-height: 18px; }
 
 #inferno-generator {
+  position: relative;
   margin: 50px auto;
-  padding: 30px 20px;
-  background: #fff;
-  max-width: 740px; }
+  max-width: 780px; }
+  #inferno-generator > .header {
+    height: 44px;
+    padding: 10px 20px;
+    background: #3f3f41;
+    overflow: auto;
+    line-height: 24px; }
+    #inferno-generator > .header h1 {
+      margin: 0;
+      font-size: 14px;
+      color: #fff; }
+  #inferno-generator > .inner {
+    padding: 30px 20px;
+    background: #fff; }
   #inferno-generator .inferno-shortcode {
     display: none; }
   #inferno-generator .shortcode-settings {
     margin-bottom: 20px; }
+  #inferno-generator .mfp-close {
+    color: #999; }
 
 /* ==========================================================================
    Options Machine
@@ -835,6 +849,14 @@ html[xmlns] .clearfix {
       color: red;
       text-decoration: underline;
       font-weight: 900; }
+
+/* ==========================================================================
+   Meta box fix for Options Machine
+   ========================================================================== */
+.inferno-meta-box .field-details {
+  float: none;
+  overflow: hidden;
+  width: auto; }
 
 /* Colorpicker fix
    ========================================================================== */

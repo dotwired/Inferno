@@ -1,16 +1,17 @@
 <div id="inferno-generator-wrap" style="display:none">
     <div id="inferno-generator">
+        <header class="header">
+            <h1><?php _e('Shortcode Generator', 'inferno'); ?></h1>
+        </header>
         <div class="inner">
-            <header class="header">
-                <div class="select">
-                    <select id="inferno-generator-select" data-placeholder="<?php _e( 'Select Shortcode', 'inferno' ); ?>" data-no-results-text="<?php _e( 'Shortcode not found', 'inferno' ); ?>">
-                        <option value="raw"></option>
-                        <?php foreach( $this->shortcodes as $shortcode ) : ?>
-                        <option value="<?php echo $shortcode['id']; ?>"><?php echo $shortcode['title']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </header>
+            <div class="select">
+                <select id="inferno-generator-select" data-placeholder="<?php _e( 'Select Shortcode', 'inferno' ); ?>" data-no-results-text="<?php _e( 'Shortcode not found', 'inferno' ); ?>">
+                    <option value="raw"></option>
+                    <?php foreach( $this->shortcodes as $shortcode ) : ?>
+                    <option value="<?php echo $shortcode['id']; ?>"><?php echo $shortcode['title']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <section id="inferno-generator-shortcode">
                 <?php include( 'generator.php' ); ?>
             </section>

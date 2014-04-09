@@ -23,7 +23,11 @@ $footer-height: 100px;
     .inferno-footer {
       width: $content-width;
     }
-
+  }
+  
+  #inferno-canvas,
+  #inferno-generator,
+  .inferno-meta-box {
     .field {
       @include box-orient(vertical);
       display: box;
@@ -36,6 +40,8 @@ $footer-height: 100px;
 
     .field-setting,
     .field-details {
+      position: relative;
+      z-index: 9999;
       float: none;
       width: 100%;
       margin-right: 0;
@@ -44,6 +50,7 @@ $footer-height: 100px;
     .field-details {
       @include box-ordinal-group(2);
       margin-bottom: 15px;
+      padding-left: 0;
     }
 
     .field-setting {
@@ -117,7 +124,11 @@ $footer-height: 130px;
         left: $nav-width;
       }
     }
-
+  }
+  
+  #inferno-canvas,
+  #inferno-generator,
+  .inferno-meta-box {
     .field {
       @include box-orient(vertical);
       display: box;
@@ -130,6 +141,8 @@ $footer-height: 130px;
 
     .field-setting,
     .field-details {
+      position: relative;
+      z-index: 9999;
       float: none;
       width: 100%;
       margin-right: 0;
@@ -138,6 +151,7 @@ $footer-height: 130px;
     .field-details {
       @include box-ordinal-group(2);
       margin-bottom: 15px;
+      padding-left: 0;
     }
 
     .field-setting {
@@ -167,6 +181,5 @@ $footer-height: 130px;
         margin-left: 10px;
       }
     }
-    
   }
 }

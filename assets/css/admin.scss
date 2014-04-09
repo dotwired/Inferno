@@ -451,10 +451,28 @@ html[xmlns] .clearfix {
 }
 
 #inferno-generator {
+    position: relative;
     margin: 50px auto;
-    padding: 30px 20px;
-    background: #fff;
-    max-width: 740px;
+    max-width: 780px;
+
+    > .header {
+        height: 44px;
+        padding: 10px 20px;
+        background: $dark-nuance;
+        overflow: auto;
+        line-height: 24px;
+
+        h1 {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+    }
+
+    > .inner {
+        padding: 30px 20px;
+        background: #fff;
+    }
 
     .inferno-shortcode {
         display: none;
@@ -462,6 +480,10 @@ html[xmlns] .clearfix {
 
     .shortcode-settings {
         margin-bottom: 20px;
+    }
+
+    .mfp-close {
+        color: #999;
     }
 }
 
@@ -827,6 +849,22 @@ html[xmlns] .clearfix {
     }
 }
 
+
+
+
+/* ==========================================================================
+   Meta box fix for Options Machine
+   ========================================================================== */
+
+// see http://stackoverflow.com/questions/3457288/css-auto-width-floated-element-expandable-float
+
+.inferno-meta-box {
+    .field-details {
+        float: none;
+        overflow: hidden;
+        width: auto;
+    }
+}
 
 /* Colorpicker fix
    ========================================================================== */

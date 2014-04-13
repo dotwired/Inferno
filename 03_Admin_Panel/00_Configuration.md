@@ -25,6 +25,11 @@ This hassle ends with the demo mode of Inferno. Just turn it on (by creating a s
 That way, people can change permanently all the settings provided by the theme (which will actually take effect instantly but only single visitors) and though not affect the site itself.
 
 
+## Advanced mode
+
+The admin canvas provides an advanced functionality. That is, if you mark single option arrays as advanced (by additionally passing `'advanced' => true` to them), these settings will be hidden by default, which can enhance the 
+clarity. There is a button which will enable the advanced options and make them visible.
+
 
 ## Config file
 

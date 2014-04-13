@@ -109,8 +109,6 @@
   #inferno-generator .field-details,
   .inferno-meta-box .field-setting,
   .inferno-meta-box .field-details {
-    position: relative;
-    z-index: 9999;
     float: none;
     width: 100%;
     margin-right: 0; }

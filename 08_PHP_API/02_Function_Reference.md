@@ -54,4 +54,4 @@ See the [`Inferno_Preview()`][class_inferno_preview] for a description of the ar
 
 
 
-[class_inferno_preview]: .manual_root/php_api/class_reference/#Inferno_Preview()
+[class_inferno_preview]: .manual_root/php_api/class_reference/#inferno_Preview()

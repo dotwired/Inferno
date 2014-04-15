@@ -165,8 +165,9 @@ return array( # Begin this with a return statement
 
 ## Retrieving data
 
-You can retrieve an option value at any time in your theme files. Use `[inferno_get_option()][inferno_get_option]` to do so.
+You can retrieve an option value at any time in your theme files. Use [`inferno_get_option()`][inferno_get_option] to do so.
 
 
 
 [inferno_get_option]: .manual_root/php_api/function_reference/#inferno_get_option()
+[options_machine]: .manual_root/php_api/options_machine

@@ -110,5 +110,8 @@ return array(
 ?>
 ```
 
+
+[options_machine]: .manual_root/php_api/options_machine
+[canvas_advanced]: .manual_root/admin_panel/configuration/#advanced_mode
 [codex_add_meta_box()]: http://codex.wordpress.org/Function_Reference/add_meta_box
-[class_inferno_preview]: .manual_root/admin_panel/configuration/#Advanced_mode
+[class_inferno_preview]: .manual_root/admin_panel/configuration/#advanced_mode

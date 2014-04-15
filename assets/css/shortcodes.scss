@@ -143,7 +143,7 @@
     }
 }
 
-.infernal-lightbox {
+.inferno-lightbox {
     -webkit-transition: -webkit-filter 2s;
     -moz-transition: -moz-filter 2s;
     -o-transition: -o-filter 2s;
@@ -192,7 +192,7 @@
     circle
 ======================================================================== */
 
-.infernal-circle {
+.inferno-circle {
     display: block;
     position: relative;
 
@@ -223,7 +223,7 @@
             max-width: 100%;
         }
 
-        .infernal-icon {
+        .inferno-icon {
             height: 100%;
         }
     }
@@ -234,7 +234,7 @@
     icons (powered by font awesome)
 ======================================================================== */
 
-.infernal-icon {
+.inferno-icon {
     @include transition((color 0.3s, background 0.3s));
     text-align: center;
     font-size: 2em;
@@ -247,7 +247,7 @@
     buttons
 ======================================================================== */
 
-.infernal-button {
+.inferno-button {
     @include border-radius(3px);
     position: relative;
     display: inline-block;
@@ -313,7 +313,7 @@
     skillbar
 ======================================================================== */
 
-.infernal-skillbar {
+.inferno-skillbar {
     @include border-radius(3px);
     position: relative;
     width: 100%;
@@ -357,7 +357,7 @@
     staff
 ======================================================================== */
 
-.infernal-staff-member {
+.inferno-staff-member {
     background: #eee;
 
     &.circle {
@@ -440,7 +440,7 @@
         }
 
 
-        &.infernal-circle {
+        &.inferno-circle {
             width: 90%;
             margin-bottom: 25px;
             overflow: visible;

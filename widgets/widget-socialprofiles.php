@@ -4,7 +4,7 @@
 class Inferno_Widget_Society extends Inferno_Widget
 {
     public $widget = array(
-        'title'       => 'Infernal Society',
+        'title'       => 'Inferno Social Icons',
         'description' => 'Show linked social profiles.'
     );
 
@@ -19,9 +19,9 @@ class Inferno_Widget_Society extends Inferno_Widget
 
     public function __construct() {
         parent::register_widget(
-            'infernal-society', // Base ID
+            'inferno-social-icons', // Base ID
             $this->widget['title'], // Name
-            array('classname' => 'infernal-society', 'description' => $this->widget['description'])
+            array('classname' => 'inferno-social-icons', 'description' => $this->widget['description'])
         );
     }
 
@@ -51,6 +51,7 @@ class Inferno_Widget_Society extends Inferno_Widget
         if(!empty($title))
             echo $before_title . $title . $after_title;
 
+        # TODO
         global $infernal_society;
 
         if(is_object($infernal_society))

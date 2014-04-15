@@ -4,7 +4,7 @@
 class Inferno_Widget_Flickr extends Inferno_Widget
 {
     public $widget = array(
-        'title'       => 'Infernal Flickr',
+        'title'       => 'Inferno Flickr',
         'description' => 'Show photos of a flickr stream.'
     );
 
@@ -18,9 +18,9 @@ class Inferno_Widget_Flickr extends Inferno_Widget
 
     public function __construct() {
         parent::register_widget(
-            'infernal-flickr', // Base ID
+            'inferno-flickr', // Base ID
             $this->widget['title'], // Name
-            array('classname' => 'infernal-flickr', 'description' => $this->widget['description'])
+            array('classname' => 'inferno-flickr', 'description' => $this->widget['description'])
         );
     }
 

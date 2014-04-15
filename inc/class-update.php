@@ -1,7 +1,7 @@
 <?php
 
-if(!class_exists('Infernal_Update')) {
-    class Infernal_Update extends Inferno {
+if(!class_exists('Inferno_Update')) {
+    class Inferno_Update extends Inferno {
     
         private $api_url;
         private $theme_id;

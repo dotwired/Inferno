@@ -736,8 +736,21 @@ html[xmlns] .clearfix {
         float: left;
     }
 
-    .colorSelector {
+    .sp-replacer {
+        @include border-radius(4px);
         float: right;
+        padding: 0;
+        border: 3px $border-grey solid;
+
+        .sp-preview {
+            width: 33px;
+            height: 33px;
+            border: none;
+        }
+
+        .sp-dd {
+            display: none;
+        }
     }
 
 
@@ -869,8 +882,13 @@ html[xmlns] .clearfix {
 /* Colorpicker fix
    ========================================================================== */
 
-.colorpicker {
-    z-index: 590;
-}
+.sp-container {
+    @include border-radius(4px !important);
+    @include box-shadow(0 0 10px 0 rgba(0, 0, 0, 0.3));
+    border: none !important;
 
+    .sp-picker-container {
+        border: none;
+    }
+}
 

@@ -729,10 +729,28 @@ html[xmlns] .clearfix {
   .inferno-meta-box .color-picker input[type=text] {
     width: 80%;
     float: left; }
-  #inferno-canvas .colorSelector,
-  #inferno-generator .colorSelector,
-  .inferno-meta-box .colorSelector {
-    float: right; }
+  #inferno-canvas .sp-replacer,
+  #inferno-generator .sp-replacer,
+  .inferno-meta-box .sp-replacer {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    float: right;
+    padding: 0;
+    border: 3px #eeeeee solid; }
+    #inferno-canvas .sp-replacer .sp-preview,
+    #inferno-generator .sp-replacer .sp-preview,
+    .inferno-meta-box .sp-replacer .sp-preview {
+      width: 33px;
+      height: 33px;
+      border: none; }
+    #inferno-canvas .sp-replacer .sp-dd,
+    #inferno-generator .sp-replacer .sp-dd,
+    .inferno-meta-box .sp-replacer .sp-dd {
+      display: none; }
   #inferno-canvas .range,
   #inferno-generator .range,
   .inferno-meta-box .range {
@@ -860,5 +878,19 @@ html[xmlns] .clearfix {
 
 /* Colorpicker fix
    ========================================================================== */
-.colorpicker {
-  z-index: 590; }
+.sp-container {
+  border-radius: 4px !important;
+  -webkit-border-radius: 4px !important;
+  -khtml-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  -ms-border-radius: 4px !important;
+  -o-border-radius: 4px !important;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -khtml-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  border: none !important; }
+  .sp-container .sp-picker-container {
+    border: none; }

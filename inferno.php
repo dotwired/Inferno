@@ -46,7 +46,6 @@ if(!class_exists('Inferno')) {
       array('inferno-admin', 'assets/css/admin.css', false, INFERNO_VERSION, 'all'),
       array('inferno-mobile-admin', 'assets/css/mobile-admin.css', false, INFERNO_VERSION, 'all'),
       array('inferno-menu', 'assets/css/menu.css', false, INFERNO_VERSION, 'all'),
-      array('inferno-widgets', 'assets/css/widgets.css', false, INFERNO_VERSION, 'all'),
       array('inferno-portfolio', 'assets/css/portfolio.css', false, INFERNO_VERSION, 'all'),
       array('inferno-ui-helper', 'assets/css/ui-helper.css', false, INFERNO_VERSION, 'all'),
       array('jscrollpane', 'assets/css/jscrollpane.css', false, '2.0.19', 'all'),
@@ -159,7 +158,6 @@ if(!class_exists('Inferno')) {
       $this->_config['portfolio']           = get_theme_support( 'inferno-portfolio' );
 
       $this->load();
-      $this->load_widgets();
       $this->actions();
     }
 
@@ -172,7 +170,6 @@ if(!class_exists('Inferno')) {
       require_once(dirname(__FILE__) . '/inc/functions.php');
       require_once(dirname(__FILE__) . '/inc/aq_resizer.php');
       require_once(dirname(__FILE__) . '/inc/class-preview.php');
-      require_once(dirname(__FILE__) . '/inc/class-widget.php');
 
       // options machine
       if((isset($this->_config['canvas']) && $this->_config['canvas']) || 
@@ -285,16 +282,6 @@ if(!class_exists('Inferno')) {
     public function translate()
     {
       load_theme_textdomain( 'inferno', INFERNO_PATH . 'languages' );
-    }
-
-    private function load_widgets()
-    {
-      require_once( 'widgets/widget-video.php' );
-      require_once( 'widgets/widget-socialcounter.php' );
-      require_once( 'widgets/widget-openinghours.php' );
-      require_once( 'widgets/widget-recenttweets.php' );
-      require_once( 'widgets/widget-socialprofiles.php' );
-      require_once( 'widgets/widget-flickr.php' );
     }
   }
 }

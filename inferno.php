@@ -23,7 +23,8 @@ if(!class_exists('Inferno')) {
       'shortcode-generator' => false,
       'meta-box'            => false,
       'breadcrumbs'         => false,
-      'portfolio'           => false
+      'portfolio'           => false,
+      'menu-options'        => false
     );
 
     /**
@@ -156,6 +157,7 @@ if(!class_exists('Inferno')) {
       $this->_config['shortcodes']          = get_theme_support( 'inferno-shortcodes' );
       $this->_config['shortcode-generator'] = get_theme_support( 'inferno-shortcode-generator' );
       $this->_config['meta-box']            = get_theme_support( 'inferno-meta-box' );
+      $this->_config['menu-options']        = get_theme_support( 'inferno-menu-options' );
       $this->_config['portfolio']           = get_theme_support( 'inferno-portfolio' );
 
       $this->load();
@@ -220,6 +222,13 @@ if(!class_exists('Inferno')) {
         new Inferno_Shortcode_Generator();
       }
 
+      // menu options
+      if( isset($this->_config['menu-options']) && $this->_config['menu-options'] ) {
+        require_once( dirname(__FILE__) . '/inc/class-admin-menu.php' );
+
+        new Inferno_Admin_Menu();
+      }
+
       // portfolio
       if( isset($this->_config['portfolio']) && $this->_config['portfolio'] ) {
         require( dirname(__FILE__) . '/portfolio/class-portfolio.php' );
@@ -264,7 +273,8 @@ if(!class_exists('Inferno')) {
     public function admin_enqueue($hook)
     {
       if((($this->_config['shortcodes'] || $this->_config['meta-box']) && ($hook == 'post.php' || $hook == 'post-new.php')) || 
-      ($this->_config['canvas'] && $hook == 'appearance_page_inferno-admin')) {
+      ($this->_config['canvas'] && $hook == 'appearance_page_inferno-admin') ||
+      ($this->_config['menu-options'] && $hook == 'nav-menus.php')) {
         foreach(self::$admin_scripts as $script) {
           wp_enqueue_script($script);
         }

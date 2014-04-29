@@ -24,28 +24,28 @@ $footer-height: 100px;
    ========================================================================== */
 
 #inferno-demo-opener {
-    @include transition-duration(0.3s);
-    position: fixed;
-    left: 0;
-    top: 100px;
-    width: 50px;
-    height: 50px;
-    background: $orange url(../img/inferno-demo-opener.png) 13px center no-repeat;
-    background-size: 23px 35px;
+  @include transition-duration(0.3s);
+  position: fixed;
+  left: 0;
+  top: 100px;
+  width: 50px;
+  height: 50px;
+  background: $orange url(../img/inferno-demo-opener.png) 13px center no-repeat;
+  background-size: 23px 35px;
 
-    &:hover {
-        background-color: $blue;
-    }
+  &:hover {
+    background-color: $blue;
+  }
 }
 
 .mfp-content {
-    #inferno-panel-form {
-        @include box-sizing(border-box);
-        width: $full-width + 50px;
-        margin: 25px auto;
-        padding: 0 25px;
-        background: #eee;
-    }
+  #inferno-panel-form {
+    @include box-sizing(border-box);
+    width: $full-width + 50px;
+    margin: 25px auto;
+    padding: 0 25px;
+    background: #eee;
+  }
 }
 
 
@@ -55,77 +55,78 @@ $footer-height: 100px;
 
 #inferno-canvas,
 #inferno-generator,
-.inferno-meta-box {
+.inferno-meta-box,
+.inferno-menu-options {
 
-    * {
-        @include box-sizing(border-box);
+  * {
+    @include box-sizing(border-box);
+  }
+
+  *[role=button] {
+    cursor: pointer;
+  }
+  
+  .button,
+  .button-reset,
+  .button-primary,
+  .button-upload {
+    @include transition-duration(0.3s);
+    @include box-shadow(none);
+    @include border-radius(3px);
+    display: inline-block;
+    height: 28px;
+    padding: 0 15px 1px;
+    line-height: 22px;
+    border: 3px $blue solid;
+    outline: none;
+    background: $blue;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background: #fff;
+      color: $blue;
     }
+  }
 
-    *[role=button] {
-        cursor: pointer;
+  .button-primary {
+    background: $green;
+    border-color: $green;
+
+    &:hover {
+      color: $green;
     }
-    
-    .button,
-    .button-reset,
-    .button-primary,
-    .button-upload {
-        @include transition-duration(0.3s);
-        @include box-shadow(none);
-        @include border-radius(3px);
-        display: inline-block;
-        height: 28px;
-        padding: 0 15px 1px;
-        line-height: 22px;
-        border: 3px $blue solid;
-        outline: none;
-        background: $blue;
-        color: #fff;
-        cursor: pointer;
+  }
 
-        &:hover {
-            background: #fff;
-            color: $blue;
-        }
+  .button-reset {
+    background: $dark-nuance;
+    border-color: $dark-nuance;
+
+    &:hover {
+      color: $dark-nuance;
     }
-
-    .button-primary {
-        background: $green;
-        border-color: $green;
-
-        &:hover {
-            color: $green;
-        }
-    }
-
-    .button-reset {
-        background: $dark-nuance;
-        border-color: $dark-nuance;
-
-        &:hover {
-            color: $dark-nuance;
-        }
-    }
+  }
 }
 
 .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
  
 .clearfix {
-    display: inline-block;
+  display: inline-block;
 }
  
 html[xmlns] .clearfix {
-    display: block;
+  display: block;
 }
  
 * html .clearfix {
-    height: 1%;
+  height: 1%;
 }
 
 
@@ -135,306 +136,306 @@ html[xmlns] .clearfix {
 
 #inferno-canvas, 
 #inferno-canvas *:not(.fa) {
-    @include box-sizing(border-box);
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+  @include box-sizing(border-box);
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
 
-    .clearfix {
-        clear: both;
-    }
+  .clearfix {
+    clear: both;
+  }
 }
 
 #inferno-canvas {
-    @include transition(opacity 1s);
-    @include border-radius(4px);
-    position: relative;
-    width: $full-width;
-    margin: 25px 0;
-    float: left;
-    background: #fff;
-    opacity: 0;
-    overflow: hidden;
-    font-size: 16px;
+  @include transition(opacity 1s);
+  @include border-radius(4px);
+  position: relative;
+  width: $full-width;
+  margin: 25px 0;
+  float: left;
+  background: #fff;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 16px;
 
-    &.show {
-        opacity: 1;
-    }
+  &.show {
+    opacity: 1;
+  }
 
-    /* Header
-       ========================================================================== */
+  /* Header
+     ========================================================================== */
 
-    .inferno-header {
+  .inferno-header {
+    width: 100%;
+    height: $header-height;
+    background: $dark-nuance;
+
+    .inferno-brand {
+      position: relative;
+      float: left;
+      width: $nav-width;
+      height: $header-height;
+      margin: 0;
+      line-height: $header-height;
+      font-size: 18px;
+      font-weight: 600;
+      background: $orange;
+      text-transform: uppercase;
+      font-style: normal;
+      text-align: center;
+      color: #fff;
+
+      span {
+        position: absolute;
+        display: block;
         width: 100%;
-        height: $header-height;
-        background: $dark-nuance;
-
-        .inferno-brand {
-            position: relative;
-            float: left;
-            width: $nav-width;
-            height: $header-height;
-            margin: 0;
-            line-height: $header-height;
-            font-size: 18px;
-            font-weight: 600;
-            background: $orange;
-            text-transform: uppercase;
-            font-style: normal;
-            text-align: center;
-            color: #fff;
-
-            span {
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 12px;
-                left: 0;
-                bottom: 6px;
-                font-size: 12px;
-                font-weight: 100;
-                color: #fff;
-                line-height: 12px;
-                opacity: 0.5;
-            }
-        }
-
-        .inferno-info {
-            @include transition-duration(1s);
-            float: left;
-            padding: 0 25px;
-            font-size: 12px;
-            line-height: $header-height;
-            color: #9f9f9f;
-        }
+        height: 12px;
+        left: 0;
+        bottom: 6px;
+        font-size: 12px;
+        font-weight: 100;
+        color: #fff;
+        line-height: 12px;
+        opacity: 0.5;
+      }
     }
 
+    .inferno-info {
+      @include transition-duration(1s);
+      float: left;
+      padding: 0 25px;
+      font-size: 12px;
+      line-height: $header-height;
+      color: #9f9f9f;
+    }
+  }
 
-    /* Navigation
-       ========================================================================== */
 
-    .inferno-menu {
-        width: $nav-width;
-        float: left;
-        background: $grey-nuance;
-        text-transform: uppercase;
-        font-size: 12px;
+  /* Navigation
+     ========================================================================== */
 
-        > ul.ui-tabs-nav {
-            margin: 15px 0;
-        }
+  .inferno-menu {
+    width: $nav-width;
+    float: left;
+    background: $grey-nuance;
+    text-transform: uppercase;
+    font-size: 12px;
 
-        li {
-            width: $nav-width;
-            height: 35px;
-            margin-bottom: 0;
+    > ul.ui-tabs-nav {
+      margin: 15px 0;
+    }
 
-            &.ui-state-active {
+    li {
+      width: $nav-width;
+      height: 35px;
+      margin-bottom: 0;
 
-                a {
-                    color: $orange;
-                    border-left: 2px $blue solid;
-                }
-
-                i {
-                    color: $blue;
-                }
-            }
-        }
+      &.ui-state-active {
 
         a {
-            @include transition-duration(0.3s);
-            display: block;
-            padding-left: 15px;
-            text-decoration: none;
-            color: #aaa;
-            line-height: 35px;
-            font-weight: 500;
-            outline: none;
-
-            i {
-                @include transition-duration(0.3s);
-                display: inline-block;
-                width: 40px;
-            }
-
-            span {
-                display: inline-block;
-            }
-
-            &:hover {
-                color: #f9f9f9;
-            }
-        }
-
-        button.advanced-mode {
-            display: block;
-            height: 46px;
-            width: 100%;
-            margin: 0 0 25px 0;
-            padding: 0;
-            font-weight: 500;
-            font-size: 12px;
-            color: #aaa;
-            border: none;
-            text-transform: uppercase;
-            background: #5c5c66;
-            outline: none;
-            cursor: pointer;
-
-            span {
-                display: block;
-                float: left;
-                width: 46px;
-                height: 46px;
-                background: $dark-nuance;
-                color: $grey-nuance;
-
-                i {
-                    @include transition-duration(0.5s);
-                    font-size: 20px;
-                    line-height: 46px;
-                    text-align: center;
-                    color: #5c5c66;
-
-                    &.fa-spin {
-                        color: $orange;
-                    }
-                }
-            }
-
-            p {
-                display: block;
-                float: left;
-                width: 124px;
-                height: 46px;
-                margin: 0;
-                text-align: center;
-                line-height: 46px;
-            }
-        }
-    }
-
-
-    /* Content with Tabs and Options
-       ========================================================================== */
-
-    .inferno-content {
-        width: $content-width;
-        float: left;
-        color: #565656;
-    }
-
-    .inferno-settings {
-        padding: 25px;
-    }
-
-    .inferno-footer {
-        width: $content-width;
-        height: $footer-height;
-        float: left;
-        padding: 25px;
-        background: #fff;
-        border-top: 2px $border-grey solid;
-
-        .button-primary, 
-        .button-reset {
-            float: right;
-            margin-left: 20px;
-        }
-
-        span {
-            display: block;
-            float: right;
-            height: 28px;
-            line-height: 28px;
-            color: red;
-            text-align: right;
-
-            a {
-                color: red;
-                text-decoration: underline;
-                font-weight: 900;
-            }
-        }
-    }
-
-
-
-    /* Messages
-       ========================================================================== */
-
-    .inferno-notice {
-        @include box-shadow(0 1px 3px 0 rgba(0, 0, 0, .2));
-        margin: 25px;
-        padding: 15px 12px 5px;
-        border-left: 4px solid $green;
-        font-size: 12px;
-
-        p {
-            margin-bottom: 10px;
-        }
-    }
-
-    .inferno-message {
-        @include border-radius(5px);
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        margin: -75px 0 0 -75px;
-        width: 150px;
-        height: 150px;
-        padding: 30px 10px;
-        display: none;
-
-        background: url(../img/dark-trans-bg.png);
-        font-size: 0px;
-        text-align: center;
-
-        &.error {
-            i {
-                color: red;
-            }
+          color: $orange;
+          border-left: 2px $blue solid;
         }
 
         i {
-            font-weight: 900;
-            color: #037c11;
+          color: $blue;
         }
-
-        p {
-            color: #ccc;
-            font-weight: 900;
-            line-height: 150%;
-        }
+      }
     }
 
-    /* Mobile Menu
-       ========================================================================== */
+    a {
+      @include transition-duration(0.3s);
+      display: block;
+      padding-left: 15px;
+      text-decoration: none;
+      color: #aaa;
+      line-height: 35px;
+      font-weight: 500;
+      outline: none;
 
-    #inferno-mobile-menu-toggle {
-        position: absolute;
-        left: $nav-width;
-        display: none;
+      i {
+        @include transition-duration(0.3s);
+        display: inline-block;
         width: 40px;
-        height: 40px;
-        margin: (($header-height - 40px) / 2) 15px;
-        color: #9f9f9f;
-        text-decoration: none;
-        outline: none;
+      }
 
-        &.active {
-            color: #ddd;
-        }
+      span {
+        display: inline-block;
+      }
+
+      &:hover {
+        color: #f9f9f9;
+      }
+    }
+
+    button.advanced-mode {
+      display: block;
+      height: 46px;
+      width: 100%;
+      margin: 0 0 25px 0;
+      padding: 0;
+      font-weight: 500;
+      font-size: 12px;
+      color: #aaa;
+      border: none;
+      text-transform: uppercase;
+      background: #5c5c66;
+      outline: none;
+      cursor: pointer;
+
+      span {
+        display: block;
+        float: left;
+        width: 46px;
+        height: 46px;
+        background: $dark-nuance;
+        color: $grey-nuance;
 
         i {
-            display: block;
-            width: 40px;
-            height: 40px;
-            font-size: 30px;
-            line-height: 40px;
-            text-align: center;
+          @include transition-duration(0.5s);
+          font-size: 20px;
+          line-height: 46px;
+          text-align: center;
+          color: #5c5c66;
+
+          &.fa-spin {
+            color: $orange;
+          }
         }
+      }
+
+      p {
+        display: block;
+        float: left;
+        width: 124px;
+        height: 46px;
+        margin: 0;
+        text-align: center;
+        line-height: 46px;
+      }
     }
+  }
+
+
+  /* Content with Tabs and Options
+     ========================================================================== */
+
+  .inferno-content {
+    width: $content-width;
+    float: left;
+    color: #565656;
+  }
+
+  .inferno-settings {
+    padding: 25px;
+  }
+
+  .inferno-footer {
+    width: $content-width;
+    height: $footer-height;
+    float: left;
+    padding: 25px;
+    background: #fff;
+    border-top: 2px $border-grey solid;
+
+    .button-primary, 
+    .button-reset {
+      float: right;
+      margin-left: 20px;
+    }
+
+    span {
+      display: block;
+      float: right;
+      height: 28px;
+      line-height: 28px;
+      color: red;
+      text-align: right;
+
+      a {
+        color: red;
+        text-decoration: underline;
+        font-weight: 900;
+      }
+    }
+  }
+
+
+
+  /* Messages
+     ========================================================================== */
+
+  .inferno-notice {
+    @include box-shadow(0 1px 3px 0 rgba(0, 0, 0, .2));
+    margin: 25px;
+    padding: 15px 12px 5px;
+    border-left: 4px solid $green;
+    font-size: 12px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .inferno-message {
+    @include border-radius(5px);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -75px 0 0 -75px;
+    width: 150px;
+    height: 150px;
+    padding: 30px 10px;
+    display: none;
+
+    background: url(../img/dark-trans-bg.png);
+    font-size: 0px;
+    text-align: center;
+
+    &.error {
+      i {
+        color: red;
+      }
+    }
+
+    i {
+      font-weight: 900;
+      color: #037c11;
+    }
+
+    p {
+      color: #ccc;
+      font-weight: 900;
+      line-height: 150%;
+    }
+  }
+
+  /* Mobile Menu
+     ========================================================================== */
+
+  #inferno-mobile-menu-toggle {
+    position: absolute;
+    left: $nav-width;
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: (($header-height - 40px) / 2) 15px;
+    color: #9f9f9f;
+    text-decoration: none;
+    outline: none;
+
+    &.active {
+      color: #ddd;
+    }
+
+    i {
+      display: block;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
 }
 
 
@@ -444,47 +445,47 @@ html[xmlns] .clearfix {
    ========================================================================== */
 
 .inferno-shortcode-generator-button {
-    i.fa {
-        display: block;
-        line-height: 18px;
-    }
+  i.fa {
+    display: block;
+    line-height: 18px;
+  }
 }
 
 #inferno-generator {
-    position: relative;
-    margin: 50px auto;
-    max-width: 780px;
+  position: relative;
+  margin: 50px auto;
+  max-width: 780px;
 
-    > .header {
-        height: 44px;
-        padding: 10px 20px;
-        background: $dark-nuance;
-        overflow: auto;
-        line-height: 24px;
+  > .header {
+    height: 44px;
+    padding: 10px 20px;
+    background: $dark-nuance;
+    overflow: auto;
+    line-height: 24px;
 
-        h1 {
-            margin: 0;
-            font-size: 14px;
-            color: #fff;
-        }
+    h1 {
+      margin: 0;
+      font-size: 14px;
+      color: #fff;
     }
+  }
 
-    > .inner {
-        padding: 30px 20px;
-        background: #fff;
-    }
+  > .inner {
+    padding: 30px 20px;
+    background: #fff;
+  }
 
-    .inferno-shortcode {
-        display: none;
-    }
+  .inferno-shortcode {
+    display: none;
+  }
 
-    .shortcode-settings {
-        margin-bottom: 20px;
-    }
+  .shortcode-settings {
+    margin-bottom: 20px;
+  }
 
-    .mfp-close {
-        color: #999;
-    }
+  .mfp-close {
+    color: #999;
+  }
 }
 
 
@@ -494,372 +495,373 @@ html[xmlns] .clearfix {
 
 #inferno-canvas,
 #inferno-generator,
-.inferno-meta-box {
+.inferno-meta-box,
+.inferno-menu-options {
 
-    /* Fields
-       ========================================================================== */
+  /* Fields
+     ========================================================================== */
 
-    .field {
-        padding-bottom: 25px;
-        margin-bottom: 25px;
-        border-bottom: 1px $border-grey solid;
-        font-size: 12px;
+  .field {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px $border-grey solid;
+    font-size: 12px;
+  }
+
+  .field-title {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  .field-setting {
+    float: left;
+    width: $field-setting-width;
+    margin-right: 50px;
+
+    .inferno-setting {
+      margin-bottom: 10px;
     }
 
-    .field-title {
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        font-size: 14px;
+    .googlefont-setting {
+      padding-top: 20px;
     }
 
-    .field-setting {
-        float: left;
-        width: $field-setting-width;
-        margin-right: 50px;
+    &:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+    }
+  }
 
-        .inferno-setting {
-            margin-bottom: 10px;
-        }
+  .field-details {
+    float: left;
+    width: $field-details-width;
 
-        .googlefont-setting {
-            padding-top: 20px;
-        }
-
-        &:after {
-            content: ".";
-            display: block;
-            clear: both;
-            visibility: hidden;
-            line-height: 0;
-            height: 0;
-        }
+    .more {
+      font-size: 11px;
+      color: #777;
+      font-family: georgia, serif;
+      font-style: italic;
+      margin-top: 10px;
+      display: block;
     }
 
-    .field-details {
-        float: left;
-        width: $field-details-width;
-
-        .more {
-            font-size: 11px;
-            color: #777;
-            font-family: georgia, serif;
-            font-style: italic;
-            margin-top: 10px;
-            display: block;
-        }
-
-        .googlefont-desc {
-            padding-top: 20px;
-        }
+    .googlefont-desc {
+      padding-top: 20px;
     }
+  }
 
 
 
-    /* Text
-       ========================================================================== */
+  /* Text
+     ========================================================================== */
 
-    input, textarea {
-        outline: none;
+  input, textarea {
+    outline: none;
+  }
+
+  input[type=text], textarea, select {
+    @include transition-duration(0.3s);
+    @include border-radius(4px);
+    @include box-shadow(none);
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px 6px 6px;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    border: 3px $border-grey solid;
+    color: #333;
+    background: transparent;
+
+    &:focus {
+      @include box-shadow(none);
+      border-color: $blue;
     }
+  }
 
-    input[type=text], textarea, select {
-        @include transition-duration(0.3s);
-        @include border-radius(4px);
-        @include box-shadow(none);
-        display: block;
-        margin-bottom: 10px;
-        padding: 8px 6px 6px;
-        width: 100%;
-        max-width: 100%;
-        text-align: left;
-        border: 3px $border-grey solid;
-        color: #333;
-        background: transparent;
+  textarea {
+    height: 130px;
+  }
 
-        &:focus {
-            @include box-shadow(none);
-            border-color: $blue;
-        }
-    }
+  select {
+    width: 100%;
+  }
 
-    textarea {
-        height: 130px;
-    }
-
-    select {
-        width: 100%;
-    }
-
-    input[type=file] {
-        margin-top: 7px;
-    }
+  input[type=file] {
+    margin-top: 7px;
+  }
 
 
-    /* Select
-       ========================================================================== */
+  /* Select
+     ========================================================================== */
 
-    .select {
-        position: relative;
-        
-        #inferno-generator-select,
-        select.inferno-setting {
-            @include appearance(none);
-            position: relative;
-            height: 39px;
-            line-height: 1;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        &:before {
-            position: absolute;
-            right: 10px;
-            top: 1px;
-            display: block;
-            width: 15px;
-            height: 39px;
-            line-height: 39px;
-            font-family: FontAwesome;
-            content: "\f0d7";
-            font-size: 18px;
-        }
-    }
-
-    /* Radio
-       ========================================================================== */
-
-    .radio {
-        .ui-button {
-            border: 3px $border-grey solid;
-            margin-right: -3px;
-            padding: 7px 11px 6px;
-            display: block;
-            float: left;
-            font-size: 12px;
-            font-weight: 900;
-        }
-
-        .ui-corner-left {
-            @include border-radius(4px 0 0 4px);
-        }
-
-        .ui-corner-right {
-            @include border-radius(0 4px 4px 0);
-        }
-
-        .ui-state-active {
-            margin-left: 3px;
-            margin-right: 0;
-            border-color: $green;
-            background: $green;
-            color: #fff;
-        }
-
-        .ui-helper-hidden-accessible {
-            position: absolute;
-            display: none;
-        }
-    }
-
+  .select {
+    position: relative;
     
-    /* Checkbox
-       ========================================================================== */
-
-    .checkbox {
-        .ui-button {
-            @include transition-duration(0.3s);
-            @include border-radius(14px);
-            position: relative;
-            display: inline-block;
-            height: 28px;
-            padding: 0 15px 0 30px;
-            border: 3px $orange solid;
-            background: $orange;
-            line-height: 22px;
-            color: #fff;
-            text-transform: uppercase;
-
-            &:before {
-                @include border-radius(100%);
-                position: absolute;
-                left: 2px;
-                top: 2px;
-                display: block;
-                width: 18px;
-                height: 18px;
-                content: "";
-                background: #ddd;
-            }
-
-            &:hover {
-                background: #fff;
-                color: $orange;
-            }
-        }
-
-        .ui-state-active {
-            padding: 0 30px 0 15px;
-            border: 3px $green solid;
-            background: $green;
-
-            &:before {
-                left: auto;
-                right: 2px;
-                top: 2px;
-            }
-
-            &:hover {
-                color: $green;
-            }
-        }
+    #inferno-generator-select,
+    select.inferno-setting {
+      @include appearance(none);
+      position: relative;
+      height: 39px;
+      line-height: 1;
+      font-size: 14px;
+      cursor: pointer;
     }
 
+    &:before {
+      position: absolute;
+      right: 10px;
+      top: 1px;
+      display: block;
+      width: 15px;
+      height: 39px;
+      line-height: 39px;
+      font-family: FontAwesome;
+      content: "\f0d7";
+      font-size: 18px;
+    }
+  }
 
+  /* Radio
+     ========================================================================== */
 
-    /* Media (images)
-       ========================================================================== */
-
-    .media {
-        img {
-            margin-top: 10px;
-            max-width: 100%;
-            border: 5px $border-grey solid;
-        }
+  .radio {
+    .ui-button {
+      border: 3px $border-grey solid;
+      margin-right: -3px;
+      padding: 7px 11px 6px;
+      display: block;
+      float: left;
+      font-size: 12px;
+      font-weight: 900;
     }
 
-
-    /* Colorpicker
-       ========================================================================== */
-
-    .color-picker input[type=text] {
-        width: 80%;
-        float: left;
+    .ui-corner-left {
+      @include border-radius(4px 0 0 4px);
     }
 
-    .sp-replacer {
-        @include border-radius(4px);
-        float: right;
-        padding: 0;
-        border: 3px $border-grey solid;
-
-        .sp-preview {
-            width: 33px;
-            height: 33px;
-            border: none;
-        }
-
-        .sp-dd {
-            display: none;
-        }
+    .ui-corner-right {
+      @include border-radius(0 4px 4px 0);
     }
 
-
-    /* Range
-       ========================================================================== */
-
-    .range {
-        @include border-radius(6px);
-        background: $border-grey;
-        overflow: hidden;
-
-        .inferno-setting {
-            @include transition-duration(0.3s);
-            @include border-radius(0);
-            width: 100px;
-            height: 28px;
-            margin: 0;
-            padding: 0;
-            float: left;
-            background: $blue;
-            border: 3px $blue solid;
-            text-align: center;
-            line-height: 23px;
-            color: #fff;
-
-            &:focus {
-                background: #fff;
-                color: $blue;
-            }
-        }
+    .ui-state-active {
+      margin-left: 3px;
+      margin-right: 0;
+      border-color: $green;
+      background: $green;
+      color: #fff;
     }
 
-    .range-slider {
-        @include border-radius(6px);
-        position: relative;
-        float: left;
-        width: $field-setting-width - 130px;
-        height: 5px;
-        margin: 12px;
-        border: 1px $border-grey solid;
+    .ui-helper-hidden-accessible {
+      position: absolute;
+      display: none;
+    }
+  }
+
+  
+  /* Checkbox
+     ========================================================================== */
+
+  .checkbox {
+    .ui-button {
+      @include transition-duration(0.3s);
+      @include border-radius(14px);
+      position: relative;
+      display: inline-block;
+      height: 28px;
+      padding: 0 15px 0 30px;
+      border: 3px $orange solid;
+      background: $orange;
+      line-height: 22px;
+      color: #fff;
+      text-transform: uppercase;
+
+      &:before {
+        @include border-radius(100%);
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        display: block;
+        width: 18px;
+        height: 18px;
+        content: "";
+        background: #ddd;
+      }
+
+      &:hover {
         background: #fff;
-
-        a {
-            @include border-radius(100%);
-            position: absolute;
-            top: -4px;
-            width: 11px;
-            height: 11px;
-            margin: 0 0 0 -5px;
-            background: #5c5c66;
-            outline: none;
-        }
+        color: $orange;
+      }
     }
 
+    .ui-state-active {
+      padding: 0 30px 0 15px;
+      border: 3px $green solid;
+      background: $green;
 
-    /* Image Picker
-       ========================================================================== */
+      &:before {
+        left: auto;
+        right: 2px;
+        top: 2px;
+      }
 
-    .imagepicker {
-        .thumbnail {
-            max-width: 100%;
-            @include transition-duration(0.3s);
-            padding: 4px;
-            cursor: pointer;
+      &:hover {
+        color: $green;
+      }
+    }
+  }
 
-            &:not(.selected):hover {
-                background: $dark-nuance;
-            }
 
-            &.selected {
-                background: $green;
-            }
 
-            img {
-                max-width: 100%;
-                display: block;
-            }
-        }
+  /* Media (images)
+     ========================================================================== */
+
+  .media {
+    img {
+      margin-top: 10px;
+      max-width: 100%;
+      border: 5px $border-grey solid;
+    }
+  }
+
+
+  /* Colorpicker
+     ========================================================================== */
+
+  .color-picker input[type=text] {
+    width: 80%;
+    float: left;
+  }
+
+  .sp-replacer {
+    @include border-radius(4px);
+    float: right;
+    padding: 0;
+    border: 3px $border-grey solid;
+
+    .sp-preview {
+      width: 33px;
+      height: 33px;
+      border: none;
     }
 
-
-    /* Font
-       ========================================================================== */
-
-    .googlefont-canvas {
-        padding: 10px;
-        border: 4px $border-grey solid;
-        margin-top: 15px;
-        font-size: 15px;
-        font-family: auto;
+    .sp-dd {
+      display: none;
     }
+  }
 
 
+  /* Range
+     ========================================================================== */
 
+  .range {
+    @include border-radius(6px);
+    background: $border-grey;
+    overflow: hidden;
 
-    /* Transfer (import / export)
-       ========================================================================== */
+    .inferno-setting {
+      @include transition-duration(0.3s);
+      @include border-radius(0);
+      width: 100px;
+      height: 28px;
+      margin: 0;
+      padding: 0;
+      float: left;
+      background: $blue;
+      border: 3px $blue solid;
+      text-align: center;
+      line-height: 23px;
+      color: #fff;
 
-    .transfer {
-        span {
-            color: red;
-
-            a {
-                color: red;
-                text-decoration: underline;
-                font-weight: 900;
-            }
-        }
+      &:focus {
+        background: #fff;
+        color: $blue;
+      }
     }
+  }
+
+  .range-slider {
+    @include border-radius(6px);
+    position: relative;
+    float: left;
+    width: $field-setting-width - 130px;
+    height: 5px;
+    margin: 12px;
+    border: 1px $border-grey solid;
+    background: #fff;
+
+    a {
+      @include border-radius(100%);
+      position: absolute;
+      top: -4px;
+      width: 11px;
+      height: 11px;
+      margin: 0 0 0 -5px;
+      background: #5c5c66;
+      outline: none;
+    }
+  }
+
+
+  /* Image Picker
+     ========================================================================== */
+
+  .imagepicker {
+    .thumbnail {
+      max-width: 100%;
+      @include transition-duration(0.3s);
+      padding: 4px;
+      cursor: pointer;
+
+      &:not(.selected):hover {
+        background: $dark-nuance;
+      }
+
+      &.selected {
+        background: $green;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+    }
+  }
+
+
+  /* Font
+     ========================================================================== */
+
+  .googlefont-canvas {
+    padding: 10px;
+    border: 4px $border-grey solid;
+    margin-top: 15px;
+    font-size: 15px;
+    font-family: auto;
+  }
+
+
+
+
+  /* Transfer (import / export)
+     ========================================================================== */
+
+  .transfer {
+    span {
+      color: red;
+
+      a {
+        color: red;
+        text-decoration: underline;
+        font-weight: 900;
+      }
+    }
+  }
 }
 
 
@@ -872,23 +874,23 @@ html[xmlns] .clearfix {
 // see http://stackoverflow.com/questions/3457288/css-auto-width-floated-element-expandable-float
 
 .inferno-meta-box {
-    .field-details {
-        float: none;
-        overflow: hidden;
-        width: auto;
-    }
+  .field-details {
+    float: none;
+    overflow: hidden;
+    width: auto;
+  }
 }
 
 /* Colorpicker fix
    ========================================================================== */
 
 .sp-container {
-    @include border-radius(4px !important);
-    @include box-shadow(0 0 10px 0 rgba(0, 0, 0, 0.3));
-    border: none !important;
+  @include border-radius(4px !important);
+  @include box-shadow(0 0 10px 0 rgba(0, 0, 0, 0.3));
+  border: none !important;
 
-    .sp-picker-container {
-        border: none;
-    }
+  .sp-picker-container {
+    border: none;
+  }
 }
 

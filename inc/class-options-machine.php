@@ -54,7 +54,7 @@ if(!class_exists('Inferno_Options_Machine')) {
      * @param array  $setting       the setting array
      * @param string $setting_value the setting value
      */
-    public function __construct( $setting = array(), $setting_value = null )
+    public function __construct( $setting = array(), $setting_value = null, $array_id = null)
     {
       if ( empty ( $setting ) ) return;
       $this->setting = $setting; 

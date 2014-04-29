@@ -89,3 +89,12 @@
     -ms-box-ordinal-group: $order;
     -o-box-ordinal-group: $order;
 }
+
+@mixin transform($properties) {
+    transform: translate3d($properties);
+    -webkit-transform: translate3d($properties);
+    -khtml-transform: translate3d($properties);
+    -moz-transform: translate3d($properties);
+    -ms-transform: translate3d($properties);
+    -o-transform: translate3d($properties);
+}

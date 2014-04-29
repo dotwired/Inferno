@@ -36,7 +36,8 @@
    ========================================================================== */
 #inferno-canvas *,
 #inferno-generator *,
-.inferno-meta-box * {
+.inferno-meta-box *,
+.inferno-menu-options * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -khtml-box-sizing: border-box;
@@ -45,7 +46,8 @@
   -o-box-sizing: border-box; }
 #inferno-canvas *[role=button],
 #inferno-generator *[role=button],
-.inferno-meta-box *[role=button] {
+.inferno-meta-box *[role=button],
+.inferno-menu-options *[role=button] {
   cursor: pointer; }
 #inferno-canvas .button,
 #inferno-canvas .button-reset,
@@ -58,7 +60,11 @@
 .inferno-meta-box .button,
 .inferno-meta-box .button-reset,
 .inferno-meta-box .button-primary,
-.inferno-meta-box .button-upload {
+.inferno-meta-box .button-upload,
+.inferno-menu-options .button,
+.inferno-menu-options .button-reset,
+.inferno-menu-options .button-primary,
+.inferno-menu-options .button-upload {
   transition-duration: 0.3s;
   -webkit-transition-duration: 0.3s;
   -khtml-transition-duration: 0.3s;
@@ -97,26 +103,34 @@
   .inferno-meta-box .button:hover,
   .inferno-meta-box .button-reset:hover,
   .inferno-meta-box .button-primary:hover,
-  .inferno-meta-box .button-upload:hover {
+  .inferno-meta-box .button-upload:hover,
+  .inferno-menu-options .button:hover,
+  .inferno-menu-options .button-reset:hover,
+  .inferno-menu-options .button-primary:hover,
+  .inferno-menu-options .button-upload:hover {
     background: #fff;
     color: #46b9d6; }
 #inferno-canvas .button-primary,
 #inferno-generator .button-primary,
-.inferno-meta-box .button-primary {
+.inferno-meta-box .button-primary,
+.inferno-menu-options .button-primary {
   background: #44bea7;
   border-color: #44bea7; }
   #inferno-canvas .button-primary:hover,
   #inferno-generator .button-primary:hover,
-  .inferno-meta-box .button-primary:hover {
+  .inferno-meta-box .button-primary:hover,
+  .inferno-menu-options .button-primary:hover {
     color: #44bea7; }
 #inferno-canvas .button-reset,
 #inferno-generator .button-reset,
-.inferno-meta-box .button-reset {
+.inferno-meta-box .button-reset,
+.inferno-menu-options .button-reset {
   background: #3f3f41;
   border-color: #3f3f41; }
   #inferno-canvas .button-reset:hover,
   #inferno-generator .button-reset:hover,
-  .inferno-meta-box .button-reset:hover {
+  .inferno-meta-box .button-reset:hover,
+  .inferno-menu-options .button-reset:hover {
     color: #3f3f41; }
 
 .clearfix:after {
@@ -438,7 +452,8 @@ html[xmlns] .clearfix {
    ========================================================================== */
 #inferno-canvas,
 #inferno-generator,
-.inferno-meta-box {
+.inferno-meta-box,
+.inferno-menu-options {
   /* Fields
      ========================================================================== */
   /* Text
@@ -463,34 +478,40 @@ html[xmlns] .clearfix {
      ========================================================================== */ }
   #inferno-canvas .field,
   #inferno-generator .field,
-  .inferno-meta-box .field {
+  .inferno-meta-box .field,
+  .inferno-menu-options .field {
     padding-bottom: 25px;
     margin-bottom: 25px;
     border-bottom: 1px #eeeeee solid;
     font-size: 12px; }
   #inferno-canvas .field-title,
   #inferno-generator .field-title,
-  .inferno-meta-box .field-title {
+  .inferno-meta-box .field-title,
+  .inferno-menu-options .field-title {
     margin-bottom: 10px;
     text-transform: uppercase;
     font-size: 14px; }
   #inferno-canvas .field-setting,
   #inferno-generator .field-setting,
-  .inferno-meta-box .field-setting {
+  .inferno-meta-box .field-setting,
+  .inferno-menu-options .field-setting {
     float: left;
     width: 320px;
     margin-right: 50px; }
     #inferno-canvas .field-setting .inferno-setting,
     #inferno-generator .field-setting .inferno-setting,
-    .inferno-meta-box .field-setting .inferno-setting {
+    .inferno-meta-box .field-setting .inferno-setting,
+    .inferno-menu-options .field-setting .inferno-setting {
       margin-bottom: 10px; }
     #inferno-canvas .field-setting .googlefont-setting,
     #inferno-generator .field-setting .googlefont-setting,
-    .inferno-meta-box .field-setting .googlefont-setting {
+    .inferno-meta-box .field-setting .googlefont-setting,
+    .inferno-menu-options .field-setting .googlefont-setting {
       padding-top: 20px; }
     #inferno-canvas .field-setting:after,
     #inferno-generator .field-setting:after,
-    .inferno-meta-box .field-setting:after {
+    .inferno-meta-box .field-setting:after,
+    .inferno-menu-options .field-setting:after {
       content: ".";
       display: block;
       clear: both;
@@ -499,12 +520,14 @@ html[xmlns] .clearfix {
       height: 0; }
   #inferno-canvas .field-details,
   #inferno-generator .field-details,
-  .inferno-meta-box .field-details {
+  .inferno-meta-box .field-details,
+  .inferno-menu-options .field-details {
     float: left;
     width: 370px; }
     #inferno-canvas .field-details .more,
     #inferno-generator .field-details .more,
-    .inferno-meta-box .field-details .more {
+    .inferno-meta-box .field-details .more,
+    .inferno-menu-options .field-details .more {
       font-size: 11px;
       color: #777;
       font-family: georgia, serif;
@@ -513,13 +536,16 @@ html[xmlns] .clearfix {
       display: block; }
     #inferno-canvas .field-details .googlefont-desc,
     #inferno-generator .field-details .googlefont-desc,
-    .inferno-meta-box .field-details .googlefont-desc {
+    .inferno-meta-box .field-details .googlefont-desc,
+    .inferno-menu-options .field-details .googlefont-desc {
       padding-top: 20px; }
   #inferno-canvas input, #inferno-canvas textarea,
   #inferno-generator input,
   #inferno-generator textarea,
   .inferno-meta-box input,
-  .inferno-meta-box textarea {
+  .inferno-meta-box textarea,
+  .inferno-menu-options input,
+  .inferno-menu-options textarea {
     outline: none; }
   #inferno-canvas input[type=text], #inferno-canvas textarea, #inferno-canvas select,
   #inferno-generator input[type=text],
@@ -527,7 +553,10 @@ html[xmlns] .clearfix {
   #inferno-generator select,
   .inferno-meta-box input[type=text],
   .inferno-meta-box textarea,
-  .inferno-meta-box select {
+  .inferno-meta-box select,
+  .inferno-menu-options input[type=text],
+  .inferno-menu-options textarea,
+  .inferno-menu-options select {
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
     -khtml-transition-duration: 0.3s;
@@ -561,7 +590,10 @@ html[xmlns] .clearfix {
     #inferno-generator select:focus,
     .inferno-meta-box input[type=text]:focus,
     .inferno-meta-box textarea:focus,
-    .inferno-meta-box select:focus {
+    .inferno-meta-box select:focus,
+    .inferno-menu-options input[type=text]:focus,
+    .inferno-menu-options textarea:focus,
+    .inferno-menu-options select:focus {
       box-shadow: none;
       -webkit-box-shadow: none;
       -khtml-box-shadow: none;
@@ -571,26 +603,32 @@ html[xmlns] .clearfix {
       border-color: #46b9d6; }
   #inferno-canvas textarea,
   #inferno-generator textarea,
-  .inferno-meta-box textarea {
+  .inferno-meta-box textarea,
+  .inferno-menu-options textarea {
     height: 130px; }
   #inferno-canvas select,
   #inferno-generator select,
-  .inferno-meta-box select {
+  .inferno-meta-box select,
+  .inferno-menu-options select {
     width: 100%; }
   #inferno-canvas input[type=file],
   #inferno-generator input[type=file],
-  .inferno-meta-box input[type=file] {
+  .inferno-meta-box input[type=file],
+  .inferno-menu-options input[type=file] {
     margin-top: 7px; }
   #inferno-canvas .select,
   #inferno-generator .select,
-  .inferno-meta-box .select {
+  .inferno-meta-box .select,
+  .inferno-menu-options .select {
     position: relative; }
     #inferno-canvas .select #inferno-generator-select,
     #inferno-canvas .select select.inferno-setting,
     #inferno-generator .select #inferno-generator-select,
     #inferno-generator .select select.inferno-setting,
     .inferno-meta-box .select #inferno-generator-select,
-    .inferno-meta-box .select select.inferno-setting {
+    .inferno-meta-box .select select.inferno-setting,
+    .inferno-menu-options .select #inferno-generator-select,
+    .inferno-menu-options .select select.inferno-setting {
       appearance: none;
       -webkit-appearance: none;
       -khtml-appearance: none;
@@ -604,7 +642,8 @@ html[xmlns] .clearfix {
       cursor: pointer; }
     #inferno-canvas .select:before,
     #inferno-generator .select:before,
-    .inferno-meta-box .select:before {
+    .inferno-meta-box .select:before,
+    .inferno-menu-options .select:before {
       position: absolute;
       right: 10px;
       top: 1px;
@@ -617,7 +656,8 @@ html[xmlns] .clearfix {
       font-size: 18px; }
   #inferno-canvas .radio .ui-button,
   #inferno-generator .radio .ui-button,
-  .inferno-meta-box .radio .ui-button {
+  .inferno-meta-box .radio .ui-button,
+  .inferno-menu-options .radio .ui-button {
     border: 3px #eeeeee solid;
     margin-right: -3px;
     padding: 7px 11px 6px;
@@ -627,7 +667,8 @@ html[xmlns] .clearfix {
     font-weight: 900; }
   #inferno-canvas .radio .ui-corner-left,
   #inferno-generator .radio .ui-corner-left,
-  .inferno-meta-box .radio .ui-corner-left {
+  .inferno-meta-box .radio .ui-corner-left,
+  .inferno-menu-options .radio .ui-corner-left {
     border-radius: 4px 0 0 4px;
     -webkit-border-radius: 4px 0 0 4px;
     -khtml-border-radius: 4px 0 0 4px;
@@ -636,7 +677,8 @@ html[xmlns] .clearfix {
     -o-border-radius: 4px 0 0 4px; }
   #inferno-canvas .radio .ui-corner-right,
   #inferno-generator .radio .ui-corner-right,
-  .inferno-meta-box .radio .ui-corner-right {
+  .inferno-meta-box .radio .ui-corner-right,
+  .inferno-menu-options .radio .ui-corner-right {
     border-radius: 0 4px 4px 0;
     -webkit-border-radius: 0 4px 4px 0;
     -khtml-border-radius: 0 4px 4px 0;
@@ -645,7 +687,8 @@ html[xmlns] .clearfix {
     -o-border-radius: 0 4px 4px 0; }
   #inferno-canvas .radio .ui-state-active,
   #inferno-generator .radio .ui-state-active,
-  .inferno-meta-box .radio .ui-state-active {
+  .inferno-meta-box .radio .ui-state-active,
+  .inferno-menu-options .radio .ui-state-active {
     margin-left: 3px;
     margin-right: 0;
     border-color: #44bea7;
@@ -653,12 +696,14 @@ html[xmlns] .clearfix {
     color: #fff; }
   #inferno-canvas .radio .ui-helper-hidden-accessible,
   #inferno-generator .radio .ui-helper-hidden-accessible,
-  .inferno-meta-box .radio .ui-helper-hidden-accessible {
+  .inferno-meta-box .radio .ui-helper-hidden-accessible,
+  .inferno-menu-options .radio .ui-helper-hidden-accessible {
     position: absolute;
     display: none; }
   #inferno-canvas .checkbox .ui-button,
   #inferno-generator .checkbox .ui-button,
-  .inferno-meta-box .checkbox .ui-button {
+  .inferno-meta-box .checkbox .ui-button,
+  .inferno-menu-options .checkbox .ui-button {
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
     -khtml-transition-duration: 0.3s;
@@ -682,7 +727,8 @@ html[xmlns] .clearfix {
     text-transform: uppercase; }
     #inferno-canvas .checkbox .ui-button:before,
     #inferno-generator .checkbox .ui-button:before,
-    .inferno-meta-box .checkbox .ui-button:before {
+    .inferno-meta-box .checkbox .ui-button:before,
+    .inferno-menu-options .checkbox .ui-button:before {
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -khtml-border-radius: 100%;
@@ -699,39 +745,46 @@ html[xmlns] .clearfix {
       background: #ddd; }
     #inferno-canvas .checkbox .ui-button:hover,
     #inferno-generator .checkbox .ui-button:hover,
-    .inferno-meta-box .checkbox .ui-button:hover {
+    .inferno-meta-box .checkbox .ui-button:hover,
+    .inferno-menu-options .checkbox .ui-button:hover {
       background: #fff;
       color: #ea793d; }
   #inferno-canvas .checkbox .ui-state-active,
   #inferno-generator .checkbox .ui-state-active,
-  .inferno-meta-box .checkbox .ui-state-active {
+  .inferno-meta-box .checkbox .ui-state-active,
+  .inferno-menu-options .checkbox .ui-state-active {
     padding: 0 30px 0 15px;
     border: 3px #44bea7 solid;
     background: #44bea7; }
     #inferno-canvas .checkbox .ui-state-active:before,
     #inferno-generator .checkbox .ui-state-active:before,
-    .inferno-meta-box .checkbox .ui-state-active:before {
+    .inferno-meta-box .checkbox .ui-state-active:before,
+    .inferno-menu-options .checkbox .ui-state-active:before {
       left: auto;
       right: 2px;
       top: 2px; }
     #inferno-canvas .checkbox .ui-state-active:hover,
     #inferno-generator .checkbox .ui-state-active:hover,
-    .inferno-meta-box .checkbox .ui-state-active:hover {
+    .inferno-meta-box .checkbox .ui-state-active:hover,
+    .inferno-menu-options .checkbox .ui-state-active:hover {
       color: #44bea7; }
   #inferno-canvas .media img,
   #inferno-generator .media img,
-  .inferno-meta-box .media img {
+  .inferno-meta-box .media img,
+  .inferno-menu-options .media img {
     margin-top: 10px;
     max-width: 100%;
     border: 5px #eeeeee solid; }
   #inferno-canvas .color-picker input[type=text],
   #inferno-generator .color-picker input[type=text],
-  .inferno-meta-box .color-picker input[type=text] {
+  .inferno-meta-box .color-picker input[type=text],
+  .inferno-menu-options .color-picker input[type=text] {
     width: 80%;
     float: left; }
   #inferno-canvas .sp-replacer,
   #inferno-generator .sp-replacer,
-  .inferno-meta-box .sp-replacer {
+  .inferno-meta-box .sp-replacer,
+  .inferno-menu-options .sp-replacer {
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -khtml-border-radius: 4px;
@@ -743,17 +796,20 @@ html[xmlns] .clearfix {
     border: 3px #eeeeee solid; }
     #inferno-canvas .sp-replacer .sp-preview,
     #inferno-generator .sp-replacer .sp-preview,
-    .inferno-meta-box .sp-replacer .sp-preview {
+    .inferno-meta-box .sp-replacer .sp-preview,
+    .inferno-menu-options .sp-replacer .sp-preview {
       width: 33px;
       height: 33px;
       border: none; }
     #inferno-canvas .sp-replacer .sp-dd,
     #inferno-generator .sp-replacer .sp-dd,
-    .inferno-meta-box .sp-replacer .sp-dd {
+    .inferno-meta-box .sp-replacer .sp-dd,
+    .inferno-menu-options .sp-replacer .sp-dd {
       display: none; }
   #inferno-canvas .range,
   #inferno-generator .range,
-  .inferno-meta-box .range {
+  .inferno-meta-box .range,
+  .inferno-menu-options .range {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -khtml-border-radius: 6px;
@@ -764,7 +820,8 @@ html[xmlns] .clearfix {
     overflow: hidden; }
     #inferno-canvas .range .inferno-setting,
     #inferno-generator .range .inferno-setting,
-    .inferno-meta-box .range .inferno-setting {
+    .inferno-meta-box .range .inferno-setting,
+    .inferno-menu-options .range .inferno-setting {
       transition-duration: 0.3s;
       -webkit-transition-duration: 0.3s;
       -khtml-transition-duration: 0.3s;
@@ -789,12 +846,14 @@ html[xmlns] .clearfix {
       color: #fff; }
       #inferno-canvas .range .inferno-setting:focus,
       #inferno-generator .range .inferno-setting:focus,
-      .inferno-meta-box .range .inferno-setting:focus {
+      .inferno-meta-box .range .inferno-setting:focus,
+      .inferno-menu-options .range .inferno-setting:focus {
         background: #fff;
         color: #46b9d6; }
   #inferno-canvas .range-slider,
   #inferno-generator .range-slider,
-  .inferno-meta-box .range-slider {
+  .inferno-meta-box .range-slider,
+  .inferno-menu-options .range-slider {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -khtml-border-radius: 6px;
@@ -810,7 +869,8 @@ html[xmlns] .clearfix {
     background: #fff; }
     #inferno-canvas .range-slider a,
     #inferno-generator .range-slider a,
-    .inferno-meta-box .range-slider a {
+    .inferno-meta-box .range-slider a,
+    .inferno-menu-options .range-slider a {
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -khtml-border-radius: 100%;
@@ -826,7 +886,8 @@ html[xmlns] .clearfix {
       outline: none; }
   #inferno-canvas .imagepicker .thumbnail,
   #inferno-generator .imagepicker .thumbnail,
-  .inferno-meta-box .imagepicker .thumbnail {
+  .inferno-meta-box .imagepicker .thumbnail,
+  .inferno-menu-options .imagepicker .thumbnail {
     max-width: 100%;
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
@@ -838,20 +899,24 @@ html[xmlns] .clearfix {
     cursor: pointer; }
     #inferno-canvas .imagepicker .thumbnail:not(.selected):hover,
     #inferno-generator .imagepicker .thumbnail:not(.selected):hover,
-    .inferno-meta-box .imagepicker .thumbnail:not(.selected):hover {
+    .inferno-meta-box .imagepicker .thumbnail:not(.selected):hover,
+    .inferno-menu-options .imagepicker .thumbnail:not(.selected):hover {
       background: #3f3f41; }
     #inferno-canvas .imagepicker .thumbnail.selected,
     #inferno-generator .imagepicker .thumbnail.selected,
-    .inferno-meta-box .imagepicker .thumbnail.selected {
+    .inferno-meta-box .imagepicker .thumbnail.selected,
+    .inferno-menu-options .imagepicker .thumbnail.selected {
       background: #44bea7; }
     #inferno-canvas .imagepicker .thumbnail img,
     #inferno-generator .imagepicker .thumbnail img,
-    .inferno-meta-box .imagepicker .thumbnail img {
+    .inferno-meta-box .imagepicker .thumbnail img,
+    .inferno-menu-options .imagepicker .thumbnail img {
       max-width: 100%;
       display: block; }
   #inferno-canvas .googlefont-canvas,
   #inferno-generator .googlefont-canvas,
-  .inferno-meta-box .googlefont-canvas {
+  .inferno-meta-box .googlefont-canvas,
+  .inferno-menu-options .googlefont-canvas {
     padding: 10px;
     border: 4px #eeeeee solid;
     margin-top: 15px;
@@ -859,11 +924,13 @@ html[xmlns] .clearfix {
     font-family: auto; }
   #inferno-canvas .transfer span,
   #inferno-generator .transfer span,
-  .inferno-meta-box .transfer span {
+  .inferno-meta-box .transfer span,
+  .inferno-menu-options .transfer span {
     color: red; }
     #inferno-canvas .transfer span a,
     #inferno-generator .transfer span a,
-    .inferno-meta-box .transfer span a {
+    .inferno-meta-box .transfer span a,
+    .inferno-menu-options .transfer span a {
       color: red;
       text-decoration: underline;
       font-weight: 900; }

@@ -163,7 +163,7 @@ class Inferno_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit  {
         <div class="clear"></div>
         <?php 
         // this is it!
-        $this->inferno_options(); ?>
+        $this->inferno_options($item, $item_id); ?>
 
 
 
@@ -212,7 +212,7 @@ class Inferno_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit  {
   }
 
 
-  function inferno_options() {
+  function inferno_options( $item = null, $item_id = null ) {
     $theme_support = get_theme_support('inferno-menu-options');
 
     if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {
@@ -222,7 +222,7 @@ class Inferno_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit  {
     ?>
     <div class="inferno-menu-options">
     <?php foreach($this->inferno_options as $field) : ?> 
-      <?php new Inferno_Options_Machine($field); ?>
+      <?php new Inferno_Options_Machine($field, $item->inferno[$field['id']], $item_id); ?>
     <?php endforeach; ?>
     </div>
     <?php

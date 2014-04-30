@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
   /* Form elements
      ========================================================================== */
   $("#inferno-canvas .radio, .inferno-meta-box .radio, .inferno-menu-options .radio").buttonset();
-  $("#inferno-canvas .checkbox input,  .inferno-meta-box .checkbox input, .inferno-menu-options .checkbox input").button().change(function(){
+  $("#inferno-canvas .checkbox input, .inferno-meta-box .checkbox input, .inferno-menu-options .checkbox input").button().change(function(){
     $label = $(this).next('label.ui-button');
     if($label.hasClass('ui-state-active')) {
       $label.find('span.ui-button-text').text($label.data('true'));
@@ -151,6 +151,9 @@ jQuery(document).ready(function($) {
     hide: { effect: 'fadeOut', duration: 150 },
     show: { effect: 'fadeIn', duration: 150 },
     activate: function(event, ui) {
+      equalHeightInfernoColumn();
+    },
+    create: function(event, ui) {
       equalHeightInfernoColumn();
     }
   });

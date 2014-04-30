@@ -109,7 +109,6 @@ if(!class_exists('Inferno_Canvas')) {
               }
             }
           }
-
           update_option($this->option_name, $inferno_option);
 
         } elseif($_POST['inferno_action'] == 'reset' && get_option($this->option_name)) {
@@ -153,6 +152,7 @@ if(!class_exists('Inferno_Canvas')) {
      */
     protected function standarize_options() {
       global $inferno_option;
+
       
       if(!is_array($this->theme_settings) || empty($this->theme_settings)) return false;
 

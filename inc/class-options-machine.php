@@ -31,6 +31,9 @@ if(!class_exists('Inferno_Options_Machine')) {
 
     private $setting_value;
 
+    private $item_id;
+
+
     private static $count = array(
       'radio'       => 1,
       'range'       => 1,
@@ -38,14 +41,14 @@ if(!class_exists('Inferno_Options_Machine')) {
     );
 
     private $fonts = array(
-      'Arial', 
-      'Arial Black', 
-      'Georgia', 
-      'Helvetica', 
-      'Helvetica Neue', 
-      'Lucida Grande', 
+      'Arial',
+      'Arial Black',
+      'Georgia',
+      'Helvetica',
+      'Helvetica Neue',
+      'Lucida Grande',
       'Proxima Nova',
-      'Tahoma', 
+      'Tahoma',
       'Times New Roman'
     );
 
@@ -54,11 +57,13 @@ if(!class_exists('Inferno_Options_Machine')) {
      * @param array  $setting       the setting array
      * @param string $setting_value the setting value
      */
-    public function __construct( $setting = array(), $setting_value = null, $array_id = null)
+    public function __construct( $setting = array(), $setting_value = null, $item_id = null )
     {
       if ( empty ( $setting ) ) return;
       $this->setting = $setting; 
-      $this->setting_value = $setting_value ? $setting_value : (isset($setting['std']) ? $setting['std'] : null);
+      $this->setting_value = isset($setting_value) ? $setting_value : (isset($setting['std']) ? $setting['std'] : null);
+      $this->item_id = $item_id;
+
       $class = '';
       if(isset($this->setting['advanced']) && $this->setting['advanced'] === true) $class .= ' advanced';
       ?>
@@ -72,18 +77,50 @@ if(!class_exists('Inferno_Options_Machine')) {
         <?php $this->field_details(); ?>
         <div class="clear"></div>
       </div>
-
+      
       <?php
+    }
+
+    private function get_full_id( $prependix = null, $appendix = null ) {
+      $id = $this->setting['id'];
+      if($prependix) $id = $prependix . $id;
+      if($appendix) $id = $id . $appendix;
+
+      return $id;
     }
 
     /**
      * Return the name tag for the current setting form object.
      */
-    private function get_name()
+    private function id_tag( $prependix = null, $appendix = null )
     {
-      return 'name="' . $this->setting['id'] . '"';
+      $id = $this->get_full_id( $prependix, $appendix );
+      if($this->item_id) $id .= '-' . $this->item_id;
+
+      echo 'id="' . $id . '"';
     }
- 
+
+    /**
+     * Print name tag for the current setting form object.
+     */
+    private function name_tag( $prependix = null, $appendix = null )
+    {
+      $name = $this->get_full_id( $prependix, $appendix );
+      if($this->item_id) $name .= '[' . $this->item_id . ']';
+
+      echo 'name="' . $name . '"';
+    }
+
+
+    private function for_tag( $prependix = null, $appendix = null )
+    {
+      $for = $this->get_full_id( $prependix, $appendix );
+      if($this->item_id) $for .= '-' . $this->item_id;
+
+      echo 'for="' . $for . '"';
+    }
+
+
     /**
      * left column of the panel inner. contains description and optionally some more tag description
      * @param  array  $setting init the setting for this row.
@@ -92,7 +129,7 @@ if(!class_exists('Inferno_Options_Machine')) {
     function field_details() 
     { ?>
       <div class="field-details">
-        <?php if($this->setting['type'] != 'radio' && $this->setting['type'] != 'checkbox') : ?><label for="inferno-concrete-setting-<?php echo $this->setting['id']; ?>"><?php endif; ?>
+        <?php if($this->setting['type'] != 'radio' && $this->setting['type'] != 'checkbox') : ?><label <?php $this->for_tag("inferno-concrete-setting-"); ?>><?php endif; ?>
         <?php echo $this->setting['desc']; ?>
         <?php if($this->setting['type'] != 'radio' && $this->setting['type'] != 'checkbox') : ?></label><?php endif; ?>
 
@@ -102,7 +139,7 @@ if(!class_exists('Inferno_Options_Machine')) {
 
         <?php if($this->setting['type'] == 'font') : ?>
           <div class="googlefont-desc">
-            <label for="inferno-concrete-setting-<?php echo $this->setting['id']; ?>-googlefont">
+            <label <?php $this->for_tag("inferno-concrete-setting-", "-googlefont"); ?>>
               <?php _e('Enter the Name of the Google Webfont You want to use, for example "Droid Serif" (without quotes). Leave blank to use a Font from the selector above.', 'inferno'); ?>
             </label>
             <span class="more">
@@ -163,7 +200,7 @@ if(!class_exists('Inferno_Options_Machine')) {
           $this->transfer();
           break;
         default:
-          $this->text(); // will maybe call $this->range or $this->colorpicker
+          $this->text();
           break;
       }
 
@@ -173,11 +210,9 @@ if(!class_exists('Inferno_Options_Machine')) {
     function text()
     {
       ?>
-      <input type="text" <?php echo $this->get_name(); ?> value="<?php echo $this->setting_value; ?>" class="inferno-setting" id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" />
+      <input type="text" <?php $this->name_tag(); ?> value="<?php echo $this->setting_value; ?>" class="inferno-setting" <?php $this->id_tag("inferno-concrete-setting-"); ?> />
       <?php 
-      if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color') {
-        $this->colorpicker();
-      } elseif($this->setting['type'] == 'range') {
+      if($this->setting['type'] == 'range') {
         $this->range();
       }
     }
@@ -187,7 +222,7 @@ if(!class_exists('Inferno_Options_Machine')) {
     function textarea()
     {
       ?>
-      <textarea <?php echo $this->get_name(); ?> id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
+      <textarea <?php $this->name_tag(); ?> <?php $this->id_tag("inferno-concrete-setting-"); ?> class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
       <?php
     }
 
@@ -195,11 +230,11 @@ if(!class_exists('Inferno_Options_Machine')) {
     function colorpicker() 
     {
       ?>
-      <input type="text" <?php echo $this->get_name(); ?> class="inferno-setting inferno-color-selector" id="colorselector-<?php echo self::$count['colorpicker']; ?>" value="<?php echo $this->setting_value; ?>" />
+      <input type="text" <?php $this->name_tag(); ?> class="inferno-setting inferno-color-selector" <?php $this->id_tag(null, '-colorselector_' . self::$count['colorpicker']); ?> value="<?php echo $this->setting_value; ?>" />
       <script type="text/javascript">
         jQuery(document).ready(function($) {
           // call the colorpicker
-          $('#colorselector-<?php echo self::$count['colorpicker']; ?>').spectrum({
+          $("#<?php echo $this->get_full_id(null, '-colorselector_' . self::$count['colorpicker']); ?>").spectrum({
             color: '<?php echo $this->setting_value; ?>',
             showAlpha: true,
             showInput: true,
@@ -219,10 +254,10 @@ if(!class_exists('Inferno_Options_Machine')) {
     function range()
     {   
       ?>
-      <div id="range-slider-<?php echo self::$count['range']; ?>" class="range-slider"></div>
+      <div <?php $this->id_tag(null, '-range_slider_' . self::$count['range']); ?> class="range-slider"></div>
       <script type="text/javascript">
         jQuery(document).ready(function($) {
-          $('#range-slider-<?php echo self::$count['range']; ?>').slider({
+          $("#<?php echo $this->get_full_id(null, '-range_slider_' . self::$count['range']); ?>").slider({
             <?php 
             echo 'min: ' . (isset($this->setting['min']) ? $this->setting['min'] : 0) . ',';
             echo 'max: ' . (isset($this->setting['max']) ? $this->setting['max'] : 100) . ',';
@@ -245,15 +280,12 @@ if(!class_exists('Inferno_Options_Machine')) {
 
     function checkbox()
     {
+      // hidden field inspired by http://stackoverflow.com/a/1992745/744230
       ?>
-      <input type="checkbox" <?php echo $this->get_name(); ?> value="true" class="inferno-setting" id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>"<?php if($this->setting_value) echo ' checked'; ?> />
-      <label for="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" data-true="<?php _e('On'); ?>" data-false="<?php _e('Off'); ?>"><?php if($this->setting_value) _e('On'); else _e('Off'); ?></label>
+      <input type="hidden" <?php $this->name_tag(); ?> value="0" />
+      <input type="checkbox" <?php $this->name_tag(); ?> value="1" class="inferno-setting" <?php $this->id_tag('inferno-concrete-setting-'); if($this->setting_value) echo ' checked'; ?> />
+      <label <?php $this->for_tag('inferno-concrete-setting-'); ?> data-true="<?php _e('On'); ?>" data-false="<?php _e('Off'); ?>"><?php if($this->setting_value) _e('On'); else _e('Off'); ?></label>
       <?php 
-      if($this->setting['type'] == 'colorpicker' || $this->setting['type'] == 'color') {
-        $this->colorpicker();
-      } elseif($this->setting['type'] == 'range') {
-        $this->range();
-      }
     }
 
 
@@ -261,11 +293,11 @@ if(!class_exists('Inferno_Options_Machine')) {
     {   
       foreach ($this->setting['options'] as $value => $label) : ?>
         <input type="radio" 
-               <?php echo $this->get_name(); ?>
+               <?php $this->name_tag(); ?>
                value="<?php echo $value; ?>" 
-               id="inferno-concrete-setting-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>" 
+               <?php $this->id_tag('inferno-concrete-setting-', '-' . self::$count['radio']); ?>
                <?php if($value == $this->setting_value) echo "checked"; ?> class="inferno-setting" />
-        <label for="inferno-concrete-setting-<?php echo $this->setting['id'] . '-' . self::$count['radio']; ?>">
+        <label <?php $this->for_tag('inferno-concrete-setting-', '-' . self::$count['radio']); ?>>
           <?php echo $label; ?>
         </label>
         <?php 
@@ -276,7 +308,7 @@ if(!class_exists('Inferno_Options_Machine')) {
     function select()
     {
       ?>
-      <select <?php echo $this->get_name(); ?> id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" class="inferno-setting">
+      <select <?php $this->name_tag(); ?> <?php $this->id_tag('inferno-concrete-setting-'); ?> class="inferno-setting">
         <?php 
         foreach($this->setting['options'] as $value => $label) : ?>
           <option value="<?php echo $value; ?>"<?php if($value == $this->setting_value) echo ' selected="selected"'; 
@@ -293,7 +325,7 @@ if(!class_exists('Inferno_Options_Machine')) {
     function media()
     {
       ?>
-      <input type="text" <?php echo $this->get_name(); ?> accept="*.jpg,*.jpeg,*.png,*.ico"
+      <input type="text" <?php $this->name_tag(); ?> <?php $this->id_tag('inferno-concrete-setting-'); ?> accept="*.jpg,*.jpeg,*.png,*.ico"
         value="<?php echo $this->setting_value; ?>" class="inferno-setting" />
       <span class="button button-upload"><?php _e('Upload Image', 'inferno'); ?></span>
       <span class="button button-reset"><?php _e('Remove', 'inferno'); ?></span>
@@ -310,7 +342,7 @@ if(!class_exists('Inferno_Options_Machine')) {
     function font()
     {
       ?>
-      <select <?php echo $this->get_name(); ?> id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" class="inferno-setting">
+      <select <?php $this->name_tag(); ?> <?php $this->id_tag('inferno-concrete-setting-'); ?> class="inferno-setting">
         <?php 
         foreach($this->fonts as $font) : ?>
           <option value="<?php echo $font; ?>" <?php if($font == $this->setting_value) echo 'selected="selected"'; ?>>
@@ -333,7 +365,7 @@ if(!class_exists('Inferno_Options_Machine')) {
       <span class="button googlefont hide"><?php _e('Hide Google Font for this Option.', 'inferno'); ?></span>
   
       <div class="googlefont-setting">
-        <input type="text" name="<?php echo $this->setting['id']; ?>_googlefont" id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>-googlefont"
+        <input type="text" <?php $this->name_tag(null, '_googlefont'); ?> <?php $this->id_tag('inferno-concrete-setting-', '-googlefont'); ?>
           value="<?php if(!in_array($this->setting_value, $this->fonts)) echo $this->setting_value; ?>" class="inferno-setting" />
         <div class="googlefont-canvas">
           <?php _e('Grumpy wizards make toxic brew for the evil Queen and Jack.', 'inferno'); ?>
@@ -349,7 +381,7 @@ if(!class_exists('Inferno_Options_Machine')) {
       $settings = get_option('inferno', array()); // get all the inferno panel settings
       $this->setting_value = base64_encode(serialize($settings)); // not malicious, ignore alerts on this line
       ?>
-      <textarea <?php echo $this->get_name(); ?> id="inferno-concrete-setting-<?php echo $this->setting['id']; ?>" class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
+      <textarea <?php $this->name_tag(); ?> <?php $this->id_tag('inferno-concrete-setting-'); ?> class="inferno-setting"><?php echo esc_textarea( $this->setting_value ); ?></textarea>
       <button type="submit" name="inferno_action" value="import" class="button"><?php _e('Import options', 'inferno'); ?></button>
       <script type="text/javascript">
       jQuery(document).ready(function($) {

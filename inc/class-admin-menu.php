@@ -8,6 +8,16 @@ if(!class_exists('Inferno_Admin_Menu')) {
 
     public function __construct() 
     {
+      require ABSPATH . 'wp-admin/includes/nav-menu.php';
+      require_once(dirname(__FILE__) . '/class-walker-nav-menu-edit.php');
+
+      add_action( 'admin_init', array($this, 'get_options'));
+      add_filter( 'wp_edit_nav_menu_walker', array($this, 'nav_edit_walker'), 10, 2 );
+      add_action( 'wp_update_nav_menu_item', array($this, 'nav_update'), 10, 3 );
+      add_filter( 'wp_setup_nav_menu_item', array($this, 'nav_item') );
+    }
+
+    function get_options(){
       // TODO: can we eventually do this in one place only? class-walker-nav-menu-edit.php has same lines
       $theme_support = get_theme_support('inferno-menu-options');
 
@@ -15,13 +25,6 @@ if(!class_exists('Inferno_Admin_Menu')) {
         $tmp_options = include ( locate_template( $theme_support[0]['file'] ) );
         $this->inferno_options = $tmp_options['fields'];
       }
-
-      require ABSPATH . 'wp-admin/includes/nav-menu.php';
-      require_once(dirname(__FILE__) . '/class-walker-nav-menu-edit.php');
-
-      add_filter( 'wp_edit_nav_menu_walker', array($this, 'nav_edit_walker'), 10, 2 );
-      add_action( 'wp_update_nav_menu_item', array($this, 'nav_update'), 10, 3 );
-      add_filter( 'wp_setup_nav_menu_item', array($this, 'nav_item') );
     }
 
     function nav_edit_walker($walker, $menu_id) {

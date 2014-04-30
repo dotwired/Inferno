@@ -490,6 +490,18 @@ html[xmlns] .clearfix {
 
 
 /* ==========================================================================
+   Menu options
+   ========================================================================== */
+
+.inferno-menu-options {
+  margin-right: 10px;
+
+  h4 {
+    margin-bottom: 5px;
+  }
+}
+
+/* ==========================================================================
    Options Machine
    ========================================================================== */
 
@@ -655,6 +667,10 @@ html[xmlns] .clearfix {
       border-color: $green;
       background: $green;
       color: #fff;
+
+      &.ui-corner-left {
+        margin-left: 0;
+      }
     }
 
     .ui-helper-hidden-accessible {

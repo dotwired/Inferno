@@ -448,6 +448,14 @@ html[xmlns] .clearfix {
     color: #999; }
 
 /* ==========================================================================
+   Menu options
+   ========================================================================== */
+.inferno-menu-options {
+  margin-right: 10px; }
+  .inferno-menu-options h4 {
+    margin-bottom: 5px; }
+
+/* ==========================================================================
    Options Machine
    ========================================================================== */
 #inferno-canvas,
@@ -694,6 +702,11 @@ html[xmlns] .clearfix {
     border-color: #44bea7;
     background: #44bea7;
     color: #fff; }
+    #inferno-canvas .radio .ui-state-active.ui-corner-left,
+    #inferno-generator .radio .ui-state-active.ui-corner-left,
+    .inferno-meta-box .radio .ui-state-active.ui-corner-left,
+    .inferno-menu-options .radio .ui-state-active.ui-corner-left {
+      margin-left: 0; }
   #inferno-canvas .radio .ui-helper-hidden-accessible,
   #inferno-generator .radio .ui-helper-hidden-accessible,
   .inferno-meta-box .radio .ui-helper-hidden-accessible,

@@ -299,7 +299,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       ), $atts, 'circle' );
 
       $width = isset( $atts[ 'width' ] ) ? ' style="width: ' . $atts[ 'width' ] . ';"' : null;
-      $align = isset( $atts[ 'align' ] ) && $atts[ 'align' ] != 'no' && !$atts[ 'align' ] ? ' align' . $atts[ 'align' ] : null; 
+      $align = isset( $atts[ 'align' ] ) && $atts[ 'align' ] != 'no' ? ' align' . $atts[ 'align' ] : null; 
 
       return '<div class="inferno-circle' . $align . $atts['css_class'] . '"' . $width . '><div class="dummy"></div><div class="radius"><div class="element">'.do_shortcode( $content ).'</div></div></div>';
     }

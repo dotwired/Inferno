@@ -40,13 +40,13 @@
     z-index: -1;
     visibility: hidden; }
 
-.infernal-lightbox {
+.inferno-lightbox {
   -webkit-transition: -webkit-filter 2s;
   -moz-transition: -moz-filter 2s;
   -o-transition: -o-filter 2s;
   -ms-transition: -ms-filter 2s;
   transition: filter 2s; }
-  .infernal-lightbox.blur {
+  .inferno-lightbox.blur {
     filter: blur(3px);
     -webkit-filter: blur(3px);
     -moz-filter: blur(3px);
@@ -73,18 +73,18 @@
 /* ========================================================================
     circle
 ======================================================================== */
-.infernal-circle {
+.inferno-circle {
   display: block;
   position: relative; }
-  .infernal-circle .dummy {
+  .inferno-circle .dummy {
     padding-top: 100%; }
-  .infernal-circle .radius {
+  .inferno-circle .radius {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0; }
-  .infernal-circle .element {
+  .inferno-circle .element {
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
@@ -93,22 +93,22 @@
     width: 100%;
     height: 100%;
     overflow: hidden; }
-    .infernal-circle .element > img {
+    .inferno-circle .element > img {
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
       border-radius: 100%; }
-    .infernal-circle .element * {
+    .inferno-circle .element * {
       max-height: 100%;
       max-width: 100%; }
-    .infernal-circle .element .infernal-icon {
+    .inferno-circle .element .inferno-icon {
       height: 100%; }
 
 /* ========================================================================
     icons (powered by font awesome)
 ======================================================================== */
-.infernal-icon {
+.inferno-icon {
   -webkit-transition: color 0.3s, background 0.3s;
   -khtml-transition: color 0.3s, background 0.3s;
   -moz-transition: color 0.3s, background 0.3s;
@@ -123,7 +123,7 @@
 /* ========================================================================
     buttons
 ======================================================================== */
-.infernal-button {
+.inferno-button {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -133,10 +133,10 @@
   display: inline-block;
   padding: 4px 15px;
   border: none; }
-  .infernal-button:hover {
+  .inferno-button:hover {
     cursor: pointer;
     text-decoration: none; }
-  .infernal-button.purple {
+  .inferno-button.purple {
     background: #7a2c7a;
     background: -moz-linear-gradient(top, #7a2c7a 0%, #351330 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7a2c7a), color-stop(100%, #351330));
@@ -146,7 +146,7 @@
     background: linear-gradient(to bottom, #7a2c7a 0%, #351330 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
     color: #fff; }
-    .infernal-button.purple:hover {
+    .inferno-button.purple:hover {
       background: #351330;
       -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -khtml-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -154,7 +154,7 @@
       -ms-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -o-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
-    .infernal-button.purple:active {
+    .inferno-button.purple:active {
       background: #351330;
       background: -moz-linear-gradient(top, #351330 0%, #7a2c7a 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #351330), color-stop(100%, #7a2c7a));
@@ -170,7 +170,7 @@
       -o-box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5);
       box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5);
       color: #eee; }
-  .infernal-button.orange {
+  .inferno-button.orange {
     background: #f05b23;
     background: -moz-linear-gradient(top, #f05b23 0%, #d86d02 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f05b23), color-stop(100%, #d86d02));
@@ -180,7 +180,7 @@
     background: linear-gradient(to bottom, #f05b23 0%, #d86d02 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
     color: #fff; }
-    .infernal-button.orange:hover {
+    .inferno-button.orange:hover {
       background: #D86D02;
       -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -khtml-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -188,7 +188,7 @@
       -ms-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -o-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
-    .infernal-button.orange:active {
+    .inferno-button.orange:active {
       background: #d86d02;
       background: -moz-linear-gradient(top, #d86d02 0%, #f05b23 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d86d02), color-stop(100%, #f05b23));
@@ -204,7 +204,7 @@
       -o-box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5);
       box-shadow: inset 0 0 12px 0 rgba(0, 0, 0, 0.5);
       color: #eee; }
-  .infernal-button.yellow {
+  .inferno-button.yellow {
     background: #fccb50;
     background: -moz-linear-gradient(top, #fccb50 0%, #f3b71b 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fccb50), color-stop(100%, #f3b71b));
@@ -214,7 +214,7 @@
     background: linear-gradient(to bottom, #fccb50 0%, #f3b71b 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
     color: #fff; }
-    .infernal-button.yellow:hover {
+    .inferno-button.yellow:hover {
       background: #f3b71b;
       -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -khtml-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -222,7 +222,7 @@
       -ms-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       -o-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
-    .infernal-button.yellow:active {
+    .inferno-button.yellow:active {
       background: #f3b71b;
       background: -moz-linear-gradient(top, #f3b71b 0%, #eaae15 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3b71b), color-stop(100%, #eaae15));
@@ -242,7 +242,7 @@
 /* ========================================================================
     skillbar
 ======================================================================== */
-.infernal-skillbar {
+.inferno-skillbar {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -253,12 +253,12 @@
   height: 35px;
   line-height: 35px;
   background: #eee; }
-  .infernal-skillbar .skill {
+  .inferno-skillbar .skill {
     position: absolute;
     height: 35px;
     font-weight: 600;
     color: #fff; }
-    .infernal-skillbar .skill span {
+    .inferno-skillbar .skill span {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -268,13 +268,13 @@
       height: 35px;
       padding: 0 20px;
       background: #666; }
-  .infernal-skillbar .percent {
+  .inferno-skillbar .percent {
     position: absolute;
     right: 15px;
     height: 35px;
     font-size: 11px;
     color: rgba(0, 0, 0, 0.5); }
-  .infernal-skillbar .bar {
+  .inferno-skillbar .bar {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -287,11 +287,11 @@
 /* ========================================================================
     staff
 ======================================================================== */
-.infernal-staff-member {
+.inferno-staff-member {
   background: #eee; }
-  .infernal-staff-member.circle {
+  .inferno-staff-member.circle {
     padding: 25px 0 0; }
-    .infernal-staff-member.circle .profile-img > a {
+    .inferno-staff-member.circle .profile-img > a {
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       -ms-border-radius: 100%;
@@ -311,13 +311,13 @@
       padding: 20px 0;
       margin: -32px 0 0 -32px;
       font-size: 24px; }
-  .infernal-staff-member .profile-img {
+  .inferno-staff-member .profile-img {
     position: relative;
     overflow: hidden; }
-    .infernal-staff-member .profile-img img {
+    .inferno-staff-member .profile-img img {
       width: 100%;
       display: block; }
-    .infernal-staff-member .profile-img > a {
+    .inferno-staff-member .profile-img > a {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -341,81 +341,81 @@
       margin-left: -18px;
       padding: 10px;
       opacity: 0; }
-      .infernal-staff-member .profile-img > a:hover {
+      .inferno-staff-member .profile-img > a:hover {
         text-decoration: none !important; }
-      .infernal-staff-member .profile-img > a.orange {
+      .inferno-staff-member .profile-img > a.orange {
         background: #f05b23;
         color: #fff; }
-    .infernal-staff-member .profile-img > a:nth-child(2) {
+    .inferno-staff-member .profile-img > a:nth-child(2) {
       -webkit-transition-delay: 0.1s;
       -khtml-transition-delay: 0.1s;
       -ms-transition-delay: 0.1s;
       -moz-transition-delay: 0.1s;
       -o-transition-delay: 0.1s;
       transition-delay: 0.1s; }
-    .infernal-staff-member .profile-img > a:nth-child(3) {
+    .inferno-staff-member .profile-img > a:nth-child(3) {
       -webkit-transition-delay: 0.2s;
       -khtml-transition-delay: 0.2s;
       -ms-transition-delay: 0.2s;
       -moz-transition-delay: 0.2s;
       -o-transition-delay: 0.2s;
       transition-delay: 0.2s; }
-    .infernal-staff-member .profile-img > a:nth-child(4) {
+    .inferno-staff-member .profile-img > a:nth-child(4) {
       -webkit-transition-delay: 0.3s;
       -khtml-transition-delay: 0.3s;
       -ms-transition-delay: 0.3s;
       -moz-transition-delay: 0.3s;
       -o-transition-delay: 0.3s;
       transition-delay: 0.3s; }
-    .infernal-staff-member .profile-img > a:nth-child(5) {
+    .inferno-staff-member .profile-img > a:nth-child(5) {
       -webkit-transition-delay: 0.4s;
       -khtml-transition-delay: 0.4s;
       -ms-transition-delay: 0.4s;
       -moz-transition-delay: 0.4s;
       -o-transition-delay: 0.4s;
       transition-delay: 0.4s; }
-    .infernal-staff-member .profile-img > a:nth-child(6) {
+    .inferno-staff-member .profile-img > a:nth-child(6) {
       -webkit-transition-delay: 0.5s;
       -khtml-transition-delay: 0.5s;
       -ms-transition-delay: 0.5s;
       -moz-transition-delay: 0.5s;
       -o-transition-delay: 0.5s;
       transition-delay: 0.5s; }
-    .infernal-staff-member .profile-img > a:nth-child(7) {
+    .inferno-staff-member .profile-img > a:nth-child(7) {
       -webkit-transition-delay: 0.6s;
       -khtml-transition-delay: 0.6s;
       -ms-transition-delay: 0.6s;
       -moz-transition-delay: 0.6s;
       -o-transition-delay: 0.6s;
       transition-delay: 0.6s; }
-    .infernal-staff-member .profile-img.infernal-circle {
+    .inferno-staff-member .profile-img.inferno-circle {
       width: 90%;
       margin-bottom: 25px;
       overflow: visible; }
-      .infernal-staff-member .profile-img.infernal-circle .element {
+      .inferno-staff-member .profile-img.inferno-circle .element {
         border: 10px #fff solid; }
-  .infernal-staff-member .about {
+  .inferno-staff-member .about {
     overflow: hidden;
     position: relative;
     padding: 10px;
     background: #333;
     color: #fff; }
-    .infernal-staff-member .about .name {
+    .inferno-staff-member .about .name {
       font-size: 1.2em;
       line-height: 1.2;
       margin-bottom: 6px; }
-    .infernal-staff-member .about .position {
+    .inferno-staff-member .about .position {
       font-size: 1em;
       color: #ccc;
       font-style: italic; }
-    .infernal-staff-member .about .phone {
+    .inferno-staff-member .about .phone {
       position: absolute;
       right: 0;
       top: 0;
       bottom: 0;
       width: 30px;
       background: #444; }
-      .infernal-staff-member .about .phone .icon-phone {
+      .inferno-staff-member .about .phone .icon-phone {
         -webkit-transition: color 0.3s;
         -khtml-transition: color 0.3s;
         -moz-transition: color 0.3s;
@@ -430,7 +430,7 @@
         line-height: 16px;
         background: #444;
         text-align: center; }
-      .infernal-staff-member .about .phone .edge {
+      .inferno-staff-member .about .phone .edge {
         -webkit-transform: rotate(45deg);
         -khtml-transform: rotate(45deg);
         -moz-transform: rotate(45deg);
@@ -444,7 +444,7 @@
         left: -4px;
         top: 50%;
         margin-top: -5px; }
-      .infernal-staff-member .about .phone .number {
+      .inferno-staff-member .about .phone .number {
         -webkit-transition: right 0.5s;
         -khtml-transition: right 0.5s;
         -moz-transition: right 0.5s;
@@ -462,18 +462,18 @@
         color: #ccc;
         background: #444;
         width: auto; }
-        .infernal-staff-member .about .phone .number .transition {
+        .inferno-staff-member .about .phone .number .transition {
           width: 15px;
           position: absolute;
           bottom: 0;
           top: 0;
           right: 100%;
           background: url(../img/flame/phone-transition.png) repeat-y; }
-      .infernal-staff-member .about .phone:hover .number {
+      .inferno-staff-member .about .phone:hover .number {
         right: 100%; }
-      .infernal-staff-member .about .phone:hover .icon-phone.orange {
+      .inferno-staff-member .about .phone:hover .icon-phone.orange {
         color: #f05b23; }
-  .infernal-staff-member:hover .profile-img > a {
+  .inferno-staff-member:hover .profile-img > a {
     bottom: 5%;
     opacity: 0.8; }
 

@@ -287,7 +287,7 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
         'css_class' => null
       ), $atts, 'divider' );
 
-      return '<div class="divider ' . $atts['css_class'] . '">' . do_shortcode( $content ) . '</div>';
+      return '<div class="divider ' . $atts['css_class'] . '"></div>';
     }
 
     public function circle( $atts, $content = null ) 

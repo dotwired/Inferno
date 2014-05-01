@@ -4,23 +4,6 @@
  * This file contains functions which may eventually used in the theme directly and are not generous at all
  */
 
-function inferno_get_post_meta($post_id, $option = '') 
-{
-  $return = get_post_meta($post_id, '_inferno-postmeta', true);
-
-  if(!$return) {
-    global $inferno_metabox;
-
-    foreach($inferno_metabox->metabox as $metabox) {
-      if($metabox['name'] == $option) {
-        return isset($metabox['default']) ? $metabox['default'] : null;
-      }
-    }
-  }
-
-  return isset($return[$option]) ? $return[$option] : null;
-}
-
 function inferno_get_option($option_name = null, $default_value = null) {
   global $inferno_option;
 
@@ -30,11 +13,9 @@ function inferno_get_option($option_name = null, $default_value = null) {
   return $default_value;
 }
 
-
 function inferno_is_login_page() {
   return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 }
-
 
 
 /*
@@ -44,15 +25,16 @@ function inferno_update_option() {}
 */
 
 function inferno_preview($args = array()) {
-  $args += array(
-    'src'    => false, 
-    'width'  => false, 
-    'height' => false, 
-    'link'   => false, 
-    'crop'   => true, 
-    'effect' => 'default', 
-    'module' => null
-  );
+  // TODO:
+  // $args += array(
+  //   'src'    => false, 
+  //   'width'  => false, 
+  //   'height' => false, 
+  //   'link'   => false, 
+  //   'crop'   => true, 
+  //   'effect' => 'default', 
+  //   'module' => null
+  // );
   if(!class_exists('Inferno_Preview')) return;
 
   $preview = new Inferno_Preview($args['src'], $args['width'], $args['height'], $args['link'], $args['crop'], $args['effect'], $args['module']);
@@ -189,7 +171,14 @@ function inferno_get_widget_data_for($sidebar_name) {
 }
 
 
+function inferno_get_tag($tag = null, $args = array()) {
+  if(!$tag || empty($args)) {
+    return null;
+  }
 
+  // Separates args with a single space, collates args for element
+  return $tag . '="' . join( ' ', $args ) . '"';
+}
 
 
 /**
@@ -200,8 +189,5 @@ function inferno_get_widget_data_for($sidebar_name) {
  * @param string|array $classes One or more classes to add to the class list.
  */
 function inferno_class_tag( $classes = array() ) {
-  if($classes && !empty($classes)) {
-    // Separates classes with a single space, collates classes for element
-    echo 'class="' . join( ' ', $classes ) . '"';
-  }
+  echo inferno_get_tag('class', $classes);
 }

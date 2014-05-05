@@ -41,12 +41,14 @@ $footer-height: 100px;
 .mfp-content {
   #inferno-panel-form {
     @include box-sizing(border-box);
+    position: relative;
     width: $full-width + 50px;
-    margin: 25px auto;
-    padding: 0 25px;
+    margin: 0 auto;
+    padding: 25px;
     background: #eee;
   }
 }
+
 
 
 /* ==========================================================================
@@ -151,7 +153,6 @@ html[xmlns] .clearfix {
   position: relative;
   width: $full-width;
   margin: 25px 0;
-  float: left;
   background: #fff;
   opacity: 0;
   overflow: hidden;

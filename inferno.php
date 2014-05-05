@@ -99,7 +99,7 @@ if(!class_exists('Inferno')) {
       array('jquery-rotate', 'assets/js/jquery/jquery.rotate.js', array('jquery'), null, true),
       array('jquery-scrollto', 'assets/js/jquery/jquery.scrollto.js', array('jquery'), '1.4.5 BETA', true),
       array('jquery-spectrum', 'assets/js/jquery/jquery.spectrum.js', array('jquery'), '1.3.3', true),
-      array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.2', true),
+      array('jquery-superfish', 'assets/js/jquery/jquery.superfish.js', array('jquery'), '1.7.4', true),
       array('jquery-throttle-debounce', 'assets/js/jquery/jquery.throttle-debounce.js', array('jquery'), '1.1', true),
       array('jquery-throttledresize', 'assets/js/jquery/jquery.throttledresize.js', array('jquery'), '1', true),
       array('jquery-tinynav', 'assets/js/jquery/jquery.tinynav.js', array('jquery'), '1.0.14', true),
@@ -226,7 +226,7 @@ if(!class_exists('Inferno')) {
       if( isset($this->_config['menu-options']) && $this->_config['menu-options'] ) {
         require_once( dirname(__FILE__) . '/inc/class-admin-menu.php' );
 
-        new Inferno_Admin_Menu();
+        Inferno_Admin_Menu::getInstance();
       }
 
       // portfolio

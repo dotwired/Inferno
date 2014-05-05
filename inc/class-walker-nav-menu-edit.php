@@ -11,6 +11,11 @@
  */
 class Inferno_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit  {
 
+  function __construct() {
+    $admin_menu = Inferno_Admin_Menu::getInstance();
+    $this->inferno_options = $admin_menu->inferno_options[$admin_menu->current_menu_location]['fields'];
+  }
+
   private $inferno_options = array();
 
   /**
@@ -212,14 +217,7 @@ class Inferno_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit  {
   }
 
 
-  function inferno_options( $item = null, $item_id = null ) {
-    $theme_support = get_theme_support('inferno-menu-options');
-
-    if(isset($theme_support[0]['file']) && is_string($theme_support[0]['file'])) {
-      $tmp_options = include ( locate_template( $theme_support[0]['file'] ) );
-      $this->inferno_options = $tmp_options['fields'];
-    }
-    ?>
+  function inferno_options( $item = null, $item_id = null ) { ?>
     <div class="inferno-menu-options">
     <?php foreach($this->inferno_options as $field) : ?> 
       <?php new Inferno_Options_Machine($field, $item->inferno[$field['id']], $item_id); ?>

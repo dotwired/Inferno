@@ -26,9 +26,10 @@
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
+  position: relative;
   width: 1010px;
-  margin: 25px auto;
-  padding: 0 25px;
+  margin: 0 auto;
+  padding: 25px;
   background: #eee; }
 
 /* ==========================================================================
@@ -183,7 +184,6 @@ html[xmlns] .clearfix {
   position: relative;
   width: 960px;
   margin: 25px 0;
-  float: left;
   background: #fff;
   opacity: 0;
   overflow: hidden;

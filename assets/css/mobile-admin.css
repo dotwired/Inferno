@@ -52,7 +52,10 @@
     -khtml-box-ordinal-group: 3;
     -moz-box-ordinal-group: 3;
     -ms-box-ordinal-group: 3;
-    -o-box-ordinal-group: 3; } }
+    -o-box-ordinal-group: 3; }
+
+  .inferno-demo-popup #inferno-panel-form {
+    width: 730px; } }
 @media all and (max-width: 766px) {
   #inferno-canvas {
     border-radius: 0;
@@ -131,7 +134,14 @@
     -khtml-box-ordinal-group: 3;
     -moz-box-ordinal-group: 3;
     -ms-box-ordinal-group: 3;
-    -o-box-ordinal-group: 3; } }
+    -o-box-ordinal-group: 3; }
+
+  .inferno-demo-popup #inferno-panel-form {
+    width: 100%; }
+  .inferno-demo-popup .mfp-container {
+    padding: 0; }
+  .inferno-demo-popup #inferno-canvas {
+    top: 46px; } }
 @media all and (max-width: 587px) {
   #inferno-canvas {
     top: 46px; }

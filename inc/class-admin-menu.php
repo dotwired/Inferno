@@ -96,10 +96,12 @@ if(!class_exists('Inferno_Admin_Menu')) {
           }
         }
       }
-      foreach($this->inferno_options[$this->current_menu_location]['fields'] as $field) {
-        if ( isset($_REQUEST[$field['id']]) && is_array($_REQUEST[$field['id']] ) && isset($_REQUEST[$field['id']][$menu_item_db_id])) {
-          $value = $_REQUEST[$field['id']][$menu_item_db_id];
-          update_post_meta( $menu_item_db_id, $field['id'], $value );
+      if(isset($this->inferno_options[$this->current_menu_location]['fields']) && !empty($this->inferno_options[$this->current_menu_location]['fields'])) {
+        foreach($this->inferno_options[$this->current_menu_location]['fields'] as $field) {
+          if ( isset($_REQUEST[$field['id']]) && is_array($_REQUEST[$field['id']] ) && isset($_REQUEST[$field['id']][$menu_item_db_id])) {
+            $value = $_REQUEST[$field['id']][$menu_item_db_id];
+            update_post_meta( $menu_item_db_id, $field['id'], $value );
+          }
         }
       }
     }

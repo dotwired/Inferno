@@ -57,6 +57,10 @@ $footer-height: 100px;
       @include box-ordinal-group(3);
     }
   }
+
+  .inferno-demo-popup #inferno-panel-form {
+    width: 730px;
+  }
 }
 
 
@@ -154,6 +158,20 @@ $footer-height: 130px;
 
     .field-setting {
       @include box-ordinal-group(3);
+    }
+  }
+
+  .inferno-demo-popup {
+    #inferno-panel-form {
+      width: 100%;
+    }
+
+    .mfp-container {
+      padding: 0;
+    }
+
+    #inferno-canvas {
+      top: 46px;
     }
   }
 }

@@ -10,7 +10,9 @@ jQuery(document).ready(function($) {
   // TODO: make this maybe an iframe popup to prevent style and script incopatibilities of panel and frontend?
   if(demo_mode) {
     $('#inferno-demo-opener').magnificPopup({
-      type:'inline',
+      type: 'inline',
+      mainClass: 'inferno-demo-popup',
+      alignTop: true,
       midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
 

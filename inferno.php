@@ -33,6 +33,8 @@ if(!class_exists('Inferno')) {
      */
     public static $_debug = false;
 
+    private $_current_user_buffered = null;
+
 
     /**
      * Register all styles which come with the theme framework.
@@ -193,6 +195,10 @@ if(!class_exists('Inferno')) {
             || $current_user->user_login == $this->_config['canvas'][0]['demo_account'])) {
           require( dirname( __FILE__ ) . '/canvas/class-demo-canvas.php' );
           new Inferno_Demo_Canvas();
+
+          // for the comment forms
+          add_action('comment_form_before', array($this, 'destroy_current_user'));
+          add_action('comment_form', array($this, 'restore_current_user'));
         } else {
           new Inferno_Canvas();
         }
@@ -293,6 +299,20 @@ if(!class_exists('Inferno')) {
     public function translate()
     {
       load_theme_textdomain( 'inferno', INFERNO_PATH . 'languages' );
+    }
+
+    public function destroy_current_user()
+    {
+      $this->_current_user_buffered = $GLOBALS['current_user'];
+      $GLOBALS['current_user'] = false;
+      wp_set_current_user( 0 );
+    }
+
+    public function restore_current_user()
+    {
+      $current_user = $this->_current_user_buffered;
+      $GLOBALS['current_user'] = $current_user;
+      wp_set_current_user( $current_user->ID );
     }
   }
 }

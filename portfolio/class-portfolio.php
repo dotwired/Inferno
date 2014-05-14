@@ -49,6 +49,7 @@ if(!class_exists('Inferno_Portfolio')) {
             wp_enqueue_script('css-transform');
             wp_enqueue_script('jquery-isotope');
             wp_enqueue_script('jquery-imagesloaded');
+            wp_enqueue_script('inferno-preview');
 
             wp_enqueue_style('inferno-portfolio');
             wp_enqueue_style('css3d');

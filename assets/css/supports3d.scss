@@ -1,236 +1,231 @@
+@import 'mixins';
+
 /* ==========================================================================
-   1. fold effect
+   1. common
    ========================================================================== */
 
-.csstransforms3d .inferno-preview.fold, 
-.csstransforms3d .inferno-preview.fold .panel, 
-.csstransforms3d .inferno-preview.fold .panel .overlay {
-    transition-duration: 100ms;
-    -webkit-transition-duration: 100ms;
-    -khtml-transition-duration: 100ms;
-    -ms-transition-duration: 100ms;
-    -moz-transition-duration: 100ms;
-    -o-transition-duration: 100ms;
-    transform: translateX(0) rotateY(0);
-    -webkit-transform: translateX(0) rotateY(0);
-    -khtml-transform: translateX(0) rotateY(0);
-    -moz-transform: translateX(0) rotateY(0);
-    -ms-transform: translateX(0) rotateY(0);
-    -o-transform: translateX(0) rotateY(0);
-    transition-property: transform, opacity;
+.inferno-preview, 
+.inferno-preview * {
+ position: relative;
+ z-index: 99;
+ display: block;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   2. fold effect
+   ========================================================================== */
+
+.csstransforms3d {
+  .inferno-preview.fold,
+  .inferno-preview.fold .panel, 
+  .inferno-preview.fold .panel .overlay {
+    @include transition-duration(100ms);
+    @include transform(translateX(0) rotateY(0));
+    @include transition-timing-function(cubic-bezier(.42, 0, 1, 1));
+    @include transform-origin(left center);
+    // @include perspective(500px);
+    transition-property: transform, opacity, box-shadow;
     -webkit-transition-property: -webkit-transform, opacity, box-shadow;
     -khtml-transition-property: -khtml-transform, opacity, box-shadow;
     -moz-transition-property: -moz-transform, opacity, box-shadow;
     -ms-transition-property: -ms-transform, opacity, box-shadow;
     -o-transition-property: -o-transform, opacity, box-shadow;
-    transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    -webkit-transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    -khtml-transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    -moz-transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    -ms-transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    -o-transition-timing-function: cubic-bezier(.42, 0, 1, 1);
-    transform-origin: left center;
-    -o-transform-origin: left center;
-    -moz-transform-origin: left center;
-    -ms-transform-origin: left center;
-    -webkit-transform-origin: left center;
-}
+  }
 
-.csstransforms3d .inferno-preview.fold .overlay {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    opacity: 0;
-    background: linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
-    background: -khtml-linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
-    background: -webkit-linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
-}
+  .inferno-preview.fold {
+    .overlay {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      background: linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
+      background: -khtml-linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
+      background: -webkit-linear-gradient(left, transparent,rgba(0, 0, 0, 0.15));
+    }
 
-.csstransforms3d .inferno-preview.fold .panel1 .overlay {
-    left: auto;
-    right: 0;
-    width: 15%;
-}
+    &:hover {
+      .panel2 {
+        @include transform(rotateY(-70deg));
+      }
 
-.csstransforms3d .inferno-preview.fold:hover .panel .overlay {
-    opacity: 0.8;
-}
+      .panel3 {
+        @include transform(translateX(-132.3%) rotateY(70deg));
+      }
 
-.csstransforms3d .inferno-preview.fold:hover .panel {
-    transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-    -webkit-transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-    -khtml-transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-    -moz-transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-    -ms-transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-    -o-transition-timing-function: cubic-bezier(0, 0, .58, 1); 
-}
+      .overlay {
+        opacity: 0.8;
+      }
+    }
 
-.csstransforms3d .inferno-preview.fold:hover .panel2 {
-    transform: rotateY(-70deg);
-    -webkit-transform: rotateY(-70deg);
-    -khtml-transform: rotateY(-70deg);
-    -moz-transform: rotateY(-70deg);
-    -ms-transform: rotateY(-70deg);
-    -o-transform: rotateY(-70deg);
-}
+    .panel {
+      @include transition-timing-function(cubic-bezier(0, 0, .58, 1));
+      @include transform-style(preserve-3d);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 25%;
+      background-position: 0 50%;
+      overflow: hidden;
+      background-size: 400% 100%;
+    }
 
-.csstransforms3d .inferno-preview.fold .panel2 .overlay {
-    background: linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
-    background: -khtml-linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
-    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
-}
+    .panel1 .overlay {
+      left: auto;
+      right: 0;
+      width: 15%;
+    }
 
-.csstransforms3d .inferno-preview.fold .panel3 {
-    transform-origin: 100% 0;
-    -o-transform-origin: 100% 0;
-    -moz-transform-origin: 100% 0;
-    -ms-transform-origin: 100% 0;
-    -webkit-transform-origin: 100% 0;
-}
+    .panel2 {
+      left: 25%;
+      background-position: -100% 50%;
 
-.csstransforms3d .inferno-preview.fold .panel3 .overlay {
-    background: linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
-    background: -khtml-linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
-    background: -webkit-linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
-}
+      .overlay {
+        background: linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
+        background: -khtml-linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.4));
+      }
+    }
 
-.csstransforms3d .inferno-preview.fold:hover .panel3 {
-    -webkit-transform: translateX(-132.3%) rotateY(70deg);
-    -khtml-transform: translateX(-132.3%) rotateY(70deg);
-    -moz-transform: translateX(-132.3%) rotateY(70deg);
-    -ms-transform: translateX(-132.3%) rotateY(70deg);
-    -o-transform: translateX(-132.3%) rotateY(70deg);
-    transform: translateX(-132.3%) rotateY(70deg);
-}
+    .panel3 {
+      @include transform-origin(100% 0);
+      left: 50%;
+      background-position: -200% 50%;
 
-.csstransforms3d .inferno-preview.fold .panel4 {
-    transition-timing-function: cubic-bezier(.6, 0, 1, 1);
-    -webkit-transition-timing-function: cubic-bezier(.6, 0, 1, 1);
-    -khtml-transition-timing-function: cubic-bezier(.6, 0, 1, 1);
-    -moz-transition-timing-function: cubic-bezier(.6, 0, 1, 1);
-    -ms-transition-timing-function: cubic-bezier(.6, 0, 1, 1);
-    -o-transition-timing-function: cubic-bezier(.6, 0, 1, 1);
+      .overlay {
+        background: linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
+        background: -khtml-linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
+        background: -webkit-linear-gradient(left, transparent,rgba(0, 0, 0, 0.2) 10%,rgba(0, 0, 0, 0.6));
+      }
+    }
+
+    .panel4 {
+      @include transition-timing-function(cubic-bezier(.6, 0, 1, 1));
+      left: 75%;
+      background-position: -300% 50%;
+    }
+  }
 }
 
 .csstransforms3d .inferno-preview.fold:hover .panel4 {
-    -webkit-transform: translateX(-132.3%) rotateY(-70deg);
-    -khtml-transform: translateX(-132.3%) rotateY(-70deg);
-    -moz-transform: translateX(-132.3%) rotateY(-70deg);
-    -ms-transform: translateX(-132.3%) rotateY(-70deg);
-    -o-transform: translateX(-132.3%) rotateY(-70deg);
-    transform: translateX(-132.3%) rotateY(-70deg);
-    transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
-    -webkit-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
-    -khtml-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
-    -moz-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
-    -ms-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
-    -o-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  @include transform(translateX(-132.3%) rotateY(-70deg));
+  transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  -webkit-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  -khtml-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  -moz-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  -ms-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
+  -o-transition-timing-function: cubic-bezier(0, 0.2, .58, 1); 
 }
 
 .csstransforms3d .inferno-preview.fold .panel3 .overlay {
-    background: linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
-    background: -khtml-linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
-    background: -webkit-linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
+  background: linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
+  background: -khtml-linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
+  background: -webkit-linear-gradient(right, transparent,rgba(0, 0, 0, 0.6));
 }
 
 .csstransforms3d .inferno-preview.fold .panel4shadow {
-    left: 75%;
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.3);
+  left: 75%;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .csstransforms3d .inferno-preview.fold:hover .panel4shadow {
-    opacity: 1;
-    -webkit-transform: translateX(-123%) rotateY(-70deg);
-    -khtml-transform: translateX(-123%) rotateY(-70deg);
-    -moz-transform:translateX(-123%) rotateY(-70deg);
-    -ms-transform:translateX(-123%) rotateY(-70deg);
-    -o-transform:translateX(-123%) rotateY(-70deg);
-    transform:translateX(-123%) rotateY(-70deg);
+  opacity: 1;
+  -webkit-transform: translateX(-123%) rotateY(-70deg);
+  -khtml-transform: translateX(-123%) rotateY(-70deg);
+  -moz-transform:translateX(-123%) rotateY(-70deg);
+  -ms-transform:translateX(-123%) rotateY(-70deg);
+  -o-transform:translateX(-123%) rotateY(-70deg);
+  transform:translateX(-123%) rotateY(-70deg);
+}
+
+.csstransforms3d .inferno-preview.fold .fallback {
+  z-index: -1;
+  visibility: hidden;
 }
 
 
-
 /* ==========================================================================
-   2. flip effect
+   3. flip effect
    ========================================================================== */
 
 /* -- make sure to declare a default for every property that you want animated -- */
 /* -- general styles, including Y axis rotation -- */
 
 .csstransforms3d .inferno-preview.flip {
-    -webkit-perspective: 600px;
-    -moz-perspective: 600px;
-    -ms-perspective: 600px;
-    -o-perspective: 600px;
-    perspective: 600px;
+  // @include perspective(600px);
 
-    .front, .back {
-        position: relative;
-        z-index: 900;
+  .front, .back {
+    position: relative;
+    z-index: 900;
 
-        -webkit-transform: rotateX(0deg) rotateY(0deg);
-        -webkit-transform-style: preserve-3d;
-        -webkit-backface-visibility: hidden;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
 
-        -moz-transform: rotateX(0deg) rotateY(0deg);
-        -moz-transform-style: preserve-3d;
-        -moz-backface-visibility: hidden;
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
 
-        -ms-transform: rotateX(0deg) rotateY(0deg);
-        -ms-transform-style: preserve-3d;
-        -ms-backface-visibility: hidden;
+    -ms-transform: rotateX(0deg) rotateY(0deg);
+    -ms-transform-style: preserve-3d;
+    -ms-backface-visibility: hidden;
 
-        -o-transform: rotateX(0deg) rotateY(0deg);
-        -o-transform-style: preserve-3d;
-        -o-backface-visibility: hidden;
+    -o-transform: rotateX(0deg) rotateY(0deg);
+    -o-transform-style: preserve-3d;
+    -o-backface-visibility: hidden;
 
-        transform: rotateX(0deg) rotateY(0deg);
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
+    transform: rotateX(0deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 
-        /* -- transition is the magic sauce for animation -- */
-        -o-transition: all 0.4s ease-in-out;
-        -ms-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -webkit-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-    }
+    /* -- transition is the magic sauce for animation -- */
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
 
-    .back {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 800;
-        width: 100%;
-        height: 100%;
-        
-        -webkit-transform: rotateY(-180deg);
-        -moz-transform: rotateY(-179.9999deg); /* todo: fix this */
-        -ms-transform: rotateY(-180deg);
-        -o-transform: rotateY(-180deg);
-        transform: rotateY(-179.9999deg);
-    }
+  .back {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    width: 100%;
+    height: 100%;
+    
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-179.9999deg); /* todo: fix this */
+    -ms-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-179.9999deg);
+  }
 
-    &:hover .front {
-        z-index: 900;
+  &:hover .front {
+    z-index: 900;
 
-        -webkit-transform: rotateY(180deg);
-        -moz-transform: rotateY(180deg);
-        -ms-transform: rotateY(180deg);
-        -o-transform: rotateY(180deg);
-        transform: rotateY(180deg);
-    }
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
 
-    &:hover .back {
-        z-index: 1000;
+  &:hover .back {
+    z-index: 1000;
 
-        -webkit-transform: rotateX(0deg) rotateY(0deg);
-        -moz-transform: rotateX(0deg) rotateY(0deg);    
-        -ms-transform: rotateX(0deg) rotateY(0deg);  
-        -o-transform: rotateX(0deg) rotateY(0deg);  
-        transform: rotateX(0deg) rotateY(0deg);  
-    }
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);    
+    -ms-transform: rotateX(0deg) rotateY(0deg);  
+    -o-transform: rotateX(0deg) rotateY(0deg);  
+    transform: rotateX(0deg) rotateY(0deg);  
+  }
 }

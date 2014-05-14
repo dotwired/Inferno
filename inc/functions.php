@@ -19,25 +19,24 @@ function inferno_is_login_page() {
 
 
 /*
-function i_go() {}
-function i_uo() {}
 function inferno_update_option() {}
 */
 
 function inferno_preview($args = array()) {
-  // TODO:
-  // $args += array(
-  //   'src'    => false, 
-  //   'width'  => false, 
-  //   'height' => false, 
-  //   'link'   => false, 
-  //   'crop'   => true, 
-  //   'effect' => 'default', 
-  //   'module' => null
-  // );
+  $defaults = array(
+    'src'       => false, 
+    'width'     => false, 
+    'height'    => false, 
+    'permalink' => false, 
+    'crop'      => true, 
+    'effect'    => 'default', 
+    'module'    => null
+  );
+  $args = wp_parse_args($args, $defaults);
+
   if(!class_exists('Inferno_Preview')) return;
 
-  $preview = new Inferno_Preview($args['src'], $args['width'], $args['height'], $args['link'], $args['crop'], $args['effect'], $args['module']);
+  $preview = new Inferno_Preview($args['src'], $args['width'], $args['height'], $args['permalink'], $args['crop'], $args['effect'], $args['module']);
   return $preview->get_output();
 }
 

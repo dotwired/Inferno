@@ -72,6 +72,7 @@ if(!class_exists('Inferno')) {
       array('eventemitter', 'assets/js/event-emitter.js', false, '4.2.5', true),
       array('eventie', 'assets/js/eventie.js', false, '1.0.4', true),
       array('inferno-admin', 'assets/js/admin.js', array('jquery'), INFERNO_VERSION, true),
+      array('inferno-preview', 'assets/js/inferno-preview.js', array('jquery'), INFERNO_VERSION, true),
       array('iscroll', 'assets/js/iscroll.js', false, '4.2.5', true),
       array('jquery-animate-scale', 'assets/js/jquery.animate.scale.js', false, null, true),
       array('jquery-blur', 'assets/js/jquery/jquery.blur.js', array('jquery'), '1', true),

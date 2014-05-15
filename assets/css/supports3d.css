@@ -4,7 +4,7 @@
 .inferno-preview,
 .inferno-preview * {
   position: relative;
-  z-index: 99;
+  z-index: 0;
   display: block; }
   .inferno-preview img,
   .inferno-preview * img {
@@ -171,7 +171,7 @@
 /* -- general styles, including Y axis rotation -- */
 .csstransforms3d .inferno-preview.flip .front, .csstransforms3d .inferno-preview.flip .back {
   position: relative;
-  z-index: 900;
+  z-index: 2;
   -webkit-transform: rotateX(0deg) rotateY(0deg);
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
@@ -198,7 +198,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 800;
+  z-index: 1;
   width: 100%;
   height: 100%;
   -webkit-transform: rotateY(-180deg);
@@ -208,14 +208,14 @@
   -o-transform: rotateY(-180deg);
   transform: rotateY(-179.9999deg); }
 .csstransforms3d .inferno-preview.flip:hover .front {
-  z-index: 900;
+  z-index: 2;
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   transform: rotateY(180deg); }
 .csstransforms3d .inferno-preview.flip:hover .back {
-  z-index: 1000;
+  z-index: 3;
   -webkit-transform: rotateX(0deg) rotateY(0deg);
   -moz-transform: rotateX(0deg) rotateY(0deg);
   -ms-transform: rotateX(0deg) rotateY(0deg);

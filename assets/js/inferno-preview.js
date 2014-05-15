@@ -1,4 +1,6 @@
 jQuery(document).ready(function($) {
+    function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,100)};return c};
+
     function set_preview_perspecive() {
         $('.inferno-preview.fold, .inferno-preview.flip').each(function(){
             $element = $(this);
@@ -24,5 +26,8 @@ jQuery(document).ready(function($) {
     set_preview_perspecive();
     $(document).ajaxComplete(function() {
         set_preview_perspecive()
+    });
+    on_resize(function(){
+        set_preview_perspecive();
     });
 });

@@ -24,7 +24,7 @@ if(!class_exists('Inferno_Portfolio')) {
 
         public function __construct( $atts = array() )
         {
-            $atts = shortcode_atts(array(
+            $this->settings = wp_parse_args($atts, array(
                 'categories' => null,
                 'filter'     => true,
                 'img_width'  => 300,
@@ -35,8 +35,6 @@ if(!class_exists('Inferno_Portfolio')) {
                 'lightbox'   => true,
                 'paginate'   => false
             ), $atts );
-
-            $this->settings = $atts;
 
             add_action('init', array(&$this, 'init'), 1);
             add_action('wp_enqueue_scripts', array(&$this, 'enqueue'));
@@ -175,16 +173,15 @@ if(!class_exists('Inferno_Portfolio')) {
                         $link = null;
                     }
 
-                    echo '<div data-id="' . $i . '" class="preview-box ' . $data_class . '">';
-
+                    echo '<div data-id="' . $i . '" class="item preview-box ' . $data_class . '">';
                     $preview_args = array(
-                        false,
-                        $this->settings['img_width'],
-                        $this->settings['img_height'],
-                        $link,
-                        true,
-                        $this->settings['effect'],
-                        'portfolio'
+                        'src'       => false,
+                        'width'     => $this->settings['img_width'],
+                        'height'    => $this->settings['img_height'],
+                        'permalink' => $link,
+                        'crop'      => true,
+                        'effect'    => $this->settings['effect'],
+                        'module'    => 'portfolio'
                     );
 
                     echo inferno_preview($preview_args);
@@ -240,8 +237,8 @@ if(!class_exists('Inferno_Portfolio')) {
         }
 
 
-        public function javascript() {
-            require_once('embedded-js.php');
-        }
+        // public function javascript() {
+        //     require_once('embedded-js.php');
+        // }
     }
 }

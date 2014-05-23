@@ -2,58 +2,6 @@
     mixins
 ======================================================================== */
 /* ========================================================================
-    previews
-======================================================================== */
-.preview-box,
-.preview-box * {
-  position: relative;
-  z-index: 99;
-  display: block; }
-  .preview-box img,
-  .preview-box * img {
-    width: 100%;
-    height: auto; }
-  .preview-box.fold .panel,
-  .preview-box *.fold .panel {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 25%;
-    background-position: 0 50%;
-    overflow: hidden;
-    background-size: 400% 100%; }
-  .preview-box.fold .panel2,
-  .preview-box *.fold .panel2 {
-    left: 25%;
-    background-position: -100% 50%; }
-  .preview-box.fold .panel3,
-  .preview-box *.fold .panel3 {
-    left: 50%;
-    background-position: -200% 50%; }
-  .preview-box.fold .panel4,
-  .preview-box *.fold .panel4 {
-    left: 75%;
-    background-position: -300% 50%; }
-  .preview-box.fold .fallback,
-  .preview-box *.fold .fallback {
-    z-index: -1;
-    visibility: hidden; }
-
-.inferno-lightbox {
-  -webkit-transition: -webkit-filter 2s;
-  -moz-transition: -moz-filter 2s;
-  -o-transition: -o-filter 2s;
-  -ms-transition: -ms-filter 2s;
-  transition: filter 2s; }
-  .inferno-lightbox.blur {
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px); }
-
-/* ========================================================================
     stacked
 ======================================================================== */
 .stacked {

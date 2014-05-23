@@ -61,7 +61,9 @@ if(!class_exists('Inferno_Preview')) {
         $src = $thumb[0];
       }
 
-      $thumb_arr = aq_resize($src, $width, $height, true, false, true);
+
+
+      $thumb_arr = aq_resize($src, $width, $height, $crop, false, true);
       $thumb_url = $thumb_arr[0];
       $this->img_width = $thumb_arr[1];
       $this->img_height = $thumb_arr[2];
@@ -116,6 +118,7 @@ if(!class_exists('Inferno_Preview')) {
           $this->preview_templates['preview_' . $effect . '_' . $module] = 'preview-' . $effect . '-' . $module . '.php';
         }
       }
+      
 
       $theme_templates = (array) get_theme_support( 'inferno-templates' );
       $theme_templates = $theme_templates[0];

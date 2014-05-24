@@ -78,6 +78,15 @@ if(!class_exists('Inferno_Canvas')) {
 
     }
 
+    function stripslashes_gpc(&$value)
+    {
+        $value = stripslashes($value);
+    }
+
+
+    
+
+
     /**
      * Perform the saving from the received panel data.
      * @version 1.0
@@ -97,7 +106,7 @@ if(!class_exists('Inferno_Canvas')) {
           foreach($this->theme_settings as $topic ) {
             foreach($topic['fields'] as $field) {
               if(isset($_POST[$field['id']]) && $field['type'] != 'transfer') {
-                $inferno_option[$field['id']] = $_POST[$field['id']];
+                $inferno_option[$field['id']] = trim(stripslashes($_POST[$field['id']]));
 
                 // if this is google font
                 if(isset($_POST[$field['id'] . '_googlefont']) && !empty($_POST[$field['id'].'_googlefont'])) {
@@ -109,6 +118,7 @@ if(!class_exists('Inferno_Canvas')) {
               }
             }
           }
+
           update_option($this->option_name, $inferno_option);
 
         } elseif($_POST['inferno_action'] == 'reset' && get_option($this->option_name)) {

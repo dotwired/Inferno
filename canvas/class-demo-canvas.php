@@ -98,7 +98,7 @@ if(!class_exists('Inferno_Demo_Canvas')) {
                     foreach($this->theme_settings as $topic ) {
                         foreach($topic['fields'] as $field) {
                             if(isset($_POST[$field['id']]) && $field['type'] != 'transfer') {
-                                $inferno_option[$field['id']] = $_POST[$field['id']];
+                                $inferno_option[$field['id']] = trim(stripslashes($_POST[$field['id']]));
 
                                 // if this is google font
                                 if(isset($_POST[$field['id'] . '_googlefont']) && !empty($_POST[$field['id'].'_googlefont'])) {

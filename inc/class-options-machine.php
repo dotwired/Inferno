@@ -209,8 +209,9 @@ if(!class_exists('Inferno_Options_Machine')) {
 
     function text()
     {
+      // TODO: sanitize_text_field() vs esc_textarea() vs esc_attr()
       ?>
-      <input type="text" <?php $this->name_tag(); ?> value="<?php echo $this->setting_value; ?>" class="inferno-setting" <?php $this->id_tag("inferno-concrete-setting-"); ?> />
+      <input type="text" <?php $this->name_tag(); ?> value="<?php echo esc_attr( $this->setting_value ); ?>" class="inferno-setting" <?php $this->id_tag("inferno-concrete-setting-"); ?> />
       <?php 
       if($this->setting['type'] == 'range') {
         $this->range();

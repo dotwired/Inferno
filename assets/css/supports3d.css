@@ -64,12 +64,12 @@
   -ms-transform: rotateY(-70deg);
   -o-transform: rotateY(-70deg); }
 .csstransforms3d .inferno-preview.fold:hover .panel3 {
-  transform: translateX(-132.3%) rotateY(70deg);
-  -webkit-transform: translateX(-132.3%) rotateY(70deg);
-  -khtml-transform: translateX(-132.3%) rotateY(70deg);
-  -moz-transform: translateX(-132.3%) rotateY(70deg);
-  -ms-transform: translateX(-132.3%) rotateY(70deg);
-  -o-transform: translateX(-132.3%) rotateY(70deg); }
+  transform: translateX(-131%) rotateY(70deg);
+  -webkit-transform: translateX(-131%) rotateY(70deg);
+  -khtml-transform: translateX(-131%) rotateY(70deg);
+  -moz-transform: translateX(-131%) rotateY(70deg);
+  -ms-transform: translateX(-131%) rotateY(70deg);
+  -o-transform: translateX(-131%) rotateY(70deg); }
 .csstransforms3d .inferno-preview.fold:hover .overlay {
   opacity: 0.8; }
 .csstransforms3d .inferno-preview.fold .panel {

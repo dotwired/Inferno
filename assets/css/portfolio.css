@@ -3,7 +3,7 @@ ul.portfolio-filter {
   padding: 0;
   list-style-type: none; }
   ul.portfolio-filter li {
-    float: left; }
+    display: inline-block; }
     ul.portfolio-filter li a {
       display: block;
       padding: 5px 10px; }

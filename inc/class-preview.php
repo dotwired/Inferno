@@ -27,13 +27,15 @@ if(!class_exists('Inferno_Preview')) {
       'preview_fold' => 'preview-fold'
     );
 
+    private $img_url = null;
+
     private $img_width = 0;
 
     private $img_height = 0;
 
     public function __construct($src = false, $width = false, $height = false, $permalink = false, $crop = true, $effect = 'default', $module = null)
     {
-      if(!method_exists($this, 'preview_' . $effect)) {
+      if(!array_key_exists('preview' . ($effect == 'default' ? '' : '_' . $effect), $this->preview_templates)) {
         return;
       }
 
@@ -65,6 +67,7 @@ if(!class_exists('Inferno_Preview')) {
 
       $thumb_arr = aq_resize($src, $width, $height, $crop, false, true);
       $thumb_url = $thumb_arr[0];
+      $this->img_url = $thumb_url;
       $this->img_width = $thumb_arr[1];
       $this->img_height = $thumb_arr[2];
 
@@ -78,22 +81,7 @@ if(!class_exists('Inferno_Preview')) {
         echo '<div class="inferno-preview ' . $effect . '">';
       }
 
-      switch($effect) {
-        case 'fold':
-          $this->get_inferno_template($effect, $module);
-          $this->preview_fold($thumb_url);
-          break;
-        case 'flip':
-          $this->preview_flip($thumb_url);
-          echo '<div class="back">';
-          $this->get_inferno_template($effect, $module);
-          echo '</div>';
-          break;
-        default:
-          $this->get_inferno_template($effect, $module);
-          $this->preview_default($thumb_url);
-          break;
-      }
+      $this->get_inferno_template($effect, $module);
 
       if($permalink === true || is_string($permalink)) {
         echo '</a>';
@@ -157,46 +145,17 @@ if(!class_exists('Inferno_Preview')) {
       }
     }
 
+    /**
+     * Only a convenient helper method.
+     * @return String Image url
+     */
+    public function image() {
+      return $this->img_url;
+    }
+
     public function get_output()
     {
       return $this->output;
-    }
-
-
-    private function preview_fold($img_url)
-    {
-      ?>
-      <div class="panel panel1" style="background-image: url(<?php echo $img_url; ?>);">
-        <div class="overlay"></div>
-      </div>
-      <div class="panel panel2" style="background-image: url(<?php echo $img_url; ?>);">
-        <div class="overlay"></div>
-      </div>
-      <div class="panel panel3" style="background-image: url(<?php echo $img_url; ?>);">
-        <div class="overlay"></div>
-      </div>
-      <div class="panel panel4shadow"></div>
-      <div class="panel panel4" style="background-image: url(<?php echo $img_url; ?>);">
-        <div class="overlay"></div>
-      </div>
-      <img src="<?php echo $img_url ?>" alt="" class="fallback" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
-      <?php
-    }
-
-    private function preview_flip($img_url)
-    {
-      ?>
-      <div class="front">
-        <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
-      </div>
-      <?php
-    }
-
-    private function preview_default($img_url)
-    {
-      ?>
-      <img src="<?php echo $img_url ?>" alt="<?php the_title(); ?>" width="<?php echo $this->img_width; ?>" height="<?php echo $this->img_height; ?>" />
-      <?php
     }
   }
 }

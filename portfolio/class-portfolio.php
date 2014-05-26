@@ -135,7 +135,7 @@ if(!class_exists('Inferno_Portfolio')) {
                 echo '<li><a href="#" data-filter=".' . $term->slug . '">' . $term->name . '</a></li>';
             }
             echo '</ul>';
-            echo '<div class="clear"></div>';
+            echo '<div class="clear clearfix"></div>';
         }
 
         /**
@@ -189,6 +189,9 @@ if(!class_exists('Inferno_Portfolio')) {
                     $i++;
                 }
 
+                echo '<div class="clear clearfix"></div>';
+                echo '</div>';
+
                 if($this->settings['paginate'] == true) {
                     echo '<div class="pagination">';
                     echo '<div class="next">';
@@ -198,8 +201,6 @@ if(!class_exists('Inferno_Portfolio')) {
                     echo '</div>';
                     echo '</div>';
                 }
-
-                echo '</div>';
             }
 
             wp_reset_postdata();

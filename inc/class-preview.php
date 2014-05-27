@@ -63,8 +63,6 @@ if(!class_exists('Inferno_Preview')) {
         $src = $thumb[0];
       }
 
-
-
       $thumb_arr = aq_resize($src, $width, $height, $crop, false, true);
       $thumb_url = $thumb_arr[0];
       $this->img_url = $thumb_url;
@@ -72,23 +70,7 @@ if(!class_exists('Inferno_Preview')) {
       $this->img_height = $thumb_arr[2];
 
       ob_start();
-
-      if($permalink === true) {
-        echo '<a href="' . get_the_permalink() . '" class="inferno-preview ' . $effect . '">';
-      } else if(is_string($permalink)) {
-        echo '<a href="' . $permalink . '" class="inferno-preview ' . $effect . '">';
-      } else {
-        echo '<div class="inferno-preview ' . $effect . '">';
-      }
-
       $this->get_inferno_template($effect, $module);
-
-      if($permalink === true || is_string($permalink)) {
-        echo '</a>';
-      } else {
-        echo '</div>';
-      }
-
       $output = ob_get_contents();
       $this->output = $output;
       ob_end_clean();

@@ -15,8 +15,6 @@ if(!class_exists('Inferno_Portfolio')) {
             'img_height' => 150,
             'limit'      => false,
             'effect'     => 'default',
-            'link'       => 'post',
-            'lightbox'   => true,
             'paginate'   => false
         );
 
@@ -31,8 +29,6 @@ if(!class_exists('Inferno_Portfolio')) {
                 'img_height' => 150,
                 'limit'      => false,
                 'effect'     => 'default',
-                'link'       => 'post',
-                'lightbox'   => true,
                 'paginate'   => false
             ), $atts );
 
@@ -166,19 +162,11 @@ if(!class_exists('Inferno_Portfolio')) {
                     $terms = wp_get_post_terms(get_the_ID(), 'portfolio_category', array('fields' => 'all'));
                     foreach($terms as $term) $data_class .= $term->slug . ' ';
 
-                    $link = false;
-                    if($this->settings['link'] == 'post') {
-                        $link = get_permalink();
-                    } elseif($this->settings['link'] == 'media') {
-                        $link = null;
-                    }
-
                     echo '<div data-id="' . $i . '" class="item preview-box ' . $data_class . '">';
                     $preview_args = array(
                         'src'       => false,
                         'width'     => $this->settings['img_width'],
                         'height'    => $this->settings['img_height'],
-                        'permalink' => $link,
                         'crop'      => true,
                         'effect'    => $this->settings['effect'],
                         'module'    => 'portfolio'

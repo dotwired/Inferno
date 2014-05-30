@@ -39,7 +39,6 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       'launch',
       'skillbar',
       'staff_member',
-      'pricing_table',
       'pricing_box',
       'pricing_row',
       'pricing_price',
@@ -432,25 +431,30 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       return $output;
     }
 
-    public function pricing_table() {} // TODO
-
     public function pricing_box( $atts, $content = null ) 
     {
       $atts = shortcode_atts( array(
         'featured'       => null,
         'featured_label' => null,
         'title'          => null,
+        'border'         => false,
         'color'          => null // TODO
       ), $atts, 'pricing_box' );
 
       $atts['featured'] = filter_var( $atts['featured'], FILTER_VALIDATE_BOOLEAN );
+      $atts['border'] = filter_var( $atts['border'], FILTER_VALIDATE_BOOLEAN );
+
+      $featured_class = $color_class = $border_class = null;
       if($atts['featured']) $featured_class = ' featured';
       if($atts['color']) $color_class = ' ' . $atts['color'];
+      if($atts['border']) $border_class = ' bordered';
 
-      $output = '<div class="pricing-box' . $featured_class . $color_class .'">';
+      $output = '<div class="pricing-box' . $featured_class . $color_class . $border_class . '">';
       if($atts['featured_label']) $output .= '<div class="feature"><span>' . $atts['featured_label'] . '</span></div>';
       if($atts['title']) $output .= '<div class="title">' . $atts['title'] . '</div>';
-      $output .= do_shortcode( $content ) . '<div class="clear"></div></div>';
+
+      add_shortcode( 'row', array( $this, 'pricing_row' ) ); // switch shortcode handlers
+      $output .= do_shortcode( $content ) . '</div>';
 
       return $output;
     }
@@ -479,7 +483,23 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
 
     public function pricing_row( $atts, $content = null ) 
     {
-      return '<div class="row">' . $content . '</div>';
+      add_shortcode( 'cell', array( $this, 'pricing_cell' ) ); // switch shortcode handlers
+      return '<div class="row">' . do_shortcode( $content ) . '</div>';
+    }
+
+    public function pricing_cell( $atts, $content = null ) 
+    {
+      $atts = shortcode_atts( array(
+        'heading'  => false,
+        'scheme'   => null
+      ), $atts, 'cell' );
+
+      $atts['heading'] = filter_var( $atts['heading'], FILTER_VALIDATE_BOOLEAN );
+
+      $scheme_class = $heading_class = null;
+      if($atts['scheme']) $scheme_class = ' ' . $atts['scheme'];
+      if($atts['heading']) $heading_class = ' heading';
+      return '<div class="cell ' . $scheme_class . $heading_class . '">' . do_shortcode( $content ) . '</div>';
     }
 
 

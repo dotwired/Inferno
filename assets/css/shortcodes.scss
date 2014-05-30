@@ -1,658 +1,638 @@
+@import 'config';
+@import 'mixins';
+
 /* ========================================================================
-    mixins
+  mixins
 ======================================================================== */
 
-@mixin border-radius($radius) {
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
-    -o-border-radius: $radius;
-    border-radius: $radius;
-}
-
-@mixin gradient($color-top, $color-bottom) {
-    background: $color-top;
-    background: -moz-linear-gradient(top, $color-top 0%, $color-bottom 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color-top), color-stop(100%,$color-bottom));
-    background: -webkit-linear-gradient(top, $color-top 0%,$color-bottom 100%);
-    background: -o-linear-gradient(top, $color-top 0%,$color-bottom 100%);
-    background: -ms-linear-gradient(top, $color-top 0%,$color-bottom 100%);
-    background: linear-gradient(to bottom, $color-top 0%,$color-bottom 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-top', endColorstr='$color-bottom',GradientType=0 );
-}
-
 @mixin gradient-orange {
-    @include gradient(#f05b23, #d86d02);
+  @include gradient(#f05b23, #d86d02);
 }
 
 @mixin gradient-orange-hover {
-    background: #D86D02;
+  background: #D86D02;
 }
 
 @mixin gradient-orange-active {
-    @include gradient(#d86d02, #f05b23);
+  @include gradient(#d86d02, #f05b23);
 }
 
 @mixin gradient-purple {
-    @include gradient(#7a2c7a, #351330);
+  @include gradient(#7a2c7a, #351330);
 }
 
 @mixin gradient-purple-hover {
-    background: #351330;
+  background: #351330;
 }
 
 @mixin gradient-purple-active {
-    @include gradient(#351330, #7a2c7a);
+  @include gradient(#351330, #7a2c7a);
 }
 
 @mixin gradient-yellow {
-    @include gradient(#fccb50, #f3b71b);
+  @include gradient(#fccb50, #f3b71b);
 }
 
 @mixin gradient-yellow-hover {
-    background: #f3b71b;
+  background: #f3b71b;
 }
 
 @mixin gradient-yellow-active {
-    @include gradient(#f3b71b, #eaae15);
+  @include gradient(#f3b71b, #eaae15);
 }
-
-@mixin transition($params) {
-    -webkit-transition: $params;
-    -khtml-transition: $params;
-    -moz-transition: $params;
-    -ms-transition: $params;
-    -o-transition: $params;
-    transition: $params;
-}
-
-@mixin box-shadow($params) {
-    -webkit-box-shadow: $params;
-    -khtml-box-shadow: $params;
-    -moz-box-shadow: $params;
-    -ms-box-shadow: $params;
-    -o-box-shadow: $params;
-    box-shadow: $params;
-}
-
-@mixin transform($params) {
-    -webkit-transform: $params;
-    -khtml-transform: $params;
-    -moz-transform: $params;
-    -ms-transform: $params;
-    -o-transform: $params;
-    transform: $params;
-}
-
-@mixin transition-delay($params) {
-    -webkit-transition-delay: $params;
-    -khtml-transition-delay: $params;
-    -ms-transition-delay: $params;
-    -moz-transition-delay: $params;
-    -o-transition-delay: $params;
-    transition-delay: $params;
-}
-
 
 
 /* ========================================================================
-    stacked
+  stacked
 ======================================================================== */
 
 .stacked {
-    padding: 30px 0;
-    border-bottom: 1px #EDEDED solid;
+  padding: 30px 0;
+  border-bottom: 1px #EDEDED solid;
 
-    &.noborder {
-        border: none !important;
-    }
+  &.noborder {
+    border: none !important;
+  }
 }
 
 
 
 /* ========================================================================
-    divider
+  divider
 ======================================================================== */
 
 .divider {
-    width: 100%;
-    margin: 15px 0 30px;
-    border-bottom: 1px #eee solid;
+  width: 100%;
+  margin: 15px 0 30px;
+  border-bottom: 1px $grey solid;
 }
 
 
 /* ========================================================================
-    circle
+  circle
 ======================================================================== */
 
 .inferno-circle {
-    display: block;
-    position: relative;
+  display: block;
+  position: relative;
 
-    .dummy {
-        padding-top: 100%;
+  .dummy {
+    padding-top: 100%;
+  }
+
+  .radius {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .element {
+    @include border-radius(100%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    > img {
+      @include border-radius(100%);
     }
 
-    .radius {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+    * {
+      max-height: 100%;
+      max-width: 100%;
     }
 
-    .element {
-        @include border-radius(100%);
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-
-        > img {
-            @include border-radius(100%);
-        }
-
-        * {
-            max-height: 100%;
-            max-width: 100%;
-        }
-
-        .inferno-icon {
-            height: 100%;
-        }
+    .inferno-icon {
+      height: 100%;
     }
+  }
 }
 
 
 /* ========================================================================
-    icons (powered by font awesome)
+  icons (powered by font awesome)
 ======================================================================== */
 
 .inferno-icon {
-    @include transition((color 0.3s, background 0.3s));
-    text-align: center;
-    font-size: 2em;
-    color: #000;
-    background: #eee;
+  @include transition((color 0.3s, background 0.3s));
+  text-align: center;
+  font-size: 2em;
+  color: #000;
+  background: $grey;
 }
 
 
 /* ========================================================================
-    buttons
+  buttons
 ======================================================================== */
 
 .inferno-button {
-    @include border-radius(3px);
-    position: relative;
-    display: inline-block;
-    padding: 4px 15px;
-    border: none;
+  @include border-radius(3px);
+  position: relative;
+  display: inline-block;
+  padding: 4px 15px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &.purple {
+    @include gradient-purple;
+    color: #fff;
 
     &:hover {
-        cursor: pointer;
-        text-decoration: none;
+      @include gradient-purple-hover;
+      @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
     }
 
-    &.purple {
-        @include gradient-purple;
-        color: #fff;
+    &:active {
+      @include gradient-purple-active;
+      @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
+      color: $grey;
+    }
+  }
 
-        &:hover {
-            @include gradient-purple-hover;
-            @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
-        }
+  &.orange {
+    @include gradient-orange;
+    color: #fff;
 
-        &:active {
-            @include gradient-purple-active;
-            @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
-            color: #eee;
-        }
+    &:hover {
+      @include gradient-orange-hover;
+      @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
     }
 
-    &.orange {
-        @include gradient-orange;
-        color: #fff;
+    &:active {
+      @include gradient-orange-active;
+      @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
+      color: $grey;
+    }
+  }
 
-        &:hover {
-            @include gradient-orange-hover;
-            @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
-        }
+  &.yellow {
+    @include gradient-yellow;
+    color: #fff;
 
-        &:active {
-            @include gradient-orange-active;
-            @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
-            color: #eee;
-        }
+    &:hover {
+      @include gradient-yellow-hover;
+      @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
     }
 
-    &.yellow {
-        @include gradient-yellow;
-        color: #fff;
-
-        &:hover {
-            @include gradient-yellow-hover;
-            @include box-shadow(0 0 5px 0 rgba(0, 0, 0, 0.5));
-        }
-
-        &:active {
-            @include gradient-yellow-active;
-            @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
-            color: #eee;
-        }
+    &:active {
+      @include gradient-yellow-active;
+      @include box-shadow(inset 0 0 12px 0 rgba(0, 0, 0, 0.5));
+      color: $grey;
     }
+  }
 }
 
 
 /* ========================================================================
-    skillbar
+  skillbar
 ======================================================================== */
 
 .inferno-skillbar {
-    @include border-radius(3px);
-    position: relative;
-    width: 100%;
+  @include border-radius(3px);
+  position: relative;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  background: $grey;
+
+  .skill {
+    position: absolute;
     height: 35px;
-    line-height: 35px;
-    background: #eee;
+    font-weight: 600;
+    color: #fff;
 
-    .skill {
-        position: absolute;
-        height: 35px;
-        font-weight: 600;
-        color: #fff;
-
-        span {
-            @include border-radius(3px);
-            display: block;
-            height: 35px;
-            padding: 0 20px;
-            background: #666;
-        }
+    span {
+      @include border-radius(3px);
+      display: block;
+      height: 35px;
+      padding: 0 20px;
+      background: #666;
     }
+  }
 
-    .percent {
-        position: absolute;
-        right: 15px;
-        height: 35px;
-        font-size: 11px;
-        color: rgba(0, 0, 0, 0.5);
-    }
+  .percent {
+    position: absolute;
+    right: 15px;
+    height: 35px;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+  }
 
-    .bar {
-        @include border-radius(3px);
-        position: absolute;
-        height: 35px;
-        background: #777;
-    }
+  .bar {
+    @include border-radius(3px);
+    position: absolute;
+    height: 35px;
+    background: #777;
+  }
 }
 
 
 /* ========================================================================
-    staff
+  staff
 ======================================================================== */
 
 .inferno-staff-member {
-    background: #eee;
+  background: $grey;
 
-    &.circle {
-        padding: 25px 0 0;
-
-        .profile-img {
-            > a {
-                @include border-radius(100%);
-                @include transition-delay(0s);
-                left: 50%;
-                top: 50%;
-                width: 64px;
-                height: 64px;
-                line-height: 24px;
-                padding: 20px 0;
-                margin: -32px 0 0 -32px;
-                font-size: 24px;
-            }
-        }
-    }
+  &.circle {
+    padding: 25px 0 0;
 
     .profile-img {
-        position: relative;
-        overflow: hidden;
+      > a {
+        @include border-radius(100%);
+        @include transition-delay(0s);
+        left: 50%;
+        top: 50%;
+        width: 64px;
+        height: 64px;
+        line-height: 24px;
+        padding: 20px 0;
+        margin: -32px 0 0 -32px;
+        font-size: 24px;
+      }
+    }
+  }
 
-        img {
-            width: 100%;
-            display: block;
-        }
+  .profile-img {
+    position: relative;
+    overflow: hidden;
 
-        > a {
-            @include border-radius(3px);
-            @include transition((bottom 0.3s, left 0.3s, top 0.3s, opacity 0.3s));
-            position: absolute;
-            bottom: -36px;
-
-            background: #fefefe;
-            color: #333;
-            font-size: 16px;
-            line-height: 16px;
-            text-align: center;
-            width: 36px;
-            height: 36px;
-            margin-left: -18px;
-            padding: 10px;
-            opacity: 0;
-
-            &:hover {
-                text-decoration: none !important;
-            }
-
-            &.orange {
-                background: #f05b23;
-                color: #fff;
-            }
-        }
-
-        > a:nth-child(2) {
-            @include transition-delay(0.1s);
-        }
-
-        > a:nth-child(3) {
-            @include transition-delay(0.2s);
-        }
-
-        > a:nth-child(4) {
-            @include transition-delay(0.3s);
-        }
-
-        > a:nth-child(5) {
-            @include transition-delay(0.4s);
-        }
-
-        > a:nth-child(6) {
-            @include transition-delay(0.5s);
-        }
-
-        > a:nth-child(7) {
-            @include transition-delay(0.6s);
-        }
-
-
-        &.inferno-circle {
-            width: 90%;
-            margin-bottom: 25px;
-            overflow: visible;
-
-            .element {
-                border: 10px #fff solid;
-            }
-        }
+    img {
+      width: 100%;
+      display: block;
     }
 
-    .about {
-        overflow: hidden;
-        position: relative;
-        padding: 10px;
-        background: #333;
+    > a {
+      @include border-radius(3px);
+      @include transition((bottom 0.3s, left 0.3s, top 0.3s, opacity 0.3s));
+      position: absolute;
+      bottom: -36px;
+
+      background: #fefefe;
+      color: #333;
+      font-size: 16px;
+      line-height: 16px;
+      text-align: center;
+      width: 36px;
+      height: 36px;
+      margin-left: -18px;
+      padding: 10px;
+      opacity: 0;
+
+      &:hover {
+        text-decoration: none !important;
+      }
+
+      &.orange {
+        background: #f05b23;
         color: #fff;
-
-        .name {
-            font-size: 1.2em;
-            line-height: 1.2;
-            margin-bottom: 6px;
-        }
-
-        .position {
-            font-size: 1em;
-            color: #ccc;
-            font-style: italic;
-        }
-
-        .phone {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-
-            width: 30px;
-            background: #444;
-
-            .icon-phone {
-                @include transition(color 0.3s);
-                position: absolute;
-                top: 50%;
-                width: 100%;
-                height: 16px;
-                margin-top: -8px;
-                line-height: 16px;
-                background: #444;
-                text-align: center;
-            }
-
-            .edge {
-                @include transform(rotate(45deg));
-                width: 10px;
-                height: 10px;
-                position: absolute;
-                background: #444;
-                left: -4px;
-                top: 50%;
-                margin-top: -5px;
-            }
-
-            .number {
-                @include transition(right 0.5s);
-                position: absolute;
-                right: -200px;;
-                top: 50%;
-                height: 12px;
-                line-height: 12px;
-                margin-top: -56px;
-                padding: 50px 15px;
-                white-space: nowrap;
-                color: #ccc;
-                background: #444;
-                width: auto;
-
-                .transition {
-                    width: 15px;
-                    position: absolute;
-                    bottom: 0;
-                    top: 0;
-                    right: 100%;
-                    background: url(../img/flame/phone-transition.png) repeat-y;
-                }
-            }
-
-            &:hover {
-                .number {
-                    right: 100%;
-                }
-
-                .icon-phone.orange {
-                    color: #f05b23;
-                }
-            }
-        }
+      }
     }
 
-    &:hover {
-        .profile-img {
-            > a {
-                bottom: 5%;
-                opacity: 0.8;
-            }
-        }
+    > a:nth-child(2) {
+      @include transition-delay(0.1s);
     }
+
+    > a:nth-child(3) {
+      @include transition-delay(0.2s);
+    }
+
+    > a:nth-child(4) {
+      @include transition-delay(0.3s);
+    }
+
+    > a:nth-child(5) {
+      @include transition-delay(0.4s);
+    }
+
+    > a:nth-child(6) {
+      @include transition-delay(0.5s);
+    }
+
+    > a:nth-child(7) {
+      @include transition-delay(0.6s);
+    }
+
+
+    &.inferno-circle {
+      width: 90%;
+      margin-bottom: 25px;
+      overflow: visible;
+
+      .element {
+        border: 10px #fff solid;
+      }
+    }
+  }
+
+  .about {
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+
+    .name {
+      font-size: 1.2em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .position {
+      font-size: 1em;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .phone {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 30px;
+      background: #444;
+
+      .icon-phone {
+        @include transition(color 0.3s);
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 16px;
+        margin-top: -8px;
+        line-height: 16px;
+        background: #444;
+        text-align: center;
+      }
+
+      .edge {
+        @include transform(rotate(45deg));
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        background: #444;
+        left: -4px;
+        top: 50%;
+        margin-top: -5px;
+      }
+
+      .number {
+        @include transition(right 0.5s);
+        position: absolute;
+        right: -200px;;
+        top: 50%;
+        height: 12px;
+        line-height: 12px;
+        margin-top: -56px;
+        padding: 50px 15px;
+        white-space: nowrap;
+        color: #ccc;
+        background: #444;
+        width: auto;
+
+        .transition {
+          width: 15px;
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          right: 100%;
+          background: url(../img/flame/phone-transition.png) repeat-y;
+        }
+      }
+
+      &:hover {
+        .number {
+          right: 100%;
+        }
+
+        .icon-phone.orange {
+          color: #f05b23;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .profile-img {
+      > a {
+        bottom: 5%;
+        opacity: 0.8;
+      }
+    }
+  }
 }
 
 
 /* ========================================================================
-    pricing tables & boxes
+  pricing tables & boxes
 ======================================================================== */
 
 .pricing-box {
-    @include border-radius(5px);
-    @include box-shadow(0 2px 7px 0 rgba(0, 0, 0, 0.25));
-    position: relative;
+  @include border-radius(5px);
+  @include box-shadow(0 2px 7px 0 rgba(0, 0, 0, 0.25));
+  position: relative;
+  display: table;
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  
+  > br {
+    display: none;
+  }
+
+  &:hover {
+    @include box-shadow(inset 0 2px 7px 0 rgba(0, 0, 0, 0.25));
+  }
+
+  .feature {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    background: #fff;
-    text-align: center;
-    font-size: 13px;
-    margin-bottom: 15px;
-    overflow: hidden;
+    height: 20px;
 
-    &:hover {
-        @include box-shadow(inset 0 2px 7px 0 rgba(0, 0, 0, 0.25));
+    span {
+      position: relative;
+      top: -2px;
+      height: 20px;
+      line-height: 20px;
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0 20px;
+      background: #555;
+      color: #fff;
+      font-size: 10px;
+      text-transform: uppercase;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+    }
+  }
+
+  .price {
+    width: 100%;
+    background: #2F2F2F;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 180%;
+    color: #606060;
+    line-height: normal !important;
+
+    .currency, .decimal, .info {
+      display: inline-block;
+      white-space: 2px;
+      line-height: 180% !important;
+      vertical-align: top;
+      font-size: 60%;
     }
 
-    .feature {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 20px;
-
-        span {
-            position: relative;
-            top: -2px;
-            height: 20px;
-            line-height: 20px;
-            display: inline-block;
-            margin: 0 auto;
-            padding: 0 20px;
-            background: #555;
-            color: #fff;
-            font-size: 10px;
-            text-transform: uppercase;
-            border-bottom-left-radius: 7px;
-            border-bottom-right-radius: 7px;
-        }
+    .currency, .info {
+      color: #606060;
     }
 
-    .title {
+    .currency {
+      margin-right: 5px;
+      font-weight: 100;
+    }
+
+    .decimal {
+      margin-left: 3px;
+      font-weight: 100;
+      text-decoration: underline;
+    }
+
+    .info {
+      font-size: 50%;
+      line-height: 210% !important;
+      font-weight: 100;
+    }
+  }
+
+  .row {
+    display: table-row;
+    font-size: 110%;
+    line-height: 160%;
+    color: #555;
+
+    > br {
+      display: none;
+    }
+
+    .cell {
+      display: table-cell;
+      padding: 8px 0;
+      vertical-align: middle;
+
+      &.title, // deprecated
+      &.heading {
         padding: 25px 0;
         font-size: 180%;
         line-height: 150%;
         font-weight: 100;
-    }
+      }
 
-    .price {
-        width: 100%;
+      &.dark {
         background: #2F2F2F;
-        padding: 10px 0;
-        font-weight: 600;
-        font-size: 180%;
-        color: #606060;
-        line-height: normal !important;
-
-        .currency, .decimal, .info {
-            display: inline-block;
-            white-space: 2px;
-            line-height: 180% !important;
-            vertical-align: top;
-            font-size: 60%;
-        }
-
-        .currency, .info {
-            color: #606060;
-        }
-
-        .currency {
-            margin-right: 5px;
-            font-weight: 100;
-        }
-
-        .decimal {
-            margin-left: 3px;
-            font-weight: 100;
-            text-decoration: underline;
-        }
-
-        .info {
-            font-size: 50%;
-            line-height: 210% !important;
-            font-weight: 100;
-        }
+        color: #fff;
+      }
     }
 
-    .row {
-        padding: 8px 0;
-        font-size: 110%;
-        line-height: 160%;
-        color: #555;
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+  
+  &.bordered {
+    .cell {
+      border-right: 1px $grey solid;
+      border-bottom: 1px $grey solid;
+
+      &.dark {
+        border-right: 1px #000 solid;
+        border-bottom: 1px #000 solid;
+      }
+
+      &:last-of-type {
+        border-right: none;
+      }
     }
 
-    .bordered {
-        border-bottom: 1px #eee solid;
+    .row:last-of-type {
+      .cell {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  &.featured {
+    top: -12px;
+    border: 3px #555 solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
-        &.dark {
-            border-bottom: 1px #eee solid;
-        }
+    .feature {
+      top: -3px;
+    }
+  }
+
+  &.purple {
+    .feature span { background: #9b339b; }
+    .price { color: #9b339b; }
+    &.featured { border-color: #9b339b; }
+  }
+
+  &.yellow {
+    .feature span { background: #f3b71b; }
+    .price { color: #f3b71b; }
+    &.featured { border-color: #f3b71b; }
+  }
+
+  .one-half, 
+  .one-third, 
+  .two-thirds, 
+  .three-fourths, 
+  .one-fourth, 
+  .one-fifth, 
+  .two-fifths, 
+  .three-fifths, 
+  .four-fifths, 
+  .one-sixth, 
+  .five-sixths {
+    margin: 0 !important;
+
+    &.last {
+      border: 0;
     }
 
     .dark {
-        background: #2F2F2F;
-        color: #fff;
+      width: 100.1%;
+
+      &.last {
+        border-right: 0;
+      }
     }
+  }
 
-    &.featured {
-        top: -12px;
-        border: 3px #555 solid;
-        padding-top: 10px;
-        padding-bottom: 10px;
+  .one-half { width: 50%; }
+  .one-third { width: 33.33%; }
+  .two-thirds { width: 66.66%; }
+  .one-fourth { width: 25%; }
+  .three-fourths { width: 75%; }
+  .one-fifth { width: 20%; }
+  .two-fifths { width: 40%; }
+  .three-fifths { width: 60%; }
+  .four-fifths { width: 80%; }
+  .one-sixth { width: 16.66%; }
+  .five-sixths { width: 83.33%; }
 
-        .feature {
-            top: -3px;
-        }
-    }
-
-    &.purple {
-        .feature span { background: #9b339b; }
-        .price { color: #9b339b; }
-        &.featured { border-color: #9b339b; }
-    }
-
-    &.yellow {
-        .feature span { background: #f3b71b; }
-        .price { color: #f3b71b; }
-        &.featured { border-color: #f3b71b; }
-    }
-
-    .one-half, 
-    .one-third, 
-    .two-thirds, 
-    .three-fourths, 
-    .one-fourth, 
-    .one-fifth, 
-    .two-fifths, 
-    .three-fifths, 
-    .four-fifths, 
-    .one-sixth, 
-    .five-sixths {
-        border-right: 1px #eee solid;
-        margin: 0 !important;
-
-        &.last {
-            border: 0;
-        }
-
-        .dark {
-            width: 100.1%;
-            border-right: 1px #000 solid;
-
-            &.last {
-                border-right: 0;
-            }
-        }
-    }
-
-    .one-half { width: 50%; }
-    .one-third { width: 33.33%; }
-    .two-thirds { width: 66.66%; }
-    .one-fourth { width: 25%; }
-    .three-fourths { width: 75%; }
-    .one-fifth { width: 20%; }
-    .two-fifths { width: 40%; }
-    .three-fifths { width: 60%; }
-    .four-fifths { width: 80%; }
-    .one-sixth { width: 16.66%; }
-    .five-sixths { width: 83.33%; }
-
-    sup { vertical-align: super; font-size: 0.7em; line-height: 100%; }
+  sup { vertical-align: super; font-size: 0.7em; line-height: 100%; }
 }

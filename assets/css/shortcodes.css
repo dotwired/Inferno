@@ -436,7 +436,7 @@
 /* ========================================================================
   pricing tables & boxes
 ======================================================================== */
-.pricing-box {
+table.pricing-box {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -450,29 +450,28 @@
   -ms-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.25);
   -o-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.25);
   position: relative;
-  display: table;
   width: 100%;
   background: #fff;
   text-align: center;
   font-size: 13px;
   margin-bottom: 15px;
-  overflow: hidden; }
-  .pricing-box > br {
+  border-spacing: 0; }
+  table.pricing-box > br {
     display: none; }
-  .pricing-box:hover {
+  table.pricing-box:hover {
     box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     -webkit-box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     -khtml-box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     -moz-box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     -ms-box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25);
     -o-box-shadow: inset 0 2px 7px 0 rgba(0, 0, 0, 0.25); }
-  .pricing-box .feature {
+  table.pricing-box .feature {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 20px; }
-    .pricing-box .feature span {
+    table.pricing-box .feature span {
       position: relative;
       top: -2px;
       height: 20px;
@@ -486,154 +485,222 @@
       text-transform: uppercase;
       border-bottom-left-radius: 7px;
       border-bottom-right-radius: 7px; }
-  .pricing-box .price {
+  table.pricing-box .price {
     width: 100%;
     background: #2F2F2F;
     padding: 10px 0;
     font-weight: 600;
     font-size: 180%;
-    color: #606060;
+    color: #fff;
     line-height: normal !important; }
-    .pricing-box .price .currency, .pricing-box .price .decimal, .pricing-box .price .info {
+    table.pricing-box .price .currency, table.pricing-box .price .decimal, table.pricing-box .price .info {
       display: inline-block;
       white-space: 2px;
       line-height: 180% !important;
       vertical-align: top;
       font-size: 60%; }
-    .pricing-box .price .currency, .pricing-box .price .info {
+    table.pricing-box .price .currency, table.pricing-box .price .info {
       color: #606060; }
-    .pricing-box .price .currency {
+    table.pricing-box .price .currency {
       margin-right: 5px;
       font-weight: 100; }
-    .pricing-box .price .decimal {
+    table.pricing-box .price .decimal {
       margin-left: 3px;
       font-weight: 100;
       text-decoration: underline; }
-    .pricing-box .price .info {
+    table.pricing-box .price .info {
       font-size: 50%;
       line-height: 210% !important;
       font-weight: 100; }
-  .pricing-box .row {
-    display: table-row;
+  table.pricing-box tr {
     font-size: 110%;
     line-height: 160%;
     color: #555; }
-    .pricing-box .row > br {
+    table.pricing-box tr > br {
       display: none; }
-    .pricing-box .row .cell {
-      display: table-cell;
-      padding: 8px 0;
-      vertical-align: middle; }
-      .pricing-box .row .cell.title, .pricing-box .row .cell.heading {
-        padding: 25px 0;
-        font-size: 180%;
-        line-height: 150%;
-        font-weight: 100; }
-      .pricing-box .row .cell.dark {
-        background: #2F2F2F;
-        color: #fff; }
-    .pricing-box .row:before, .pricing-box .row:after {
+    table.pricing-box tr td {
+      padding: 8px 0; }
+    table.pricing-box tr th {
+      padding: 25px 0;
+      font-size: 180%;
+      line-height: 150%;
+      font-weight: 100; }
+    table.pricing-box tr td.dark, table.pricing-box tr th.dark {
+      background: #2F2F2F;
+      color: #fff; }
+    table.pricing-box tr:before, table.pricing-box tr:after {
       content: none; }
-  .pricing-box.bordered .cell {
+    table.pricing-box tr:first-of-type td.dark:first-of-type,
+    table.pricing-box tr:first-of-type th.dark:first-of-type,
+    table.pricing-box tr:first-of-type .price:first-of-type {
+      border-top-left-radius: 5px;
+      -webkit-border-top-left-radius: 5px;
+      -khtml-border-top-left-radius: 5px;
+      -moz-border-top-left-radius: 5px;
+      -ms-border-top-left-radius: 5px;
+      -o-border-top-left-radius: 5px; }
+    table.pricing-box tr:first-of-type td.dark:last-of-type,
+    table.pricing-box tr:first-of-type th.dark:last-of-type,
+    table.pricing-box tr:first-of-type .price:last-of-type {
+      border-top-right-radius: 5px;
+      -webkit-border-top-right-radius: 5px;
+      -khtml-border-top-right-radius: 5px;
+      -moz-border-top-right-radius: 5px;
+      -ms-border-top-right-radius: 5px;
+      -o-border-top-right-radius: 5px; }
+    table.pricing-box tr:last-of-type td.dark:first-of-type,
+    table.pricing-box tr:last-of-type th.dark:first-of-type,
+    table.pricing-box tr:last-of-type .price:first-of-type {
+      border-bottom-left-radius: 5px;
+      -webkit-border-bottom-left-radius: 5px;
+      -khtml-border-bottom-left-radius: 5px;
+      -moz-border-bottom-left-radius: 5px;
+      -ms-border-bottom-left-radius: 5px;
+      -o-border-bottom-left-radius: 5px; }
+    table.pricing-box tr:last-of-type td.dark:last-of-type,
+    table.pricing-box tr:last-of-type th.dark:last-of-type,
+    table.pricing-box tr:last-of-type .price:last-of-type {
+      border-bottom-right-radius: 5px;
+      -webkit-border-bottom-right-radius: 5px;
+      -khtml-border-bottom-right-radius: 5px;
+      -moz-border-bottom-right-radius: 5px;
+      -ms-border-bottom-right-radius: 5px;
+      -o-border-bottom-right-radius: 5px; }
+  table.pricing-box.bordered td, table.pricing-box.bordered th {
     border-right: 1px #eeeeee solid;
     border-bottom: 1px #eeeeee solid; }
-    .pricing-box.bordered .cell.dark {
+    table.pricing-box.bordered td.dark, table.pricing-box.bordered th.dark {
       border-right: 1px #000 solid;
       border-bottom: 1px #000 solid; }
-    .pricing-box.bordered .cell:last-of-type {
+    table.pricing-box.bordered td:last-of-type, table.pricing-box.bordered th:last-of-type {
       border-right: none; }
-  .pricing-box.bordered .row:last-of-type .cell {
+  table.pricing-box.bordered tr:last-of-type td {
     border-bottom: none; }
-  .pricing-box.featured {
-    top: -12px;
+  table.pricing-box.featured {
+    box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+    -khtml-box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+    -ms-box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+    -o-box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.25);
     border: 3px #555 solid;
     padding-top: 10px;
     padding-bottom: 10px; }
-    .pricing-box.featured .feature {
-      top: -3px; }
-  .pricing-box.purple .feature span {
+    table.pricing-box.featured:before {
+      border-bottom-left-radius: 3px;
+      -webkit-border-bottom-left-radius: 3px;
+      -khtml-border-bottom-left-radius: 3px;
+      -moz-border-bottom-left-radius: 3px;
+      -ms-border-bottom-left-radius: 3px;
+      -o-border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+      -khtml-border-bottom-right-radius: 3px;
+      -moz-border-bottom-right-radius: 3px;
+      -ms-border-bottom-right-radius: 3px;
+      -o-border-bottom-right-radius: 3px;
+      content: attr(data-featured);
+      position: relative;
+      top: -8px;
+      padding: 1px 7px 4px;
+      border: 3px #555 solid;
+      color: #fff; }
+      table.pricing-box.featured:before .feature {
+        top: -3px; }
+    table.pricing-box.featured:hover {
+      box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+      -webkit-box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+      -khtml-box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+      -ms-box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25);
+      -o-box-shadow: inset 0 2px 7px 3px rgba(0, 0, 0, 0.25); }
+  table.pricing-box.purple .feature span {
     background: #9b339b; }
-  .pricing-box.purple .price {
+  table.pricing-box.purple .price {
     color: #9b339b; }
-  .pricing-box.purple.featured {
+  table.pricing-box.purple.featured {
     border-color: #9b339b; }
-  .pricing-box.yellow .feature span {
+    table.pricing-box.purple.featured:before {
+      border-color: #9b339b;
+      background: #9b339b; }
+  table.pricing-box.yellow .feature span {
     background: #f3b71b; }
-  .pricing-box.yellow .price {
+  table.pricing-box.yellow .price {
     color: #f3b71b; }
-  .pricing-box.yellow.featured {
+  table.pricing-box.yellow.featured {
     border-color: #f3b71b; }
-  .pricing-box .one-half,
-  .pricing-box .one-third,
-  .pricing-box .two-thirds,
-  .pricing-box .three-fourths,
-  .pricing-box .one-fourth,
-  .pricing-box .one-fifth,
-  .pricing-box .two-fifths,
-  .pricing-box .three-fifths,
-  .pricing-box .four-fifths,
-  .pricing-box .one-sixth,
-  .pricing-box .five-sixths {
-    margin: 0 !important; }
-    .pricing-box .one-half.last,
-    .pricing-box .one-third.last,
-    .pricing-box .two-thirds.last,
-    .pricing-box .three-fourths.last,
-    .pricing-box .one-fourth.last,
-    .pricing-box .one-fifth.last,
-    .pricing-box .two-fifths.last,
-    .pricing-box .three-fifths.last,
-    .pricing-box .four-fifths.last,
-    .pricing-box .one-sixth.last,
-    .pricing-box .five-sixths.last {
+  table.pricing-box .one-half,
+  table.pricing-box .one-third,
+  table.pricing-box .two-thirds,
+  table.pricing-box .three-fourths,
+  table.pricing-box .one-fourth,
+  table.pricing-box .one-fifth,
+  table.pricing-box .two-fifths,
+  table.pricing-box .three-fifths,
+  table.pricing-box .four-fifths,
+  table.pricing-box .one-sixth,
+  table.pricing-box .five-sixths {
+    margin: 0 !important;
+    float: none !important; }
+    table.pricing-box .one-half.last,
+    table.pricing-box .one-third.last,
+    table.pricing-box .two-thirds.last,
+    table.pricing-box .three-fourths.last,
+    table.pricing-box .one-fourth.last,
+    table.pricing-box .one-fifth.last,
+    table.pricing-box .two-fifths.last,
+    table.pricing-box .three-fifths.last,
+    table.pricing-box .four-fifths.last,
+    table.pricing-box .one-sixth.last,
+    table.pricing-box .five-sixths.last {
       border: 0; }
-    .pricing-box .one-half .dark,
-    .pricing-box .one-third .dark,
-    .pricing-box .two-thirds .dark,
-    .pricing-box .three-fourths .dark,
-    .pricing-box .one-fourth .dark,
-    .pricing-box .one-fifth .dark,
-    .pricing-box .two-fifths .dark,
-    .pricing-box .three-fifths .dark,
-    .pricing-box .four-fifths .dark,
-    .pricing-box .one-sixth .dark,
-    .pricing-box .five-sixths .dark {
+    table.pricing-box .one-half .dark,
+    table.pricing-box .one-third .dark,
+    table.pricing-box .two-thirds .dark,
+    table.pricing-box .three-fourths .dark,
+    table.pricing-box .one-fourth .dark,
+    table.pricing-box .one-fifth .dark,
+    table.pricing-box .two-fifths .dark,
+    table.pricing-box .three-fifths .dark,
+    table.pricing-box .four-fifths .dark,
+    table.pricing-box .one-sixth .dark,
+    table.pricing-box .five-sixths .dark {
       width: 100.1%; }
-      .pricing-box .one-half .dark.last,
-      .pricing-box .one-third .dark.last,
-      .pricing-box .two-thirds .dark.last,
-      .pricing-box .three-fourths .dark.last,
-      .pricing-box .one-fourth .dark.last,
-      .pricing-box .one-fifth .dark.last,
-      .pricing-box .two-fifths .dark.last,
-      .pricing-box .three-fifths .dark.last,
-      .pricing-box .four-fifths .dark.last,
-      .pricing-box .one-sixth .dark.last,
-      .pricing-box .five-sixths .dark.last {
+      table.pricing-box .one-half .dark.last,
+      table.pricing-box .one-third .dark.last,
+      table.pricing-box .two-thirds .dark.last,
+      table.pricing-box .three-fourths .dark.last,
+      table.pricing-box .one-fourth .dark.last,
+      table.pricing-box .one-fifth .dark.last,
+      table.pricing-box .two-fifths .dark.last,
+      table.pricing-box .three-fifths .dark.last,
+      table.pricing-box .four-fifths .dark.last,
+      table.pricing-box .one-sixth .dark.last,
+      table.pricing-box .five-sixths .dark.last {
         border-right: 0; }
-  .pricing-box .one-half {
+  table.pricing-box .one-half {
     width: 50%; }
-  .pricing-box .one-third {
+  table.pricing-box .one-third {
     width: 33.33%; }
-  .pricing-box .two-thirds {
+  table.pricing-box .two-thirds {
     width: 66.66%; }
-  .pricing-box .one-fourth {
+  table.pricing-box .one-fourth {
     width: 25%; }
-  .pricing-box .three-fourths {
+  table.pricing-box .three-fourths {
     width: 75%; }
-  .pricing-box .one-fifth {
+  table.pricing-box .one-fifth {
     width: 20%; }
-  .pricing-box .two-fifths {
+  table.pricing-box .two-fifths {
     width: 40%; }
-  .pricing-box .three-fifths {
+  table.pricing-box .three-fifths {
     width: 60%; }
-  .pricing-box .four-fifths {
+  table.pricing-box .four-fifths {
     width: 80%; }
-  .pricing-box .one-sixth {
+  table.pricing-box .one-sixth {
     width: 16.66%; }
-  .pricing-box .five-sixths {
+  table.pricing-box .five-sixths {
     width: 83.33%; }
-  .pricing-box sup {
+  table.pricing-box sup {
     vertical-align: super;
     font-size: 0.7em;
     line-height: 100%; }

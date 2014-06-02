@@ -55,6 +55,18 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       'counter_gplus'
     );
 
+    private $table_widths = array(
+      '1/2' => 'one-half',
+      '1/3' => 'one-third',
+      '1/4' => 'one-fourth',
+      '1/5' => 'one-fifth',
+      '1/6' => 'one-sixth',
+      '2/3' => 'two-thirds',
+      '2/5' => 'two-fifths',
+      '3/4' => 'three-fourths',
+      '5/6' => 'five-sixths'
+    );
+
     private $shortcode_templates = array(
       'skillbar' => 'skillbar.php',
       'staff_member' => 'staff-member.php',
@@ -436,7 +448,6 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       $atts = shortcode_atts( array(
         'featured'       => null,
         'featured_label' => null,
-        'title'          => null,
         'border'         => false,
         'color'          => null // TODO
       ), $atts, 'pricing_box' );
@@ -449,12 +460,13 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
       if($atts['color']) $color_class = ' ' . $atts['color'];
       if($atts['border']) $border_class = ' bordered';
 
-      $output = '<div class="pricing-box' . $featured_class . $color_class . $border_class . '">';
-      if($atts['featured_label']) $output .= '<div class="feature"><span>' . $atts['featured_label'] . '</span></div>';
-      if($atts['title']) $output .= '<div class="title">' . $atts['title'] . '</div>';
+      $data_featured = null;
+      if($atts['featured'] && $atts['featured_label']) $data_featured = ' data-featured="' . $atts['featured_label'] . '"';
+      echo $atts['featured_label'];
+      $output = '<table' . $data_featured . ' class="pricing-box' . $featured_class . $color_class . $border_class . '">';
 
       add_shortcode( 'row', array( $this, 'pricing_row' ) ); // switch shortcode handlers
-      $output .= do_shortcode( $content ) . '</div>';
+      $output .= do_shortcode( $content ) . '</table>';
 
       return $output;
     }
@@ -462,44 +474,74 @@ if(!class_exists( 'Inferno_Shortcodes' ) ) {
     public function pricing_price( $atts, $content = null ) 
     {
       $atts = shortcode_atts( array(
-        'price'    => null,
+        'width' => false,
+        'colspan' => false,
         'currency' => "$",
         'info'     => null, // TODO maybe find a better attr name?
-      ), $atts, 'pricing_price' );
+      ), $atts, 'price' );
 
-      if(strpos($atts['price'], '.') !== false) {
-        $price = explode(".", $atts['price']);
-      } else if(str_pos($atts['price'], ',') !== false) {
-        $price = explode(",", $atts['price']);
+      $class = null;
+      if($atts['width'] && array_key_exists($atts['width'], $this->table_widths)) {
+        $class = ' ' . $this->table_widths[$atts['width']];
+      }
+
+      $colspan = null;
+      $atts['colspan'] = filter_var( $atts['colspan'], FILTER_VALIDATE_INT );
+
+      if($atts['colspan'] > 1) $colspan = ' colspan="' . $atts['colspan'] . '"';
+
+      if(strpos($content, '.') !== false) {
+        $price = explode(".", $content);
+      } else if(strpos($content, ',') !== false) {
+        $price = explode(",", $content);
       } else {
         $price = array(
-          $atts['price'],
+          $content,
           '00'
         );
       }
 
-      return '<div class="price"><span class="currency">' . $atts['currency'] . '</span>' . $price[0] . '<span class="decimal">' . $price[1] . '</span><br /><span class="info">' . $atts['info'] . '</span></div>';
+      $output = '<td class="price' . $class . '"' . $colspan . '><span class="currency">' . $atts['currency'] . '</span>' . $price[0] . '<span class="decimal">' . $price[1] . '</span>';
+      if(!empty($atts['info'])) {
+        $output .= '<br /><span class="info">' . $atts['info'] . '</span>';
+      }
+      $output .= '</td>';
+
+      return $output;
     }
 
     public function pricing_row( $atts, $content = null ) 
     {
+      add_shortcode( 'price', array( $this, 'pricing_price' ) ); // switch shortcode handlers
       add_shortcode( 'cell', array( $this, 'pricing_cell' ) ); // switch shortcode handlers
-      return '<div class="row">' . do_shortcode( $content ) . '</div>';
+      return '<tr>' . do_shortcode( $content ) . '</tr>';
     }
 
     public function pricing_cell( $atts, $content = null ) 
     {
       $atts = shortcode_atts( array(
         'heading'  => false,
-        'scheme'   => null
+        'colspan'  => false,
+        'scheme'   => false,
+        'width'    => null
       ), $atts, 'cell' );
 
+      $colspan = $class = null;
       $atts['heading'] = filter_var( $atts['heading'], FILTER_VALIDATE_BOOLEAN );
+      $atts['colspan'] = filter_var( $atts['colspan'], FILTER_VALIDATE_INT );
+      if($atts['colspan'] > 1) $colspan = ' colspan="' . $atts['colspan'] . '"';
+      if($atts['scheme']) $class = ' class="dark"';
+      if($atts['width'] && array_key_exists($atts['width'], $this->table_widths)) {
+        if(!empty($class)) {
+          $class = ' class="dark ' . $this->table_widths[$atts['width']] . '"';
+        } else {
+          $class = ' class="' . $this->table_widths[$atts['width']] . '"';
+        }
+      }
 
-      $scheme_class = $heading_class = null;
-      if($atts['scheme']) $scheme_class = ' ' . $atts['scheme'];
-      if($atts['heading']) $heading_class = ' heading';
-      return '<div class="cell ' . $scheme_class . $heading_class . '">' . do_shortcode( $content ) . '</div>';
+      $table_element = 'td';
+      if($atts['heading']) $table_element = 'th';
+      return '<' . $table_element . $class . $colspan . '>' . do_shortcode( $content ) . '</' . $table_element . '>';
     }
 
 

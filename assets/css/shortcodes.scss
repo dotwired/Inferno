@@ -433,17 +433,16 @@
   pricing tables & boxes
 ======================================================================== */
 
-.pricing-box {
+table.pricing-box {
   @include border-radius(5px);
   @include box-shadow(0 2px 7px 0 rgba(0, 0, 0, 0.25));
   position: relative;
-  display: table;
   width: 100%;
   background: #fff;
   text-align: center;
   font-size: 13px;
   margin-bottom: 15px;
-  overflow: hidden;
+  border-spacing: 0;
   
   > br {
     display: none;
@@ -483,7 +482,7 @@
     padding: 10px 0;
     font-weight: 600;
     font-size: 180%;
-    color: #606060;
+    color: #fff;
     line-height: normal !important;
 
     .currency, .decimal, .info {
@@ -516,8 +515,7 @@
     }
   }
 
-  .row {
-    display: table-row;
+  tr {
     font-size: 110%;
     line-height: 160%;
     color: #555;
@@ -526,19 +524,18 @@
       display: none;
     }
 
-    .cell {
-      display: table-cell;
+    td {
       padding: 8px 0;
-      vertical-align: middle;
+    }
 
-      &.title, // deprecated
-      &.heading {
-        padding: 25px 0;
-        font-size: 180%;
-        line-height: 150%;
-        font-weight: 100;
-      }
+    th {
+      padding: 25px 0;
+      font-size: 180%;
+      line-height: 150%;
+      font-weight: 100;
+    }
 
+    td, th {
       &.dark {
         background: #2F2F2F;
         color: #fff;
@@ -549,45 +546,96 @@
     &:after {
       content: none;
     }
+
+    &:first-of-type {
+      td.dark,
+      th.dark,
+      .price {
+        &:first-of-type {
+          @include border-top-left-radius(5px);
+        }
+
+        &:last-of-type {
+          @include border-top-right-radius(5px);
+        }
+      }
+    }
+  
+    &:last-of-type {
+      td.dark,
+      th.dark,
+      .price {
+        &:first-of-type {
+          @include border-bottom-left-radius(5px);
+        }
+
+        &:last-of-type {
+          @include border-bottom-right-radius(5px);
+        }
+      }
+    }
   }
   
   &.bordered {
-    .cell {
+    td, th {
       border-right: 1px $grey solid;
       border-bottom: 1px $grey solid;
 
       &.dark {
         border-right: 1px #000 solid;
         border-bottom: 1px #000 solid;
-      }
+      } 
 
       &:last-of-type {
         border-right: none;
       }
     }
 
-    .row:last-of-type {
-      .cell {
+    tr:last-of-type {
+      td {
         border-bottom: none;
       }
     }
   }
   
   &.featured {
-    top: -12px;
+    @include box-shadow(0 2px 7px 3px rgba(0, 0, 0, 0.25));
     border: 3px #555 solid;
     padding-top: 10px;
     padding-bottom: 10px;
 
-    .feature {
-      top: -3px;
+    &:before {
+      @include border-bottom-left-radius(3px);
+      @include border-bottom-right-radius(3px);
+      content: attr(data-featured);
+      position: relative;
+      top: -8px;
+      padding: 1px 7px 4px;
+      border: 3px #555 solid;
+      color: #fff;
+
+      .feature {
+        top: -3px;
+      }
+    }
+
+    &:hover {
+      @include box-shadow(inset 0 2px 7px 3px rgba(0, 0, 0, 0.25));
     }
   }
+  
 
   &.purple {
     .feature span { background: #9b339b; }
     .price { color: #9b339b; }
-    &.featured { border-color: #9b339b; }
+    &.featured {
+      border-color: #9b339b; 
+
+      &:before {
+        border-color: #9b339b; 
+        background: #9b339b;
+      }
+    }
   }
 
   &.yellow {
@@ -608,6 +656,7 @@
   .one-sixth, 
   .five-sixths {
     margin: 0 !important;
+    float: none !important;
 
     &.last {
       border: 0;

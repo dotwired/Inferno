@@ -33,6 +33,11 @@ $footer-height: 100px;
   background: $orange url(../img/inferno-demo-opener.png) 13px center no-repeat;
   background-size: 23px 35px;
 
+  &.right {
+    left: auto;
+    right: 0;
+  }
+
   &:hover {
     background-color: $blue;
   }

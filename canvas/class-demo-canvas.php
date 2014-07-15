@@ -6,6 +6,8 @@ if(!class_exists('Inferno_Demo_Canvas')) {
 
         private $_cookie_name = 'inferno_panel_demo_data';
 
+        private $demo_opener_position = 'left';
+
         public function __construct()
         {
             require_once INFERNO_PATH . 'inc/class-cookie-handler.php';
@@ -16,6 +18,7 @@ if(!class_exists('Inferno_Demo_Canvas')) {
             $this->demo_mode = true;
             $theme_support = get_theme_support('inferno-canvas');
             $this->demo_account = $theme_support[0]['demo_account'];
+            $this->demo_opener_position = $theme_support[0]['demo_opener_position'];
 
             //get options
             if(isset($_COOKIE[$this->_cookie_name])) {

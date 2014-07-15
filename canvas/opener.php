@@ -1,1 +1,1 @@
-<a href="#inferno-panel-form" id="inferno-demo-opener" class="open-popup-link"></a>
+<a href="#inferno-panel-form" id="inferno-demo-opener" class="open-popup-link <?php echo $this->demo_opener_position; ?>"></a>

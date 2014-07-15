@@ -16,6 +16,9 @@
   height: 50px;
   background: #ea793d url(../img/inferno-demo-opener.png) 13px center no-repeat;
   background-size: 23px 35px; }
+  #inferno-demo-opener.right {
+    left: auto;
+    right: 0; }
   #inferno-demo-opener:hover {
     background-color: #46b9d6; }
 

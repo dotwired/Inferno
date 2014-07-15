@@ -16,6 +16,14 @@ jQuery(document).ready(function($) {
       midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
 
+    var qtip_my = 'left center';
+    var qtip_at = 'right center';
+
+    if($('#inferno-demo-opener').hasClass('right')) {
+      qtip_my = 'right center';
+      qtip_at = 'left center';
+    }
+
     $('#inferno-demo-opener').qtip({
       content: {
         text: INFERNO.demo_opener_qtip
@@ -24,8 +32,8 @@ jQuery(document).ready(function($) {
         classes: 'qtip-bootstrap'
       },
       position: {
-        my: 'left center',
-        at: 'right center'
+        my: qtip_my,
+        at: qtip_at
       }
     });
   }

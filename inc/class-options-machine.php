@@ -75,7 +75,7 @@ if(!class_exists('Inferno_Options_Machine')) {
 
         <?php $this->field_setting(); ?>
         <?php $this->field_details(); ?>
-        <div class="clear"></div>
+        <div class="clear clearfix"></div>
       </div>
       
       <?php

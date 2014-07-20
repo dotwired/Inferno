@@ -313,7 +313,7 @@ jQuery(document).ready(function($) {
       }
     });
     $inferno_shortcode_result.val('[' + $inferno_shortcode_select.val() + $inferno_shortcode_result.val() + ']');
-    if(!inferno_shortcode_only_atts) $inferno_shortcode_result.val($inferno_shortcode_result.val() + '[' + $inferno_shortcode_select.val()  + ']');
+    if(!inferno_shortcode_only_atts) $inferno_shortcode_result.val($inferno_shortcode_result.val() + '[/' + $inferno_shortcode_select.val()  + ']');
 
     var shortcode = $inferno_shortcode_result.val();
     window.send_to_editor(shortcode);

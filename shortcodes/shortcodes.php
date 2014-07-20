@@ -447,4 +447,45 @@
       )
     )
   ),
+
+
+  /* ==========================================================================
+     Columning and structure
+     ========================================================================== */
+
+  array(
+    "id"    => "portfolio",
+    "title" => "Portfolio",
+    "desc"  => "A gallery view of your portfolio items",
+    "fields" => array(
+      array(
+        "id"    => "categories",
+        "title" => "Categories",
+        "desc"  => "Comma separated list of portfolio category ids that you want to include.",
+        "std"   => null,
+        "type"  => "text"
+      ),
+      array(
+        "id"    => "filter",
+        "title" => "Filter",
+        "desc"  => "Turn on or off the selection filter for the images.",
+        "std"   => true,
+        "type"  => "checkbox"
+      ),
+      array(
+        "id"    => "img_width",
+        "title" => "Image width",
+        "desc"  => "Set the width of the portfolio images.",
+        "std"   => null,
+        "type"  => "range"
+      ),
+      array(
+        "id"    => "img_height",
+        "title" => "Image height",
+        "desc"  => "Set the height of the portfolio images.",
+        "std"   => null,
+        "type"  => "range"
+      )
+    )
+  )
 );
